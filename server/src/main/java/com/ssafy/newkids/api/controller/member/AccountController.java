@@ -57,4 +57,10 @@ public class AccountController {
         Boolean result = accountService.checkEmail(request.getEmail());
         return ApiResponse.ok(result);
     }
+
+    @PostMapping("/check/nickname")
+    public ApiResponse<Boolean> checkNickname(@Valid @RequestBody CheckEmailRequest request) {
+        Boolean result = accountService.checkNickname(request.getEmail());
+        return ApiResponse.ok(result);
+    }
 }
