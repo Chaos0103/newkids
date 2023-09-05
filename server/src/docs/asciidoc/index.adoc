@@ -15,3 +15,7 @@ endif::[]
 include::api/member/login-account.adoc[]
 include::api/member/search-account.adoc[]
 
+[[Member-API]]
+== Member API
+
+include::api/member/create-account.adoc[]
