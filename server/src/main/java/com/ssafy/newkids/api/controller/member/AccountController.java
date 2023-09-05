@@ -2,10 +2,12 @@ package com.ssafy.newkids.api.controller.member;
 
 import com.ssafy.newkids.api.ApiResponse;
 import com.ssafy.newkids.api.controller.member.request.LoginRequest;
+import com.ssafy.newkids.api.controller.member.response.MemberResponse;
 import com.ssafy.newkids.api.service.member.AccountService;
 import com.ssafy.newkids.security.TokenInfo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,5 +35,19 @@ public class AccountController {
         log.debug("TokenInfo={}", token);
 
         return ApiResponse.ok(token);
+    }
+
+    @GetMapping("/info")
+    public ApiResponse<MemberResponse> getMemberInfo() {
+        log.debug("call AccountController#getMemberInfo");
+
+        // TODO: 2023-09-05 임우택 JWT에서 회원 정보 추출
+        String email = null;
+        log.info("access email={}", email);
+
+        MemberResponse response = accountService.getMemberInfo(email);
+        log.debug("MemberResponse={}", response);
+
+        return ApiResponse.ok(response);
     }
 }
