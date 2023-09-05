@@ -2,6 +2,7 @@ package com.ssafy.newkids.api.controller.member;
 
 import com.ssafy.newkids.api.ApiResponse;
 import com.ssafy.newkids.api.controller.member.request.CheckEmailRequest;
+import com.ssafy.newkids.api.controller.member.request.CheckNicknameRequest;
 import com.ssafy.newkids.api.controller.member.request.LoginRequest;
 import com.ssafy.newkids.api.controller.member.response.MemberResponse;
 import com.ssafy.newkids.api.service.member.AccountService;
@@ -59,8 +60,8 @@ public class AccountController {
     }
 
     @PostMapping("/check/nickname")
-    public ApiResponse<Boolean> checkNickname(@Valid @RequestBody CheckEmailRequest request) {
-        Boolean result = accountService.checkNickname(request.getEmail());
+    public ApiResponse<Boolean> checkNickname(@Valid @RequestBody CheckNicknameRequest request) {
+        Boolean result = accountService.checkNickname(request.getNickname());
         return ApiResponse.ok(result);
     }
 }
