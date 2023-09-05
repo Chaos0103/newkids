@@ -13,4 +13,5 @@ endif::[]
 == Account API
 
 include::api/member/login-account.adoc[]
+include::api/member/search-account.adoc[]
 

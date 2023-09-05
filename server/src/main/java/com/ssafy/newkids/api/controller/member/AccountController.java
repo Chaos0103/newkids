@@ -42,7 +42,7 @@ public class AccountController {
         log.debug("call AccountController#getMemberInfo");
 
         // TODO: 2023-09-05 임우택 JWT에서 회원 정보 추출
-        String email = null;
+        String email = "ssafy@ssafy.com";
         log.info("access email={}", email);
 
         MemberResponse response = accountService.getMemberInfo(email);
