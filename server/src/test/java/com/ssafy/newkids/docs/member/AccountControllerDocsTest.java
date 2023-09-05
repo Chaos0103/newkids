@@ -147,7 +147,7 @@ public class AccountControllerDocsTest extends RestDocsSupport {
             )
             .andDo(print())
             .andExpect(status().isOk())
-            .andDo(document("login-account",
+            .andDo(document("check-email",
                 preprocessRequest(prettyPrint()),
                 preprocessResponse(prettyPrint()),
                 requestFields(
