@@ -19,3 +19,4 @@ include::api/member/search-account.adoc[]
 == Member API
 
 include::api/member/create-account.adoc[]
+include::api/member/check-email.adoc[]
