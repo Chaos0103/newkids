@@ -19,4 +19,8 @@ public class MemberService {
     public JoinMemberResponse join(JoinMemberDto dto) {
         return null;
     }
+
+    public Boolean withdrawal(String email, String password) {
+        return null;
+    }
 }
