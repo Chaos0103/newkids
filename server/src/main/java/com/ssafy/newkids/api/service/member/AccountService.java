@@ -40,4 +40,8 @@ public class AccountService {
     public Boolean checkEmail(String email) {
         return null;
     }
+
+    public Boolean checkNickname(String nickname) {
+        return null;
+    }
 }
