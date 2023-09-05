@@ -2,11 +2,13 @@ package com.ssafy.newkids.api.controller.member;
 
 import com.ssafy.newkids.api.ApiResponse;
 import com.ssafy.newkids.api.controller.member.request.JoinRequest;
+import com.ssafy.newkids.api.controller.member.request.WithdrawalRequest;
 import com.ssafy.newkids.api.controller.member.response.JoinMemberResponse;
 import com.ssafy.newkids.api.controller.member.response.MemberResponse;
 import com.ssafy.newkids.api.service.member.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -34,5 +36,20 @@ public class MemberController {
         log.debug("JoinMemberResponse={}", response);
 
         return ApiResponse.ok(response);
+    }
+
+    @DeleteMapping("/withdrawal")
+    public ApiResponse<Boolean> withdrawal(@Valid @RequestBody WithdrawalRequest request) {
+        log.debug("call MemberController#withdrawal");
+        log.debug("WithdrawalRequest={}", request);
+
+        // TODO: 2023-09-05 임우택 JWT에서 회원 정보 추출
+        String email = "ssafy@ssafy.com";
+        log.info("access email={}", email);
+
+        Boolean result = memberService.withdrawal(email, request.getPassword());
+        log.debug("result={}", result);
+
+        return ApiResponse.ok(result);
     }
 }
