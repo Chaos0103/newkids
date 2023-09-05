@@ -2,6 +2,7 @@ package com.ssafy.newkids.docs.member;
 
 import com.ssafy.newkids.api.controller.member.AccountController;
 import com.ssafy.newkids.api.controller.member.request.CheckEmailRequest;
+import com.ssafy.newkids.api.controller.member.request.CheckNicknameRequest;
 import com.ssafy.newkids.api.controller.member.request.LoginRequest;
 import com.ssafy.newkids.api.controller.member.response.MemberResponse;
 import com.ssafy.newkids.api.service.member.AccountService;
@@ -153,6 +154,43 @@ public class AccountControllerDocsTest extends RestDocsSupport {
                 requestFields(
                     fieldWithPath("email").type(JsonFieldType.STRING)
                         .description("중복 확인 이메일")
+                ),
+                responseFields(
+                    fieldWithPath("code").type(JsonFieldType.NUMBER)
+                        .description("코드"),
+                    fieldWithPath("status").type(JsonFieldType.STRING)
+                        .description("상태"),
+                    fieldWithPath("message").type(JsonFieldType.STRING)
+                        .description("메시지"),
+                    fieldWithPath("data").type(JsonFieldType.BOOLEAN)
+                        .description("중복 여부(true: 사용불가, false: 사용가능)")
+                )
+            ));
+    }
+
+    @DisplayName("닉네임 중복 체크 API")
+    @Test
+    void checkNickname() throws Exception {
+        CheckNicknameRequest request = CheckNicknameRequest.builder()
+            .nickname("광주C205")
+            .build();
+
+        given(accountService.checkNickname(anyString()))
+            .willReturn(true);
+
+        mockMvc.perform(
+                post("/check/nickname")
+                    .content(objectMapper.writeValueAsString(request))
+                    .contentType(MediaType.APPLICATION_JSON)
+            )
+            .andDo(print())
+            .andExpect(status().isOk())
+            .andDo(document("check-nickname",
+                preprocessRequest(prettyPrint()),
+                preprocessResponse(prettyPrint()),
+                requestFields(
+                    fieldWithPath("nickname").type(JsonFieldType.STRING)
+                        .description("중복 확인 닉네임")
                 ),
                 responseFields(
                     fieldWithPath("code").type(JsonFieldType.NUMBER)
