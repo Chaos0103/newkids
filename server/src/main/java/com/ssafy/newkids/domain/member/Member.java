@@ -1,0 +1,62 @@
+package com.ssafy.newkids.domain.member;
+
+import com.ssafy.newkids.domain.TimeBaseEntity;
+import lombok.AccessLevel;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
+
+/**
+ * 회원 entity
+ *
+ * @author 임우택
+ */
+@Entity
+@Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Table(name = "members")
+public class Member extends TimeBaseEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "member_id")
+    private Long id;
+
+    @Column(unique = true, nullable = false, updatable = false, length = 100)
+    private String email;
+
+    @Column(nullable = false, length = 255)
+    private String encryptedPwd;
+
+    @Column(nullable = false, updatable = false, length = 20)
+    private String name;
+
+    @Column(nullable = false)
+    private int age;
+
+    @Column(nullable = false)
+    private int level;
+
+    @Column(nullable = false)
+    private int exp;
+
+    @Column(unique = true, nullable = false, length = 20)
+    private String nickname;
+
+    @Column(nullable = false)
+    private Boolean active;
+
+    @Builder
+    private Member(String email, String encryptedPwd, String name, int age, int level, int exp, String nickname, Boolean active) {
+        this.email = email;
+        this.encryptedPwd = encryptedPwd;
+        this.name = name;
+        this.age = age;
+        this.level = level;
+        this.exp = exp;
+        this.nickname = nickname;
+        this.active = active;
+    }
+}

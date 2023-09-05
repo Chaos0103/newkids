@@ -24,3 +24,8 @@ logging:
   level:
     org.hibernate.SQL: debug
     com.ssafy.server: debug
+
+#security
+security:
+  key: dladnxorwjsdlsgurchldudghksghdwlstlrtjdydwnswhcksdlr
+  expiredTime: 86400000
