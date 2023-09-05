@@ -1,0 +1,24 @@
+ifndef::snippets[]
+:snippets: ../../build/generated-snippets
+endif::[]
+= New Kids REST API 문서
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 2
+:sectlinks:
+
+[[Account-API]]
+== Account API
+
+include::api/member/login-account.adoc[]
+include::api/member/search-account.adoc[]
+
+[[Member-API]]
+== Member API
+
+include::api/member/create-account.adoc[]
+include::api/member/check-email.adoc[]
+include::api/member/check-nickname.adoc[]
+include::api/member/remove-member.adoc[]
