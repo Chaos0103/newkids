@@ -1,6 +1,7 @@
 package com.ssafy.newkids.docs.member;
 
 import com.ssafy.newkids.api.controller.member.AccountController;
+import com.ssafy.newkids.api.controller.member.request.CheckEmailRequest;
 import com.ssafy.newkids.api.controller.member.request.LoginRequest;
 import com.ssafy.newkids.api.controller.member.response.MemberResponse;
 import com.ssafy.newkids.api.service.member.AccountService;
@@ -125,6 +126,43 @@ public class AccountControllerDocsTest extends RestDocsSupport {
                         .description("경험치"),
                     fieldWithPath("data.nickname").type(JsonFieldType.STRING)
                         .description("닉네임")
+                )
+            ));
+    }
+
+    @DisplayName("이메일 중복 체크 API")
+    @Test
+    void checkEmail() throws Exception {
+        CheckEmailRequest request = CheckEmailRequest.builder()
+            .email("ssafy@ssafy.com")
+            .build();
+
+        given(accountService.checkEmail(anyString()))
+            .willReturn(true);
+
+        mockMvc.perform(
+                post("/check/email")
+                    .content(objectMapper.writeValueAsString(request))
+                    .contentType(MediaType.APPLICATION_JSON)
+            )
+            .andDo(print())
+            .andExpect(status().isOk())
+            .andDo(document("login-account",
+                preprocessRequest(prettyPrint()),
+                preprocessResponse(prettyPrint()),
+                requestFields(
+                    fieldWithPath("email").type(JsonFieldType.STRING)
+                        .description("중복 확인 이메일")
+                ),
+                responseFields(
+                    fieldWithPath("code").type(JsonFieldType.NUMBER)
+                        .description("코드"),
+                    fieldWithPath("status").type(JsonFieldType.STRING)
+                        .description("상태"),
+                    fieldWithPath("message").type(JsonFieldType.STRING)
+                        .description("메시지"),
+                    fieldWithPath("data").type(JsonFieldType.BOOLEAN)
+                        .description("중복 여부(true: 사용불가, false: 사용가능)")
                 )
             ));
     }
