@@ -36,4 +36,8 @@ public class AccountService {
     public MemberResponse getMemberInfo(String email) {
         return null;
     }
+
+    public Boolean checkEmail(String email) {
+        return null;
+    }
 }
