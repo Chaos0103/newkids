@@ -1,6 +1,7 @@
 package com.ssafy.newkids.api.controller.member;
 
 import com.ssafy.newkids.api.ApiResponse;
+import com.ssafy.newkids.api.controller.member.request.CheckEmailRequest;
 import com.ssafy.newkids.api.controller.member.request.LoginRequest;
 import com.ssafy.newkids.api.controller.member.response.MemberResponse;
 import com.ssafy.newkids.api.service.member.AccountService;
@@ -49,5 +50,11 @@ public class AccountController {
         log.debug("MemberResponse={}", response);
 
         return ApiResponse.ok(response);
+    }
+
+    @PostMapping("/check/email")
+    public ApiResponse<Boolean> checkEmail(@Valid @RequestBody CheckEmailRequest request) {
+        Boolean result = accountService.checkEmail(request.getEmail());
+        return ApiResponse.ok(result);
     }
 }
