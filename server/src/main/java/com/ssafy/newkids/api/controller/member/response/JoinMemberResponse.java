@@ -1,5 +1,6 @@
 package com.ssafy.newkids.api.controller.member.response;
 
+import com.ssafy.newkids.domain.member.Member;
 import lombok.Builder;
 import lombok.Data;
 
@@ -17,5 +18,14 @@ public class JoinMemberResponse {
         this.name = name;
         this.age = age;
         this.nickname = nickname;
+    }
+
+    public static JoinMemberResponse of(Member member) {
+        return JoinMemberResponse.builder()
+            .email(member.getEmail())
+            .name(member.getName())
+            .age(member.getAge())
+            .nickname(member.getNickname())
+            .build();
     }
 }

@@ -23,7 +23,7 @@ spring:
 logging:
   level:
     org.hibernate.SQL: debug
-    com.ssafy.server: debug
+    com.ssafy.newkids: debug
 
 #security
 security:
