@@ -152,6 +152,21 @@ class MemberServiceTest extends IntegrationTestSupport {
         assertThat(passwordEncoder.matches("ssafyc205!", findMember.get().getEncryptedPwd())).isTrue();
     }
 
+    @DisplayName("회원은 계정 닉네임을 변경할 수 있다.")
+    @Test
+    void editNickname() {
+        //given
+        Member member = createMember("ssafy@ssafy.com", "광주C205");
+
+        //when
+        MemberResponse response = memberService.editNickname("ssafy@ssafy.com", "광주2반");
+
+        //then
+        Optional<Member> findMember = memberRepository.findById(member.getId());
+        assertThat(findMember).isPresent();
+        assertThat(findMember.get().getNickname()).isEqualTo("광주2반");
+    }
+
     private Member createMember(String email, String nickname) {
         Member member = Member.builder()
             .email(email)
