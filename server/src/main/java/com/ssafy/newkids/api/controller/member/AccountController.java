@@ -28,7 +28,7 @@ public class AccountController {
 
     private final AccountService accountService;
 
-//    @PostMapping("/login")
+    @PostMapping("/login")
     public ApiResponse<TokenInfo> login(@Valid @RequestBody LoginRequest request) {
         log.debug("call AccountController#login");
         log.debug("LoginRequest={}", request);

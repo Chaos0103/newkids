@@ -63,6 +63,7 @@ public class MemberController {
         log.debug("call MemberController#editNickname");
         log.debug("EditPasswordRequest={}", request);
 
+
         // TODO: 2023-09-05 임우택 JWT에서 회원 정보 추출
         String email = "ssafy@ssafy.com";
         log.info("access email={}", email);
