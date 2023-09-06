@@ -38,6 +38,12 @@ public class MemberController {
         return ApiResponse.ok(response);
     }
 
+    /**
+     * 회원 탈퇴 API
+     *
+     * @param request 탈퇴할 계정 비밀번호
+     * @return 탈퇴 성공 여부(성공: true, 실패: false)
+     */
     @DeleteMapping("/withdrawal")
     public ApiResponse<Boolean> withdrawal(@Valid @RequestBody WithdrawalRequest request) {
         log.debug("call MemberController#withdrawal");

@@ -59,4 +59,9 @@ public class Member extends TimeBaseEntity {
         this.nickname = nickname;
         this.active = active;
     }
+
+    //== 비즈니스 로직 ==//
+    public void deActive() {
+        this.active = false;
+    }
 }
