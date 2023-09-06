@@ -24,3 +24,8 @@ include::api/member/check-nickname.adoc[]
 include::api/member/edit-password-member.adoc[]
 include::api/member/edit-nickname-member.adoc[]
 include::api/member/remove-member.adoc[]
+
+[[Vocabulary-API]]
+== Vocabulary API
+
+include::api/vocabulary/create-vocabulary.adoc[]
