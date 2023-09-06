@@ -62,7 +62,7 @@ public class MemberControllerDocsTest extends RestDocsSupport {
                     .contentType(MediaType.APPLICATION_JSON)
             )
             .andDo(print())
-            .andExpect(status().isOk())
+            .andExpect(status().isCreated())
             .andDo(document("create-member",
                 preprocessRequest(prettyPrint()),
                 preprocessResponse(prettyPrint()),
@@ -124,7 +124,7 @@ public class MemberControllerDocsTest extends RestDocsSupport {
                     .contentType(MediaType.APPLICATION_JSON)
             )
             .andDo(print())
-            .andExpect(status().isOk())
+            .andExpect(status().isFound())
             .andDo(document("edit-password-member",
                 preprocessRequest(prettyPrint()),
                 preprocessResponse(prettyPrint()),
@@ -181,7 +181,7 @@ public class MemberControllerDocsTest extends RestDocsSupport {
                     .contentType(MediaType.APPLICATION_JSON)
             )
             .andDo(print())
-            .andExpect(status().isOk())
+            .andExpect(status().isFound())
             .andDo(document("edit-nickname-member",
                 preprocessRequest(prettyPrint()),
                 preprocessResponse(prettyPrint()),
@@ -228,7 +228,7 @@ public class MemberControllerDocsTest extends RestDocsSupport {
                     .contentType(MediaType.APPLICATION_JSON)
             )
             .andDo(print())
-            .andExpect(status().isOk())
+            .andExpect(status().isFound())
             .andDo(document("remove-member",
                 preprocessRequest(prettyPrint()),
                 preprocessResponse(prettyPrint()),
