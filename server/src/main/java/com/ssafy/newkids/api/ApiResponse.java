@@ -5,6 +5,12 @@ import org.springframework.http.HttpStatus;
 
 import static org.springframework.http.HttpStatus.OK;
 
+/**
+ * API Response 공통 스팩
+ *
+ * @author 임우택
+ * @param <T> 반환할 데이터의 타입
+ */
 @Getter
 public class ApiResponse<T> {
 
@@ -13,7 +19,7 @@ public class ApiResponse<T> {
     private final String message;
     private final T data;
 
-    public ApiResponse(HttpStatus status, String message, T data) {
+    private ApiResponse(HttpStatus status, String message, T data) {
         this.code = status.value();
         this.status = status;
         this.message = message;
