@@ -21,18 +21,18 @@ public class Vocabulary extends TimeBaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Vocabulary_id")
+    @Column(name = "vocabulary_id")
     private Long id;
 
     @Column(nullable = false)
     private Boolean check;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @Column(name = "member_id")
+    @JoinColumn(name = "member_id")
     private Member member;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @Column(name = "word_id")
+    @JoinColumn(name = "word_id")
     private Word word;
 
     @Builder
