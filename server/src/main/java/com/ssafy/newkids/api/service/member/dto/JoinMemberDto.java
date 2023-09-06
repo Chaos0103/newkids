@@ -1,5 +1,6 @@
 package com.ssafy.newkids.api.service.member.dto;
 
+import com.ssafy.newkids.domain.member.Member;
 import lombok.Builder;
 import lombok.Data;
 
@@ -19,5 +20,18 @@ public class JoinMemberDto {
         this.name = name;
         this.age = age;
         this.nickname = nickname;
+    }
+
+    public Member toEntity(String encryptedPwd) {
+        return Member.builder()
+            .email(this.email)
+            .encryptedPwd(encryptedPwd)
+            .name(this.name)
+            .age(this.age)
+            .level(1)
+            .exp(0)
+            .nickname(this.nickname)
+            .active(true)
+            .build();
     }
 }

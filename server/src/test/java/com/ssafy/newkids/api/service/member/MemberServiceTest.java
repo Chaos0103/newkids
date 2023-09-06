@@ -69,7 +69,7 @@ class MemberServiceTest extends IntegrationTestSupport {
     void join() {
         //given
         JoinMemberDto dto = JoinMemberDto.builder()
-            .email("ssfay@ssafy.com")
+            .email("ssafy@ssafy.com")
             .password("encryptedPwd")
             .name("김싸피")
             .age(10)
