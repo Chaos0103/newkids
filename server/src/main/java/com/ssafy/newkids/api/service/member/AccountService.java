@@ -53,8 +53,14 @@ public class AccountService implements UserDetailsService {
             .orElseThrow(NoSuchElementException::new);
     }
 
-    public Boolean checkEmail(String email) {
-        return null;
+    /**
+     * 이메일 중복 체크
+     *
+     * @param email 중복 체크할 대상 이메일
+     * @return 존재하면 true, 존재하지 않으면 false
+     */
+    public boolean checkEmail(String email) {
+        return memberQueryRepository.existEmail(email);
     }
 
     public Boolean checkNickname(String nickname) {
