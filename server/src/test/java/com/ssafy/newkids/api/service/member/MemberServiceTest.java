@@ -144,7 +144,7 @@ class MemberServiceTest extends IntegrationTestSupport {
         Member member = createMember("ssafy@ssafy.com", "광주C205");
 
         //when
-        MemberResponse response = memberService.editPassword("ssafy@ssafy.com", "ssafy1111!", "ssafyc205!");
+        MemberResponse response = memberService.editPassword("ssafy@ssafy.com", "ssafy1234!", "ssafyc205!");
 
         //then
         Optional<Member> findMember = memberRepository.findById(member.getId());
