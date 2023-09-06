@@ -9,6 +9,9 @@ import com.ssafy.newkids.domain.member.repository.MemberRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -25,6 +28,9 @@ class MemberServiceTest extends IntegrationTestSupport {
 
     @Autowired
     private MemberRepository memberRepository;
+
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
 
     @DisplayName("회원 가입시 입력된 이메일이 이미 사용 중 이라면 예외가 발생한다.")
     @Test
@@ -85,10 +91,42 @@ class MemberServiceTest extends IntegrationTestSupport {
             .containsExactlyInAnyOrder("ssafy@ssafy.com", "김싸피", 10, "광주C205");
     }
 
+    @DisplayName("계정 비밀번호가 불일치하는 경우 회원 탈퇴를 할 수 없다.")
+    @Test
+    void withdrawalWithException() {
+        //given
+        Member member = createMember("ssafy@ssafy.com", "광주C205");
+
+        //when
+        boolean result = memberService.withdrawal("ssafy@ssafy.com", "ssafy1111!");
+
+        //then
+        assertThat(result).isFalse();
+        Optional<Member> findMember = memberRepository.findById(member.getId());
+        assertThat(findMember).isPresent();
+        assertThat(findMember.get().getActive()).isTrue();
+    }
+
+    @DisplayName("계정 비밀번호가 일치하는 경우 회원 탈퇴를 할 수 있다.")
+    @Test
+    void withdrawal() {
+        //given
+        Member member = createMember("ssafy@ssafy.com", "광주C205");
+
+        //when
+        boolean result = memberService.withdrawal("ssafy@ssafy.com", "ssafy1234!");
+
+        //then
+        assertThat(result).isTrue();
+        Optional<Member> findMember = memberRepository.findById(member.getId());
+        assertThat(findMember).isPresent();
+        assertThat(findMember.get().getActive()).isFalse();
+    }
+
     private Member createMember(String email, String nickname) {
         Member member = Member.builder()
             .email(email)
-            .encryptedPwd("encryptedPwd")
+            .encryptedPwd(passwordEncoder.encode("ssafy1234!"))
             .name("김싸피")
             .age(10)
             .level(1)
