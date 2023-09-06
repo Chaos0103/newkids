@@ -1,0 +1,11 @@
+[[edit-nickname-member]]
+=== 계정 닉네임 변경
+
+==== HTTP Request
+include::{snippets}/edit-nickname-member/http-request.adoc[]
+include::{snippets}/edit-nickname-member/request-fields.adoc[]
+
+
+==== HTTP Response
+include::{snippets}/edit-nickname-member/http-response.adoc[]
+include::{snippets}/edit-nickname-member/response-fields.adoc[]
