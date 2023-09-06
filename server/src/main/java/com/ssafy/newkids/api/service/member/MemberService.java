@@ -71,6 +71,7 @@ public class MemberService {
      * @param currentPwd 현재 비밀번호
      * @param newPwd 변경할 비밀번호
      * @return 변경된 계정 정보
+     * @throws NoSuchElementException 계정 이메일이 일치하는 회원이 존재하지 않을 경우
      * @throws MismatchException 현재 비밀번호가 불일치하는 경우
      */
     public MemberResponse editPassword(String email, String currentPwd, String newPwd) {
@@ -82,6 +83,21 @@ public class MemberService {
 
         String encryptedPwd = passwordEncoder.encode(newPwd);
         member.editEncryptedPwd(encryptedPwd);
+        return MemberResponse.of(member);
+    }
+
+    /**
+     * 계정 닉네임 변경
+     *
+     * @param email 변경할 계정 이메일
+     * @param newNickname 변경할 닉네임
+     * @return 변경된 계정 정보
+     * @throws NoSuchElementException 계정 이메일이 일치하는 회원이 존재하지 않을 경우
+     */
+    public MemberResponse editNickname(String email, String newNickname) {
+        Member member = getMemberEntity(email);
+
+        member.editNickname(newNickname);
         return MemberResponse.of(member);
     }
 

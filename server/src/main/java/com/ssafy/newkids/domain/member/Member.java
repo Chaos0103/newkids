@@ -65,6 +65,10 @@ public class Member extends TimeBaseEntity {
         this.encryptedPwd = encryptedPwd;
     }
 
+    public void editNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
     public void deActive() {
         this.active = false;
     }
