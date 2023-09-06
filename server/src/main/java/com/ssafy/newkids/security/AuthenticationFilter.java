@@ -25,7 +25,11 @@ import java.security.Key;
 import java.util.ArrayList;
 import java.util.Date;
 
-
+/**
+ * Security 권한 필터
+ *
+ * @author 임우택
+ */
 @Slf4j
 public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
