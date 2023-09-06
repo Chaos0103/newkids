@@ -1,9 +1,13 @@
 package com.ssafy.newkids.domain.member.repository;
 
+import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQueryFactory;
+import com.ssafy.newkids.api.controller.member.response.MemberResponse;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+
+import java.util.Optional;
 
 import static com.ssafy.newkids.domain.member.QMember.member;
 
@@ -51,5 +55,26 @@ public class MemberQueryRepository {
             .fetchFirst();
 
         return result != null;
+    }
+
+    /**
+     * 회원 정보 조회
+     *
+     * @param email 조회할 대상의 이메일
+     * @return 조회된 회원의 정보
+     */
+    public Optional<MemberResponse> findByEmail(String email) {
+        MemberResponse response = queryFactory
+            .select(Projections.constructor(MemberResponse.class,
+                member.name,
+                member.age,
+                member.level,
+                member.exp,
+                member.nickname
+            ))
+            .from(member)
+            .where(member.email.eq(email))
+            .fetchFirst();
+        return Optional.ofNullable(response);
     }
 }
