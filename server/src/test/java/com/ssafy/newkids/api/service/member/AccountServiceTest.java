@@ -33,6 +33,56 @@ class AccountServiceTest extends IntegrationTestSupport {
             .containsExactlyInAnyOrder("김싸피", 10, 1, 0, "광주C205");
     }
 
+    @DisplayName("이미 등록된 이메일이라면 true를 반환한다.")
+    @Test
+    void checkEmailWithTrue() {
+        //given
+        Member member = createMember();
+
+        //when
+        boolean result = accountService.checkEmail("ssafy@ssafy.com");
+
+        //then
+        assertThat(result).isTrue();
+    }
+
+    @DisplayName("사용 가능한 이메일이라면 false를 반환한다.")
+    @Test
+    void checkEmailWithFalse() {
+        //given
+
+        //when
+        boolean result = accountService.checkEmail("ssafy@ssafy.com");
+
+        //then
+        assertThat(result).isFalse();
+    }
+
+    @DisplayName("이미 등록된 닉네임이라면 true를 반환한다.")
+    @Test
+    void checkNicknameWithTrue() {
+        //given
+        Member member = createMember();
+
+        //when
+        boolean result = accountService.checkNickname("광주C205");
+
+        //then
+        assertThat(result).isTrue();
+    }
+
+    @DisplayName("사용 가능한 닉네임이라면 false를 반환한다.")
+    @Test
+    void checkNicknameWithFalse() {
+        //given
+
+        //when
+        boolean result = accountService.checkNickname("광주C205");
+
+        //then
+        assertThat(result).isFalse();
+    }
+
     private Member createMember() {
         Member member = Member.builder()
             .email("ssafy@ssafy.com")
