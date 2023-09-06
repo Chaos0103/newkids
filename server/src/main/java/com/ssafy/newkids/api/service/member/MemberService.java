@@ -11,6 +11,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.NoSuchElementException;
+
 /**
  * 회원 서비스
  *
@@ -41,8 +43,23 @@ public class MemberService {
         return JoinMemberResponse.of(savedMember);
     }
 
-    public Boolean withdrawal(String email, String password) {
-        return null;
+    /**
+     * 회원 탈퇴
+     *
+     * @param email 탈퇴할 계정 이메일
+     * @param password 탈퇴할 계정 비밀번호
+     * @return 탈퇴 성공 여부(성공: true, 실패: false)
+     * @throws NoSuchElementException 계정 이메일이 일치하는 회원이 존재하지 않을 경우
+     */
+    public boolean withdrawal(String email, String password) {
+        Member member = getMemberEntity(email);
+
+        if (isMatchPassword(password, member)) {
+            member.deActive();
+            return true;
+        }
+
+        return false;
     }
 
     /**
@@ -82,5 +99,28 @@ public class MemberService {
 
         Member member = dto.toEntity(encryptedPwd);
         return memberRepository.save(member);
+    }
+
+    /**
+     * 계정 이메일로 회원 엔티티 조회
+     *
+     * @param email 조회할 계정 이메일
+     * @return 조회된 회원 엔티티
+     * @throws NoSuchElementException 계정 이메일이 일치하는 회원이 존재하지 않을 경우
+     */
+    private Member getMemberEntity(String email) {
+        return memberRepository.findByEmail(email)
+            .orElseThrow(NoSuchElementException::new);
+    }
+
+    /**
+     * 비밀번호 일치 여부
+     *
+     * @param password 입력받은 계정 비밀번호
+     * @param member 일치 여부를 판별할 회원 엔티티
+     * @return 비밀번호 일치 여부(일치: true, 불일치: false)
+     */
+    private boolean isMatchPassword(String password, Member member) {
+        return passwordEncoder.matches(password, member.getEncryptedPwd());
     }
 }
