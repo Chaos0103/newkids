@@ -1,6 +1,7 @@
 package com.ssafy.newkids.api.controller.member;
 
 import com.ssafy.newkids.api.ApiResponse;
+import com.ssafy.newkids.api.controller.member.request.EditNicknameRequest;
 import com.ssafy.newkids.api.controller.member.request.EditPasswordRequest;
 import com.ssafy.newkids.api.controller.member.request.JoinRequest;
 import com.ssafy.newkids.api.controller.member.request.WithdrawalRequest;
@@ -52,6 +53,21 @@ public class MemberController {
         log.info("access email={}", email);
 
         MemberResponse response = memberService.editPassword(email, request.getCurrentPwd(), request.getNewPwd());
+        log.debug("MemberResponse={}", response);
+
+        return ApiResponse.ok(response);
+    }
+
+    @PatchMapping("/nickname")
+    public ApiResponse<MemberResponse> editNickname(@Valid @RequestBody EditNicknameRequest request) {
+        log.debug("call MemberController#editNickname");
+        log.debug("EditPasswordRequest={}", request);
+
+        // TODO: 2023-09-05 임우택 JWT에서 회원 정보 추출
+        String email = "ssafy@ssafy.com";
+        log.info("access email={}", email);
+
+        MemberResponse response = memberService.editNickname(email, request.getNewNickname());
         log.debug("MemberResponse={}", response);
 
         return ApiResponse.ok(response);
