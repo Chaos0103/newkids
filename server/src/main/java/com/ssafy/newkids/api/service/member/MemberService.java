@@ -1,6 +1,7 @@
 package com.ssafy.newkids.api.service.member;
 
 import com.ssafy.newkids.api.controller.member.response.JoinMemberResponse;
+import com.ssafy.newkids.api.controller.member.response.MemberResponse;
 import com.ssafy.newkids.api.service.member.dto.JoinMemberDto;
 import com.ssafy.newkids.api.service.member.exception.DuplicateException;
 import com.ssafy.newkids.domain.member.Member;
@@ -60,6 +61,10 @@ public class MemberService {
         }
 
         return false;
+    }
+
+    public MemberResponse editPassword(String email, String currentPwd, String newPwd) {
+        return null;
     }
 
     /**
