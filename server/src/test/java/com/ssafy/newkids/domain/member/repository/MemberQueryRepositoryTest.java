@@ -1,11 +1,14 @@
 package com.ssafy.newkids.domain.member.repository;
 
 import com.ssafy.newkids.IntegrationTestSupport;
+import com.ssafy.newkids.api.controller.member.response.MemberResponse;
 import com.ssafy.newkids.domain.member.Member;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -70,6 +73,22 @@ class MemberQueryRepositoryTest extends IntegrationTestSupport {
 
         //then
         assertThat(result).isFalse();
+    }
+
+    @DisplayName("이메일로 회원 정보를 조회할 수 있다.")
+    @Test
+    void findByEmail() {
+        //given
+        Member member = createMember();
+
+        //when
+        Optional<MemberResponse> response = memberQueryRepository.findByEmail("ssafy@ssafy.com");
+
+        //then
+        assertThat(response).isPresent();
+        assertThat(response.get())
+            .extracting("name", "age", "level", "exp", "nickname")
+            .containsExactlyInAnyOrder("김싸피", 10, 1, 0, "광주C205");
     }
 
     private Member createMember() {

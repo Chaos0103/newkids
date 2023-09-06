@@ -2,6 +2,7 @@ package com.ssafy.newkids.api.service.member;
 
 import com.ssafy.newkids.api.controller.member.response.MemberResponse;
 import com.ssafy.newkids.domain.member.Member;
+import com.ssafy.newkids.domain.member.repository.MemberQueryRepository;
 import com.ssafy.newkids.domain.member.repository.MemberRepository;
 import com.ssafy.newkids.security.TokenInfo;
 import lombok.RequiredArgsConstructor;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 /**
@@ -27,6 +29,7 @@ import java.util.Optional;
 public class AccountService implements UserDetailsService {
 
     private final MemberRepository memberRepository;
+    private final MemberQueryRepository memberQueryRepository;
 
     /**
      * 계정 로그인
@@ -46,7 +49,8 @@ public class AccountService implements UserDetailsService {
      * @return 조회된 계정 정보
      */
     public MemberResponse getMemberInfo(String email) {
-        return null;
+        return memberQueryRepository.findByEmail(email)
+            .orElseThrow(NoSuchElementException::new);
     }
 
     public Boolean checkEmail(String email) {
