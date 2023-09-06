@@ -1,9 +1,12 @@
 package com.ssafy.newkids.docs.member;
 
 import com.ssafy.newkids.api.controller.member.MemberController;
+import com.ssafy.newkids.api.controller.member.request.EditNicknameRequest;
+import com.ssafy.newkids.api.controller.member.request.EditPasswordRequest;
 import com.ssafy.newkids.api.controller.member.request.JoinRequest;
 import com.ssafy.newkids.api.controller.member.request.WithdrawalRequest;
 import com.ssafy.newkids.api.controller.member.response.JoinMemberResponse;
+import com.ssafy.newkids.api.controller.member.response.MemberResponse;
 import com.ssafy.newkids.api.service.member.MemberService;
 import com.ssafy.newkids.api.service.member.dto.JoinMemberDto;
 import com.ssafy.newkids.docs.RestDocsSupport;
@@ -19,8 +22,7 @@ import static org.mockito.Mockito.mock;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.operation.preprocess.Preprocessors.*;
 import static org.springframework.restdocs.payload.PayloadDocumentation.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -60,7 +62,7 @@ public class MemberControllerDocsTest extends RestDocsSupport {
                     .contentType(MediaType.APPLICATION_JSON)
             )
             .andDo(print())
-            .andExpect(status().isOk())
+            .andExpect(status().isCreated())
             .andDo(document("create-member",
                 preprocessRequest(prettyPrint()),
                 preprocessResponse(prettyPrint()),
@@ -97,6 +99,119 @@ public class MemberControllerDocsTest extends RestDocsSupport {
             ));
     }
 
+    @DisplayName("계정 비밀번호 변경 API")
+    @Test
+    void editPassword() throws Exception {
+        EditPasswordRequest request = EditPasswordRequest.builder()
+            .currentPwd("ssafy1234!")
+            .newPwd("ssafyc205!")
+            .build();
+
+        MemberResponse response = MemberResponse.builder()
+            .name("김싸피")
+            .age(10)
+            .level(1)
+            .exp(0)
+            .nickname("광주C205")
+            .build();
+
+        given(memberService.editPassword(anyString(), anyString(), anyString()))
+            .willReturn(response);
+
+        mockMvc.perform(
+                patch("/password")
+                    .content(objectMapper.writeValueAsString(request))
+                    .contentType(MediaType.APPLICATION_JSON)
+            )
+            .andDo(print())
+            .andExpect(status().isFound())
+            .andDo(document("edit-password-member",
+                preprocessRequest(prettyPrint()),
+                preprocessResponse(prettyPrint()),
+                requestFields(
+                    fieldWithPath("currentPwd").type(JsonFieldType.STRING)
+                        .description("현재 계정 비밀번호"),
+                    fieldWithPath("newPwd").type(JsonFieldType.STRING)
+                        .description("변경할 계정 비밀번호")
+                ),
+                responseFields(
+                    fieldWithPath("code").type(JsonFieldType.NUMBER)
+                        .description("코드"),
+                    fieldWithPath("status").type(JsonFieldType.STRING)
+                        .description("상태"),
+                    fieldWithPath("message").type(JsonFieldType.STRING)
+                        .description("메시지"),
+                    fieldWithPath("data").type(JsonFieldType.OBJECT)
+                        .description("응답데이터"),
+                    fieldWithPath("data.name").type(JsonFieldType.STRING)
+                        .description("이름"),
+                    fieldWithPath("data.age").type(JsonFieldType.NUMBER)
+                        .description("나이"),
+                    fieldWithPath("data.level").type(JsonFieldType.NUMBER)
+                        .description("레벨"),
+                    fieldWithPath("data.exp").type(JsonFieldType.NUMBER)
+                        .description("경험치"),
+                    fieldWithPath("data.nickname").type(JsonFieldType.STRING)
+                        .description("닉네임")
+                )
+            ));
+    }
+
+    @DisplayName("계정 닉네임 변경 API")
+    @Test
+    void editNickname() throws Exception {
+        EditNicknameRequest request = EditNicknameRequest.builder()
+            .newNickname("광주2반")
+            .build();
+
+        MemberResponse response = MemberResponse.builder()
+            .name("김싸피")
+            .age(10)
+            .level(1)
+            .exp(0)
+            .nickname("광주2반")
+            .build();
+
+        given(memberService.editNickname(anyString(), anyString()))
+            .willReturn(response);
+
+        mockMvc.perform(
+                patch("/nickname")
+                    .content(objectMapper.writeValueAsString(request))
+                    .contentType(MediaType.APPLICATION_JSON)
+            )
+            .andDo(print())
+            .andExpect(status().isFound())
+            .andDo(document("edit-nickname-member",
+                preprocessRequest(prettyPrint()),
+                preprocessResponse(prettyPrint()),
+                requestFields(
+                    fieldWithPath("newNickname").type(JsonFieldType.STRING)
+                        .description("변경할 닉네임")
+                ),
+                responseFields(
+                    fieldWithPath("code").type(JsonFieldType.NUMBER)
+                        .description("코드"),
+                    fieldWithPath("status").type(JsonFieldType.STRING)
+                        .description("상태"),
+                    fieldWithPath("message").type(JsonFieldType.STRING)
+                        .description("메시지"),
+                    fieldWithPath("data").type(JsonFieldType.OBJECT)
+                        .description("응답데이터"),
+                    fieldWithPath("data.name").type(JsonFieldType.STRING)
+                        .description("이름"),
+                    fieldWithPath("data.age").type(JsonFieldType.NUMBER)
+                        .description("나이"),
+                    fieldWithPath("data.level").type(JsonFieldType.NUMBER)
+                        .description("레벨"),
+                    fieldWithPath("data.exp").type(JsonFieldType.NUMBER)
+                        .description("경험치"),
+                    fieldWithPath("data.nickname").type(JsonFieldType.STRING)
+                        .description("닉네임")
+                )
+            ));
+    }
+
     @DisplayName("회원 탈퇴 API")
     @Test
     void withdrawal() throws Exception {
@@ -113,7 +228,7 @@ public class MemberControllerDocsTest extends RestDocsSupport {
                     .contentType(MediaType.APPLICATION_JSON)
             )
             .andDo(print())
-            .andExpect(status().isOk())
+            .andExpect(status().isFound())
             .andDo(document("remove-member",
                 preprocessRequest(prettyPrint()),
                 preprocessResponse(prettyPrint()),

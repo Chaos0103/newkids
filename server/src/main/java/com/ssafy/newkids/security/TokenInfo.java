@@ -3,6 +3,11 @@ package com.ssafy.newkids.security;
 import lombok.Builder;
 import lombok.Data;
 
+/**
+ * 토큰 정보 DTO
+ *
+ * @author 임우택
+ */
 @Data
 public class TokenInfo {
 
@@ -11,7 +16,7 @@ public class TokenInfo {
     private String refreshToken;
 
     @Builder
-    public TokenInfo(String grantType, String accessToken, String refreshToken) {
+    private TokenInfo(String grantType, String accessToken, String refreshToken) {
         this.grantType = grantType;
         this.accessToken = accessToken;
         this.refreshToken = refreshToken;

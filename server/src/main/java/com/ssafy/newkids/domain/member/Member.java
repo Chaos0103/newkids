@@ -61,6 +61,14 @@ public class Member extends TimeBaseEntity {
     }
 
     //== 비즈니스 로직 ==//
+    public void editEncryptedPwd(String encryptedPwd) {
+        this.encryptedPwd = encryptedPwd;
+    }
+
+    public void editNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
     public void deActive() {
         this.active = false;
     }

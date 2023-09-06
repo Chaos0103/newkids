@@ -13,6 +13,11 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
+/**
+ * Web Security Config
+ *
+ * @author 임우택
+ */
 @Configurable
 @EnableWebSecurity
 @RequiredArgsConstructor

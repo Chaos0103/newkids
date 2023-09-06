@@ -2,8 +2,10 @@ package com.ssafy.newkids.api.service.member;
 
 import com.ssafy.newkids.IntegrationTestSupport;
 import com.ssafy.newkids.api.controller.member.response.JoinMemberResponse;
+import com.ssafy.newkids.api.controller.member.response.MemberResponse;
 import com.ssafy.newkids.api.service.member.dto.JoinMemberDto;
 import com.ssafy.newkids.api.service.member.exception.DuplicateException;
+import com.ssafy.newkids.api.service.member.exception.MismatchException;
 import com.ssafy.newkids.domain.member.Member;
 import com.ssafy.newkids.domain.member.repository.MemberRepository;
 import org.junit.jupiter.api.DisplayName;
@@ -121,6 +123,48 @@ class MemberServiceTest extends IntegrationTestSupport {
         Optional<Member> findMember = memberRepository.findById(member.getId());
         assertThat(findMember).isPresent();
         assertThat(findMember.get().getActive()).isFalse();
+    }
+
+    @DisplayName("비밀번호 변경시 현재 비밀번호가 불일치하면 예외가 발생한다.")
+    @Test
+    void editPasswordWithCurrentPwd() {
+        //given
+        Member member = createMember("ssafy@ssafy.com", "광주C205");
+
+        //when //then
+        assertThatThrownBy(() -> memberService.editPassword("ssafy@ssafy.com", "ssafy1111!", "ssafyc205!"))
+            .isInstanceOf(MismatchException.class)
+            .hasMessage("현재 비밀번호가 일치하지 않습니다.");
+    }
+
+    @DisplayName("비밀번호 변경시 현재 비밀번호가 일치하면 변경할 수 있다.")
+    @Test
+    void editPassword() {
+        //given
+        Member member = createMember("ssafy@ssafy.com", "광주C205");
+
+        //when
+        MemberResponse response = memberService.editPassword("ssafy@ssafy.com", "ssafy1234!", "ssafyc205!");
+
+        //then
+        Optional<Member> findMember = memberRepository.findById(member.getId());
+        assertThat(findMember).isPresent();
+        assertThat(passwordEncoder.matches("ssafyc205!", findMember.get().getEncryptedPwd())).isTrue();
+    }
+
+    @DisplayName("회원은 계정 닉네임을 변경할 수 있다.")
+    @Test
+    void editNickname() {
+        //given
+        Member member = createMember("ssafy@ssafy.com", "광주C205");
+
+        //when
+        MemberResponse response = memberService.editNickname("ssafy@ssafy.com", "광주2반");
+
+        //then
+        Optional<Member> findMember = memberRepository.findById(member.getId());
+        assertThat(findMember).isPresent();
+        assertThat(findMember.get().getNickname()).isEqualTo("광주2반");
     }
 
     private Member createMember(String email, String nickname) {
