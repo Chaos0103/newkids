@@ -18,8 +18,7 @@ import static org.springframework.restdocs.operation.preprocess.Preprocessors.pr
 import static org.springframework.restdocs.operation.preprocess.Preprocessors.prettyPrint;
 import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
 import static org.springframework.restdocs.payload.PayloadDocumentation.responseFields;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -94,6 +93,48 @@ public class VocabularyControllerDocsTest extends RestDocsSupport {
             .andDo(print())
             .andExpect(status().isFound())
             .andDo(document("check-vocabulary",
+                preprocessResponse(prettyPrint()),
+                responseFields(
+                    fieldWithPath("code").type(JsonFieldType.NUMBER)
+                        .description("코드"),
+                    fieldWithPath("status").type(JsonFieldType.STRING)
+                        .description("상태"),
+                    fieldWithPath("message").type(JsonFieldType.STRING)
+                        .description("메시지"),
+                    fieldWithPath("data").type(JsonFieldType.OBJECT)
+                        .description("응답데이터"),
+                    fieldWithPath("data.wordKey").type(JsonFieldType.STRING)
+                        .description("단어키"),
+                    fieldWithPath("data.word").type(JsonFieldType.STRING)
+                        .description("단어"),
+                    fieldWithPath("data.description").type(JsonFieldType.STRING)
+                        .description("단어설명"),
+                    fieldWithPath("data.check").type(JsonFieldType.BOOLEAN)
+                        .description("단어체크여부(체크: true, 미체크: false)")
+                )
+            ));
+    }
+
+    @DisplayName("단어장 삭제 API")
+    @Test
+    void removeVocabulary() throws Exception {
+        VocabularyResponse response = VocabularyResponse.builder()
+            .wordKey("92288")
+            .word("돼지")
+            .description("멧돼짓과의 포유류. 몸무게는 200~250kg이며, 다리와 꼬리가 짧고 주둥이가 삐죽하다.")
+            .check(true)
+            .build();
+
+        given(vocabularyService.removeVocabulary(anyLong()))
+            .willReturn(response);
+
+        mockMvc.perform(
+                delete("/vocabulary/{vocabularyId}", 1L)
+                    .contentType(MediaType.APPLICATION_JSON)
+            )
+            .andDo(print())
+            .andExpect(status().isFound())
+            .andDo(document("remove-vocabulary",
                 preprocessResponse(prettyPrint()),
                 responseFields(
                     fieldWithPath("code").type(JsonFieldType.NUMBER)
