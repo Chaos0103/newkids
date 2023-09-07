@@ -30,3 +30,4 @@ include::api/member/remove-member.adoc[]
 
 include::api/vocabulary/create-vocabulary.adoc[]
 include::api/vocabulary/check-vocabulary.adoc[]
+include::api/vocabulary/remove-vocabulary.adoc[]
