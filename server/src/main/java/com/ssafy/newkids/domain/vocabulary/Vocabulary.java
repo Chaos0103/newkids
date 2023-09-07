@@ -24,7 +24,7 @@ public class Vocabulary extends TimeBaseEntity {
     @Column(name = "vocabulary_id")
     private Long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name = "`check`")
     private Boolean check;
 
     @ManyToOne(fetch = FetchType.LAZY)
