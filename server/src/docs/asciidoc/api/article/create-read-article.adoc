@@ -1,0 +1,9 @@
+[[create-read-article]]
+=== 기사 읽기
+
+==== HTTP Request
+include::{snippets}/create-read-article/http-request.adoc[]
+
+==== HTTP Response
+include::{snippets}/create-read-article/http-response.adoc[]
+include::{snippets}/create-read-article/response-fields.adoc[]

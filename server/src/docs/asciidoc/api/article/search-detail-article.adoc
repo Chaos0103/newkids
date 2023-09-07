@@ -1,0 +1,9 @@
+[[search-detail-article]]
+=== 기사 상세 조회
+
+==== HTTP Request
+include::{snippets}/search-detail-article/http-request.adoc[]
+
+==== HTTP Response
+include::{snippets}/search-detail-article/http-response.adoc[]
+include::{snippets}/search-detail-article/response-fields.adoc[]
