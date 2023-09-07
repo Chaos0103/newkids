@@ -41,7 +41,7 @@ public class VocabularyController {
         return ApiResponse.ok(null);
     }
 
-    //    U: 단어 체크
+    // TODO: 2023-09-07 임우택 단어장 체크 API
     @PatchMapping("/{vocabularyId}")
     @ResponseStatus(HttpStatus.FOUND)
     public ApiResponse<VocabularyResponse> checkVocabulary(@PathVariable Long vocabularyId) {
