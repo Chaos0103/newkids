@@ -18,5 +18,6 @@ module.exports = {
 	rules: {
 		'prettier/prettier': ['error', { endOfLine: 'auto' }],
 		'import/prefer-default-export': 'off',
+		'react/require-default-props': 'off',
 	},
 };
