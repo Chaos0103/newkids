@@ -1,23 +1,23 @@
 package com.ssafy.newkids.docs.member;
 
 import com.ssafy.newkids.api.controller.vocabulary.VocabularyController;
-import com.ssafy.newkids.api.controller.vocabulary.request.CreateVocabularyRequest;
 import com.ssafy.newkids.api.controller.vocabulary.response.VocabularyResponse;
 import com.ssafy.newkids.api.service.vocabulary.VocabularyService;
-import com.ssafy.newkids.api.service.vocabulary.dto.CreateVocabularyDto;
 import com.ssafy.newkids.docs.RestDocsSupport;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.MediaType;
 import org.springframework.restdocs.payload.JsonFieldType;
 
-import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
-import static org.springframework.restdocs.operation.preprocess.Preprocessors.*;
-import static org.springframework.restdocs.payload.PayloadDocumentation.*;
+import static org.springframework.restdocs.operation.preprocess.Preprocessors.preprocessResponse;
+import static org.springframework.restdocs.operation.preprocess.Preprocessors.prettyPrint;
+import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
+import static org.springframework.restdocs.payload.PayloadDocumentation.responseFields;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -34,12 +34,6 @@ public class VocabularyControllerDocsTest extends RestDocsSupport {
     @DisplayName("단어장 등록 API")
     @Test
     void createVocabulary() throws Exception {
-        CreateVocabularyRequest request = CreateVocabularyRequest.builder()
-            .wordKey("92288")
-            .word("돼지")
-            .description("멧돼짓과의 포유류. 몸무게는 200~250kg이며, 다리와 꼬리가 짧고 주둥이가 삐죽하다.")
-            .build();
-
         VocabularyResponse response = VocabularyResponse.builder()
             .wordKey("92288")
             .word("돼지")
@@ -47,27 +41,17 @@ public class VocabularyControllerDocsTest extends RestDocsSupport {
             .check(false)
             .build();
 
-        given(vocabularyService.createVocabulary(anyString(), any(CreateVocabularyDto.class)))
+        given(vocabularyService.createVocabulary(anyString(), anyLong()))
             .willReturn(response);
 
         mockMvc.perform(
-                post("/vocabulary")
-                    .content(objectMapper.writeValueAsString(request))
+                post("/vocabulary/{wordId}", 1L)
                     .contentType(MediaType.APPLICATION_JSON)
             )
             .andDo(print())
             .andExpect(status().isCreated())
             .andDo(document("create-vocabulary",
-                preprocessRequest(prettyPrint()),
                 preprocessResponse(prettyPrint()),
-                requestFields(
-                    fieldWithPath("wordKey").type(JsonFieldType.STRING)
-                        .description("단어키"),
-                    fieldWithPath("word").type(JsonFieldType.STRING)
-                        .description("단어"),
-                    fieldWithPath("description").type(JsonFieldType.STRING)
-                        .description("단어 설명")
-                ),
                 responseFields(
                     fieldWithPath("code").type(JsonFieldType.NUMBER)
                         .description("코드"),
