@@ -21,6 +21,8 @@ eureka:
 
 # spring setting
 spring:
+  application:
+    name: user-service
   # database setting
   datasource:
     url: ${datasource.url}
