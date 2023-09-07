@@ -1,4 +1,4 @@
-package com.ssafy.newkids.docs.member;
+package com.ssafy.newkids.docs.vocabulary;
 
 import com.ssafy.newkids.api.controller.vocabulary.VocabularyController;
 import com.ssafy.newkids.api.controller.vocabulary.response.VocabularyResponse;
