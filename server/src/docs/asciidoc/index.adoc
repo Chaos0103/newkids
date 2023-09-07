@@ -31,3 +31,11 @@ include::api/member/remove-member.adoc[]
 include::api/vocabulary/create-vocabulary.adoc[]
 include::api/vocabulary/check-vocabulary.adoc[]
 include::api/vocabulary/remove-vocabulary.adoc[]
+
+[[Word-API]]
+== Word API
+
+include::api/word/create-word.adoc[]
+include::api/word/search-words.adoc[]
+include::api/word/edit-word.adoc[]
+include::api/word/remove-word.adoc[]
