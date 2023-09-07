@@ -49,7 +49,7 @@ public class VocabularyController {
         return ApiResponse.found(response);
     }
 
-    //    D: 단어장 삭제
+    // TODO: 2023-09-07 임우택 단어장 삭제 API
     @DeleteMapping("/{vocabularyId}")
     @ResponseStatus(HttpStatus.FOUND)
     public ApiResponse<VocabularyResponse> removeVocabulary(@PathVariable Long vocabularyId) {
