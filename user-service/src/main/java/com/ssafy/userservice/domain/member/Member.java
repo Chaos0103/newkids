@@ -1,5 +1,6 @@
 package com.ssafy.userservice.domain.member;
 
+import com.fasterxml.jackson.databind.introspect.MemberKey;
 import com.ssafy.userservice.domain.TimeBaseEntity;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -47,6 +48,9 @@ public class Member extends TimeBaseEntity {
 
     @Column(nullable = false)
     private Boolean active;
+
+    @Column(nullable = false)
+    private String memberKey;
 
     @Builder
     private Member(String email, String encryptedPwd, String name, int age, int level, int exp, String nickname, Boolean active) {
