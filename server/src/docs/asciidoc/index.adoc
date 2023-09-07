@@ -45,3 +45,4 @@ include::api/word/remove-word.adoc[]
 
 include::api/article/search-article.adoc[]
 include::api/article/search-detail-article.adoc[]
+include::api/article/create-read-article.adoc[]
