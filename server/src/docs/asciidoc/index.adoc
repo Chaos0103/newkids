@@ -39,3 +39,9 @@ include::api/word/create-word.adoc[]
 include::api/word/search-words.adoc[]
 include::api/word/edit-word.adoc[]
 include::api/word/remove-word.adoc[]
+
+[[Article-API]]
+== Article API
+
+include::api/article/search-article.adoc[]
+include::api/article/search-detail-article.adoc[]
