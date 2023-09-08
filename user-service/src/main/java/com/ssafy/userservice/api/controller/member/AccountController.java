@@ -26,6 +26,7 @@ public class AccountController {
     /**
      * 계정 정보 조회 API
      *
+     * @param memberKey 조회할 회원 고유키
      * @return 200 조회된 계정 정보
      */
     @GetMapping("/{memberKey}/info")
@@ -45,7 +46,7 @@ public class AccountController {
      * @param request 중복 체크할 이메일
      * @return 200 존재하면 true, 존재하지 않으면 false
      */
-    @PostMapping("/check/email")
+    @PostMapping("/auth/email")
     public ApiResponse<Boolean> checkEmail(@Valid @RequestBody CheckEmailRequest request) {
         log.debug("call AccountController#checkEmail");
         log.debug("CheckEmailRequest={}", request);
@@ -62,7 +63,7 @@ public class AccountController {
      * @param request 중복 체크할 닉네임
      * @return 200 존재하면 true, 존재하지 않으면 false
      */
-    @PostMapping("/check/nickname")
+    @PostMapping("/auth/nickname")
     public ApiResponse<Boolean> checkNickname(@Valid @RequestBody CheckNicknameRequest request) {
         log.debug("call AccountController#checkNickname");
         log.debug("CheckNicknameRequest={}", request);

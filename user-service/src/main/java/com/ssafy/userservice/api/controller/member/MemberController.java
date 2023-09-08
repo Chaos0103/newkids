@@ -49,36 +49,44 @@ public class MemberController {
     /**
      * 계정 비밀번호 변경 API
      *
+     * @param memberKey 변경할 계정의 고유키
      * @param request 변경할 계정 비밀번호 정보
      * @return 비밀번호 변경된 계정 정보
      */
-    @PatchMapping("/password")
+    @PatchMapping("/{memberKey}/password")
     @ResponseStatus(HttpStatus.FOUND)
-    public ApiResponse<MemberResponse> editPassword(@Valid @RequestBody EditPasswordRequest request) {
+    public ApiResponse<MemberResponse> editPassword(
+        @PathVariable String memberKey,
+        @Valid @RequestBody EditPasswordRequest request
+    ) {
         log.debug("call MemberController#editPassword");
         log.debug("EditPasswordRequest={}", request);
+        log.debug("memberKey={}", memberKey);
 
-        // TODO: 2023-09-05 임우택 JWT에서 회원 정보 추출
-        String email = "ssafy@ssafy.com";
-        log.info("access email={}", email);
-
-        MemberResponse response = memberService.editPassword(email, request.getCurrentPwd(), request.getNewPwd());
+        MemberResponse response = memberService.editPassword(memberKey, request.getCurrentPwd(), request.getNewPwd());
         log.debug("MemberResponse={}", response);
 
         return ApiResponse.found(response);
     }
 
-    @PatchMapping("/nickname")
+    /**
+     * 계정 닉네임 변경 API
+     *
+     * @param memberKey 변경할 계정의 고유키
+     * @param request 변경할 계정 닉네임 정보
+     * @return 닉네임 변경된 계정 정보
+     */
+    @PatchMapping("/{memberKey}/nickname")
     @ResponseStatus(HttpStatus.FOUND)
-    public ApiResponse<MemberResponse> editNickname(@Valid @RequestBody EditNicknameRequest request) {
+    public ApiResponse<MemberResponse> editNickname(
+        @PathVariable String memberKey,
+        @Valid @RequestBody EditNicknameRequest request
+    ) {
         log.debug("call MemberController#editNickname");
         log.debug("EditPasswordRequest={}", request);
+        log.debug("memberKey={}", memberKey);
 
-        // TODO: 2023-09-05 임우택 JWT에서 회원 정보 추출
-        String email = "ssafy@ssafy.com";
-        log.info("access email={}", email);
-
-        MemberResponse response = memberService.editNickname(email, request.getNewNickname());
+        MemberResponse response = memberService.editNickname(memberKey, request.getNewNickname());
         log.debug("MemberResponse={}", response);
 
         return ApiResponse.found(response);
@@ -90,17 +98,17 @@ public class MemberController {
      * @param request 탈퇴할 계정 비밀번호
      * @return 탈퇴 성공 여부(성공: true, 실패: false)
      */
-    @DeleteMapping("/withdrawal")
+    @DeleteMapping("/{memberKey}/withdrawal")
     @ResponseStatus(HttpStatus.FOUND)
-    public ApiResponse<Boolean> withdrawal(@Valid @RequestBody WithdrawalRequest request) {
+    public ApiResponse<Boolean> withdrawal(
+        @PathVariable String memberKey,
+        @Valid @RequestBody WithdrawalRequest request
+    ) {
         log.debug("call MemberController#withdrawal");
         log.debug("WithdrawalRequest={}", request);
+        log.debug("memberKey={}", memberKey);
 
-        // TODO: 2023-09-05 임우택 JWT에서 회원 정보 추출
-        String email = "ssafy@ssafy.com";
-        log.info("access email={}", email);
-
-        Boolean result = memberService.withdrawal(email, request.getPassword());
+        Boolean result = memberService.withdrawal(memberKey, request.getPassword());
         log.debug("result={}", result);
 
         return ApiResponse.found(result);

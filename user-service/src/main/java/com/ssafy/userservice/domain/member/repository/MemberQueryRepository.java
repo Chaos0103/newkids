@@ -60,7 +60,7 @@ public class MemberQueryRepository {
     /**
      * 회원 정보 조회
      *
-     * @param email 조회할 대상의 이메일
+     * @param memberKey 조회할 대상의 이메일
      * @return 조회된 회원의 정보
      */
     public Optional<MemberResponse> findByMemberKey(String memberKey) {
