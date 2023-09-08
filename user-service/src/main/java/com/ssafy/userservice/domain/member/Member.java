@@ -1,6 +1,5 @@
 package com.ssafy.userservice.domain.member;
 
-import com.fasterxml.jackson.databind.introspect.MemberKey;
 import com.ssafy.userservice.domain.TimeBaseEntity;
 import lombok.AccessLevel;
 import lombok.Builder;
