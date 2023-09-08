@@ -1,5 +1,5 @@
 encrypt:
   key-store:
-    location: file:/apiEncryptionKey.jks
-    password: ssafyc205
+    location: file://${user.home}/app/newkids/keystore/apiEncryptionKey.jks
+    password: ${encrypt.key-store.password}
     alias: apiEncryptionKey

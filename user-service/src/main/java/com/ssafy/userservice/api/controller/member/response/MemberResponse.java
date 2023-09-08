@@ -4,6 +4,11 @@ import com.ssafy.userservice.domain.member.Member;
 import lombok.Builder;
 import lombok.Data;
 
+/**
+ * 회원 정보 응답 객체
+ *
+ * @author 임우택
+ */
 @Data
 public class MemberResponse {
 
