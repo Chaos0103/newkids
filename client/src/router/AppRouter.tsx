@@ -12,14 +12,14 @@ function AppRouter() {
 		<RecoilRoot>
 			<GlobalFonts />
 			<GlobalStyles />
-			<BrowserRouter>
-				<ApplicationLayout>
+			<ApplicationLayout>
+				<BrowserRouter>
 					<Navigation />
 					<Routes>
 						<Route path="/" element={<IndexPage />} />
 					</Routes>
-				</ApplicationLayout>
-			</BrowserRouter>
+				</BrowserRouter>
+			</ApplicationLayout>
 		</RecoilRoot>
 	);
 }

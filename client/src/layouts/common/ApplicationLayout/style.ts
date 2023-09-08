@@ -7,5 +7,4 @@ export const ApplicationLayoutContainer = styled.div`
 	min-height: 100vh;
 	margin: 0 auto;
 	background-color: var.$white;
-	overflow-y: scroll;
 `;
