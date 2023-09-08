@@ -53,7 +53,7 @@ public class Member extends TimeBaseEntity {
     private String memberKey;
 
     @Builder
-    private Member(String email, String encryptedPwd, String name, int age, int level, int exp, String nickname, Boolean active) {
+    private Member(String email, String encryptedPwd, String name, int age, int level, int exp, String nickname, Boolean active, String memberKey) {
         this.email = email;
         this.encryptedPwd = encryptedPwd;
         this.name = name;
@@ -62,6 +62,7 @@ public class Member extends TimeBaseEntity {
         this.exp = exp;
         this.nickname = nickname;
         this.active = active;
+        this.memberKey = memberKey;
     }
 
     //== 비즈니스 로직 ==//
