@@ -41,11 +41,11 @@ public class AccountService implements UserDetailsService{
     /**
      * 계정 정보 조회
      *
-     * @param email 계정 이메일
+     * @param memberKey 조회할 회원 고유키
      * @return 조회된 계정 정보
      */
-    public MemberResponse getMemberInfo(String email) {
-        return memberQueryRepository.findByEmail(email)
+    public MemberResponse getMemberInfo(String memberKey) {
+        return memberQueryRepository.findByMemberKey(memberKey)
             .orElseThrow(NoSuchElementException::new);
     }
 

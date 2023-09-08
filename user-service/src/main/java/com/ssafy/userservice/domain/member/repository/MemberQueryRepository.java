@@ -63,7 +63,7 @@ public class MemberQueryRepository {
      * @param email 조회할 대상의 이메일
      * @return 조회된 회원의 정보
      */
-    public Optional<MemberResponse> findByEmail(String email) {
+    public Optional<MemberResponse> findByMemberKey(String memberKey) {
         MemberResponse response = queryFactory
             .select(Projections.constructor(MemberResponse.class,
                 member.name,
@@ -73,7 +73,7 @@ public class MemberQueryRepository {
                 member.nickname
             ))
             .from(member)
-            .where(member.email.eq(email))
+            .where(member.memberKey.eq(memberKey))
             .fetchFirst();
         return Optional.ofNullable(response);
     }

@@ -7,10 +7,7 @@ import com.ssafy.userservice.api.controller.member.response.MemberResponse;
 import com.ssafy.userservice.api.service.member.AccountService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -31,15 +28,12 @@ public class AccountController {
      *
      * @return 200 조회된 계정 정보
      */
-    @GetMapping("/info")
-    public ApiResponse<MemberResponse> getMemberInfo() {
+    @GetMapping("/{memberKey}/info")
+    public ApiResponse<MemberResponse> getMemberInfo(@PathVariable String memberKey) {
         log.debug("call AccountController#getMemberInfo");
+        log.debug("memberKey={}", memberKey);
 
-        // TODO: 2023-09-05 임우택 JWT에서 회원 정보 추출
-        String email = "ssafy@ssafy.com";
-        log.info("access email={}", email);
-
-        MemberResponse response = accountService.getMemberInfo(email);
+        MemberResponse response = accountService.getMemberInfo(memberKey);
         log.debug("MemberResponse={}", response);
 
         return ApiResponse.ok(response);

@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.NoSuchElementException;
+import java.util.UUID;
 
 /**
  * 회원 서비스
@@ -48,13 +49,13 @@ public class MemberService {
     /**
      * 회원 탈퇴
      *
-     * @param email 탈퇴할 계정 이메일
+     * @param memberKey 탈퇴할 회원 고유키
      * @param password 탈퇴할 계정 비밀번호
      * @return 탈퇴 성공 여부(성공: true, 실패: false)
      * @throws NoSuchElementException 계정 이메일이 일치하는 회원이 존재하지 않을 경우
      */
-    public boolean withdrawal(String email, String password) {
-        Member member = getMemberEntity(email);
+    public boolean withdrawal(String memberKey, String password) {
+        Member member = getMemberEntity(memberKey);
 
         if (isMatchPassword(password, member)) {
             member.deActive();
@@ -67,15 +68,15 @@ public class MemberService {
     /**
      * 계정 비밀번호 변경
      *
-     * @param email 변경할 계정 이메일
+     * @param memberKey 변경할 회원 고유키
      * @param currentPwd 현재 비밀번호
      * @param newPwd 변경할 비밀번호
      * @return 변경된 계정 정보
      * @throws NoSuchElementException 계정 이메일이 일치하는 회원이 존재하지 않을 경우
      * @throws MismatchException 현재 비밀번호가 불일치하는 경우
      */
-    public MemberResponse editPassword(String email, String currentPwd, String newPwd) {
-        Member member = getMemberEntity(email);
+    public MemberResponse editPassword(String memberKey, String currentPwd, String newPwd) {
+        Member member = getMemberEntity(memberKey);
 
         if (!isMatchPassword(currentPwd, member)) {
             throw new MismatchException("현재 비밀번호가 일치하지 않습니다.");
@@ -89,13 +90,13 @@ public class MemberService {
     /**
      * 계정 닉네임 변경
      *
-     * @param email 변경할 계정 이메일
+     * @param memberKey 변경할 회원 고유키
      * @param newNickname 변경할 닉네임
      * @return 변경된 계정 정보
      * @throws NoSuchElementException 계정 이메일이 일치하는 회원이 존재하지 않을 경우
      */
-    public MemberResponse editNickname(String email, String newNickname) {
-        Member member = getMemberEntity(email);
+    public MemberResponse editNickname(String memberKey, String newNickname) {
+        Member member = getMemberEntity(memberKey);
 
         member.editNickname(newNickname);
         return MemberResponse.of(member);
@@ -135,20 +136,20 @@ public class MemberService {
      */
     private Member createMember(JoinMemberDto dto) {
         String encryptedPwd = passwordEncoder.encode(dto.getPassword());
-
-        Member member = dto.toEntity(encryptedPwd);
+        String memberKey = UUID.randomUUID().toString();
+        Member member = dto.toEntity(encryptedPwd, memberKey);
         return memberRepository.save(member);
     }
 
     /**
      * 계정 이메일로 회원 엔티티 조회
      *
-     * @param email 조회할 계정 이메일
+     * @param memberKey 조회할 계정 이메일
      * @return 조회된 회원 엔티티
      * @throws NoSuchElementException 계정 이메일이 일치하는 회원이 존재하지 않을 경우
      */
-    private Member getMemberEntity(String email) {
-        return memberRepository.findByEmail(email)
+    private Member getMemberEntity(String memberKey) {
+        return memberRepository.findByMemberKey(memberKey)
             .orElseThrow(NoSuchElementException::new);
     }
 

@@ -22,8 +22,9 @@ public class JoinMemberDto {
         this.nickname = nickname;
     }
 
-    public Member toEntity(String encryptedPwd) {
+    public Member toEntity(String encryptedPwd, String memberKey) {
         return Member.builder()
+            .memberKey(memberKey)
             .email(this.email)
             .encryptedPwd(encryptedPwd)
             .name(this.name)

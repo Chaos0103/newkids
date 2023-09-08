@@ -20,4 +20,11 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
      * @return 회원 엔티티
      */
     Optional<Member> findByEmail(String email);
+
+    /**
+     * 회원 고유키로 계정 엔티티 조회
+     * @param memberKey 조회할 회원 고유키
+     * @return 회원 엔티티
+     */
+    Optional<Member> findByMemberKey(String memberKey);
 }
