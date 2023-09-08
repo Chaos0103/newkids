@@ -5,4 +5,5 @@ export const PageLayoutContainer = styled.div`
 	min-height: 100vh;
 	max-height: 100vh;
 	padding-top: 166px;
+	background-color: #f1f1f1;
 `;

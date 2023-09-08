@@ -7,7 +7,7 @@ function IndexPage() {
 		<PageLayout>
 			<IndexPageLayout
 				RecommandArticles={
-					<div style={{ backgroundColor: 'green', height: '100vh' }}>
+					<div>
 						<h1>Jeonny-BoilerPlate</h1>
 						<h2>use react + typescript + prettier + ESLint + axios + react-router-dom</h2>
 						<a href="https://github.com/" target="_blank" rel="noreferrer">

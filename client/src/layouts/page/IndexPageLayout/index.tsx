@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { FullContentLayout } from 'layouts/common/ContentLayout';
+import { ContentLayout } from 'layouts/common/ContentLayout';
 import { IndexPageLayoutContainer } from './style';
 
 interface IIndexPageLayoutProps {
@@ -9,7 +9,7 @@ interface IIndexPageLayoutProps {
 function IndexPageLayout({ RecommandArticles }: IIndexPageLayoutProps) {
 	return (
 		<IndexPageLayoutContainer>
-			<FullContentLayout>{RecommandArticles}</FullContentLayout>
+			<ContentLayout>{RecommandArticles}</ContentLayout>
 		</IndexPageLayoutContainer>
 	);
 }
