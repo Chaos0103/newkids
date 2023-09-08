@@ -6,24 +6,46 @@ export const GlobalStyles = createGlobalStyle`
     
     :root {
         /* color */
-        
+        --main-color : #FF7738;
+        --sub-color-1 : #4CE000;
+        --sub-color-1 : #F4E000;
+        --success-color : #00A3FF;
+        --danger-color : #FF4383;
+        --white-color : #ffffff;
+
+        --gray-500 : #606060;
+        --gray-400 : #90929E;
+        --gray-300 : #AAAAAA;
+        --gray-200 : #EEEEEE;
+        --gray-100 : #F9F9F9;
+
+        --black-500 : #000000;
+        --black-300 : #3B3B3B;
+        --black-100 : #2A2A2A;
 
         /* radius */
         --radius-s : 5px;
         --radius-m : 10px;
         --radius-l : 99px;
+
+        /* width */
+        --content-width-xs : 250px;
+        --content-width-s : 512px;
+        --content-width-sm : 756px;
+        --content-width-m : 1024px;
+        --content-width-l : 100%;
     }
 
     body{
         font-family: 'Pretendard';
         padding: 0;
         margin: 0;
+        overflow-y: scroll;
     };
 
     // 스크롤 바
-    ::-webkit-scrollbar {
-        display: none;
-    }
+     &::-webkit-scrollbar {
+    } 
 
     a{
         text-decoration: none;
