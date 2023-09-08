@@ -101,7 +101,7 @@ class MemberServiceTest extends IntegrationTestSupport {
         Member member = createMember("ssafy@ssafy.com", "광주C205");
 
         //when
-        boolean result = memberService.withdrawal("ssafy@ssafy.com", "ssafy1111!");
+        boolean result = memberService.withdrawal(member.getMemberKey(), "ssafy1111!");
 
         //then
         assertThat(result).isFalse();
@@ -117,7 +117,7 @@ class MemberServiceTest extends IntegrationTestSupport {
         Member member = createMember("ssafy@ssafy.com", "광주C205");
 
         //when
-        boolean result = memberService.withdrawal("ssafy@ssafy.com", "ssafy1234!");
+        boolean result = memberService.withdrawal(member.getMemberKey(), "ssafy1234!");
 
         //then
         assertThat(result).isTrue();
@@ -133,7 +133,7 @@ class MemberServiceTest extends IntegrationTestSupport {
         Member member = createMember("ssafy@ssafy.com", "광주C205");
 
         //when //then
-        assertThatThrownBy(() -> memberService.editPassword("ssafy@ssafy.com", "ssafy1111!", "ssafyc205!"))
+        assertThatThrownBy(() -> memberService.editPassword(member.getMemberKey(), "ssafy1111!", "ssafyc205!"))
             .isInstanceOf(MismatchException.class)
             .hasMessage("현재 비밀번호가 일치하지 않습니다.");
     }
@@ -145,7 +145,7 @@ class MemberServiceTest extends IntegrationTestSupport {
         Member member = createMember("ssafy@ssafy.com", "광주C205");
 
         //when
-        MemberResponse response = memberService.editPassword("ssafy@ssafy.com", "ssafy1234!", "ssafyc205!");
+        MemberResponse response = memberService.editPassword(member.getMemberKey(), "ssafy1234!", "ssafyc205!");
 
         //then
         Optional<Member> findMember = memberRepository.findById(member.getId());
@@ -160,7 +160,7 @@ class MemberServiceTest extends IntegrationTestSupport {
         Member member = createMember("ssafy@ssafy.com", "광주C205");
 
         //when
-        MemberResponse response = memberService.editNickname("ssafy@ssafy.com", "광주2반");
+        MemberResponse response = memberService.editNickname(member.getMemberKey(), "광주2반");
 
         //then
         Optional<Member> findMember = memberRepository.findById(member.getId());

@@ -27,7 +27,7 @@ class AccountServiceTest extends IntegrationTestSupport {
         Member member = createMember();
 
         //when
-        MemberResponse response = accountService.getMemberInfo("ssafy@ssafy.com");
+        MemberResponse response = accountService.getMemberInfo(member.getMemberKey());
 
         //then
         assertThat(response)

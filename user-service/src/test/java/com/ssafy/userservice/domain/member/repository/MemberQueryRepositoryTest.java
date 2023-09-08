@@ -82,7 +82,7 @@ class MemberQueryRepositoryTest extends IntegrationTestSupport {
         Member member = createMember();
 
         //when
-        Optional<MemberResponse> response = memberQueryRepository.findByEmail("ssafy@ssafy.com");
+        Optional<MemberResponse> response = memberQueryRepository.findByMemberKey(member.getMemberKey());
 
         //then
         assertThat(response).isPresent();
