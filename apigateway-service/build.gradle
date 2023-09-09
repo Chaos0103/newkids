@@ -53,7 +53,7 @@ dependencies {
 	//prometheus
 	implementation 'io.micrometer:micrometer-registry-prometheus'
 
-	// bus
+	//spring cloud bus
 	implementation 'org.springframework.cloud:spring-cloud-starter-bus-amqp'
 
 }
