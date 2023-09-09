@@ -8,7 +8,6 @@ import com.ssafy.vocabularyservice.domain.word.Word;
 import com.ssafy.vocabularyservice.domain.word.repository.WordQueryRepository;
 import com.ssafy.vocabularyservice.domain.word.repository.WordRepository;
 import lombok.RequiredArgsConstructor;
-import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

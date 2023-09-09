@@ -23,17 +23,27 @@ import javax.validation.Valid;
 @RestController
 @Slf4j
 @RequiredArgsConstructor
-@RequestMapping("/vocabulary-service")
+@RequestMapping("/vocabulary-service/words")
 public class WordController {
 
     private final WordService wordService;
     private final WordQueryService wordQueryService;
 
-    // TODO: 2023-09-07 임우택 단어 등록 API
+    /**
+     * 단어 등록 API
+     *
+     * @param request 등록할 단어의 정보
+     * @return 201 CREATED 등록된 단어의 정보
+     */
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public ApiResponse<WordResponse> createWord(@Valid @RequestBody CreateWordRequest request) {
+        log.debug("call WordController#createWord");
+        log.debug("CreateWordRequest={}", request);
+
         WordResponse response = wordService.createWord(request.toCreateWordDto());
+        log.debug("response={}", response);
+
         return ApiResponse.created(response);
     }
 
