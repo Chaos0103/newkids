@@ -1,7 +1,6 @@
 package com.ssafy.vocabularyservice.domain.word.repository;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
-import com.ssafy.vocabularyservice.domain.word.QWord;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
