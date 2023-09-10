@@ -1,9 +1,14 @@
 package com.ssafy.vocabularyservice.domain.word.repository;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
+import com.ssafy.vocabularyservice.api.controller.word.response.WordResponse;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static com.ssafy.vocabularyservice.domain.word.QWord.word;
 
@@ -34,5 +39,9 @@ public class WordQueryRepository {
             .where(word.wordKey.eq(wordKey))
             .fetchFirst();
         return result != null;
+    }
+
+    public List<WordResponse> findAllContentLike(String content, Pageable pageable) {
+        return new ArrayList<>();
     }
 }
