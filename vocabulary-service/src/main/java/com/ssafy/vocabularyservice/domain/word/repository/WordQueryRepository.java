@@ -1,9 +1,11 @@
 package com.ssafy.vocabularyservice.domain.word.repository;
 
+import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.ssafy.vocabularyservice.api.controller.word.response.WordResponse;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
+import org.springframework.util.CollectionUtils;
 
 import javax.persistence.EntityManager;
 
@@ -42,6 +44,30 @@ public class WordQueryRepository {
     }
 
     public List<WordResponse> findAllContentLike(String content, Pageable pageable) {
-        return new ArrayList<>();
+        List<Long> wordIds = queryFactory
+            .select(word.id)
+            .from(word)
+            .where(
+                word.content.like("%" + content + "%")
+            )
+            .orderBy(word.content.asc())
+            .limit(pageable.getPageSize())
+            .offset(pageable.getOffset())
+            .fetch();
+
+        if (CollectionUtils.isEmpty(wordIds)) {
+            return new ArrayList<>();
+        }
+
+        return queryFactory
+            .select(Projections.constructor(WordResponse.class,
+                word.wordKey,
+                word.content,
+                word.description
+            ))
+            .from(word)
+            .where(word.id.in(wordIds))
+            .orderBy(word.content.asc())
+            .fetch();
     }
 }
