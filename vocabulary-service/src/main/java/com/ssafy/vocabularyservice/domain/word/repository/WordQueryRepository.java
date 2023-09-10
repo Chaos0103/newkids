@@ -1,6 +1,7 @@
 package com.ssafy.vocabularyservice.domain.word.repository;
 
 import com.querydsl.core.types.Projections;
+import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.ssafy.vocabularyservice.api.controller.word.response.WordResponse;
 import org.springframework.data.domain.Pageable;
@@ -48,7 +49,7 @@ public class WordQueryRepository {
             .select(word.id)
             .from(word)
             .where(
-                word.content.like("%" + content + "%")
+                likeContent(content)
             )
             .orderBy(word.content.asc())
             .limit(pageable.getPageSize())
@@ -76,9 +77,13 @@ public class WordQueryRepository {
             .select(word.id)
             .from(word)
             .where(
-                word.content.like("%" + content + "%")
+                likeContent(content)
             )
             .fetch()
             .size();
+    }
+
+    private BooleanExpression likeContent(String content) {
+        return word.content.like("%" + content + "%");
     }
 }
