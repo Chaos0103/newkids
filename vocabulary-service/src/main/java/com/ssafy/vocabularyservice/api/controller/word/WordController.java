@@ -58,11 +58,21 @@ public class WordController {
         return ApiResponse.ok(response);
     }
 
-    // TODO: 2023-09-07 임우택 단어 수정 API
+    /**
+     * 단어 수정 API
+     * @param wordKey 수정할 단어의 단어키
+     * @param request 수정할 단어의 정보
+     * @return 수정된 단어의 정보
+     */
     @PatchMapping("/{wordKey}")
     @ResponseStatus(HttpStatus.FOUND)
     public ApiResponse<WordResponse> editWord(@PathVariable String wordKey, @Valid @RequestBody EditWordRequest request) {
+        log.debug("call WordController#createWord");
+        log.debug("EditWordRequest={}", request);
+
         WordResponse response = wordService.editWord(wordKey, request.toEditWordDto());
+        log.debug("response={}", response);
+
         return ApiResponse.found(response);
     }
 
