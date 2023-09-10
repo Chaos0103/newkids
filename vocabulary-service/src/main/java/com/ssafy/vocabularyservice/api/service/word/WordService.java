@@ -45,6 +45,7 @@ public class WordService {
      * @param wordKey 수정할 단어의 단어키
      * @param dto 수정할 단어 정보
      * @return 수정된 단어 정보
+     * @throws NoSuchElementException 등록되지 않은 단어인 경우
      */
     public WordResponse editWord(String wordKey, EditWordDto dto) {
         Word findWord = getEntity(wordKey);
