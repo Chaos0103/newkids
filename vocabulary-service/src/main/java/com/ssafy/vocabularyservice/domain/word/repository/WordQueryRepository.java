@@ -44,6 +44,12 @@ public class WordQueryRepository {
         return result != null;
     }
 
+    /**
+     * 단어 내용이 포함된 단어를 단어키 오름차순으로 정렬하여 조회
+     * @param content 조회할 단어 내용
+     * @param pageable 페이징 처리 내용
+     * @return 조회된 단어 정보
+     */
     public List<WordResponse> findAllContentLike(String content, Pageable pageable) {
         List<Long> wordIds = queryFactory
             .select(word.id)
@@ -72,6 +78,11 @@ public class WordQueryRepository {
             .fetch();
     }
 
+    /**
+     * 단어 내용이 포함된 단어의 수 조회
+     * @param content 조회할 단어 내용
+     * @return 단어 내용이 포함된 단어의 수
+     */
     public long countByContentLike(String content) {
         return queryFactory
             .select(word.id)
