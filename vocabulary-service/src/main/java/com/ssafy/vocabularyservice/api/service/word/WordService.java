@@ -55,8 +55,18 @@ public class WordService {
         return WordResponse.of(findWord);
     }
 
-    public WordResponse removeWord(String wordId) {
-        return null;
+    /**
+     * 단어 삭제
+     * @param wordKey 삭제할 단어의 단어키
+     * @return 삭제된 단어의 정보
+     * @throws NoSuchElementException 등록되지 않은 단어인 경우
+     */
+    public WordResponse removeWord(String wordKey) {
+        Word findWord = getEntity(wordKey);
+
+        wordRepository.delete(findWord);
+
+        return WordResponse.of(findWord);
     }
 
     private void checkWordKeyDuplication(CreateWordDto dto) {
