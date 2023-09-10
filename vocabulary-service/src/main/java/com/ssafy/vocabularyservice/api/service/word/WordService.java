@@ -11,6 +11,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.NoSuchElementException;
+import java.util.Optional;
+
 /**
  * 단어 명령 서비스
  * @author 임우택
@@ -37,9 +40,18 @@ public class WordService {
         return WordResponse.of(savedWord);
     }
 
-    // TODO: 2023/09/10 작업중
+    /**
+     * 단어 수정
+     * @param wordKey 수정할 단어의 단어키
+     * @param dto 수정할 단어 정보
+     * @return 수정된 단어 정보
+     */
     public WordResponse editWord(String wordKey, EditWordDto dto) {
-        return null;
+        Word findWord = getEntity(wordKey);
+
+        findWord.edit(dto.getContent(), dto.getDescription());
+
+        return WordResponse.of(findWord);
     }
 
     public WordResponse removeWord(String wordId) {
@@ -56,6 +68,14 @@ public class WordService {
     private Word saveEntity(CreateWordDto dto) {
         Word word = dto.toEntity();
         return wordRepository.save(word);
+    }
+
+    private Word getEntity(String wordKey) {
+        Optional<Word> findWord = wordRepository.findByWordKey(wordKey);
+        if (findWord.isEmpty()) {
+            throw new NoSuchElementException("등록되지 않은 단어입니다.");
+        }
+        return findWord.get();
     }
 }
 

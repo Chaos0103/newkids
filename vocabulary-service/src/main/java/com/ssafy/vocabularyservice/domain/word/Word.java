@@ -39,5 +39,11 @@ public class Word extends TimeBaseEntity {
         this.content = content;
         this.description = description;
     }
+
+    //== 비즈니스 로직 ==//
+    public void edit(String content, String description) {
+        this.content = content;
+        this.description = description;
+    }
 }
 
