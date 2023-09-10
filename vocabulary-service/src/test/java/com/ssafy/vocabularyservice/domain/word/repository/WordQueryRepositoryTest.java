@@ -54,8 +54,7 @@ class WordQueryRepositoryTest extends IntegrationTestSupport {
                 tuple("92289", "돼지"),
                 tuple("92290", "흑돼지"),
                 tuple("92291", "돼지띠"),
-                tuple("92292", "황금돼지해"),
-                tuple("92293", "병아리")
+                tuple("92292", "황금돼지해")
             );
     }
 
