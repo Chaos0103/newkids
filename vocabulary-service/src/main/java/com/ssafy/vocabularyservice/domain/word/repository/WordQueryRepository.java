@@ -72,6 +72,13 @@ public class WordQueryRepository {
     }
 
     public long countByContentLike(String content) {
-        return 0;
+        return queryFactory
+            .select(word.id)
+            .from(word)
+            .where(
+                word.content.like("%" + content + "%")
+            )
+            .fetch()
+            .size();
     }
 }
