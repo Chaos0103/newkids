@@ -58,19 +58,37 @@ public class WordController {
         return ApiResponse.ok(response);
     }
 
-    // TODO: 2023-09-07 임우택 단어 수정 API
-    @PatchMapping("/{wordId}")
+    /**
+     * 단어 수정 API
+     * @param wordKey 수정할 단어의 단어키
+     * @param request 수정할 단어의 정보
+     * @return 302 수정된 단어의 정보
+     */
+    @PatchMapping("/{wordKey}")
     @ResponseStatus(HttpStatus.FOUND)
-    public ApiResponse<WordResponse> editWord(@PathVariable String wordId, @Valid @RequestBody EditWordRequest request) {
-        WordResponse response = wordService.editWord(wordId, request.toEditWordDto());
+    public ApiResponse<WordResponse> editWord(@PathVariable String wordKey, @Valid @RequestBody EditWordRequest request) {
+        log.debug("call WordController#createWord");
+        log.debug("EditWordRequest={}", request);
+
+        WordResponse response = wordService.editWord(wordKey, request.toEditWordDto());
+        log.debug("response={}", response);
+
         return ApiResponse.found(response);
     }
 
-    // TODO: 2023-09-07 임우택 단어 삭제 API
-    @DeleteMapping("/{wordId}")
+    /**
+     * 단어 삭제 API
+     * @param wordKey 삭제할 단어의 단어키
+     * @return 302 삭제된 단어의 정보
+     */
+    @DeleteMapping("/{wordKey}")
     @ResponseStatus(HttpStatus.FOUND)
-    public ApiResponse<WordResponse> removeWord(@PathVariable String wordId) {
-        WordResponse response = wordService.removeWord(wordId);
+    public ApiResponse<WordResponse> removeWord(@PathVariable String wordKey) {
+        log.debug("call WordController#removeWord");
+
+        WordResponse response = wordService.removeWord(wordKey);
+        log.debug("response={}", response);
+
         return ApiResponse.found(response);
     }
 }

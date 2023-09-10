@@ -11,6 +11,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.NoSuchElementException;
+import java.util.Optional;
+
 /**
  * 단어 명령 서비스
  * @author 임우택
@@ -37,12 +40,33 @@ public class WordService {
         return WordResponse.of(savedWord);
     }
 
-    public WordResponse editWord(String wordId, EditWordDto dto) {
-        return null;
+    /**
+     * 단어 수정
+     * @param wordKey 수정할 단어의 단어키
+     * @param dto 수정할 단어 정보
+     * @return 수정된 단어 정보
+     * @throws NoSuchElementException 등록되지 않은 단어인 경우
+     */
+    public WordResponse editWord(String wordKey, EditWordDto dto) {
+        Word findWord = getEntity(wordKey);
+
+        findWord.edit(dto.getContent(), dto.getDescription());
+
+        return WordResponse.of(findWord);
     }
 
-    public WordResponse removeWord(String wordId) {
-        return null;
+    /**
+     * 단어 삭제
+     * @param wordKey 삭제할 단어의 단어키
+     * @return 삭제된 단어의 정보
+     * @throws NoSuchElementException 등록되지 않은 단어인 경우
+     */
+    public WordResponse removeWord(String wordKey) {
+        Word findWord = getEntity(wordKey);
+
+        wordRepository.delete(findWord);
+
+        return WordResponse.of(findWord);
     }
 
     private void checkWordKeyDuplication(CreateWordDto dto) {
@@ -55,6 +79,14 @@ public class WordService {
     private Word saveEntity(CreateWordDto dto) {
         Word word = dto.toEntity();
         return wordRepository.save(word);
+    }
+
+    private Word getEntity(String wordKey) {
+        Optional<Word> findWord = wordRepository.findByWordKey(wordKey);
+        if (findWord.isEmpty()) {
+            throw new NoSuchElementException("등록되지 않은 단어입니다.");
+        }
+        return findWord.get();
     }
 }
 
