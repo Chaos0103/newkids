@@ -59,10 +59,10 @@ public class WordController {
     }
 
     // TODO: 2023-09-07 임우택 단어 수정 API
-    @PatchMapping("/{wordId}")
+    @PatchMapping("/{wordKey}")
     @ResponseStatus(HttpStatus.FOUND)
-    public ApiResponse<WordResponse> editWord(@PathVariable String wordId, @Valid @RequestBody EditWordRequest request) {
-        WordResponse response = wordService.editWord(wordId, request.toEditWordDto());
+    public ApiResponse<WordResponse> editWord(@PathVariable String wordKey, @Valid @RequestBody EditWordRequest request) {
+        WordResponse response = wordService.editWord(wordKey, request.toEditWordDto());
         return ApiResponse.found(response);
     }
 

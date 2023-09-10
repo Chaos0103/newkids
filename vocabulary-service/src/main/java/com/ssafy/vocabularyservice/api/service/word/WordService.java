@@ -37,7 +37,8 @@ public class WordService {
         return WordResponse.of(savedWord);
     }
 
-    public WordResponse editWord(String wordId, EditWordDto dto) {
+    // TODO: 2023/09/10 작업중
+    public WordResponse editWord(String wordKey, EditWordDto dto) {
         return null;
     }
 
