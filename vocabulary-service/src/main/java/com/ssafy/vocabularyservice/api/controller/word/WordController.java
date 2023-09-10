@@ -62,7 +62,7 @@ public class WordController {
      * 단어 수정 API
      * @param wordKey 수정할 단어의 단어키
      * @param request 수정할 단어의 정보
-     * @return 수정된 단어의 정보
+     * @return 302 수정된 단어의 정보
      */
     @PatchMapping("/{wordKey}")
     @ResponseStatus(HttpStatus.FOUND)
@@ -79,7 +79,7 @@ public class WordController {
     /**
      * 단어 삭제 API
      * @param wordKey 삭제할 단어의 단어키
-     * @return 삭제된 단어의 정보
+     * @return 302 삭제된 단어의 정보
      */
     @DeleteMapping("/{wordKey}")
     @ResponseStatus(HttpStatus.FOUND)
