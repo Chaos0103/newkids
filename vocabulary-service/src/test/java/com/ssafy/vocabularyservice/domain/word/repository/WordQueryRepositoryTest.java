@@ -58,6 +58,23 @@ class WordQueryRepositoryTest extends IntegrationTestSupport {
             );
     }
 
+    @DisplayName("단어명이 포함된 단어의 수를 조회한다.")
+    @Test
+    void countByContentLike() {
+        //given
+        createWord("92289", "돼지");
+        createWord("92290", "흑돼지");
+        createWord("92291", "돼지띠");
+        createWord("92292", "황금돼지해");
+        createWord("92293", "병아리");
+
+        //when
+        long count = wordQueryRepository.countByContentLike("돼지");
+
+        //then
+        assertThat(count).isEqualTo(4);
+    }
+
     private Word createWord(String wordKey, String content) {
         Word word = Word.builder()
             .wordKey(wordKey)

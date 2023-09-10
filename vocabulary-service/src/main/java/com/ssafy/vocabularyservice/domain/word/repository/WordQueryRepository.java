@@ -70,4 +70,8 @@ public class WordQueryRepository {
             .orderBy(word.content.asc())
             .fetch();
     }
+
+    public long countByContentLike(String content) {
+        return 0;
+    }
 }
