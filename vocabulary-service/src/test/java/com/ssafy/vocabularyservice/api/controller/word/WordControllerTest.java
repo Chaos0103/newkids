@@ -15,8 +15,7 @@ import org.springframework.http.MediaType;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -199,6 +198,31 @@ class WordControllerTest extends ControllerTestSupport {
                 patch("/vocabulary-service/words/{wordKey}", "92288")
                     .content(objectMapper.writeValueAsString(request))
                     .contentType(MediaType.APPLICATION_JSON)
+            )
+            .andDo(print())
+            .andExpect(status().isFound())
+            .andExpect(jsonPath("$.code").value("302"))
+            .andExpect(jsonPath("$.status").value("FOUND"))
+            .andExpect(jsonPath("$.message").value("FOUND"))
+            .andExpect(jsonPath("$.data").isNotEmpty());
+    }
+
+    @DisplayName("등록된 단어를 삭제한다.")
+    @Test
+    void removeWord() throws Exception {
+        //given
+        WordResponse response = WordResponse.builder()
+            .wordKey("92288")
+            .content("수정된 단어")
+            .description("수정된 단어 설명입니다.")
+            .build();
+
+        given(wordService.removeWord(anyString()))
+            .willReturn(response);
+
+        //when //then
+        mockMvc.perform(
+                delete("/vocabulary-service/words/{wordKey}", "92288")
             )
             .andDo(print())
             .andExpect(status().isFound())
