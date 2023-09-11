@@ -45,6 +45,12 @@ public class VocabularyController {
     @PatchMapping("/{vocabularyId}")
     @ResponseStatus(HttpStatus.FOUND)
     public ApiResponse<WordResponse> checkVocabulary(@PathVariable Long vocabularyId) {
-        return ApiResponse.found(null);
+        log.debug("call VocabularyController#checkVocabulary");
+        log.debug("vocabularyId={}", vocabularyId);
+
+        WordResponse response = vocabularyService.checkVocabulary(vocabularyId);
+        log.debug("response={}", response);
+
+        return ApiResponse.found(response);
     }
 }
