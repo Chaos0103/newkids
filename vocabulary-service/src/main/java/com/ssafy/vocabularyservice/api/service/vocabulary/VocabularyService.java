@@ -62,6 +62,14 @@ public class VocabularyService {
         return WordResponse.of(findVocabulary);
     }
 
+    public WordResponse removeVocabulary(Long vocabularyId) {
+        Vocabulary findVocabulary = getVocabularyEntity(vocabularyId);
+
+        vocabularyRepository.delete(findVocabulary);
+
+        return WordResponse.of(findVocabulary);
+    }
+
     private void checkVocabularyDuplication(String memberKey, String workKey) {
         boolean isExistVocabulary = vocabularyQueryRepository.existVocabulary(memberKey, workKey);
         if (isExistVocabulary) {
@@ -92,9 +100,5 @@ public class VocabularyService {
             throw new NoSuchElementException("등록되지 않은 단어장입니다.");
         }
         return findVocabulary.get();
-    }
-
-    public WordResponse removeVocabulary(Long vocabularyId) {
-        return null;
     }
 }
