@@ -2,35 +2,33 @@ import React from 'react';
 import { ReactComponent as Logo } from 'assets/imgs/newkids-logo.svg';
 import SearchBar from 'components/atoms/common/SearchBar';
 import Button from 'components/atoms/common/Button';
-import { useNavigate } from 'react-router-dom';
+import useMovePage from 'hooks/useMovePage';
 import { NavBarContainer } from './style';
 
 export function AuthNavBar() {
+	const [movePage] = useMovePage();
+
 	return (
 		<NavBarContainer $auth>
 			<div className="logo auth-navbar">
-				<Logo />
+				<Logo onClick={() => movePage('/')} />
 			</div>
 		</NavBarContainer>
 	);
 }
 
 function NavBar() {
-	const navigate = useNavigate();
-
-	const moveLogin = () => {
-		navigate('/auth/login');
-	};
+	const [movePage] = useMovePage();
 
 	return (
 		<NavBarContainer>
 			<div className="logo">
-				<Logo />
+				<Logo onClick={() => movePage('/')} />
 			</div>
 			<div className="search-bar">
-				<SearchBar />
+				<SearchBar size="l" confirmSearch={() => {}} />
 			</div>
-			<Button size="l" radius="s" color="SubSecond" text="로그인" handleClick={moveLogin} />
+			<Button size="s" radius="l" color="Primary" text="로그인" handleClick={() => movePage('/auth/login')} />
 		</NavBarContainer>
 	);
 }
