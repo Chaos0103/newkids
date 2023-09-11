@@ -41,4 +41,10 @@ public class VocabularyController {
 
         return ApiResponse.created(response);
     }
+
+    @PatchMapping("/{vocabularyId}")
+    @ResponseStatus(HttpStatus.FOUND)
+    public ApiResponse<WordResponse> checkVocabulary(@PathVariable Long vocabularyId) {
+        return ApiResponse.found(null);
+    }
 }
