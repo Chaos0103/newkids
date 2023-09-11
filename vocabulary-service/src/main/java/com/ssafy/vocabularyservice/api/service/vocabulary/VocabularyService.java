@@ -93,4 +93,8 @@ public class VocabularyService {
         }
         return findVocabulary.get();
     }
+
+    public WordResponse removeVocabulary(Long vocabularyId) {
+        return null;
+    }
 }
