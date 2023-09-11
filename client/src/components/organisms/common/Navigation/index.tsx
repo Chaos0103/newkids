@@ -1,9 +1,20 @@
-import React from 'react';
-import NavBar from 'components/organisms/common/Navbar';
+import React, { useState, useEffect } from 'react';
+import NavBar, { AuthNavBar } from 'components/organisms/common/Navbar';
 import Menubar from 'components/organisms/common/Menubar';
 import NavigationLayout from 'layouts/common/NavigationLayout';
+import { useLocation } from 'react-router-dom';
 
 function Navigation() {
+	const [isAuthPage, setIsAuthPage] = useState(false);
+	const location = useLocation();
+
+	useEffect(() => {
+		if (/\/auth/.test(location.pathname)) {
+			setIsAuthPage(true);
+		}
+	}, [location]);
+
+	if (isAuthPage) return <AuthNavBar />;
 	return <NavigationLayout Navibar={<NavBar />} Menubar={<Menubar />} />;
 }
 
