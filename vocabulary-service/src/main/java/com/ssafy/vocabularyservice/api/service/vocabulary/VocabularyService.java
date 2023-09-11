@@ -42,9 +42,26 @@ public class VocabularyService {
 
         Word findWord = getWordEntity(workKey);
 
-        saveVocabularyEntity(memberKey, findWord);
+        Vocabulary vocabulary = saveVocabularyEntity(memberKey, findWord);
 
-        return WordResponse.of(findWord);
+        return WordResponse.of(vocabulary);
+    }
+
+    /**
+     * 단어장 체크 수정
+     *
+     * @param vocabularyId 수정할 단어장의 PK
+     * @return 수정된 딘어장 정보
+     * @throws NoSuchElementException 존재하지 않는 단어장인 경우
+     */
+    public WordResponse checkVocabulary(Long vocabularyId) {
+        Optional<Vocabulary> findVocabulary = vocabularyRepository.findById(vocabularyId);
+        if (findVocabulary.isEmpty()) {
+            throw new NoSuchElementException("등록되지 않은 단어장입니다.");
+        }
+        Vocabulary vocabulary = findVocabulary.get();
+        vocabulary.changeCheck();
+        return WordResponse.of(vocabulary);
     }
 
     private void checkVocabularyDuplication(String memberKey, String workKey) {
@@ -62,16 +79,12 @@ public class VocabularyService {
         return findWord.get();
     }
 
-    private void saveVocabularyEntity(String memberKey, Word findWord) {
+    private Vocabulary saveVocabularyEntity(String memberKey, Word findWord) {
         Vocabulary vocabulary = Vocabulary.builder()
             .check(false)
             .memberKey(memberKey)
             .word(findWord)
             .build();
-        Vocabulary savedVocabulary = vocabularyRepository.save(vocabulary);
-    }
-
-    public WordResponse checkVocabulary(Long vocabularyId) {
-        return null;
+        return vocabularyRepository.save(vocabulary);
     }
 }
