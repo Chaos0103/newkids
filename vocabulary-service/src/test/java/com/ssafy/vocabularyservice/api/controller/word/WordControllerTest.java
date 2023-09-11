@@ -11,7 +11,12 @@ import com.ssafy.vocabularyservice.api.service.word.dto.EditWordDto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
+
+import java.util.ArrayList;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.*;
@@ -229,6 +234,27 @@ class WordControllerTest extends ControllerTestSupport {
             .andExpect(jsonPath("$.code").value("302"))
             .andExpect(jsonPath("$.status").value("FOUND"))
             .andExpect(jsonPath("$.message").value("FOUND"))
+            .andExpect(jsonPath("$.data").isNotEmpty());
+    }
+
+    @DisplayName("등록된 단어를 조회한다.")
+    @Test
+    void getWords() throws Exception {
+        //given
+        PageRequest pageRequest = PageRequest.of(0, 20);
+
+        given(wordQueryService.getWords(anyString(), any(Pageable.class)))
+            .willReturn(new PageImpl<>(new ArrayList<>(), pageRequest, 100));
+
+        //when //then
+        mockMvc.perform(
+                get("/vocabulary-service/words")
+            )
+            .andDo(print())
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$.code").value("200"))
+            .andExpect(jsonPath("$.status").value("OK"))
+            .andExpect(jsonPath("$.message").value("SUCCESS"))
             .andExpect(jsonPath("$.data").isNotEmpty());
     }
 }

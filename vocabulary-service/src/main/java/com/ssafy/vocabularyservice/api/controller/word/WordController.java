@@ -47,14 +47,24 @@ public class WordController {
         return ApiResponse.created(response);
     }
 
-    // TODO: 2023-09-07 임우택 단어 조회 API
+    /**
+     * 단어 조회 API
+     * @param keyword 조회할 키워드
+     * @param pageNum 조회할 페이지 번호
+     * @return 조회된 단어 정보
+     */
     @GetMapping
     public ApiResponse<Page<WordResponse>> getWords(
-        @RequestParam String keyword,
+        @RequestParam(defaultValue = "") String keyword,
         @RequestParam(defaultValue = "1") Integer pageNum
     ) {
+        log.debug("call WordController#getWords");
+        log.debug("keyword={}, pageNum={}", keyword, pageNum);
+
         PageRequest pageRequest = PageRequest.of(pageNum - 1, 20);
         Page<WordResponse> response = wordQueryService.getWords(keyword, pageRequest);
+        log.debug("response={}", response.getContent());
+
         return ApiResponse.ok(response);
     }
 
