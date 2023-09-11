@@ -8,7 +8,6 @@ import com.ssafy.vocabularyservice.domain.vocabulary.repository.VocabularyReposi
 import com.ssafy.vocabularyservice.domain.word.Word;
 import com.ssafy.vocabularyservice.domain.word.repository.WordRepository;
 import lombok.RequiredArgsConstructor;
-import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,6 +16,7 @@ import java.util.Optional;
 
 /**
  * 단어장 명령 서비스
+ *
  * @author 임우택
  */
 @RequiredArgsConstructor
@@ -30,10 +30,11 @@ public class VocabularyService {
 
     /**
      * 단어장 등록
+     *
      * @param memberKey 등록할 회원키
-     * @param workKey 등록할 단어키
+     * @param workKey   등록할 단어키
      * @return 등록된 단어 정보
-     * @throws DuplicateException 이미 단어장에 등록된 단어인 경우
+     * @throws DuplicateException     이미 단어장에 등록된 단어인 경우
      * @throws NoSuchElementException 존재하지 않는 단어키인 경우
      */
     public WordResponse createVocabulary(String memberKey, String workKey) {
