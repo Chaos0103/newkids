@@ -1,10 +1,14 @@
 import styled from 'styled-components';
 
 export const NavBarContainer = styled.div`
+	z-index: 20;
+	position: relative;
+	background-color: var(--white-color);
 	height: 100%;
 	display: flex;
 	flex-direction: row;
 	align-items: center;
+	justify-content: space-between;
 
 	.logo {
 		display: flex;

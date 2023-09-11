@@ -1,7 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { MenubarContainer } from './style';
 
 function Menubar() {
-	return <div>Menubar</div>;
+	useEffect(() => {
+		return () => {};
+	}, []);
+
+	return <MenubarContainer>Menubar</MenubarContainer>;
 }
 
 export default Menubar;

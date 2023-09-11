@@ -12,12 +12,10 @@ export const NavigationLayoutWrapper = styled.div`
 
 		.navibar {
 			height: 76px;
-			background-color: blue;
 		}
 
 		.menubar {
 			height: 90px;
-			background-color: yellow;
 		}
 	}
 `;
