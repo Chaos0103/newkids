@@ -1,6 +1,20 @@
 import { css } from 'styled-components';
 
-export const sizeStyles = {
+// SearchBar
+export const SearchBarSizeStyles = {
+	s: css`
+		width: 15rem;
+	`,
+	l: css`
+		width: 25rem;
+	`,
+	full: css`
+		width: 100%;
+	`,
+};
+
+// Button
+export const ButtonSizeStyles = {
 	s: css`
 		width: 90px;
 		height: 40px;
@@ -19,7 +33,7 @@ export const sizeStyles = {
 	`,
 };
 
-export const colorStyles = {
+export const ButtonColorStyles = {
 	Normal: css`
 		background-color: var(--gray-100);
 		color: var(--gray-500);
@@ -46,7 +60,7 @@ export const colorStyles = {
 	`,
 };
 
-export const radiusStyles = {
+export const ButtonRadiusStyles = {
 	s: css`
 		border-radius: var(--radius-s);
 	`,
