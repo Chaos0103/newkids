@@ -50,7 +50,7 @@ public class WordController {
     // TODO: 2023-09-07 임우택 단어 조회 API
     @GetMapping
     public ApiResponse<Page<WordResponse>> getWords(
-        @RequestParam String keyword,
+        @RequestParam(defaultValue = "") String keyword,
         @RequestParam(defaultValue = "1") Integer pageNum
     ) {
         PageRequest pageRequest = PageRequest.of(pageNum - 1, 20);
