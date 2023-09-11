@@ -23,9 +23,22 @@ public class VocabularyController {
 
     private final VocabularyService vocabularyService;
 
+    /**
+     * 단어장 등록 API
+     * @param request 등록할 단어의 정보
+     * @param memberKey 등록할 회원키
+     * @return 등록된 단어의 정보
+     */
     @PostMapping("/{memberKey}")
     @ResponseStatus(HttpStatus.CREATED)
     public ApiResponse<WordResponse> createVocabulary(@Valid @RequestBody CreateVocabularyRequest request, @PathVariable String memberKey) {
-        return ApiResponse.created(null);
+        log.debug("call VocabularyController#createVocabulary");
+        log.debug("memberKey={}", memberKey);
+        log.debug("CreateVocabularyRequest={}", request);
+
+        WordResponse response = vocabularyService.createVocabulary(memberKey, request.getWordKey());
+        log.debug("response={}", response);
+
+        return ApiResponse.created(response);
     }
 }
