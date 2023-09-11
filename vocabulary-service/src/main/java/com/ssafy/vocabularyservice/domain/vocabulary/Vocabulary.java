@@ -19,7 +19,7 @@ public class Vocabulary extends TimeBaseEntity {
     @Column(name = "vocabulary_id")
     private Long id;
 
-    @Column(nullable = false)
+    @Column(name = "`check`", nullable = false)
     private Boolean check;
 
     @Column(length = 100)
