@@ -70,4 +70,8 @@ public class VocabularyService {
             .build();
         Vocabulary savedVocabulary = vocabularyRepository.save(vocabulary);
     }
+
+    public WordResponse checkVocabulary(Long vocabularyId) {
+        return null;
+    }
 }
