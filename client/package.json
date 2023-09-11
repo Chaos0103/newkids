@@ -12,10 +12,15 @@
     "prettier": "prettier --write --config ./.prettierrc './src/**/*.{ts,tsx}'"
   },
   "dependencies": {
+    "@types/styled-components": "^5.1.26",
     "axios": "^1.5.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.15.0"
+    "react-router-dom": "^6.15.0",
+    "recoil": "^0.7.7",
+    "styled-components": "^6.0.7",
+    "styled-reset": "^4.5.1",
+    "vite-plugin-svgr": "^3.2.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",
@@ -38,6 +43,7 @@
     "prettier": "^3.0.2",
     "typescript": "^5.0.2",
     "vite": "^4.4.5",
-    "vite-plugin-eslint": "^1.8.1"
+    "vite-plugin-eslint": "^1.8.1",
+    "vite-tsconfig-paths": "^4.2.0"
   }
 }
