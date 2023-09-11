@@ -4,14 +4,16 @@ import { RecoilRoot } from 'recoil';
 import { GlobalFonts } from 'styles/GlobalFonts';
 import { GlobalStyles } from 'styles/GlobalStyles';
 import ApplicationLayout from 'layouts/common/ApplicationLayout';
-import IndexPage from '../pages/IndexPage';
-import Navigation from '../components/organisms/common/Navigation';
+import { GlobalKeyFrames } from 'styles/GlobalKeyFrames';
+import Navigation from 'components/organisms/common/Navigation';
+import IndexPage from 'pages/IndexPage';
 
 function AppRouter() {
 	return (
 		<RecoilRoot>
 			<GlobalFonts />
 			<GlobalStyles />
+			<GlobalKeyFrames />
 			<ApplicationLayout>
 				<BrowserRouter>
 					<Navigation />

@@ -8,9 +8,9 @@ export const GlobalStyles = createGlobalStyle`
         /* color */
         --main-color : #FF7738;
         --sub-color-1 : #4CE000;
-        --sub-color-1 : #F4E000;
+        --sub-color-2 : #F4E000;
         --success-color : #00A3FF;
-        --danger-color : #FF4383;
+        --danger-color : #ff2449;
         --white-color : #ffffff;
 
         --gray-500 : #606060;
