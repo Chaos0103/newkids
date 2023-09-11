@@ -19,6 +19,7 @@ function AppRouter() {
 					<Navigation />
 					<Routes>
 						<Route path="/" element={<IndexPage />} />
+						<Route path="/auth/login" element={<div />} />
 					</Routes>
 				</BrowserRouter>
 			</ApplicationLayout>
