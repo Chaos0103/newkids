@@ -11,6 +11,8 @@ function Navigation() {
 	useEffect(() => {
 		if (/\/auth/.test(location.pathname)) {
 			setIsAuthPage(true);
+		} else {
+			setIsAuthPage(false);
 		}
 	}, [location]);
 
