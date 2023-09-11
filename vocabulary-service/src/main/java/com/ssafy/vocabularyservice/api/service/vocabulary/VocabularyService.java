@@ -55,13 +55,11 @@ public class VocabularyService {
      * @throws NoSuchElementException 존재하지 않는 단어장인 경우
      */
     public WordResponse checkVocabulary(Long vocabularyId) {
-        Optional<Vocabulary> findVocabulary = vocabularyRepository.findById(vocabularyId);
-        if (findVocabulary.isEmpty()) {
-            throw new NoSuchElementException("등록되지 않은 단어장입니다.");
-        }
-        Vocabulary vocabulary = findVocabulary.get();
-        vocabulary.changeCheck();
-        return WordResponse.of(vocabulary);
+        Vocabulary findVocabulary = getVocabularyEntity(vocabularyId);
+
+        findVocabulary.changeCheck();
+
+        return WordResponse.of(findVocabulary);
     }
 
     private void checkVocabularyDuplication(String memberKey, String workKey) {
@@ -86,5 +84,13 @@ public class VocabularyService {
             .word(findWord)
             .build();
         return vocabularyRepository.save(vocabulary);
+    }
+
+    private Vocabulary getVocabularyEntity(Long vocabularyId) {
+        Optional<Vocabulary> findVocabulary = vocabularyRepository.findById(vocabularyId);
+        if (findVocabulary.isEmpty()) {
+            throw new NoSuchElementException("등록되지 않은 단어장입니다.");
+        }
+        return findVocabulary.get();
     }
 }
