@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import NavBar, { AuthNavBar } from 'components/organisms/common/Navbar';
 import Menubar from 'components/organisms/common/Menubar';
-import NavigationLayout from 'layouts/common/NavigationLayout';
+import NavigationLayout, { AuthNavigationLayout } from 'layouts/common/NavigationLayout';
 import { useLocation } from 'react-router-dom';
 
 function Navigation() {
@@ -16,7 +16,7 @@ function Navigation() {
 		}
 	}, [location]);
 
-	if (isAuthPage) return <AuthNavBar />;
+	if (isAuthPage) return <AuthNavigationLayout Navibar={<AuthNavBar />} />;
 	return <NavigationLayout Navibar={<NavBar />} Menubar={<Menubar />} />;
 }
 

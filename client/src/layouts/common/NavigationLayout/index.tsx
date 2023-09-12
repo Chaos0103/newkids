@@ -1,12 +1,26 @@
 import React, { ReactNode, useEffect, useState } from 'react';
 import { NavigationLayoutWrapper } from './style';
 
+interface IAuthNavigationLayoutProps {
+	Navibar: ReactNode;
+}
+
+export function AuthNavigationLayout({ Navibar }: IAuthNavigationLayoutProps) {
+	return (
+		<NavigationLayoutWrapper>
+			<div className="navigation-container">
+				<div className="navibar">{Navibar}</div>
+			</div>
+		</NavigationLayoutWrapper>
+	);
+}
+
 interface INavigationLayoutProps {
 	Navibar: ReactNode;
 	Menubar: ReactNode;
 }
 
-function NavigationLayout({ Navibar, Menubar }: INavigationLayoutProps) {
+export default function NavigationLayout({ Navibar, Menubar }: INavigationLayoutProps) {
 	const [activeMenu, setActiveMenu] = useState(false);
 	const [position, setPosition] = useState(0);
 
@@ -49,5 +63,3 @@ function NavigationLayout({ Navibar, Menubar }: INavigationLayoutProps) {
 		</NavigationLayoutWrapper>
 	);
 }
-
-export default NavigationLayout;
