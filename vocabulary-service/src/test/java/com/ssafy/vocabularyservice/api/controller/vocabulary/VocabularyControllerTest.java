@@ -15,8 +15,7 @@ import java.util.UUID;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.BDDMockito.given;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -97,6 +96,32 @@ class VocabularyControllerTest extends ControllerTestSupport {
         mockMvc.perform(
                 patch("/vocabulary-service/{vocabularyId}", 1L)
             )
+            .andDo(print())
+            .andExpect(status().isFound())
+            .andExpect(jsonPath("$.code").value("302"))
+            .andExpect(jsonPath("$.status").value("FOUND"))
+            .andExpect(jsonPath("$.message").value("FOUND"))
+            .andExpect(jsonPath("$.data").isNotEmpty());
+    }
+
+    @DisplayName("단어장에 등록된 단어를 삭제한다")
+    @Test
+    void removeVocabulary() throws Exception {
+        //given
+        WordResponse response = WordResponse.builder()
+            .wordKey("92288")
+            .content("돼지")
+            .description("멧돼짓과의 포유류. 몸무게는 200~250kg이며, 다리와 꼬리가 짧고 주둥이가 삐죽하다.")
+            .check(true)
+            .build();
+
+        given(vocabularyService.removeVocabulary(anyLong()))
+            .willReturn(response);
+
+        //when //then
+        mockMvc.perform(
+            delete("/vocabulary-service/{vocabularyId}", 1L)
+        )
             .andDo(print())
             .andExpect(status().isFound())
             .andExpect(jsonPath("$.code").value("302"))

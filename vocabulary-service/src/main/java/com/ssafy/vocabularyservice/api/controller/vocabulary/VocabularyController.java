@@ -61,4 +61,10 @@ public class VocabularyController {
 
         return ApiResponse.found(response);
     }
+
+    @DeleteMapping("/{vocabularyId}")
+    @ResponseStatus(HttpStatus.FOUND)
+    public ApiResponse<WordResponse> removeVocabulary(@PathVariable Long vocabularyId) {
+        return ApiResponse.found(null);
+    }
 }
