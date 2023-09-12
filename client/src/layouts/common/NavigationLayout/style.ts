@@ -8,7 +8,7 @@ export const NavigationLayoutWrapper = styled.div`
 	z-index: 50;
 
 	.navigation-container {
-		width: var(--content-width-m);
+		width: var(--content-width-l);
 		margin: 0 auto;
 
 		.navibar {
