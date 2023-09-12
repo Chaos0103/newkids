@@ -1,8 +1,12 @@
 import React, { ReactNode } from 'react';
-import { ContentLayoutContainer, FullContentLayoutContainer } from './style';
+import { ContentLayoutContainer, FullContentLayoutContainer, LarrowContentLayoutContainer } from './style';
 
 interface IContentLayoutProps {
 	children: ReactNode;
+}
+
+export function LarrowContentLayout({ children }: IContentLayoutProps) {
+	return <LarrowContentLayoutContainer>{children}</LarrowContentLayoutContainer>;
 }
 
 export function ContentLayout({ children }: IContentLayoutProps) {
