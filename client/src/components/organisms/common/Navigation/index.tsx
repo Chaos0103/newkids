@@ -9,7 +9,7 @@ function Navigation() {
 	const location = useLocation();
 
 	useEffect(() => {
-		if (/\/account/.test(location.pathname)) {
+		if (/\/auth/.test(location.pathname)) {
 			setIsAuthPage(true);
 		} else {
 			setIsAuthPage(false);
