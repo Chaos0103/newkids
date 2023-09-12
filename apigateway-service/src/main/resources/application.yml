@@ -48,12 +48,24 @@ spring:
         - id: user-service
           uri: lb://USER-SERVICE
           predicates:
+            - Path=/user-service/docs/index
+            - Method=GET
+          filters:
+            - RemoveRequestHeader=Cookie
+        - id: user-service
+          uri: lb://USER-SERVICE
+          predicates:
             - Path=/user-service/**
             - Method=GET, POST
           filters:
             - RemoveRequestHeader=Cookie
             - RewritePath=/user-service/(?<segment>.*), /$\{segment}
             - AuthorizationHeaderFilter
+        - id: vocabulary-service
+          uri: lb://VOCABULARY-SERVICE
+          predicates:
+            - Path=/vocabulary-service/**
+            - Method=GET, POST, PATCH, DELETE
 
 management:
   endpoints:
