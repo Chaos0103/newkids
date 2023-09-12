@@ -36,8 +36,7 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
         super.setAuthenticationManager(authenticationManager);
         this.accountService = accountService;
         this.env = env;
-        // TODO: 2023-09-07 임우택 키 설정
-        byte[] keyBytes = Decoders.BASE64.decode("dladnxordldPflghdtmdwnsrlatnwlstjdydwnstlstjdwn");
+        byte[] keyBytes = Decoders.BASE64.decode(this.env.getProperty("token.secret"));
         this.key = Keys.hmacShaKeyFor(keyBytes);
     }
 

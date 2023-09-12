@@ -61,8 +61,7 @@ public class AuthorizationHeaderFilter extends AbstractGatewayFilterFactory<Auth
         String subject = null;
 
         try {
-            // TODO: 2023-09-07 임우택 setSigningKey 설정
-            subject = Jwts.parserBuilder().setSigningKey("")
+            subject = Jwts.parserBuilder().setSigningKey(env.getProperty("token.secret"))
                 .build().parseClaimsJws(jwt).getBody()
                 .getSubject();
 

@@ -35,4 +35,9 @@ public class Vocabulary extends TimeBaseEntity {
         this.memberKey = memberKey;
         this.word = word;
     }
+
+    //== 비즈니스 로직 ==//
+    public void changeCheck() {
+        this.check = !check;
+    }
 }
