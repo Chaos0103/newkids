@@ -62,9 +62,20 @@ public class VocabularyController {
         return ApiResponse.found(response);
     }
 
+    /**
+     * 단어장 삭제 API
+     * @param vocabularyId 삭제할 단어장의 PK
+     * @return 삭제된 단어장 정보
+     */
     @DeleteMapping("/{vocabularyId}")
     @ResponseStatus(HttpStatus.FOUND)
     public ApiResponse<WordResponse> removeVocabulary(@PathVariable Long vocabularyId) {
-        return ApiResponse.found(null);
+        log.debug("call VocabularyController#removeVocabulary");
+        log.debug("vocabularyId={}", vocabularyId);
+
+        WordResponse response = vocabularyService.removeVocabulary(vocabularyId);
+        log.debug("response={}", response);
+
+        return ApiResponse.found(response);
     }
 }
