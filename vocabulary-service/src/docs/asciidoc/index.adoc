@@ -14,5 +14,9 @@ include::overview.adoc[]
 [[Vocabulary-API]]
 == Vocabulary API
 
+include::api/vocabulary/create-vocabulary.adoc[]
+include::api/vocabulary/check-vocabulary.adoc[]
+include::api/vocabulary/remove-vocabulary.adoc[]
+
 [[Word-API]]
 == Word API
