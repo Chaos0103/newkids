@@ -1,0 +1,10 @@
+[[remove-read-article]]
+== 읽은 뉴스 기사 삭제
+
+==== HTTP Request
+include::{snippets}/remove-read-article/http-request.adoc[]
+
+
+==== HTTP Response
+include::{snippets}/remove-read-article/http-response.adoc[]
+include::{snippets}/remove-read-article/response-fields.adoc[]
