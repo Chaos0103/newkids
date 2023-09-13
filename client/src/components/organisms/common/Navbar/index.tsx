@@ -11,7 +11,7 @@ export function AuthNavBar() {
 	return (
 		<NavBarContainer $auth>
 			<div className="logo auth-navbar">
-				<Logo onClick={() => movePage('/')} />
+				<Logo onClick={() => movePage('/index')} />
 			</div>
 		</NavBarContainer>
 	);
@@ -23,12 +23,12 @@ function NavBar() {
 	return (
 		<NavBarContainer>
 			<div className="logo">
-				<Logo onClick={() => movePage('/')} />
+				<Logo onClick={() => movePage('/index')} />
 			</div>
 			<div className="search-bar">
 				<SearchBar size="l" confirmSearch={() => {}} />
 			</div>
-			<Button size="s" radius="l" color="Primary" text="로그인" handleClick={() => movePage('/account/login')} />
+			<Button size="s" radius="l" color="Primary" text="로그인" handleClick={() => movePage('/index/auth/login')} />
 		</NavBarContainer>
 	);
 }
