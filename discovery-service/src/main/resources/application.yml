@@ -4,10 +4,10 @@ server:
 spring:
   application:
     name: discovery-service
-#  cloud:
-#    config:
-#      uri: http://127.0.0.1:8888
-#      nane: newkids
+  cloud:
+    config:
+      uri: http://127.0.0.1:8888
+      nane: newkids
 
 eureka:
   client:

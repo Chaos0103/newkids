@@ -11,6 +11,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.Optional;
 import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -33,7 +34,7 @@ class VocabularyServiceTest extends IntegrationTestSupport {
         //given
         String memberKey = UUID.randomUUID().toString();
         Word word = createdWord();
-        Vocabulary vocabulary = createdVocabulary(memberKey, word);
+        Vocabulary vocabulary = createdVocabulary(memberKey, word, false);
 
         //when //then
         assertThatThrownBy(() -> vocabularyService.createVocabulary(memberKey, word.getWordKey()))
@@ -60,9 +61,55 @@ class VocabularyServiceTest extends IntegrationTestSupport {
             );
     }
 
-    private Vocabulary createdVocabulary(String memberKey, Word word) {
+    @DisplayName("단어장 체크 여부를 미체크에서 체크로 수정한다.")
+    @Test
+    void checkVocabularyWithFalseToTrue() {
+        //given
+        String memberKey = UUID.randomUUID().toString();
+        Word word = createdWord();
+        Vocabulary vocabulary = createdVocabulary(memberKey, word, false);
+
+        //when
+        WordResponse response = vocabularyService.checkVocabulary(vocabulary.getId());
+
+        //then
+        assertThat(response.getCheck()).isTrue();
+    }
+
+    @DisplayName("단어장 체크 여부를 체크에서 미체크로 수정한다.")
+    @Test
+    void checkVocabularyWithTrueToFalse() {
+        //given
+        String memberKey = UUID.randomUUID().toString();
+        Word word = createdWord();
+        Vocabulary vocabulary = createdVocabulary(memberKey, word, true);
+
+        //when
+        WordResponse response = vocabularyService.checkVocabulary(vocabulary.getId());
+
+        //then
+        assertThat(response.getCheck()).isFalse();
+    }
+
+    @DisplayName("단어장 단어를 삭제한다.")
+    @Test
+    void removeVocabulary() {
+        //given
+        String memberKey = UUID.randomUUID().toString();
+        Word word = createdWord();
+        Vocabulary vocabulary = createdVocabulary(memberKey, word, true);
+
+        //when
+        WordResponse response = vocabularyService.removeVocabulary(vocabulary.getId());
+
+        //then
+        Optional<Vocabulary> findVocabulary = vocabularyRepository.findById(vocabulary.getId());
+        assertThat(findVocabulary).isEmpty();
+    }
+
+    private Vocabulary createdVocabulary(String memberKey, Word word, boolean check) {
         Vocabulary vocabulary = Vocabulary.builder()
-            .check(false)
+            .check(check)
             .memberKey(memberKey)
             .word(word)
             .build();
