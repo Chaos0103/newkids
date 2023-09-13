@@ -6,7 +6,7 @@ server:
 logging:
   level:
     org.hibernate: debug
-    com.ssafy.articleservicce: debug
+    com.ssafy.articleservice: debug
 
 # MSA setting
 eureka:
