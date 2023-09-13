@@ -7,6 +7,7 @@ import ApplicationLayout from 'layouts/common/ApplicationLayout';
 import { GlobalKeyFrames } from 'styles/GlobalKeyFrames';
 import Navigation from 'components/organisms/common/Navigation';
 import IndexPage from 'pages/IndexPage';
+import LoginPage from 'pages/LoginPage';
 import PrivateRoute from './PrivateRoute';
 
 function AppRouter() {
@@ -21,7 +22,7 @@ function AppRouter() {
 					<Routes>
 						<Route path="/" element={<Navigate to="/index" />} />
 						<Route path="/index" element={<IndexPage />} />
-						<Route path="/account/login" element={<div />} />
+						<Route path="/index/auth/login" element={<LoginPage />} />
 
 						<Route path="/" element={<PrivateRoute />}>
 							<Route path="/game" element={<div />} />

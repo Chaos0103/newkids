@@ -18,6 +18,10 @@ export const NavBarContainer = styled.div<{ $auth?: boolean }>`
 			width: 170px;
 			height: 56px;
 		}
+
+		&:hover {
+			cursor: pointer;
+		}
 	}
 
 	.search-bar {
