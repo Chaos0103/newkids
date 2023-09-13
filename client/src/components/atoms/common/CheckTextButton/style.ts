@@ -8,10 +8,10 @@ export const CheckTextButtonWrapper = styled.div<{ value: boolean }>`
 		flex-direction: row;
 		align-items: center;
 		gap: 5px;
-		color: ${({ value }) => (value ? 'var(--sub-color-1' : 'var(--gray-300)')};
+		color: var(--gray-300);
 
 		svg {
-			fill: ${({ value }) => (value ? 'var(--sub-color-1' : 'var(--gray-300)')};
+			fill: ${({ value }) => (value ? 'var(--main-color)' : 'var(--gray-300)')};
 		}
 	}
 `;
