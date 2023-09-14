@@ -7,10 +7,15 @@ import com.ssafy.articleservice.api.service.article.ArticleService;
 import com.ssafy.articleservice.docs.RestDocsSupport;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.BDDMockito;
 import org.springframework.restdocs.payload.JsonFieldType;
 
+import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
+import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.BDDMockito.*;
 import static org.mockito.Mockito.mock;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.operation.preprocess.Preprocessors.preprocessResponse;
@@ -44,10 +49,20 @@ class ArticleControllerDocsTest extends RestDocsSupport {
     @Test
     void getArticle() throws Exception {
         ArticleDetailResponse response = ArticleDetailResponse.builder()
+            .title("")
+            .subTitle("")
+            .writer("")
+            .publishedDate(LocalDateTime.now())
+            .content("")
+            .thumbnailImg("")
+            .imageUrls(List.of(""))
             .build();
-        // TODO: 2023-09-13 작성중
+
+        given(articleQueryService.getArticle(anyLong()))
+            .willReturn(response);
+
         mockMvc.perform(
-                get("/article-service/{articleId}", UUID.randomUUID().toString())
+                get("/article-service/{articleId}", 1L)
             )
             .andDo(print())
             .andExpect(status().isOk())
@@ -62,8 +77,20 @@ class ArticleControllerDocsTest extends RestDocsSupport {
                         .description("메시지"),
                     fieldWithPath("data").type(JsonFieldType.OBJECT)
                         .description("응답데이터"),
-                    fieldWithPath("data.content").type(JsonFieldType.ARRAY)
-                        .description("낙찰 내역 데이터")
+                    fieldWithPath("data.title").type(JsonFieldType.STRING)
+                        .description("기사 제목"),
+                    fieldWithPath("data.subTitle").type(JsonFieldType.STRING)
+                        .description("기사 부제목"),
+                    fieldWithPath("data.writer").type(JsonFieldType.STRING)
+                        .description("기사 작성자"),
+                    fieldWithPath("data.publishedDate").type(JsonFieldType.ARRAY)
+                        .description("기사 작성일"),
+                    fieldWithPath("data.content").type(JsonFieldType.STRING)
+                        .description("기사 내용"),
+                    fieldWithPath("data.thumbnailImg").type(JsonFieldType.STRING)
+                        .description("기사 썸네일 이미지"),
+                    fieldWithPath("data.imageUrls[]").type(JsonFieldType.ARRAY)
+                        .description("기사 이미지 리스스")
                 )
             ));
     }
