@@ -1,0 +1,10 @@
+[[edit-word]]
+=== 단어 수정
+
+==== HTTP Request
+include::{snippets}/edit-word/http-request.adoc[]
+include::{snippets}/edit-word/request-fields.adoc[]
+
+==== HTTP Response
+include::{snippets}/edit-word/http-response.adoc[]
+include::{snippets}/edit-word/response-fields.adoc[]

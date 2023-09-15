@@ -23,4 +23,9 @@ spring:
 logging:
   level:
     org.hibernate.SQL: debug
-    com.ssafy.server: debug
+    com.ssafy.newkids: debug
+
+#security
+security:
+  key: dladnxorwjsdlsgurchldudghksghdwlstlrtjdydwnswhcksdlr
+  expiredTime: 86400000

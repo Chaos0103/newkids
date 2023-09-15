@@ -3,8 +3,14 @@ package com.ssafy.newkids.api;
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
-import static org.springframework.http.HttpStatus.OK;
+import static org.springframework.http.HttpStatus.*;
 
+/**
+ * API Response 공통 스팩
+ *
+ * @author 임우택
+ * @param <T> 반환할 데이터의 타입
+ */
 @Getter
 public class ApiResponse<T> {
 
@@ -13,7 +19,7 @@ public class ApiResponse<T> {
     private final String message;
     private final T data;
 
-    public ApiResponse(HttpStatus status, String message, T data) {
+    private ApiResponse(HttpStatus status, String message, T data) {
         this.code = status.value();
         this.status = status;
         this.message = message;
@@ -26,6 +32,14 @@ public class ApiResponse<T> {
 
     public static <T> ApiResponse<T> ok(T data) {
         return of(OK, "SUCCESS", data);
+    }
+
+    public static <T> ApiResponse<T> created(T data) {
+        return of(CREATED, "CREATED", data);
+    }
+
+    public static <T> ApiResponse<T> found(T data) {
+        return of(FOUND, "FOUND", data);
     }
 }
 

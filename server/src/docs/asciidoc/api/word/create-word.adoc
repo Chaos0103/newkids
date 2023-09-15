@@ -1,0 +1,10 @@
+[[create-word]]
+=== 단어 등록
+
+==== HTTP Request
+include::{snippets}/create-word/http-request.adoc[]
+include::{snippets}/create-word/request-fields.adoc[]
+
+==== HTTP Response
+include::{snippets}/create-word/http-response.adoc[]
+include::{snippets}/create-word/response-fields.adoc[]
