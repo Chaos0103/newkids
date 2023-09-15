@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 export const LoginPageLayoutContainer = styled.div`
+	height: calc(100vh - 76px);
+	position: relative;
 	display: flex;
 	flex-direction: column;
 	gap: 4rem;
@@ -9,7 +11,11 @@ export const LoginPageLayoutContainer = styled.div`
 		margin-top: 3rem;
 	}
 
-	.login-form {
-		margin: 0 5rem;
+	.footer {
+		position: absolute;
+		bottom: 3rem;
+		left: 0;
+		right: 0;
+		transform: translateX(0);
 	}
 `;

@@ -44,4 +44,9 @@ export interface PatchWordApiBody {
 	description: string;
 }
 
+// -- article :: 읽은 뉴스기사 등록
+export interface RegistReadArticleApiBody {
+	articleId: number;
+}
+
 // RESPONSE

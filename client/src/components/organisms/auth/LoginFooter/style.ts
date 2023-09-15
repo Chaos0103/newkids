@@ -1,12 +1,6 @@
 import styled from 'styled-components';
 
 export const LoginFooterContainer = styled.div`
-	position: fixed;
-	bottom: 3rem;
-	width: 100%;
-	left: 50%;
-	right: 50%;
-	transform: translateX(-50%);
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -24,6 +18,7 @@ export const LoginFooterContainer = styled.div`
 
 		img {
 			width: 8rem;
+			height: 2rem;
 		}
 	}
 `;
