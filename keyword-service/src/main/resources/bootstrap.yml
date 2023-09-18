@@ -2,6 +2,6 @@ spring:
   cloud:
     config:
       uri: https://j9c205.p.ssafy.io/config
-      name: user-service
+      name: keyword-service
   profiles:
     active: dev
