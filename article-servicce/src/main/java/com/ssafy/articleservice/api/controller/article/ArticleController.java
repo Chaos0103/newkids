@@ -27,10 +27,19 @@ public class ArticleController {
         return ApiResponse.ok(null);
     }
 
-    // TODO: 2023/09/13 뉴스 기사 상세 조회 API
+    /**
+     * 뉴스 기사 상세 조회 API
+     * @param articleId 조회할 기사의 PK
+     * @return 조회된 뉴스 기사의 정보
+     */
     @GetMapping("/{articleId}")
     public ApiResponse<ArticleDetailResponse> getArticle(@PathVariable Long articleId) {
+        log.debug("ArticleController#getArticle");
+        log.debug("request={}", articleId);
+
         ArticleDetailResponse response = articleQueryService.getArticle(articleId);
+        log.debug("response={}", response);
+
         return ApiResponse.ok(response);
     }
 
