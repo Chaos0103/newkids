@@ -4,7 +4,6 @@ import com.ssafy.articleservice.IntegrationTestSupport;
 import com.ssafy.articleservice.api.controller.article.response.ArticleDetailResponse;
 import com.ssafy.articleservice.domain.article.repository.ArticleQueryRepository;
 import com.ssafy.articleservice.domain.article.repository.ArticleRepository;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
