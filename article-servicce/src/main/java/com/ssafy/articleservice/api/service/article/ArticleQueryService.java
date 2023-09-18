@@ -26,6 +26,7 @@ public class ArticleQueryService {
     private final ArticleQueryRepository articleQueryRepository;
 
     public Page<ArticleResponse> getArticles() {
+
         return null;
     }
 
