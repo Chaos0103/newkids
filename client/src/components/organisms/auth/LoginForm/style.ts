@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export const LoginFormContainer = styled.div`
-	margin: 0 3rem;
 	border: 1px solid var(--gray-300);
 	border-radius: var(--radius-s);
 	padding: 3rem;
