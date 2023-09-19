@@ -8,7 +8,9 @@ interface IJoinPageLayoutProps {
 function JoinPageLayout({ StepView }: IJoinPageLayoutProps) {
 	return (
 		<JoinPageLayoutContainer>
-			<LarrowContentLayout>{StepView}</LarrowContentLayout>
+			<LarrowContentLayout>
+				<div className="step-view">{StepView}</div>
+			</LarrowContentLayout>
 		</JoinPageLayoutContainer>
 	);
 }

@@ -60,7 +60,7 @@ function TermsOfService(props: ITermsOfServiceProps) {
 						text="[필수] 뉴키즈 이용약관"
 						size="m"
 					/>
-					<textarea readOnly>{AGREE_TERMS_OF_SERVICES}</textarea>
+					<textarea readOnly defaultValue={AGREE_TERMS_OF_SERVICES} />
 				</div>
 				<div className="agree">
 					<CheckTextButton
@@ -69,7 +69,7 @@ function TermsOfService(props: ITermsOfServiceProps) {
 						text="[필수] 개인정보 수집 및 이용"
 						size="m"
 					/>
-					<textarea readOnly>{AGREE_PERSONAL_INFO}</textarea>
+					<textarea readOnly defaultValue={AGREE_PERSONAL_INFO} />
 				</div>
 			</div>
 			<div className="next-btn">
