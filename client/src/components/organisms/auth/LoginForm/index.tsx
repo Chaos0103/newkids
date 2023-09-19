@@ -5,8 +5,8 @@ import { ReactComponent as PasswordIcon } from 'assets/icons/password.svg';
 import Input from 'components/atoms/common/Input';
 import Button from 'components/atoms/common/Button';
 import { loginApi } from 'utils/apis/auth';
-import CheckTextButton from 'components/atoms/common/CheckTextButton';
 import { useNavigate } from 'react-router-dom';
+import CheckTextButton from 'components/atoms/common/CheckTextButton';
 import { FieldSet, LoginFormContainer } from './style';
 
 function LoginForm() {
@@ -36,7 +36,7 @@ function LoginForm() {
 			<FieldSet>
 				<Input type="text" value={email} setValue={setEmail} placeholder="이메일 아이디" Icon={<IdIcon />} />
 				<Input type="password" value={password} setValue={setPassword} placeholder="비밀번호" Icon={<PasswordIcon />} />
-				<CheckTextButton value={isSave} setValue={setIsSave} text="로그인 상태 유지" />
+				<CheckTextButton value={isSave} setValue={setIsSave} text="로그인 상태 유지" size="s" />
 			</FieldSet>
 			<Button text="로그인" color="Primary" size="full" radius="s" handleClick={login} />
 			<div>
