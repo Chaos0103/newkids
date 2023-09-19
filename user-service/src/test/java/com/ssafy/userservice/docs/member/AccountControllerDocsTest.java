@@ -3,7 +3,6 @@ package com.ssafy.userservice.docs.member;
 import com.ssafy.userservice.api.controller.member.AccountController;
 import com.ssafy.userservice.api.controller.member.request.CheckEmailRequest;
 import com.ssafy.userservice.api.controller.member.request.CheckNicknameRequest;
-import com.ssafy.userservice.api.controller.member.request.LoginRequest;
 import com.ssafy.userservice.api.controller.member.response.MemberResponse;
 import com.ssafy.userservice.api.service.member.AccountService;
 import com.ssafy.userservice.docs.RestDocsSupport;
@@ -14,14 +13,14 @@ import org.springframework.restdocs.payload.JsonFieldType;
 
 import java.util.UUID;
 
+import static com.epages.restdocs.apispec.MockMvcRestDocumentationWrapper.document;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
-import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
+import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.get;
+import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.post;
 import static org.springframework.restdocs.operation.preprocess.Preprocessors.*;
 import static org.springframework.restdocs.payload.PayloadDocumentation.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
