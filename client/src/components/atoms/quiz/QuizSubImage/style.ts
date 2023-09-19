@@ -1,14 +1,14 @@
 import styled from 'styled-components';
 
-export const QuizImageWrapper = styled.div`
+export const QuizSubImageWrapper = styled.div`
 	margin-top: 3rem;
 	display: flex;
 	justify-content: center;
 	align-item: center;
 
 	div {
-		width: 376px;
-		height: 400px;
-		background-color: var(--sub-color-2);
+		width: 180px;
+		height: 160px;
+		background-color: var(--success-color);
 	}
 `;
