@@ -52,7 +52,7 @@ public class ArticleReadController {
     @GetMapping("/{memberKey}")
     public ApiResponse<Page<ArticleReadResponse>> getArticleRead(
         @PathVariable String memberKey,
-        @RequestParam(defaultValue = "0") Integer pageNum
+        @RequestParam(defaultValue = "1") Integer pageNum
     ) {
         log.debug("call ArticleReadController#getArticleRead");
         log.debug("memberKey={}", memberKey);

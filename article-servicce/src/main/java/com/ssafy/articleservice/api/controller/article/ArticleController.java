@@ -5,9 +5,11 @@ import com.ssafy.articleservice.api.controller.article.response.ArticleDetailRes
 import com.ssafy.articleservice.api.controller.article.response.ArticleResponse;
 import com.ssafy.articleservice.api.service.article.ArticleQueryService;
 import com.ssafy.articleservice.api.service.article.ArticleService;
+import com.ssafy.articleservice.domain.article.repository.dto.ArticleSearchCond;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,9 +24,19 @@ public class ArticleController {
 
     // TODO: 2023/09/13 뉴스 기사 조회 API
     @GetMapping
-    public ApiResponse<Page<ArticleResponse>> getArticles() {
-        Page<ArticleResponse> response = articleQueryService.getArticles();
-        return ApiResponse.ok(null);
+    public ApiResponse<Page<ArticleResponse>> getArticles(
+        @RequestParam(required = false) String content,
+        @RequestParam(defaultValue = "1") Integer pageNum
+    ) {
+
+        PageRequest pageRequest = PageRequest.of(pageNum - 1, 10);
+        ArticleSearchCond cond = ArticleSearchCond.builder()
+            .content(content)
+            .build();
+
+        Page<ArticleResponse> response = articleQueryService.getArticles(cond, pageRequest);
+
+        return ApiResponse.ok(response);
     }
 
     /**

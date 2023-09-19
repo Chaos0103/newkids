@@ -6,10 +6,10 @@ import lombok.Data;
 @Data
 public class ArticleSearchCond {
 
-    private String title;
+    private String content;
 
     @Builder
-    public ArticleSearchCond(String title) {
-        this.title = title;
+    public ArticleSearchCond(String content) {
+        this.content = content;
     }
 }

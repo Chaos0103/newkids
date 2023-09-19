@@ -28,7 +28,10 @@ public class ArticleQueryRepository {
         List<Long> ids = queryFactory
             .select(article.id)
             .from(article)
-            .where(article.title.like("%" + cond.getTitle() + "%"))
+            .where(
+                article.title.like("%" + cond.getContent() + "%")
+                    .or(article.content.like("%" + cond.getContent() + "%"))
+            )
             .limit(pageable.getPageSize())
             .offset(pageable.getOffset())
             .orderBy(article.publishedDate.desc())
@@ -50,5 +53,17 @@ public class ArticleQueryRepository {
             .where(article.id.in(ids))
             .orderBy(article.publishedDate.desc())
             .fetch();
+    }
+
+    public long getTotalCount(ArticleSearchCond cond) {
+        return queryFactory
+            .select(article.id)
+            .from(article)
+            .where(
+                article.title.like("%" + cond.getContent() + "%")
+                    .or(article.content.like("%" + cond.getContent() + "%"))
+            )
+            .fetch()
+            .size();
     }
 }
