@@ -3,6 +3,9 @@ import logging as log
 from flask import Flask, request, jsonify
 from flask_restx import Api, Resource, fields
 
+from service.recommendation.Cbf import get_recommend_ids
+from service.article.article import get_recommend_articles
+
 app = Flask(__name__)
 api = Api(app, version="1.0", title="기사 추천 API 문서", doc="/api-docs")
 
@@ -67,6 +70,9 @@ class CbfResult(Resource):
 
         # 기사 데이터 로드 (서비스 내부 로직)
         # 코사인 유사도를 사용해 추천 기사 리스트를 얻음
+
+        recommend_ids = get_recommend_ids(articleId)
+        articles = get_recommend_articles(recommend_ids)
 
         return jsonify(articles)
 
