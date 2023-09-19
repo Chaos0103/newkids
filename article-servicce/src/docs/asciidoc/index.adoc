@@ -11,6 +11,11 @@ endif::[]
 
 include::overview.adoc[]
 
+[[Article-API]]
+== Article API
+
+include::api/article/search-article.adoc[]
+
 [[Article-Read-API]]
 == Article Read API
 
