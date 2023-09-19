@@ -45,6 +45,22 @@ class ArticleReadQueryRepositoryTest extends IntegrationTestSupport {
         assertThat(responses).hasSize(3);
     }
 
+    @DisplayName("회원의 고유키로 읽은 뉴스 기사 갯수를 조회한다.")
+    @Test
+    void getTotalCount() {
+        //given
+        String memberKey = UUID.randomUUID().toString();
+        createArticleRead(memberKey, null);
+        createArticleRead(memberKey, null);
+        createArticleRead(memberKey, null);
+
+        //when
+        long count = articleReadQueryRepository.getTotalCount(memberKey);
+
+        //then
+        assertThat(count).isEqualTo(3);
+    }
+
     private Article createArticle() {
         Article article = Article.builder()
             .title("전인혁 오늘 지각으로 댄스에 당첨...")
