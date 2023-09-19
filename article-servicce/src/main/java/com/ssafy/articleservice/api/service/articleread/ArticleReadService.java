@@ -23,26 +23,39 @@ public class ArticleReadService {
 
     public ArticleReadResponse createArticleRead(String memberKey, Long articleId) {
 
-        Optional<Article> findArticle = articleRepository.findById(articleId);
-        if (findArticle.isEmpty()) {
-            throw new NoSuchElementException("등록되지 않은 뉴스 기사 입니다.");
-        }
+        Article findArticle = getArticleEntity(articleId);
 
-        Optional<Long> check = articleReadRepository.findByMemberKeyAndArticleId(memberKey, articleId);
-        if (check.isPresent()) {
-            throw new DuplicateException("이미 등록된 뉴스 기사 내역입니다.");
-        }
+        checkDuplicateArticleRead(memberKey, articleId);
 
-        ArticleRead articleRead = ArticleRead.builder()
-            .memberKey(memberKey)
-            .article(findArticle.get())
-            .build();
-        ArticleRead savedArticleRead = articleReadRepository.save(articleRead);
+        ArticleRead savedArticleRead = saveEntity(memberKey, findArticle);
 
-        return ArticleReadResponse.of(findArticle.get());
+        return ArticleReadResponse.of(findArticle);
     }
 
     public void removeArticleRead(Long articleReadId) {
 
+    }
+
+    private Article getArticleEntity(Long articleId) {
+        Optional<Article> findArticle = articleRepository.findById(articleId);
+        if (findArticle.isEmpty()) {
+            throw new NoSuchElementException("등록되지 않은 뉴스 기사 입니다.");
+        }
+        return findArticle.get();
+    }
+
+    private void checkDuplicateArticleRead(String memberKey, Long articleId) {
+        Optional<Long> check = articleReadRepository.findByMemberKeyAndArticleId(memberKey, articleId);
+        if (check.isPresent()) {
+            throw new DuplicateException("이미 등록된 뉴스 기사 내역입니다.");
+        }
+    }
+
+    private ArticleRead saveEntity(String memberKey, Article findArticle) {
+        ArticleRead articleRead = ArticleRead.builder()
+            .memberKey(memberKey)
+            .article(findArticle)
+            .build();
+        return articleReadRepository.save(articleRead);
     }
 }
