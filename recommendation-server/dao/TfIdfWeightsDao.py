@@ -1,3 +1,5 @@
+import logging as log
+
 import pymysql as my
 
 
@@ -13,23 +15,29 @@ def getArticleTfIdf(articleIds: list):
 
     try:
         connection = my.connect(
-            host="",
-            password="",
-            database="",
-            charset="utf8mb5",
+            host="127.0.0.1",
+            port=3306,
+            user='ssafy',
+            password='ssafy',
+            db='newkids',
+            charset='utf8',
             cursorclass=my.cursors.DictCursor
         )
 
         cursor = connection.cursor()
+        placeholders = ', '.join(['%s'] * len(articleIds))
+        log.debug(articleIds)
 
         sql = (
-            "SELECT `article_tfidf_id`, `article_id`, `keyword_vector`, `weight` "
+            "SELECT `article_id`, `keyword_vector`, `weight` "
             "FROM `article_tfidf` "
-            f"WHERE `article_id` IN {articleIds} "
+            f"WHERE `article_id` IN ({placeholders}) "
         )
+        log.debug(sql)
 
         cursor.execute(sql, articleIds)
         row = cursor.fetchall()
+        cursor.close()
 
     except Exception as e:
         print(f"Exception={e}")
@@ -51,10 +59,12 @@ def getArticleTfIdfByArticleId(articleId):
 
     try:
         connection = my.connect(
-            host="",
-            password="",
-            database="",
-            charset="utf8mb5",
+            host="127.0.0.1",
+            port=3306,
+            user='ssafy',
+            password='ssafy',
+            db='newkids',
+            charset='utf8',
             cursorclass=my.cursors.DictCursor
         )
 
@@ -63,7 +73,7 @@ def getArticleTfIdfByArticleId(articleId):
         sql = (
             "SELECT `article_tfidf_id`, `article_id`, `keyword_vector`, `weight` "
             "FROM `article_tfidf` "
-            f"WHERE `article_id` = {articleId} "
+            "WHERE `article_id` = %s "
         )
 
         cursor.execute(sql, articleId)
