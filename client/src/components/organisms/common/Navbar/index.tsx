@@ -28,7 +28,7 @@ function NavBar() {
 			<div className="search-bar">
 				<SearchBar size="l" confirmSearch={() => {}} />
 			</div>
-			<Button size="s" radius="l" color="Primary" text="로그인" handleClick={() => movePage('/index/auth/login')} />
+			<Button size="s" radius="l" color="Primary" text="로그인" handleClick={() => movePage('/auth/login')} />
 		</NavBarContainer>
 	);
 }

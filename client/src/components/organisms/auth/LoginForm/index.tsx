@@ -6,12 +6,14 @@ import Input from 'components/atoms/common/Input';
 import Button from 'components/atoms/common/Button';
 import { loginApi } from 'utils/apis/auth';
 import CheckTextButton from 'components/atoms/common/CheckTextButton';
+import { useNavigate } from 'react-router-dom';
 import { FieldSet, LoginFormContainer } from './style';
 
 function LoginForm() {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [isSave, setIsSave] = useState(false);
+	const navigate = useNavigate();
 
 	const login = async () => {
 		try {
@@ -37,6 +39,18 @@ function LoginForm() {
 				<CheckTextButton value={isSave} setValue={setIsSave} text="로그인 상태 유지" />
 			</FieldSet>
 			<Button text="로그인" color="Primary" size="full" radius="s" handleClick={login} />
+			<div>
+				<button type="button">아이디 찾기</button>
+				<button type="button">비밀번호 찾기</button>
+				<button
+					type="button"
+					onClick={() => {
+						navigate('/auth/join');
+					}}
+				>
+					회원가입
+				</button>
+			</div>
 		</LoginFormContainer>
 	);
 }
