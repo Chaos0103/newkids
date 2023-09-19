@@ -1,16 +1,11 @@
 package com.ssafy.articleservice.domain.article;
 
 import com.ssafy.articleservice.IntegrationTestSupport;
-import com.ssafy.articleservice.api.controller.article.response.ArticleDetailResponse;
 import com.ssafy.articleservice.domain.article.repository.ArticleQueryRepository;
 import com.ssafy.articleservice.domain.article.repository.ArticleRepository;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDateTime;
-
-import static org.assertj.core.api.Assertions.*;
 
 class ArticleQueryRepositoryTest extends IntegrationTestSupport {
 
@@ -19,19 +14,6 @@ class ArticleQueryRepositoryTest extends IntegrationTestSupport {
 
     @Autowired
     private ArticleRepository articleRepository;
-
-    @DisplayName("기사 PK로 기사를 상세 조회한다.")
-    @Test
-    void findById() {
-        //given
-        Article article = createArticle();
-
-        //when
-        ArticleDetailResponse response = articleQueryRepository.findById(article.getId());
-
-        //then
-        assertThat(response.getTitle()).isEqualTo("전인혁 오늘 지각으로 댄스에 당첨...");
-    }
 
     private Article createArticle() {
         Article article = Article.builder()
