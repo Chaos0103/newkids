@@ -1,6 +1,6 @@
 import React, { Dispatch, SetStateAction } from 'react';
-import QuizImage from 'components/atoms/quiz/QuizImage';
 import Title from 'components/atoms/quiz/Title';
+import QuizSubImage from 'components/atoms/quiz/QuizSubImage';
 import { QuizWordsWrapper } from './style';
 
 interface IQuizWordsProps {
@@ -11,7 +11,7 @@ function QuizWords({ setStep }: IQuizWordsProps) {
 	console.log(setStep);
 	return (
 		<QuizWordsWrapper>
-			<QuizImage />
+			<QuizSubImage />
 			<Title text="이번 퀴즈에서 배운 단어들이에요" effectText="" />
 		</QuizWordsWrapper>
 	);

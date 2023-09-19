@@ -1,7 +1,7 @@
 import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
-import QuizImage from 'components/atoms/quiz/QuizImage';
 import Title from 'components/atoms/quiz/Title';
 import Button from 'components/atoms/common/Button';
+import QuizSubImage from 'components/atoms/quiz/QuizSubImage';
 import { QuizResultWrapper } from './style';
 
 interface IQuizResultProps {
@@ -27,7 +27,7 @@ function QuizResult({ setStep }: IQuizResultProps) {
 	}, [num]);
 	return (
 		<QuizResultWrapper>
-			<QuizImage />
+			<QuizSubImage />
 			<Title text="최종 점수" effectText="" />
 			<div className="score-wrapper">
 				<h1 className="score">이것도 점수냐?</h1>
