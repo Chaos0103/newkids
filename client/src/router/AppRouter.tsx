@@ -7,8 +7,8 @@ import ApplicationLayout from 'layouts/common/ApplicationLayout';
 import { GlobalKeyFrames } from 'styles/GlobalKeyFrames';
 import Navigation from 'components/organisms/common/Navigation';
 import IndexPage from 'pages/IndexPage';
-import LoginPage from 'pages/LoginPage';
 import MyPage from 'pages/MyPage';
+import LoginPage from 'pages/auth/LoginPage';
 import PrivateRoute from './PrivateRoute';
 
 function AppRouter() {
