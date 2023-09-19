@@ -30,7 +30,8 @@ public class ArticleQueryRepository {
             .from(article)
             .where(
                 article.title.like("%" + cond.getContent() + "%")
-                    .or(article.content.like("%" + cond.getContent() + "%"))
+                    .or(article.content.like("%" + cond.getContent() + "%")),
+                article.publishedDate.between(cond.getStartedDate(), cond.getEndedDate())
             )
             .limit(pageable.getPageSize())
             .offset(pageable.getOffset())

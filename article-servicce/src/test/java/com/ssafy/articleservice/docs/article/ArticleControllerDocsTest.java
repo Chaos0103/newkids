@@ -68,6 +68,8 @@ class ArticleControllerDocsTest extends RestDocsSupport {
                 get("/article-service")
                     .param("content", "돼지")
                     .param("pageNum", "1")
+                    .param("startDate", "2023-09-10")
+                    .param("endDate", "2023-09-19")
             )
             .andDo(print())
             .andExpect(status().isOk())
@@ -78,7 +80,13 @@ class ArticleControllerDocsTest extends RestDocsSupport {
                         .description("조회할 제목 or 내용"),
                     parameterWithName("pageNum")
                         .optional()
-                        .description("페이지 번호")
+                        .description("페이지 번호"),
+                    parameterWithName("startDate")
+                        .optional()
+                        .description("시작일"),
+                    parameterWithName("endDate")
+                        .optional()
+                        .description("종료일")
                 ),
                 responseFields(
                     fieldWithPath("code").type(JsonFieldType.NUMBER)

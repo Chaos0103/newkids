@@ -13,6 +13,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
+
 @RequiredArgsConstructor
 @RestController
 @Slf4j
@@ -26,12 +28,20 @@ public class ArticleController {
     @GetMapping
     public ApiResponse<Page<ArticleResponse>> getArticles(
         @RequestParam(required = false) String content,
-        @RequestParam(defaultValue = "1") Integer pageNum
+        @RequestParam(defaultValue = "1") Integer pageNum,
+        @RequestParam String startDate,
+        @RequestParam String endDate
     ) {
+
+        //date yyyy-mm-dd
+        LocalDateTime startedDate = createLocalDateTime(startDate);
+        LocalDateTime endedDate = createLocalDateTime(endDate).plusDays(1);
 
         PageRequest pageRequest = PageRequest.of(pageNum - 1, 10);
         ArticleSearchCond cond = ArticleSearchCond.builder()
             .content(content)
+            .startedDate(startedDate)
+            .endedDate(endedDate)
             .build();
 
         Page<ArticleResponse> response = articleQueryService.getArticles(cond, pageRequest);
@@ -61,5 +71,10 @@ public class ArticleController {
     public ApiResponse<ArticleResponse> removeArticle(@PathVariable Long articleId) {
         articleService.removeArticle(articleId);
         return ApiResponse.found(null);
+    }
+
+    private LocalDateTime createLocalDateTime(String date) {
+        String[] splitDate = date.split("-");
+        return LocalDateTime.of(Integer.parseInt(splitDate[0]), Integer.parseInt(splitDate[1]), Integer.parseInt(splitDate[2]), 0, 0);
     }
 }
