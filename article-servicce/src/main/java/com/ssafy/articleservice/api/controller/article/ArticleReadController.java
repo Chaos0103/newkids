@@ -26,7 +26,13 @@ public class ArticleReadController {
     @PostMapping("/{memberKey}")
     @ResponseStatus(HttpStatus.CREATED)
     public ApiResponse<ArticleReadResponse> createArticleRead(@PathVariable String memberKey, @Valid @RequestBody CreateArticleReadRequest request) {
+        log.debug("call ArticleReadController#createArticleRead");
+        log.debug("memberKey={}", memberKey);
+        log.debug("articleId={}", request.getArticleId());
+
         ArticleReadResponse response = articleReadService.createArticleRead(memberKey, request.getArticleId());
+        log.debug("response={}", response);
+
         return ApiResponse.created(response);
     }
 
