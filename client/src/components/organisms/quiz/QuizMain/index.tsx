@@ -12,13 +12,11 @@ interface IQuizMainProps {
 function QuizMain({ setStep }: IQuizMainProps) {
 	const [isDone, setIsDone] = useState(false);
 	const [num, setNum] = useState(0);
-	console.log(isDone);
 
 	const handleClick = () => {
 		if (!isDone) {
 			setStep(1);
 			setNum(1);
-			console.log(isDone);
 		} else {
 			console.log('변경이 안됐습니다.');
 		}
