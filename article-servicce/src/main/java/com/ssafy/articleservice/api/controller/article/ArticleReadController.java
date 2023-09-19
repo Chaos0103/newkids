@@ -43,7 +43,12 @@ public class ArticleReadController {
         return ApiResponse.created(response);
     }
 
-    // TODO: 2023/09/13 읽은 뉴스 기사 목록 조회 API
+    /**
+     * 읽은 뉴스 기사 목록 조회 API
+     * @param memberKey 조회할 회원 고유키
+     * @param pageNum 페이지 번호
+     * @return 조회된 읽은 뉴스 기사 목록
+     */
     @GetMapping("/{memberKey}")
     public ApiResponse<Page<ArticleReadResponse>> getArticleRead(
         @PathVariable String memberKey,
