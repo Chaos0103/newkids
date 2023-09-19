@@ -8,6 +8,7 @@ import com.ssafy.articleservice.api.service.articleread.ArticleReadService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,8 +25,9 @@ public class ArticleReadController {
 
     /**
      * 읽은 뉴스 기사 목록 등록 API
+     *
      * @param memberKey 회원 고유키
-     * @param request 등록할 뉴스 기사의 PK
+     * @param request   등록할 뉴스 기사의 PK
      * @return 등록된 뉴스 기사 정보
      */
     @PostMapping("/{memberKey}")
@@ -43,8 +45,17 @@ public class ArticleReadController {
 
     // TODO: 2023/09/13 읽은 뉴스 기사 목록 조회 API
     @GetMapping("/{memberKey}")
-    public ApiResponse<Page<ArticleReadResponse>> getArticleRead(@PathVariable String memberKey) {
-        Page<ArticleReadResponse> response = articleReadQueryService.getMyArticleRead(memberKey, null);
+    public ApiResponse<Page<ArticleReadResponse>> getArticleRead(
+        @PathVariable String memberKey,
+        @RequestParam(defaultValue = "0") Integer pageNum
+    ) {
+        log.debug("call ArticleReadController#getArticleRead");
+        log.debug("memberKey={}", memberKey);
+
+        PageRequest pageRequest = PageRequest.of(pageNum - 1, 10);
+        Page<ArticleReadResponse> response = articleReadQueryService.getMyArticleRead(memberKey, pageRequest);
+        log.debug("response={}", response.getContent());
+
         return ApiResponse.ok(response);
     }
 
