@@ -3,11 +3,16 @@ import styled from 'styled-components';
 export const TermsOfServiceContainer = styled.div`
 	position: relative;
 	height: calc(100vh - 76px);
-	display: flex;
-	flex-direction: column;
 	padding-top: 3rem;
-	gap: 3rem;
 
+	.agree-form {
+		padding: 3rem;
+		border: 1px solid var(--gray-300);
+		border-radius: var(--radius-s);
+		display: flex;
+		flex-direction: column;
+		gap: 3rem;
+	}
 	.agree {
 		display: flex;
 		flex-direction: column;
