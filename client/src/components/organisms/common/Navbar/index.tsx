@@ -11,7 +11,7 @@ export function AuthNavBar() {
 	return (
 		<NavBarContainer $auth>
 			<div className="logo auth-navbar">
-				<Logo onClick={() => movePage('/index')} />
+				<Logo onClick={() => movePage('/')} />
 			</div>
 		</NavBarContainer>
 	);
@@ -23,7 +23,7 @@ function NavBar() {
 	return (
 		<NavBarContainer>
 			<div className="logo">
-				<Logo onClick={() => movePage('/index')} />
+				<Logo onClick={() => movePage('/')} />
 			</div>
 			<div className="search-bar">
 				<SearchBar size="l" confirmSearch={() => {}} />
