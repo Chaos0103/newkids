@@ -21,6 +21,12 @@ public class ArticleReadService {
     private final ArticleReadRepository articleReadRepository;
     private final ArticleRepository articleRepository;
 
+    /**
+     * 읽은 뉴스 기사 등록
+     * @param memberKey 회원 고유키
+     * @param articleId 읽은 뉴스 기사 PK
+     * @return 등록된 뉴스 기사 정보
+     */
     public ArticleReadResponse createArticleRead(String memberKey, Long articleId) {
 
         Article findArticle = getArticleEntity(articleId);

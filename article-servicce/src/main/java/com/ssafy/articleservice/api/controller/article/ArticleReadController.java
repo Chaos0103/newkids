@@ -22,7 +22,12 @@ public class ArticleReadController {
     private final ArticleReadService articleReadService;
     private final ArticleReadQueryService articleReadQueryService;
 
-    // TODO: 2023/09/13 읽은 뉴스 기사 목록 등록 API
+    /**
+     * 읽은 뉴스 기사 목록 등록 API
+     * @param memberKey 회원 고유키
+     * @param request 등록할 뉴스 기사의 PK
+     * @return 등록된 뉴스 기사 정보
+     */
     @PostMapping("/{memberKey}")
     @ResponseStatus(HttpStatus.CREATED)
     public ApiResponse<ArticleReadResponse> createArticleRead(@PathVariable String memberKey, @Valid @RequestBody CreateArticleReadRequest request) {
