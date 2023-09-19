@@ -1,17 +1,26 @@
-import styled from 'styled-components';
+import { styled } from 'styled-components';
+import { CheckTextButtonStyles } from 'styles/styles';
 
-export const CheckTextButtonWrapper = styled.div<{ value: boolean }>`
+interface ICheckTextButtonWrapperProps {
+	$value: boolean;
+	$size: 's' | 'm' | 'l';
+}
+
+export const CheckTextButtonWrapper = styled.div<ICheckTextButtonWrapperProps>`
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	gap: 5px;
+	color: ${({ $value }) => ($value ? 'var(--main-color)' : 'var(--gray-400)')};
+	width: fit-content;
 
-	button {
-		display: flex;
-		flex-direction: row;
-		align-items: center;
-		gap: 5px;
-		color: var(--gray-300);
+	svg {
+		fill: ${({ $value }) => ($value ? 'var(--main-color)' : 'var(--gray-400)')};
+	}
 
-		svg {
-			fill: ${({ value }) => (value ? 'var(--main-color)' : 'var(--gray-300)')};
-		}
+	${({ $size }) => CheckTextButtonStyles[$size]}
+
+	&:hover {
+		cursor: pointer;
 	}
 `;
