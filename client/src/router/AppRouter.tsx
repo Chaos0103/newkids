@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
 import { GlobalFonts } from 'styles/GlobalFonts';
 import { GlobalStyles } from 'styles/GlobalStyles';
@@ -7,7 +7,8 @@ import ApplicationLayout from 'layouts/common/ApplicationLayout';
 import { GlobalKeyFrames } from 'styles/GlobalKeyFrames';
 import Navigation from 'components/organisms/common/Navigation';
 import IndexPage from 'pages/IndexPage';
-import LoginPage from 'pages/LoginPage';
+import JoinPage from 'pages/auth/JoinPage';
+import LoginPage from 'pages/auth/LoginPage';
 import PrivateRoute from './PrivateRoute';
 
 function AppRouter() {
@@ -20,9 +21,9 @@ function AppRouter() {
 				<BrowserRouter>
 					<Navigation />
 					<Routes>
-						<Route path="/" element={<Navigate to="/index" />} />
-						<Route path="/index" element={<IndexPage />} />
-						<Route path="/index/auth/login" element={<LoginPage />} />
+						<Route path="/" element={<IndexPage />} />
+						<Route path="/auth/login" element={<LoginPage />} />
+						<Route path="/auth/join" element={<JoinPage />} />
 
 						<Route path="/" element={<PrivateRoute />}>
 							<Route path="/game" element={<div />} />

@@ -10,7 +10,7 @@ export default defineConfig(async ({ mode }) => {
 
 	return {
 		plugins: [react(), eslint(), tsconfigPaths(), svgr()],
-		base: '/index',
+		base: '/',
 		server: {
 			proxy: {
 				'/api': {
