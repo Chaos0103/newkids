@@ -15,10 +15,11 @@ include::overview.adoc[]
 == Article API
 
 include::api/article/search-article.adoc[]
+include::api/article/search-detail-article.adoc[]
 
 [[Article-Read-API]]
 == Article Read API
 
 include::api/articleread/create-read-article.adoc[]
 include::api/articleread/search-read-article.adoc[]
-include::api/articleread/remove-read-article.adoc[]
+// include::api/articleread/remove-read-article.adoc[]
