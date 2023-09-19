@@ -109,7 +109,7 @@ public class ArticleReadControllerDocsTest extends RestDocsSupport {
 
         PageRequest pageRequest = PageRequest.of(0, 8);
 
-        given(articleReadQueryService.getMyArticleRead(anyString()))
+        given(articleReadQueryService.getMyArticleRead(anyString(), null))
             .willReturn(new PageImpl<>(responses, pageRequest, 20));
 
         mockMvc.perform(

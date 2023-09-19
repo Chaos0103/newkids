@@ -44,7 +44,7 @@ public class ArticleReadController {
     // TODO: 2023/09/13 읽은 뉴스 기사 목록 조회 API
     @GetMapping("/{memberKey}")
     public ApiResponse<Page<ArticleReadResponse>> getArticleRead(@PathVariable String memberKey) {
-        Page<ArticleReadResponse> response = articleReadQueryService.getMyArticleRead(memberKey);
+        Page<ArticleReadResponse> response = articleReadQueryService.getMyArticleRead(memberKey, null);
         return ApiResponse.ok(response);
     }
 

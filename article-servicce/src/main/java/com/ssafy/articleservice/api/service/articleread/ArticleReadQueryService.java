@@ -4,6 +4,7 @@ import com.ssafy.articleservice.api.controller.article.response.ArticleReadRespo
 import com.ssafy.articleservice.domain.articleread.repository.ArticleReadQueryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,7 +15,7 @@ public class ArticleReadQueryService {
 
     private final ArticleReadQueryRepository articleReadQueryRepository;
 
-    public Page<ArticleReadResponse> getMyArticleRead(String memberKey) {
+    public Page<ArticleReadResponse> getMyArticleRead(String memberKey, Pageable pageable) {
         return null;
     }
 }
