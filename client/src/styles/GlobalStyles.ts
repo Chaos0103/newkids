@@ -31,9 +31,9 @@ export const GlobalStyles = createGlobalStyle`
         /* width */
         --content-width-xs : 250px;
         --content-width-s : 512px;
-        --content-width-sm : 756px;
-        --content-width-m : 1024px;
-        --content-width-l : 100%;
+        --content-width-m : 756px;
+        --content-width-l : 1024px;
+        --content-width-full : 100%;
     }
 
     body{

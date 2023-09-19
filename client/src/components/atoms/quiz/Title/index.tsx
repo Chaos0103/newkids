@@ -1,10 +1,16 @@
 import React from 'react';
 import { TitleWrapper } from './style';
 
-function Title() {
+interface ITitleProps {
+	effectText: string;
+	text: string;
+}
+
+function Title({ effectText, text }: ITitleProps) {
 	return (
 		<TitleWrapper>
-			<b className="main-title">주간 단어 퀴즈</b>
+			<b className="main-title">{effectText}</b>
+			{text}
 		</TitleWrapper>
 	);
 }
