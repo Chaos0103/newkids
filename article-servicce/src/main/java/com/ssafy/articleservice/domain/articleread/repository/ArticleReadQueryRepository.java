@@ -51,4 +51,13 @@ public class ArticleReadQueryRepository {
             .orderBy(articleRead.createdDate.desc())
             .fetch();
     }
+
+    public long getTotalCount(String memberKey) {
+        return queryFactory
+            .select(articleRead.id)
+            .from(articleRead)
+            .where(articleRead.memberKey.eq(memberKey))
+            .fetch()
+            .size();
+    }
 }
