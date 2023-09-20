@@ -5,4 +5,10 @@ export const QuizImageWrapper = styled.div`
 	display: flex;
 	justify-content: center;
 	align-item: center;
+
+	div {
+		width: 376px;
+		height: 400px;
+		background-color: var(--sub-color-2);
+	}
 `;

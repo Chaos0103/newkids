@@ -8,10 +8,11 @@ interface IInputProps {
 	value: string;
 	setValue: Dispatch<SetStateAction<string>>;
 	Icon?: ReactNode;
+	disabled?: boolean;
 }
 
 function Input(props: IInputProps) {
-	const { type, placeholder, value, setValue, Icon } = props;
+	const { type, placeholder, value, setValue, Icon, disabled } = props;
 
 	const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
 		setValue(e.target.value);
@@ -20,7 +21,7 @@ function Input(props: IInputProps) {
 	return (
 		<InputWrapper $isIcon={Icon !== undefined}>
 			<div className="icon">{Icon}</div>
-			<input type={type} placeholder={placeholder} value={value} onChange={handleChange} />
+			<input type={type} placeholder={placeholder} value={value} onChange={handleChange} disabled={disabled} />
 		</InputWrapper>
 	);
 }

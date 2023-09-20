@@ -39,38 +39,4 @@ public class AccountController {
 
         return ApiResponse.ok(response);
     }
-
-    /**
-     * 회원 가입시 이메일 중복 체크 API
-     *
-     * @param request 중복 체크할 이메일
-     * @return 200 존재하면 true, 존재하지 않으면 false
-     */
-    @PostMapping("/auth/email")
-    public ApiResponse<Boolean> checkEmail(@Valid @RequestBody CheckEmailRequest request) {
-        log.debug("call AccountController#checkEmail");
-        log.debug("CheckEmailRequest={}", request);
-
-        Boolean result = accountService.checkEmail(request.getEmail());
-        log.debug("result={}", result);
-
-        return ApiResponse.ok(result);
-    }
-
-    /**
-     * 회원 가입시 닉네임 중복 체크 API
-     *
-     * @param request 중복 체크할 닉네임
-     * @return 200 존재하면 true, 존재하지 않으면 false
-     */
-    @PostMapping("/auth/nickname")
-    public ApiResponse<Boolean> checkNickname(@Valid @RequestBody CheckNicknameRequest request) {
-        log.debug("call AccountController#checkNickname");
-        log.debug("CheckNicknameRequest={}", request);
-
-        Boolean result = accountService.checkNickname(request.getNickname());
-        log.debug("result={}", result);
-
-        return ApiResponse.ok(result);
-    }
 }
