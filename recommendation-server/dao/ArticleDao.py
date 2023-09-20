@@ -1,9 +1,19 @@
-import logging as log
+import mysql.connector.pooling
 
-import pymysql as my
+# 커넥션 풀 생성
+connection_pool = mysql.connector.pooling.MySQLConnectionPool(
+    pool_name="my_pool",
+    pool_size=5,
+    host="127.0.0.1",
+    port=3306,
+    user="ssafy",
+    password="ssafy",
+    database="newkids",
+    charset="utf8"
+)
 
 
-def getArticleIds():
+def get_article_ids():
     """
     기사 식별키 리스트 조회
 
@@ -13,22 +23,14 @@ def getArticleIds():
     connection = None
 
     try:
-        connection = my.connect(
-            host="127.0.0.1",
-            port=3306,
-            user='ssafy',
-            password='ssafy',
-            db='newkids',
-            charset='utf8',
-        )
-
+        connection = connection_pool.get_connection()
         cursor = connection.cursor()
 
         sql = (
             "SELECT `article_id` "
             "FROM `article` "
             "ORDER BY `created_date` DESC "
-            "LIMIT 3000"
+            "LIMIT 1000"
         )
 
         cursor.execute(sql)
@@ -54,26 +56,18 @@ def getArticles(articleIds: list):
     connection = None
 
     try:
-        connection = my.connect(
-            host="127.0.0.1",
-            port=3306,
-            user='ssafy',
-            password='ssafy',
-            db='newkids',
-            charset='utf8',
-            cursorclass=my.cursors.DictCursor
-        )
+        connection = connection_pool.get_connection()
+        cursor = connection.cursor(dictionary=True)
 
-        cursor = connection.cursor()
         placeholders = ', '.join(['%s'] * len(articleIds))
-        log.debug(articleIds)
+        # log.debug(articleIds)
 
         sql = (
             "SELECT `article_id`, `title` "
             "FROM `article` "
             f"WHERE `article_id` IN ({placeholders}) "
         )
-        log.debug(sql)
+        # log.debug(sql)
 
         cursor.execute(sql, articleIds)
         row = cursor.fetchall()

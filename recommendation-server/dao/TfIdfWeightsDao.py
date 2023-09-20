@@ -1,9 +1,22 @@
 import logging as log
+import time
 
-import pymysql as my
+import mysql.connector.pooling
+
+# 커넥션 풀 생성
+connection_pool = mysql.connector.pooling.MySQLConnectionPool(
+    pool_name="my_pool",
+    pool_size=5,
+    host="127.0.0.1",
+    port=3306,
+    user="ssafy",
+    password="ssafy",
+    database="newkids",
+    charset="utf8"
+)
 
 
-def getArticleTfIdf(articleIds: list):
+def get_article_tf_idf(articleIds: list):
     """
     기사 식별키 리스트에 해당하는 TF-IDF 가중치 벡터 행렬 조회
 
@@ -14,28 +27,22 @@ def getArticleTfIdf(articleIds: list):
     connection = None
 
     try:
-        connection = my.connect(
-            host="127.0.0.1",
-            port=3306,
-            user='ssafy',
-            password='ssafy',
-            db='newkids',
-            charset='utf8',
-            cursorclass=my.cursors.DictCursor
-        )
-
-        cursor = connection.cursor()
-        placeholders = ', '.join(['%s'] * len(articleIds))
-        log.debug(articleIds)
+        connection = connection_pool.get_connection()
+        cursor = connection.cursor(dictionary=True)
 
         sql = (
             "SELECT `article_id`, `keyword_vector`, `weight` "
             "FROM `article_tfidf` "
-            f"WHERE `article_id` IN ({placeholders}) "
+            "WHERE `article_id` IN ({}) "
+            "ORDER BY `article_id`"
         )
-        log.debug(sql)
 
-        cursor.execute(sql, articleIds)
+        placeholders = ', '.join(['%s'] * len(articleIds))
+        start = time.time()
+        cursor.execute(sql.format(placeholders), tuple(articleIds))
+        end = time.time()
+        log.debug(f"read time: {end - start: .5f} sec")
+
         row = cursor.fetchall()
         cursor.close()
 
@@ -58,17 +65,8 @@ def getArticleTfIdfByArticleId(articleId):
     connection = None
 
     try:
-        connection = my.connect(
-            host="127.0.0.1",
-            port=3306,
-            user='ssafy',
-            password='ssafy',
-            db='newkids',
-            charset='utf8',
-            cursorclass=my.cursors.DictCursor
-        )
-
-        cursor = connection.cursor()
+        connection = connection_pool.get_connection()
+        cursor = connection.cursor(dictionary=True)
 
         sql = (
             "SELECT `article_tfidf_id`, `article_id`, `keyword_vector`, `weight` "
