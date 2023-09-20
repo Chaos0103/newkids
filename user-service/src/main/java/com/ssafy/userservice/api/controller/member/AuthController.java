@@ -1,9 +1,12 @@
 package com.ssafy.userservice.api.controller.member;
 
 import com.ssafy.userservice.api.controller.ApiResponse;
+import com.ssafy.userservice.api.controller.member.request.AuthCheckEmailRequest;
+import com.ssafy.userservice.api.controller.member.request.AuthEmailRequest;
 import com.ssafy.userservice.api.controller.member.request.CheckEmailRequest;
 import com.ssafy.userservice.api.controller.member.request.CheckNicknameRequest;
 import com.ssafy.userservice.api.service.member.AuthService;
+import com.ssafy.userservice.client.mail.EmailMessage;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,7 +34,7 @@ public class AuthController {
      * @param request 중복 체크할 이메일
      * @return 200 존재하면 true, 존재하지 않으면 false
      */
-    @PostMapping("/email")
+    @PostMapping("/duplication/email")
     public ApiResponse<Boolean> checkEmail(@Valid @RequestBody CheckEmailRequest request) {
         log.debug("call AccountController#checkEmail");
         log.debug("CheckEmailRequest={}", request);
@@ -48,7 +51,7 @@ public class AuthController {
      * @param request 중복 체크할 닉네임
      * @return 200 존재하면 true, 존재하지 않으면 false
      */
-    @PostMapping("/nickname")
+    @PostMapping("/duplication/nickname")
     public ApiResponse<Boolean> checkNickname(@Valid @RequestBody CheckNicknameRequest request) {
         log.debug("call AccountController#checkNickname");
         log.debug("CheckNicknameRequest={}", request);
@@ -57,5 +60,24 @@ public class AuthController {
         log.debug("result={}", result);
 
         return ApiResponse.ok(result);
+    }
+
+    @PostMapping("/email")
+    public ApiResponse<?> authEmail(@Valid @RequestBody AuthEmailRequest request) {
+        EmailMessage emailMessage = EmailMessage.builder()
+            .to(request.getEmail())
+            .subject("[Newkids] 이메일 인증을 위한 인증 코드 발송")
+            .build();
+
+        authService.authEmail(emailMessage);
+
+        return ApiResponse.ok(null);
+    }
+
+    @PostMapping("/email/check")
+    public ApiResponse<?> test(@Valid @RequestBody AuthCheckEmailRequest request) {
+        authService.authCheckEmail(request.getEmail(), request.getAuthNumber());
+
+        return ApiResponse.ok(null);
     }
 }
