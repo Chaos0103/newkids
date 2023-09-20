@@ -1,5 +1,5 @@
 [[create-read-article]]
-== 읽은 뉴스 기사 등록
+=== 읽은 뉴스 기사 등록
 
 ==== HTTP Request
 include::{snippets}/create-read-article/http-request.adoc[]

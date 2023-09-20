@@ -3,13 +3,14 @@ package com.ssafy.articleservice.api.controller.article.request;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
+
+import javax.validation.constraints.NotNull;
 
 @Data
 @NoArgsConstructor
 public class CreateArticleReadRequest {
 
-    @NonNull
+    @NotNull
     private Long articleId;
 
     @Builder

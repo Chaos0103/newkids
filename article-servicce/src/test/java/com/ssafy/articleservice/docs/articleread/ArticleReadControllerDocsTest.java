@@ -10,12 +10,14 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
 import org.springframework.restdocs.payload.JsonFieldType;
 
 import java.util.List;
 import java.util.UUID;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.BDDMockito.anyLong;
 import static org.mockito.BDDMockito.given;
@@ -109,12 +111,12 @@ public class ArticleReadControllerDocsTest extends RestDocsSupport {
 
         PageRequest pageRequest = PageRequest.of(0, 8);
 
-        given(articleReadQueryService.getMyArticleRead(anyString()))
+        given(articleReadQueryService.getMyArticleRead(anyString(), any(Pageable.class)))
             .willReturn(new PageImpl<>(responses, pageRequest, 20));
 
         mockMvc.perform(
                 get("/article-service/read/{memberKey}", UUID.randomUUID().toString())
-                    .param("pageNum", "0")
+                    .param("pageNum", "1")
                     .header("Authorization", "accessToken")
             )
             .andDo(print())
@@ -136,7 +138,7 @@ public class ArticleReadControllerDocsTest extends RestDocsSupport {
                     fieldWithPath("data").type(JsonFieldType.OBJECT)
                         .description("응답데이터"),
                     fieldWithPath("data.content").type(JsonFieldType.ARRAY)
-                        .description("낙찰 내역 데이터"),
+                        .description("기사 내역 데이터"),
                     fieldWithPath("data.content[].articleId").type(JsonFieldType.NUMBER)
                         .description("기사 PK"),
                     fieldWithPath("data.content[].title").type(JsonFieldType.STRING)

@@ -20,40 +20,12 @@ spring:
     password: guest
   cloud:
     gateway:
-      globalcors:
-        cors-configurations:
-          '[/**]':
-            allowedOrigins:
-              - "*"
-            allow-credentials: true
-#            allowedHeaders:
-#              - x-requested-with
-#              - authorization
-#              - content-type
-#              - credential
-#              - X-AUTH-TOKEN
-#              - X-CSRF-TOKEN
-            allowedMethods:
-              - POST
-              - GET
-              - PUT
-              - PATCH
-              - OPTIONS
-              - DELETE
       routes:
         - id: user-service
           uri: lb://USER-SERVICE
           predicates:
             - Path=/user-service/login
             - Method=POST
-          metadata:
-            cors:
-              allowedOrigins: '*'
-              allowedMethods:
-                - GET
-                - POST
-              allowedHeaders: '*'
-              maxAge: 30
           filters:
             - RemoveRequestHeader=Cookie
             - RewritePath=/user-service/(?<segment>.*), /$\{segment}
@@ -94,6 +66,32 @@ spring:
           predicates:
             - Path=/vocabulary-service/**
             - Method=GET, POST, PATCH, DELETE
+        - id: vocabulary-service
+          uri: lb://VOCABULARY-SERVICE
+          predicates:
+            - Path=/vocabulary-service/actuator/**
+            - Method=GET,POST
+        - id: article-service
+          uri: lb://ARTICLE-SERVICE
+          predicates:
+            - Path=/article-service/**
+            - Method=GET, POST, PATCH, DELETE
+        - id: article-service
+          uri: lb://ARTICLE-SERVICE
+          predicates:
+            - Path=/article-service/actuator/**
+            - Method=GET, POST
+        - id: keyword-service
+          uri: lb://KEYWORD-SERVICE
+          predicates:
+            - Path=/keyword-service/**
+            - Method=GET, POST, PATCH, DELETE
+        - id: keyword-service
+          uri: lb://KEYWORD-SERVICE
+          predicates:
+            - Path=/keyword-service/actuator/**
+            - Method=GET, POST
+
 
 management:
   endpoints:
