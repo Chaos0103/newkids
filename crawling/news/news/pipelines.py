@@ -9,8 +9,10 @@ from itemadapter import ItemAdapter
 import pymysql
 
 
+# DB저장 클래스
 class NewsPipeline:
     def __init__(self):
+        # DB정보
         self.connect = pymysql.connect(
             host = 'localhost',
             db = 'test',
@@ -42,7 +44,10 @@ class NewsPipeline:
                         item['html_content'],
                     ))
                 self.connect.commit()
-
+                
+                # 전체 이미지 url 저장 SQL Query인데
+                # 현재는 저장하게 되면 오류
+                # id값을 알 수 없기 때문에
                 # self.cursor.execute(
                 #     "INSERT INTO article_image "
                 #     "(url) "
