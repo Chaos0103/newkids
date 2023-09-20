@@ -9,6 +9,7 @@ import Navigation from 'components/organisms/common/Navigation';
 import IndexPage from 'pages/IndexPage';
 import MyPage from 'pages/MyPage';
 import LoginPage from 'pages/auth/LoginPage';
+import MyActivity from 'pages/MyActivity';
 import PrivateRoute from './PrivateRoute';
 
 function AppRouter() {
@@ -24,6 +25,7 @@ function AppRouter() {
 						<Route path="/" element={<IndexPage />} />
 						<Route path="/auth/login" element={<LoginPage />} />
 						<Route path="/mypage/info" element={<MyPage />} />
+						<Route path="/mypage/activity" element={<MyActivity />} />
 
 						<Route path="/" element={<PrivateRoute />}>
 							<Route path="/game" element={<div />} />
