@@ -2,14 +2,13 @@ package com.ssafy.keywordservice.domain.keyword.repository;
 
 import com.ssafy.keywordservice.IntegrationTestSupport;
 import com.ssafy.keywordservice.domain.keyword.Keyword;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Optional;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class KeywordRepositoryTest extends IntegrationTestSupport {
 
@@ -27,6 +26,19 @@ class KeywordRepositoryTest extends IntegrationTestSupport {
 
         //then
         assertThat(existWord).isPresent();
+    }
+
+    @DisplayName("단어로 조회한다.")
+    @Test
+    void findByWord() {
+        //given
+        Keyword keyword = createdKeyword();
+
+        //when
+        Optional<Keyword> findKeyword = keywordRepository.findByWord(keyword.getWord());
+
+        //then
+        assertThat(findKeyword).isPresent();
     }
 
     private Keyword createdKeyword() {

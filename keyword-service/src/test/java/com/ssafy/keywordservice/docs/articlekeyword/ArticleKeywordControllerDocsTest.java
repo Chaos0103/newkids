@@ -3,6 +3,7 @@ package com.ssafy.keywordservice.docs.articlekeyword;
 import com.ssafy.keywordservice.api.controller.articlekeyword.ArticleKeywordController;
 import com.ssafy.keywordservice.api.controller.articlekeyword.response.ArticleKeywordResponse;
 import com.ssafy.keywordservice.api.controller.keyword.request.CreatedKeywordRequest;
+import com.ssafy.keywordservice.api.service.articlekeyword.ArticleKeywordService;
 import com.ssafy.keywordservice.docs.RestDocsSupport;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -12,6 +13,7 @@ import org.springframework.restdocs.payload.JsonFieldType;
 
 import java.util.UUID;
 
+import static org.mockito.Mockito.mock;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.get;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.post;
@@ -24,9 +26,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 public class ArticleKeywordControllerDocsTest extends RestDocsSupport {
 
+    private final ArticleKeywordService articleKeywordService = mock(ArticleKeywordService.class);
+
     @Override
     protected Object initController() {
-        return new ArticleKeywordController();
+        return new ArticleKeywordController(articleKeywordService);
     }
 
     @DisplayName("뉴스 키워드 등록 API")
