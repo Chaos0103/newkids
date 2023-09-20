@@ -116,5 +116,10 @@ ITEM_PIPELINES = {
    "news.pipelines.NewsPipeline": 300,
 }
 
+# 크롤링 속도 제어
+AUTOTHROTTLE_ENABLED = True
+AUTOTHROTTLE_START_DELAY = 0.2
+AUTOTHROTTLE_MAX_DELAY = 10
+
 # SQLite 데이터베이스 설정
 # DB_NAME = 'your_database.db'
