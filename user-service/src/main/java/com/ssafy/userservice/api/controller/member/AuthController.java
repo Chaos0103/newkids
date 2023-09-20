@@ -75,7 +75,7 @@ public class AuthController {
     }
 
     @PostMapping("/email/check")
-    public ApiResponse<?> test(@Valid @RequestBody AuthCheckEmailRequest request) {
+    public ApiResponse<?> checkAuthEmail(@Valid @RequestBody AuthCheckEmailRequest request) {
         authService.authCheckEmail(request.getEmail(), request.getAuthNumber());
 
         return ApiResponse.ok(null);

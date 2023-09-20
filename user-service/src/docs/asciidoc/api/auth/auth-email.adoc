@@ -1,5 +1,5 @@
 [[auth-email]]
-=== 이메일 중복 검증
+=== 인증 메일 발송
 
 ==== HTTP Request
 include::{snippets}/auth-email/http-request.adoc[]
