@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ReactComponent as DownIcon } from 'assets/icons/down.svg';
+import { ReactComponent as DownIcon } from 'assets/icons/double-down.svg';
 import { ReactComponent as IdIcon } from 'assets/icons/id.svg';
 import { ReactComponent as PasswordIcon } from 'assets/icons/password.svg';
 import Input from 'components/atoms/common/Input';
@@ -7,12 +7,9 @@ import Button from 'components/atoms/common/Button';
 import { loginApi } from 'utils/apis/auth';
 import { useNavigate } from 'react-router-dom';
 import CheckTextButton from 'components/atoms/common/CheckTextButton';
-import { useRecoilState } from 'recoil';
-import { AuthState } from 'store/auth';
 import { FieldSet, LoginFormContainer } from './style';
 
 function LoginForm() {
-	const [, setAuthState] = useRecoilState(AuthState);
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [isSave, setIsSave] = useState(false);
@@ -26,17 +23,9 @@ function LoginForm() {
 			};
 			const response = await loginApi(body);
 
-			const resAuth = {
-				memberkey: response.headers.memberkey,
-				token: response.headers.token,
-			};
-
 			// 로컬스토리지에 토큰 저장
 			localStorage.setItem('token', response.headers.token);
 			localStorage.setItem('memberkey', response.headers.memberkey);
-
-			// 토큰, 멤버키를 스토어에 저장
-			setAuthState(resAuth);
 
 			// 홈으로 이동
 			navigate('/');
