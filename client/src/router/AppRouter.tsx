@@ -9,8 +9,8 @@ import Navigation from 'components/organisms/common/Navigation';
 import IndexPage from 'pages/IndexPage';
 import QuizPage from 'pages/QuizPage';
 import LoginPage from 'pages/LoginPage';
-import PrivateRoute from './PrivateRoute';
 import GamePage from 'pages/GamePage';
+import PrivateRoute from './PrivateRoute';
 
 function AppRouter() {
 	return (
@@ -28,8 +28,8 @@ function AppRouter() {
 						<Route path="/index/auth/login" element={<LoginPage />} />
 
 						<Route path="/" element={<PrivateRoute />}>
-							<Route path="/game" element={<GamePage />} />
-							<Route path="/quiz" element={<QuizPage />} />
+							<Route path="index/game" element={<GamePage />} />
+							<Route path="index/quiz" element={<QuizPage />} />
 						</Route>
 					</Routes>
 				</BrowserRouter>
