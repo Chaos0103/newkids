@@ -24,8 +24,11 @@ function GameQuestion({ setStep }: IGameQuestionProps) {
 	const alertClick = () => {
 		if (!isDone) {
 			Swal.fire({
-				icon: 'success',
+				position: 'center',
+				imageUrl: 'https://ifh.cc/g/Rkn9J6.jpg',
+				imageHeight: 200,
 				title: '정답입니다!',
+				text: '이미지로 들어가면 될것 같습니다!',
 			});
 		}
 	};
@@ -36,7 +39,6 @@ function GameQuestion({ setStep }: IGameQuestionProps) {
 		}
 	}, [num]);
 
-	console.log(setStep);
 	return (
 		<GameQuestionContainer>
 			<Title text="번 문제" effectText="" />
