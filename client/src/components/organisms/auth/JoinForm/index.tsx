@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Input from 'components/atoms/common/Input';
 import Button from 'components/atoms/common/Button';
-import { joinApi } from 'utils/apis/auth';
+import { certEmailApi, checkEmailApi, joinApi, sendEmailApi } from 'utils/apis/auth';
 import { yearToAge } from 'utils/common/yearToAge';
 import { useNavigate } from 'react-router-dom';
 import { JoinFormContainer } from './style';
@@ -10,7 +10,7 @@ function JoinForm() {
 	const navigate = useNavigate();
 	const [isDone, setIsDone] = useState(false);
 	const [email, setEmail] = useState('');
-	const [emailCode, setEmailCode] = useState('');
+	const [authNumber, setAuthNumber] = useState('');
 	const [isSentCode, setIsSentCode] = useState(false);
 	const [isVerified, setIsVerified] = useState(false);
 	const [password, setPassword] = useState('');
@@ -61,14 +61,45 @@ function JoinForm() {
 	};
 
 	// 이메일 인증 하기
-	const verifyEmail = () => {
-		// TODO 이메일 인증 API 요청
-		setIsVerified(true);
+	const verifyEmail = async () => {
+		try {
+			const certReqBody = {
+				email,
+				authNumber,
+			};
+			const certRes = await certEmailApi(certReqBody);
+			console.log(certRes);
+			if (certRes.status === 200) {
+				const duplicateRes = await checkEmailApi({ email });
+				console.log(duplicateRes);
+				if (duplicateRes.status === 200) {
+					if (duplicateRes.data.data) {
+						throw new Error('이미 사용 중인 이메일입니다.');
+					}
+					alert('이메일 인증이 완료되었습니다.');
+					setIsVerified(true);
+				}
+			}
+		} catch (error) {
+			console.log(error);
+		}
 	};
 
-	const sendCode = () => {
-		// TODO 이메일 인증 코드 전송 API 요청
-		setIsSentCode(true);
+	// 이메일 인증번호 전송
+	const sendCode = async () => {
+		try {
+			const body = {
+				email,
+			};
+			const response = await sendEmailApi(body);
+			console.log(response);
+			if (response.status === 200) {
+				alert('이메일이 전송되었습니다. 이메일 확인 후, 인증번호를 입력하세요.');
+				setIsSentCode(true);
+			}
+		} catch (error) {
+			console.log(error);
+		}
 	};
 
 	// 이메일 인증 버튼 텍스트
@@ -81,6 +112,7 @@ function JoinForm() {
 		}
 		return '이메일 인증코드 전송';
 	};
+
 	useEffect(() => {
 		if (email && password && passwordConfirm && isVerified && name && year && nickname) {
 			setIsDone(true);
@@ -102,7 +134,7 @@ function JoinForm() {
 						disabled={isVerified}
 					/>
 					{isSentCode && !isVerified ? (
-						<Input placeholder="6자리 인증코드 입력" type="text" value={emailCode} setValue={setEmailCode} />
+						<Input placeholder="6자리 인증코드 입력" type="text" value={authNumber} setValue={setAuthNumber} />
 					) : (
 						<div />
 					)}
