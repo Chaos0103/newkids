@@ -1,8 +1,3 @@
-export interface IAuth {
-	memberkey: string;
-	token: string;
-}
-
 export interface IMember {
 	name: string;
 	age: number;

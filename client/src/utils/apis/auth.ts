@@ -1,4 +1,12 @@
-import { CheckEmailApiBody, CheckNicknameApiBody, JoinApiBody, LoginApiBody, PatchPasswordApiBody } from 'types/api';
+import {
+	CertEmailApiBody,
+	CheckEmailApiBody,
+	CheckNicknameApiBody,
+	JoinApiBody,
+	LoginApiBody,
+	PatchPasswordApiBody,
+	SendEmailApiBody,
+} from 'types/api';
 import { instance } from './instance';
 
 // 로그인
@@ -25,9 +33,21 @@ export const withdrawalApi = async (memberKey: string) => {
 	return response;
 };
 
+// 이메일 인증번호 전송
+export const sendEmailApi = async (body: SendEmailApiBody) => {
+	const response = await instance.post('/user-service/auth/email', JSON.stringify(body));
+	return response;
+};
+
+// 이메일 인증번호 확인
+export const certEmailApi = async (body: CertEmailApiBody) => {
+	const response = await instance.post('/user-service/auth/email/check', JSON.stringify(body));
+	return response;
+};
+
 // 이메일 중복 체크
 export const checkEmailApi = async (body: CheckEmailApiBody) => {
-	const response = await instance.post('/user-service/auth/email', JSON.stringify(body));
+	const response = await instance.post('/user-service/auth/duplication/email', JSON.stringify(body));
 	return response;
 };
 
