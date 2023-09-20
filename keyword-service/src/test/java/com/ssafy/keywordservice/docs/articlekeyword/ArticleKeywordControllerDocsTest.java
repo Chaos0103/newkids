@@ -13,6 +13,8 @@ import org.springframework.restdocs.payload.JsonFieldType;
 
 import java.util.UUID;
 
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.BDDMockito.*;
 import static org.mockito.Mockito.mock;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.get;
@@ -40,6 +42,14 @@ public class ArticleKeywordControllerDocsTest extends RestDocsSupport {
         CreatedKeywordRequest request = CreatedKeywordRequest.builder()
             .word("돼지")
             .build();
+
+        ArticleKeywordResponse response = ArticleKeywordResponse.builder()
+            .keywordId(1L)
+            .word("돼지")
+            .build();
+
+        given(articleKeywordService.createArticleKeyword(anyString(), anyString()))
+            .willReturn(response);
 
         mockMvc.perform(
                 post("/keyword-service/{articleKey}/articles", articleKey)
