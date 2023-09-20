@@ -14,14 +14,14 @@ export const joinApi = async (body: JoinApiBody) => {
 };
 
 // 사용자 정보 조회
-export const getMemberInfoApi = async (key: string) => {
-	const response = await instance.get(`/user-service/${key}/info`);
+export const getMemberInfoApi = async (memberKey: string) => {
+	const response = await instance.get(`/user-service/${memberKey}/info`);
 	return response;
 };
 
 // 회원 탈퇴
-export const withdrawalApi = async (key: string) => {
-	const response = await instance.delete(`/user-service/${key}/withdrawal`);
+export const withdrawalApi = async (memberKey: string) => {
+	const response = await instance.delete(`/user-service/${memberKey}/withdrawal`);
 	return response;
 };
 
@@ -38,7 +38,7 @@ export const checkNicknameApi = async (body: CheckNicknameApiBody) => {
 };
 
 // 비밀번호 변경
-export const patchPasswordApi = async (key: string, body: PatchPasswordApiBody) => {
-	const response = await instance.patch(`/user-service/${key}/password`, body);
+export const patchPasswordApi = async (memberKey: string, body: PatchPasswordApiBody) => {
+	const response = await instance.patch(`/user-service/${memberKey}/password`, body);
 	return response;
 };

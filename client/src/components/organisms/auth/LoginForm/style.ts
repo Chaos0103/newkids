@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const LoginFormContainer = styled.div`
+	margin: 0 3rem;
 	border: 1px solid var(--gray-300);
 	border-radius: var(--radius-s);
 	padding: 3rem;
@@ -16,16 +17,14 @@ export const LoginFormContainer = styled.div`
 	}
 
 	.field-set {
-		width: 100%;
-		display: flex;
-		flex-direction: column;
-		gap: 10px;
-
-		.save-login {
-			display: flex;
-			flex-direction: row;
-			align-items: center;
-			gap: 5px;
-		}
+		position: relative;
 	}
+`;
+
+export const FieldSet = styled.div`
+	position: relative;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
 `;
