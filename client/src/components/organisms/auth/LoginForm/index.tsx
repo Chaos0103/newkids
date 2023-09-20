@@ -27,6 +27,10 @@ function LoginForm() {
 			localStorage.setItem('token', response.headers.token);
 			localStorage.setItem('memberkey', response.headers.memberkey);
 
+			// 이벤트를 발생시켜 AuthProvider의 함수를 실행.
+			const memberLoginEvent = new Event('memberLogin');
+			window.dispatchEvent(memberLoginEvent);
+
 			// 홈으로 이동
 			navigate('/');
 		} catch (error) {
