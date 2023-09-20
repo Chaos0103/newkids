@@ -13,4 +13,6 @@ public interface KeywordRepository extends JpaRepository<Keyword, Long> {
 
     @Query("select k.id from Keyword k where k.word = :word")
     Optional<Long> existByWord(@Param("word") String word);
+
+    Optional<Keyword> findByWord(String word);
 }
