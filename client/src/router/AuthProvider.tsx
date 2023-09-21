@@ -10,7 +10,6 @@ function AuthProvider({ children }: { children: ReactNode }) {
 
 	const fetchMemberInfoData = async () => {
 		console.log('::fetchMemberInfo');
-		setIsLoading(true);
 		const token = localStorage.getItem('token');
 		const memberkey = localStorage.getItem('memberkey');
 
@@ -21,6 +20,8 @@ function AuthProvider({ children }: { children: ReactNode }) {
 					setMemberInfoState(response.data.data);
 					setIsLoading(false);
 				}
+			} else {
+				setIsLoading(false);
 			}
 		} catch (error) {
 			console.log(error);
