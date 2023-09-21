@@ -72,13 +72,15 @@ spring:
         - id: vocabulary-service
           uri: lb://VOCABULARY-SERVICE
           predicates:
-            - Path=/vocabulary-service/**
+            - Path=/vocabulary-service/api/**
             - Method=GET, POST, PATCH, DELETE
         - id: vocabulary-service
           uri: lb://VOCABULARY-SERVICE
           predicates:
             - Path=/vocabulary-service/actuator/**
             - Method=GET,POST
+          filters:
+            - RewritePath=/vocabulary-service/(?<segment>.*), /$\{segment}
         - id: article-service
           uri: lb://ARTICLE-SERVICE
           predicates:

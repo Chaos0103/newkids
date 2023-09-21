@@ -4,11 +4,14 @@ import com.ssafy.quizservice.api.controller.ApiResponse;
 import com.ssafy.quizservice.api.controller.quiz.request.CheckAnswerRequest;
 import com.ssafy.quizservice.api.controller.quiz.response.QuizResultResponse;
 import com.ssafy.quizservice.api.controller.quiz.response.QuizWordResponse;
+import com.ssafy.quizservice.api.service.quiz.QuizService;
+import com.ssafy.quizservice.client.response.WordClientResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
@@ -16,8 +19,11 @@ import javax.validation.Valid;
 @RequestMapping("/quiz-controller/{memberKey}")
 public class QuizController {
 
+    private final QuizService quizService;
+
     @PostMapping("/start")
     public ApiResponse<String> loadingQuiz(@PathVariable String memberKey) {
+        List<WordClientResponse> responses = quizService.getMyVocabulary(memberKey);
         //회원 단어장 조회
         //10개 미만이면 예외 발생
         //아니라면 레디스에 등록 후 키 부여
