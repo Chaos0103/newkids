@@ -92,13 +92,23 @@ spring:
         - id: keyword-service
           uri: lb://KEYWORD-SERVICE
           predicates:
-            - Path=/keyword-service/**
-            - Method=GET, POST, PATCH, DELETE
+            - Path=/keyword-service/actuator/**
+            - Method=GET, POST
         - id: keyword-service
           uri: lb://KEYWORD-SERVICE
           predicates:
-            - Path=/keyword-service/actuator/**
+            - Path=/keyword-service/**
+            - Method=GET, POST, PATCH, DELETE
+        - id: quiz-service
+          uri: lb://QUIZ-SERVICE
+          predicates:
+            - Path=/quiz-service/actuator/**
             - Method=GET, POST
+        - id: quiz-service
+          uri: lb://QUIZ-SERVICE
+          predicates:
+            - Path=/quiz-service/**
+            - Method=GET, POST, PATCH, DELETE
 
 
 management:
