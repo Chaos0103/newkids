@@ -41,6 +41,9 @@ spring:
         default_batch_fetch_size: 100
         format_sql: true
     open-in-view: true
+  redis:
+    host: 127.0.0.1
+    port: 6379
 
 management:
   endpoints:
