@@ -8,6 +8,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.http.MediaType;
 import org.springframework.restdocs.payload.JsonFieldType;
 
+import java.util.UUID;
+
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.post;
 import static org.springframework.restdocs.operation.preprocess.Preprocessors.*;
@@ -28,7 +30,7 @@ public class WeeklyControllerDocsTest extends RestDocsSupport {
     @Test
     void loadingQuiz() throws Exception {
         mockMvc.perform(
-                post("/quiz-controller/weekly/start")
+                post("/quiz-controller/{memberKey}/weekly/start", UUID.randomUUID().toString())
                     .header("Authorization", "Access Token")
             )
             .andDo(print())
@@ -52,7 +54,7 @@ public class WeeklyControllerDocsTest extends RestDocsSupport {
     @Test
     void nextWord() throws Exception {
         mockMvc.perform(
-                post("/quiz-controller/weekly/next")
+                post("/quiz-controller/{memberKey}/weekly/next", UUID.randomUUID().toString())
                     .header("Authorization", "Access Token")
             )
             .andDo(print())
@@ -86,7 +88,7 @@ public class WeeklyControllerDocsTest extends RestDocsSupport {
             .build();
 
         mockMvc.perform(
-                post("/quiz-controller/weekly/answer")
+                post("/quiz-controller/{memberKey}/weekly/answer", UUID.randomUUID().toString())
                     .header("Authorization", "Access Token")
                     .content(objectMapper.writeValueAsString(request))
                     .contentType(MediaType.APPLICATION_JSON)
@@ -118,7 +120,8 @@ public class WeeklyControllerDocsTest extends RestDocsSupport {
     @Test
     void resultQuiz() throws Exception {
         mockMvc.perform(
-                post("/quiz-controller/weekly/result")
+                post("/quiz-controller/{memberKey}/weekly/result", UUID.randomUUID().toString())
+                    .header("Authorization", "Access Token")
             )
             .andDo(print())
             .andExpect(status().isOk())
