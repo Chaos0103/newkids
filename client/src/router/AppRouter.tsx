@@ -34,8 +34,8 @@ function AppRouter() {
 						<Route path="/mypage/activity" element={<MyActivity />} />
 
 						<Route path="/" element={<PrivateRoute />}>
-							<Route path="index/game" element={<GamePage />} />
-							<Route path="index/quiz" element={<QuizPage />} />
+							<Route path="/game" element={<GamePage />} />
+							<Route path="/quiz" element={<QuizPage />} />
 						</Route>
 					</Routes>
 				</BrowserRouter>

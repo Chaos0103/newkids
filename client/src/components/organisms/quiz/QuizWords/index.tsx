@@ -17,7 +17,7 @@ function QuizWords({ setStep }: IQuizWordsProps) {
 
 	const wordClick = () => {
 		if (!isDone) {
-			movePage('/index/vocabulary');
+			movePage('/vocabulary');
 			setStep(4);
 			setNum(1);
 			setIsDone(true);
