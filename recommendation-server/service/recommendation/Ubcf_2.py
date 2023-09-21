@@ -21,6 +21,17 @@ users_interests = [
     ["libsvm", "regression", "support vector machines"]
 ]
 
+# 1. 사용자별 키워드 TF-IDF 행렬 조회
+# 2. 현재 사용자의 TF-IDF 행렬 조회
+# 3. 사용자 기반 협업 필터링 함수 수행
+
+# 현재 결과
+# libsvm (Similarity Score: 0.56)
+# Spark (Similarity Score: 0.28)
+# HBase (Similarity Score: 0.28)
+# neural networks (Similarity Score: 0.28)
+# Big Data (Similarity Score: 0.21)
+
 # 사용자 수와 아이템 수를 추출
 num_users = len(users_interests)
 all_interests = list(set(interest for user_interests in users_interests for interest in user_interests))
