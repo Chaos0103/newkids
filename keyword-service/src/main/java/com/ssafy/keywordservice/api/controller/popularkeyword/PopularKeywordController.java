@@ -19,6 +19,7 @@ public class PopularKeywordController {
 
     private final PopularKeywordQueryService popularKeywordQueryService;
 
+    // TODO: 2023-09-20 getTopFivePopularKeyword
     @GetMapping
     public ApiResponse<List<PopularKeywordResponse>> getTopFivePopularKeyword() {
         List<PopularKeywordResponse> responses = popularKeywordQueryService.getTopFivePopularKeyword();
