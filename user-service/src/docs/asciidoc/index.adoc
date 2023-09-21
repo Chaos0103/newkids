@@ -1,7 +1,7 @@
 ifndef::snippets[]
 :snippets: ../../build/generated-snippets
 endif::[]
-= New Kids(member-service) REST API 문서
+= New Kids(user-service) REST API 문서
 :doctype: book
 :icons: font
 :source-highlighter: highlightjs
@@ -11,13 +11,19 @@ endif::[]
 
 include::overview.adoc[]
 
+[[Auth-API]]
+== Auth API
+
+include::api/auth/auth-duplication-email.adoc[]
+include::api/auth/auth-duplication-nickname.adoc[]
+include::api/auth/auth-email.adoc[]
+include::api/auth/check-auth-email.adoc[]
+
 [[Account-API]]
 == Account API
 
-include::api/account/auth-email.adoc[]
-include::api/account/auth-nickname.adoc[]
+include::api/account/login-account.adoc[]
 include::api/account/search-account.adoc[]
-
 
 [[Member-API]]
 == Member API
