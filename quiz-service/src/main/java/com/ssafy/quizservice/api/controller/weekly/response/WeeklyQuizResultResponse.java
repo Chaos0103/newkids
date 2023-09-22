@@ -1,6 +1,5 @@
 package com.ssafy.quizservice.api.controller.weekly.response;
 
-import com.ssafy.quizservice.api.controller.quiz.response.QuizResultResponse;
 import lombok.Builder;
 import lombok.Data;
 

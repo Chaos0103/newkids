@@ -5,13 +5,11 @@ import com.ssafy.quizservice.api.controller.quiz.request.CheckAnswerRequest;
 import com.ssafy.quizservice.api.controller.quiz.response.QuizResultResponse;
 import com.ssafy.quizservice.api.controller.quiz.response.QuizWordResponse;
 import com.ssafy.quizservice.api.service.quiz.QuizService;
-import com.ssafy.quizservice.client.response.WordClientResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 
 /**
  * 퀴즈 API
