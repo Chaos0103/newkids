@@ -14,4 +14,11 @@ public class QuizResultResponse {
         this.totalScore = totalScore;
         this.rightQuizCount = rightQuizCount;
     }
+
+    public static QuizResultResponse of(int count) {
+        return QuizResultResponse.builder()
+            .totalScore(count * 10)
+            .rightQuizCount(count)
+            .build();
+    }
 }

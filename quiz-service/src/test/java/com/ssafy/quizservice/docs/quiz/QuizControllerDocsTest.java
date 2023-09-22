@@ -2,6 +2,7 @@ package com.ssafy.quizservice.docs.quiz;
 
 import com.ssafy.quizservice.api.controller.quiz.QuizController;
 import com.ssafy.quizservice.api.controller.quiz.request.CheckAnswerRequest;
+import com.ssafy.quizservice.api.service.quiz.QuizService;
 import com.ssafy.quizservice.docs.RestDocsSupport;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -10,6 +11,7 @@ import org.springframework.restdocs.payload.JsonFieldType;
 
 import java.util.UUID;
 
+import static org.mockito.Mockito.mock;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.post;
 import static org.springframework.restdocs.operation.preprocess.Preprocessors.*;
@@ -21,9 +23,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 public class QuizControllerDocsTest extends RestDocsSupport {
 
+    private final QuizService quizService = mock(QuizService.class);
+
     @Override
     protected Object initController() {
-        return new QuizController();
+        return new QuizController(quizService);
     }
 
     @DisplayName("퀴즈 시작 등록 API")

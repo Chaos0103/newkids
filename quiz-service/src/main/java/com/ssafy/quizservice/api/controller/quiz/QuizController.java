@@ -13,6 +13,10 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
+/**
+ * 퀴즈 API
+ * @author 임우택
+ */
 @RequiredArgsConstructor
 @RestController
 @Slf4j
@@ -30,29 +34,55 @@ public class QuizController {
         return ApiResponse.ok("key");
     }
 
+    /**
+     * 퀴즈 다음 단어 호출 API
+     *
+     * @param memberKey 회원 고유키
+     * @return 퀴즈 다음 단어 정보
+     */
     @PostMapping("/next")
     public ApiResponse<QuizWordResponse> nextWord(@PathVariable String memberKey) {
-        //다음 단어 송출
-        QuizWordResponse response = QuizWordResponse.builder()
-            .word("홍진식")
-            .description("광주 C205 대표 돼지")
-            .build();
+        log.debug("call QuizController#nextWord");
+        log.debug("memberKey={}", memberKey);
+
+        QuizWordResponse response = quizService.getNextWord(memberKey);
+        log.debug("response={}", response);
+
         return ApiResponse.ok(response);
     }
 
+    /**
+     * 퀴즈 정답 체크 API
+     *
+     *  @param request 정답 체크 단어
+     * @param memberKey 회원 고유키
+     * @return 정답 여부
+     */
     @PostMapping("/answer")
     public ApiResponse<Boolean> checkAnswer(@Valid @RequestBody CheckAnswerRequest request, @PathVariable String memberKey) {
-        //정답 확인
-        //반환: ture, false
-        return ApiResponse.ok(true);
+        log.debug("call QuizController#checkAnswer");
+        log.debug("memberKey={}", memberKey);
+
+        boolean result = quizService.checkAnswer(memberKey, request.getAnswer());
+        log.debug("result={}", result);
+
+        return ApiResponse.ok(result);
     }
 
+    /**
+     * 퀴즈 결과 API
+     *
+     * @param memberKey 회원 고유키
+     * @return 퀴즈 결과 정보
+     */
     @PostMapping("/result")
     public ApiResponse<QuizResultResponse> resultQuiz(@PathVariable String memberKey) {
-        QuizResultResponse response = QuizResultResponse.builder()
-            .totalScore(70)
-            .rightQuizCount(7)
-            .build();
+        log.debug("call QuizController#resultQuiz");
+        log.debug("memberKey={}", memberKey);
+
+        QuizResultResponse response = quizService.resultQuiz(memberKey);
+        log.debug("response={}", response);
+
         return ApiResponse.ok(response);
     }
 }
