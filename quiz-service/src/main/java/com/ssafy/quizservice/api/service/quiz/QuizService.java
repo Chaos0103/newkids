@@ -23,7 +23,7 @@ public class QuizService {
     private final QuizRedisRepository quizRedisRepository;
     private final VocabularyServiceClient vocabularyServiceClient;
 
-    public List<WordClientResponse> getMyVocabulary(String memberKey) {
+    public String getMyVocabulary(String memberKey) {
         List<WordClientResponse> responses = vocabularyServiceClient.getMyVocabulary(memberKey);
 
         if (responses.size() < 10) {
@@ -48,7 +48,7 @@ public class QuizService {
 
         Quiz savedQuiz = quizRedisRepository.save(quiz);
 
-        return responses;
+        return savedQuiz.getMemberKey();
     }
 
     public QuizWordResponse getNextWord(String memberKey) {

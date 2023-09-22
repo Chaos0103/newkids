@@ -25,13 +25,21 @@ public class QuizController {
 
     private final QuizService quizService;
 
+    /**
+     * 퀴즈 시작 등록 API
+     *
+     * @param memberKey 회원 고유키
+     * @return 회원 고유키
+     */
     @PostMapping("/start")
     public ApiResponse<String> loadingQuiz(@PathVariable String memberKey) {
-        List<WordClientResponse> responses = quizService.getMyVocabulary(memberKey);
-        //회원 단어장 조회
-        //10개 미만이면 예외 발생
-        //아니라면 레디스에 등록 후 키 부여
-        return ApiResponse.ok("key");
+        log.debug("call QuizController#nextWord");
+        log.debug("memberKey={}", memberKey);
+
+        String key = quizService.getMyVocabulary(memberKey);
+        log.debug("key={}", key);
+
+        return ApiResponse.ok(key);
     }
 
     /**
