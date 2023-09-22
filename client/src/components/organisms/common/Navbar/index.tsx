@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ReactComponent as DownIcon } from 'assets/icons/down.svg';
 import { ReactComponent as Logo } from 'assets/imgs/newkids-logo.svg';
 import SearchBar from 'components/atoms/common/SearchBar';
@@ -23,6 +23,7 @@ export function AuthNavBar() {
 function NavBar() {
 	const [memberInfoState] = useRecoilState(MemberInfoState);
 	const [movePage] = useMovePage();
+	const [searchValue, setSearchValue] = useState('');
 
 	return (
 		<NavBarContainer>
@@ -30,7 +31,14 @@ function NavBar() {
 				<Logo onClick={() => movePage('/')} />
 			</div>
 			<div className="search-bar">
-				<SearchBar size="l" confirmSearch={() => {}} />
+				<SearchBar
+					size="l"
+					confirmSearch={() => {}}
+					value={searchValue}
+					setValue={setSearchValue}
+					color="SubFirst"
+					placeholder="검색어를 입력하세요"
+				/>
 			</div>
 			{/* 로그인 여부에 따라 다르게 표시 */}
 			{memberInfoState ? (
