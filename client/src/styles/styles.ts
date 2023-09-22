@@ -71,3 +71,31 @@ export const ButtonRadiusStyles = {
 		border-radius: var(--radius-l);
 	`,
 };
+
+// CheckTextButton
+export const CheckTextButtonStyles = {
+	s: css`
+		svg {
+			width: 24px;
+			height: 24px;
+		}
+	`,
+	m: css`
+		span {
+			font-size: 1.25rem;
+		}
+		svg {
+			width: 28px;
+			height: 28px;
+		}
+	`,
+	l: css`
+		span {
+			font-size: 1.4rem;
+		}
+		svg {
+			width: 32px;
+			height: 32px;
+		}
+	`,
+};

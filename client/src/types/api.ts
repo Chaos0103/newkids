@@ -15,6 +15,17 @@ export interface JoinApiBody {
 	nickname: string;
 }
 
+// -- auth :: 이메일 인증 번호 전송 body
+export interface SendEmailApiBody {
+	email: string;
+}
+
+// -- auth :: 이메일 인증 번호 확인 body
+export interface CertEmailApiBody {
+	email: string;
+	authNumber: string;
+}
+
 //  -- auth :: 이메일 중복 검증 body
 export interface CheckEmailApiBody {
 	email: string;

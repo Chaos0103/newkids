@@ -4,7 +4,8 @@ from flask import Flask, request, jsonify
 from flask_restx import Api, Resource, fields
 
 from service.article.article import get_recommend_articles
-from service.recommendation.Cbf import get_recommend_ids
+from service.recommendation.cbf import get_recommend_ids
+from service.recommendation.ubcf import get_ubcf_recommendations
 
 app = Flask(__name__)
 api = Api(app, version="1.0", title="기사 추천 API 문서", doc="/api-docs")
@@ -70,7 +71,7 @@ class CbfResult(Resource):
 
 @Api.route('/collaborative-filter')
 @Api.doc(params={
-    'loginId': {'in': 'query', 'description': '회원 로그인 아이디', 'default': '1'},
+    'memberKey': {'in': 'query', 'description': '회원 고유키', 'default': 'memberKey1'},
     'age': {'in': 'query', 'description': '회원 연령', 'default': '10'}
 })
 class CfResult(Resource):
@@ -85,23 +86,18 @@ class CfResult(Resource):
         if len(parameters) == 0:
             return "BAD_REQUEST"
 
-        memberId = parameters.get("memberId")
-        log.debug(f"memberId: {memberId}")
+        member_key = parameters.get("memberKey")
+        log.debug(f"member_key: {member_key}")
 
         age = parameters.get("age")
         log.debug(f"age: {age}")
 
-        # 입력 받은 회원의 관심사 목록
-
-        # 입력 받은 사용자를 제외한 다른 회원들의 관심사 목록
-
-        # TF-IDF 벡터 행렬 구하기
-
         # 코사인 유사도를 구해서 추천 알고리즘 수행 -> 키워드 리스트 추출
+        recommendations = get_ubcf_recommendations('memberKey1')
 
-        # 해당 키워드 리스트 랜덤조회
+        # TODO: 2023-09-21 해당 키워드를 핵심 키워드로 갖는 기사 추천
 
-        return jsonify(articles)
+        return jsonify(recommendations)
 
 
 if __name__ == '__main__':

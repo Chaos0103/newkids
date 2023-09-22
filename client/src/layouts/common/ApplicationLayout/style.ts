@@ -6,5 +6,5 @@ export const ApplicationLayoutContainer = styled.div`
 	max-height: 1200px;
 	min-height: 100vh;
 	margin: 0 auto;
-	background-color: var.$white;
+	background-color: var(--white-color);
 `;

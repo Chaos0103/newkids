@@ -1,11 +1,10 @@
 import logging as log
-import time
 
-from scipy.sparse import csr_matrix, dok_matrix
+from scipy.sparse import csr_matrix
 from sklearn.metrics.pairwise import cosine_similarity
 
-from dao.ArticleDao import get_article_ids
-from dao.TfIdfWeightsDao import get_article_tf_idf
+from dao.article_dao import get_article_ids
+from dao.tf_idf_weights_dao import get_article_tf_idf
 
 # init logging
 log.basicConfig(level=log.DEBUG)
@@ -16,7 +15,7 @@ def get_article_indices():
     return [id[0] for id in article_ids]
 
 
-def get_tf_idf_matrix(article_ids):
+def get_tfidf_matrix(article_ids):
     tf_idf_matrix = get_article_tf_idf(article_ids)
     log.debug(len(tf_idf_matrix))
 
