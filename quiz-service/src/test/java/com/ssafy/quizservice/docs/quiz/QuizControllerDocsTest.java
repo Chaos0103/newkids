@@ -2,15 +2,20 @@ package com.ssafy.quizservice.docs.quiz;
 
 import com.ssafy.quizservice.api.controller.quiz.QuizController;
 import com.ssafy.quizservice.api.controller.quiz.request.CheckAnswerRequest;
+import com.ssafy.quizservice.api.controller.quiz.response.QuizResultResponse;
+import com.ssafy.quizservice.api.controller.quiz.response.QuizWordResponse;
 import com.ssafy.quizservice.api.service.quiz.QuizService;
 import com.ssafy.quizservice.docs.RestDocsSupport;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.BDDMockito;
 import org.springframework.http.MediaType;
 import org.springframework.restdocs.payload.JsonFieldType;
 
 import java.util.UUID;
 
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.BDDMockito.*;
 import static org.mockito.Mockito.mock;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.post;
@@ -33,6 +38,10 @@ public class QuizControllerDocsTest extends RestDocsSupport {
     @DisplayName("퀴즈 시작 등록 API")
     @Test
     void loadingQuiz() throws Exception {
+
+        given(quizService.getMyVocabulary(anyString()))
+            .willReturn(UUID.randomUUID().toString());
+
         mockMvc.perform(
             post("/quiz-controller/{memberKey}/start", UUID.randomUUID().toString())
                 .header("Authorization", "Access Token")
@@ -57,6 +66,16 @@ public class QuizControllerDocsTest extends RestDocsSupport {
     @DisplayName("퀴즈 다음 단어 호출 API")
     @Test
     void nextWord() throws Exception {
+
+        QuizWordResponse response = QuizWordResponse.builder()
+            .no(1)
+            .word("홍진식")
+            .description("광주 C205 대표 돼지")
+            .build();
+
+        given(quizService.getNextWord(anyString()))
+            .willReturn(response);
+
         mockMvc.perform(
                 post("/quiz-controller/{memberKey}/next", UUID.randomUUID().toString())
                     .header("Authorization", "Access Token")
@@ -91,6 +110,9 @@ public class QuizControllerDocsTest extends RestDocsSupport {
             .answer("돼지")
             .build();
 
+        given(quizService.checkAnswer(anyString(), anyString()))
+            .willReturn(true);
+
         mockMvc.perform(
                 post("/quiz-controller/{memberKey}/answer", UUID.randomUUID().toString())
                     .header("Authorization", "Access Token")
@@ -123,6 +145,14 @@ public class QuizControllerDocsTest extends RestDocsSupport {
     @DisplayName("퀴즈 결과 API")
     @Test
     void resultQuiz() throws Exception {
+        QuizResultResponse response = QuizResultResponse.builder()
+            .totalScore(70)
+            .rightQuizCount(7)
+            .build();
+
+        given(quizService.resultQuiz(anyString()))
+            .willReturn(response);
+
         mockMvc.perform(
                 post("/quiz-controller/{memberKey}/result", UUID.randomUUID().toString())
                     .header("Authorization", "Access Token")
