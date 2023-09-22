@@ -8,12 +8,12 @@ export const getAllArticleApi = async () => {
 };
 
 // 기사 상세 조회
-export const getArticleApi = async (articleId: number) => {
-	const response = await instance.get(`/articles/${articleId}`);
+export const getArticleApi = async (articleId: string) => {
+	const response = await instance.get(`/article-service/${articleId}`);
 	return response;
 };
 
-// 기사 상세 조회
+// 기사 삭제
 export const deleteArticleApi = async (articleId: number) => {
 	const response = await instance.delete(`/articles/${articleId}`);
 	return response;
