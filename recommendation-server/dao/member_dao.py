@@ -38,3 +38,29 @@ def get_member_id_by_member_key(member_key: str):
             connection.close()
 
     return row
+
+
+def get_members_all():
+    row = None
+    connection = None
+
+    try:
+        connection = connection_pool.get_connection()
+        cursor = connection.cursor()
+
+        sql = (
+            "SELECT *  "
+            "FROM `members` "
+        )
+
+        cursor.execute(sql)
+        row = cursor.fetchall()
+        cursor.close()
+
+    except Exception as e:
+        print(f"Exception={e}")
+    finally:
+        if connection:
+            connection.close()
+
+    return row
