@@ -1,5 +1,7 @@
 package com.ssafy.articleservice.api.controller.article.response;
 
+import com.ssafy.articleservice.domain.article.Article;
+import com.ssafy.articleservice.domain.articleread.ArticleRead;
 import lombok.Builder;
 import lombok.Data;
 
@@ -16,4 +18,13 @@ public class ArticleReadResponse {
         this.title = title;
         this.thumbnailImg = thumbnailImg;
     }
+
+    public static ArticleReadResponse of(Article article) {
+        return ArticleReadResponse.builder()
+            .articleId(article.getId())
+            .title(article.getTitle())
+            .thumbnailImg(article.getThumbnailImg())
+            .build();
+    }
+
 }

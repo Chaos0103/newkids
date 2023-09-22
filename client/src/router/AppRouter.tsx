@@ -10,6 +10,7 @@ import IndexPage from 'pages/IndexPage';
 import MyPage from 'pages/MyPage';
 import LoginPage from 'pages/auth/LoginPage';
 import JoinPage from 'pages/auth/JoinPage';
+import MyActivity from 'pages/MyActivity';
 import PrivateRoute from './PrivateRoute';
 import AuthProvider from './AuthProvider';
 
@@ -28,6 +29,7 @@ function AppRouter() {
 							<Route path="/auth/login" element={<LoginPage />} />
 							<Route path="/auth/join" element={<JoinPage />} />
 							<Route path="/mypage/info" element={<MyPage />} />
+							<Route path="/mypage/activity" element={<MyActivity />} />
 
 							<Route path="/" element={<PrivateRoute />}>
 								<Route path="/game" element={<div />} />
