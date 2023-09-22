@@ -60,4 +60,14 @@ export interface RegistReadArticleApiBody {
 	articleId: number;
 }
 
+// -- quiz :: 퀴즈 정답 체크 
+export interface QuizAnswerCheckApiBody {
+	answer: string;
+}
+
+// -- weeklyquiz :: 주간 키워드 퀴즈 정답 체크
+export interface WeeklyQuizAnswerCheckApiBody {
+	answer: string;
+}
+
 // RESPONSE
