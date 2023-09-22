@@ -26,4 +26,21 @@ export const NavBarContainer = styled.div<{ $auth?: boolean }>`
 
 	.search-bar {
 	}
+
+	.member-info {
+		color: var(--main-color);
+		font-weight: bold;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		transition: all 0.2s;
+
+		svg {
+			fill: var(--sub-color-1);
+		}
+
+		&:hover {
+			margin-top: 10px;
+		}
+	}
 `;

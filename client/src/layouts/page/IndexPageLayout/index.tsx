@@ -1,15 +1,28 @@
 import React, { ReactNode } from 'react';
-import { ContentLayout } from 'layouts/common/ContentLayout';
+import { ContentLayout, FullContentLayout } from 'layouts/common/ContentLayout';
 import { IndexPageLayoutContainer } from './style';
 
 interface IIndexPageLayoutProps {
-	RecommandArticles: ReactNode;
+	PopularArticleList: ReactNode;
+	TrendingKeywordList: ReactNode;
+	RecommendedArticleList: ReactNode;
+	WordCloud: ReactNode;
+	Footer: ReactNode;
 }
 
-function IndexPageLayout({ RecommandArticles }: IIndexPageLayoutProps) {
+function IndexPageLayout(props: IIndexPageLayoutProps) {
+	const { PopularArticleList, TrendingKeywordList, RecommendedArticleList, WordCloud, Footer } = props;
 	return (
 		<IndexPageLayoutContainer>
-			<ContentLayout>{RecommandArticles}</ContentLayout>
+			<ContentLayout>
+				<div className="popular-article-list">{PopularArticleList}</div>
+				<div className="trending-keyword-list">{TrendingKeywordList}</div>
+				<div className="recommended-article-list">{RecommendedArticleList}</div>
+				<div className="word-cloud">{WordCloud}</div>
+			</ContentLayout>
+			<FullContentLayout>
+				<div className="footer">{Footer}</div>
+			</FullContentLayout>
 		</IndexPageLayoutContainer>
 	);
 }

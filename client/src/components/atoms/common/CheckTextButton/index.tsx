@@ -1,22 +1,19 @@
 import React, { Dispatch, SetStateAction } from 'react';
-import { ReactComponent as CheckIcon } from 'assets/icons/check.svg';
+import { ReactComponent as Check } from 'assets/icons/check.svg';
 import { CheckTextButtonWrapper } from './style';
 
 interface ICheckTextButtonProps {
 	value: boolean;
 	setValue: Dispatch<SetStateAction<boolean>>;
 	text: string;
+	size: 's' | 'm' | 'l';
 }
 
-function CheckTextButton(props: ICheckTextButtonProps) {
-	const { value, setValue, text } = props;
-
+function CheckTextButton({ value, setValue, text, size }: ICheckTextButtonProps) {
 	return (
-		<CheckTextButtonWrapper value={value}>
-			<button type="button" onClick={() => setValue(!value)}>
-				<CheckIcon />
-				{text}
-			</button>
+		<CheckTextButtonWrapper $value={value} $size={size} onClick={() => setValue(!value)}>
+			<Check />
+			<span>{text}</span>
 		</CheckTextButtonWrapper>
 	);
 }

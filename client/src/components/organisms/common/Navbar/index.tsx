@@ -1,8 +1,11 @@
 import React from 'react';
+import { ReactComponent as DownIcon } from 'assets/icons/down.svg';
 import { ReactComponent as Logo } from 'assets/imgs/newkids-logo.svg';
 import SearchBar from 'components/atoms/common/SearchBar';
 import Button from 'components/atoms/common/Button';
 import useMovePage from 'hooks/useMovePage';
+import { useRecoilState } from 'recoil';
+import { MemberInfoState } from 'store/auth';
 import { NavBarContainer } from './style';
 
 export function AuthNavBar() {
@@ -18,6 +21,7 @@ export function AuthNavBar() {
 }
 
 function NavBar() {
+	const [memberInfoState] = useRecoilState(MemberInfoState);
 	const [movePage] = useMovePage();
 
 	return (
@@ -28,7 +32,14 @@ function NavBar() {
 			<div className="search-bar">
 				<SearchBar size="l" confirmSearch={() => {}} />
 			</div>
-			<Button size="s" radius="l" color="Primary" text="로그인" handleClick={() => movePage('/auth/login')} />
+			{/* 로그인 여부에 따라 다르게 표시 */}
+			{memberInfoState ? (
+				<button className="member-info" type="button">
+					<span>{memberInfoState.nickname}님</span> <DownIcon />
+				</button>
+			) : (
+				<Button size="s" radius="l" color="Primary" text="로그인" handleClick={() => movePage('/auth/login')} />
+			)}
 		</NavBarContainer>
 	);
 }
