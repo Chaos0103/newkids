@@ -6,7 +6,7 @@ from flask_restx import Api, Resource, fields
 
 from service.article.article import get_recommend_articles
 from service.recommendation.cbf import get_recommend_ids
-from service.recommendation.ubcf import get_ubcf_recommendations, get_most_similar_user
+from service.recommendation.ubcf import get_ubcf_recommendations, get_most_similar_member
 
 app = Flask(__name__)
 api = Api(app, version="1.0", title="기사 추천 API 문서", doc="/api-docs")
@@ -79,7 +79,9 @@ class CfRecommendByKeywords(Resource):
     @Api.response(200, "Success", recommend_results)
     def get(self):
         """
-        협업 필터링 추천 API
+        사용자별 관심 키워드 기반 협업 필터링 추천 API
+        현재 사용자 관심 키워드 중 다른 사용자의 관심 키워드에 속하지만
+        현재 사용자의 관심 키워드에 속하지 않는 키워드 추천
 
         협업 필터링 추천 결과 목록
         """
@@ -112,7 +114,9 @@ class CfRecommendByMostSimilarMember(Resource):
     @Api.response(200, "Success", recommend_results)
     def get(self):
         """
-        협업 필터링 추천 API
+        사용자별 관심 키워드 기반 협업 필터링 추천 API
+        현재 사용자와 가장 유사한 사용자가 읽었던 기사 중
+        현재 사용자가 읽지 않았던 기사 추천
 
         협업 필터링 추천 결과 목록
         """
@@ -128,11 +132,9 @@ class CfRecommendByMostSimilarMember(Resource):
 
         # 코사인 유사도를 구해서 추천 알고리즘 수행 -> 키워드 리스트 추출
         start = time.time()
-        recommendations = get_most_similar_user('memberKey1')
+        recommendations = get_most_similar_member('memberKey1')
         end = time.time()
         print(f"running time: {end - start: .5f}")
-
-        # TODO: 2023-09-21 가장 유사한 사용자가 최근 읽었던 기사 중 현재 사용자가 읽지 않은 기사 추천
 
         return jsonify(recommendations)
 
