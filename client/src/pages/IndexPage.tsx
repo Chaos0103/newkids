@@ -1,8 +1,8 @@
 import AreaTitle from 'components/atoms/common/AreaTitle';
+import KeywordCloud from 'components/organisms/article/KeywordCloud';
 import PopularArticleList from 'components/organisms/article/PopularArticleList';
 import RecommendedArticleList from 'components/organisms/article/RecommendedArticleList';
 import TrendingKeywordList from 'components/organisms/article/TrendingKeywordList';
-import WordCloud from 'components/organisms/article/WordCloud';
 import Footer from 'components/organisms/common/Footer';
 import PageLayout from 'layouts/common/PageLayout';
 import IndexPageLayout from 'layouts/page/IndexPageLayout';
@@ -33,7 +33,7 @@ function IndexPage() {
 				WordCloud={
 					<>
 						<AreaTitle title="이주의 핫이슈" />
-						<WordCloud />
+						<KeywordCloud />
 					</>
 				}
 				Footer={<Footer />}

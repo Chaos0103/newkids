@@ -93,3 +93,26 @@ export const DUMMY_ARTICLES_6: IArticle[] = [
 		thumbnailImg: 'https://img.seoul.co.kr/img/upload/2023/06/13/SSC_20230613163553.png',
 	},
 ];
+
+export const DUMMY_WORD_CLOUD = [
+	{
+		text: '전인혁',
+		value: 64,
+	},
+	{
+		text: '돼지',
+		value: 11,
+	},
+	{
+		text: '홍진식',
+		value: 16,
+	},
+	{
+		text: '더글로리',
+		value: 17,
+	},
+	{
+		text: 'SSAFY',
+		value: 17,
+	},
+];
