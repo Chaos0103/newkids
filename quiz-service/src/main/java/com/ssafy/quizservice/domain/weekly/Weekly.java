@@ -3,9 +3,9 @@ package com.ssafy.quizservice.domain.weekly;
 import com.ssafy.quizservice.domain.TimeBaseEntity;
 import lombok.Builder;
 import lombok.Getter;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.redis.core.RedisHash;
 
-import javax.persistence.Id;
 import java.util.ArrayList;
 import java.util.List;
 
