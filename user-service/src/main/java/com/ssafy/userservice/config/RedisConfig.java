@@ -7,6 +7,11 @@ import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 
+/**
+ * Redis 환경 설정
+ *
+ * @author 임우택
+ */
 @Configuration
 public class RedisConfig {
 
