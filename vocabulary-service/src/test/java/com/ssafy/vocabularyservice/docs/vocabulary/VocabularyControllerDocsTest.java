@@ -2,7 +2,9 @@ package com.ssafy.vocabularyservice.docs.vocabulary;
 
 import com.ssafy.vocabularyservice.api.controller.vocabulary.VocabularyController;
 import com.ssafy.vocabularyservice.api.controller.vocabulary.request.CreateVocabularyRequest;
+import com.ssafy.vocabularyservice.api.controller.vocabulary.response.VocabularyResponse;
 import com.ssafy.vocabularyservice.api.controller.vocabulary.response.WordResponse;
+import com.ssafy.vocabularyservice.api.service.vocabulary.VocabularyQueryService;
 import com.ssafy.vocabularyservice.api.service.vocabulary.VocabularyService;
 import com.ssafy.vocabularyservice.docs.RestDocsSupport;
 import org.junit.jupiter.api.DisplayName;
@@ -10,6 +12,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.http.MediaType;
 import org.springframework.restdocs.payload.JsonFieldType;
 
+import java.util.List;
 import java.util.UUID;
 
 import static org.mockito.ArgumentMatchers.anyString;
@@ -26,10 +29,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class VocabularyControllerDocsTest extends RestDocsSupport {
 
     private final VocabularyService vocabularyService = mock(VocabularyService.class);
+    private final VocabularyQueryService vocabularyQueryService = mock(VocabularyQueryService.class);
 
     @Override
     protected Object initController() {
-        return new VocabularyController(vocabularyService);
+        return new VocabularyController(vocabularyService, vocabularyQueryService);
     }
 
     @DisplayName("단어장 등록 API")
@@ -50,7 +54,7 @@ public class VocabularyControllerDocsTest extends RestDocsSupport {
             .willReturn(response);
 
         mockMvc.perform(
-                post("/vocabulary-service/{memberKey}", UUID.randomUUID().toString())
+                post("/vocabulary-service/api/{memberKey}", UUID.randomUUID().toString())
                     .content(objectMapper.writeValueAsString(request))
                     .contentType(MediaType.APPLICATION_JSON)
             )
@@ -85,6 +89,58 @@ public class VocabularyControllerDocsTest extends RestDocsSupport {
             ));
     }
 
+    @DisplayName("나의 단어장 조회 API")
+    @Test
+    void getMyVocabulary() throws Exception {
+        VocabularyResponse response1 = VocabularyResponse.builder()
+            .vocabularyId(1L)
+            .wordKey("99081")
+            .content("돼지")
+            .description("홍진식입니다.")
+            .isChecked(true)
+            .build();
+        VocabularyResponse response2 = VocabularyResponse.builder()
+            .vocabularyId(2L)
+            .wordKey("99082")
+            .content("치킨")
+            .description("치킨은 BBQ입니다.")
+            .isChecked(false)
+            .build();
+
+        given(vocabularyQueryService.getMyVocabulary(anyString()))
+            .willReturn(List.of(response1, response2));
+
+        mockMvc.perform(
+            get("/vocabulary-service/api/{memberKey}", UUID.randomUUID().toString())
+        )
+            .andDo(print())
+            .andExpect(status().isOk())
+            .andDo(document("search-vocabulary",
+                preprocessResponse(prettyPrint()),
+                responseFields(
+                    fieldWithPath("code").type(JsonFieldType.NUMBER)
+                        .description("코드"),
+                    fieldWithPath("status").type(JsonFieldType.STRING)
+                        .description("상태"),
+                    fieldWithPath("message").type(JsonFieldType.STRING)
+                        .description("메시지"),
+                    fieldWithPath("data").type(JsonFieldType.ARRAY)
+                        .description("응답 데이터"),
+                    fieldWithPath("data[].vocabularyId").type(JsonFieldType.NUMBER)
+                        .description("단어장 PK"),
+                    fieldWithPath("data[].wordKey").type(JsonFieldType.STRING)
+                        .description("단어 키"),
+                    fieldWithPath("data[].content").type(JsonFieldType.STRING)
+                        .description("단어"),
+                    fieldWithPath("data[].description").type(JsonFieldType.STRING)
+                        .description("단어 설명"),
+                    fieldWithPath("data[].checked").type(JsonFieldType.BOOLEAN)
+                        .description("체크 여부")
+                )
+            ));
+
+    }
+
     @DisplayName("단어장 체크 상태 변경 API")
     @Test
     void checkVocabulary() throws Exception {
@@ -100,7 +156,7 @@ public class VocabularyControllerDocsTest extends RestDocsSupport {
             .willReturn(response);
 
         mockMvc.perform(
-                patch("/vocabulary-service/{vocabularyId}", 1L)
+                patch("/vocabulary-service/api/{vocabularyId}", 1L)
             )
             .andDo(print())
             .andExpect(status().isFound())
@@ -142,7 +198,7 @@ public class VocabularyControllerDocsTest extends RestDocsSupport {
             .willReturn(response);
 
         mockMvc.perform(
-                delete("/vocabulary-service/{vocabularyId}", 1L)
+                delete("/vocabulary-service/api/{vocabularyId}", 1L)
             )
             .andDo(print())
             .andExpect(status().isFound())
