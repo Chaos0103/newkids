@@ -72,13 +72,15 @@ spring:
         - id: vocabulary-service
           uri: lb://VOCABULARY-SERVICE
           predicates:
-            - Path=/vocabulary-service/**
+            - Path=/vocabulary-service/api/**
             - Method=GET, POST, PATCH, DELETE
         - id: vocabulary-service
           uri: lb://VOCABULARY-SERVICE
           predicates:
             - Path=/vocabulary-service/actuator/**
             - Method=GET,POST
+          filters:
+            - RewritePath=/vocabulary-service/(?<segment>.*), /$\{segment}
         - id: article-service
           uri: lb://ARTICLE-SERVICE
           predicates:
@@ -92,13 +94,23 @@ spring:
         - id: keyword-service
           uri: lb://KEYWORD-SERVICE
           predicates:
-            - Path=/keyword-service/**
-            - Method=GET, POST, PATCH, DELETE
+            - Path=/keyword-service/actuator/**
+            - Method=GET, POST
         - id: keyword-service
           uri: lb://KEYWORD-SERVICE
           predicates:
-            - Path=/keyword-service/actuator/**
+            - Path=/keyword-service/**
+            - Method=GET, POST, PATCH, DELETE
+        - id: quiz-service
+          uri: lb://QUIZ-SERVICE
+          predicates:
+            - Path=/quiz-service/actuator/**
             - Method=GET, POST
+        - id: quiz-service
+          uri: lb://QUIZ-SERVICE
+          predicates:
+            - Path=/quiz-service/**
+            - Method=GET, POST, PATCH, DELETE
 
 
 management:
