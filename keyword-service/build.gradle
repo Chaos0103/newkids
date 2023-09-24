@@ -60,8 +60,8 @@ dependencies {
 	//h2
 	runtimeOnly 'com.h2database:h2'
 
-	//mariadb
-	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
+	//mysql
+	runtimeOnly 'com.mysql:mysql-connector-j'
 
 	//prometheus
 	implementation 'io.micrometer:micrometer-registry-prometheus'
