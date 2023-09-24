@@ -1,7 +1,9 @@
 import ArticleContent from 'components/organisms/article/ArticleContent';
 import ArticleHeader from 'components/organisms/article/ArticleHeader';
+import ArticleKeywordList from 'components/organisms/article/ArticleKeywordList';
 import DetailRecommendedArticleList from 'components/organisms/article/DetailRecommendedArticleList';
 import Footer from 'components/organisms/common/Footer';
+import { DUMMY_KEYWORDS } from 'constants/dummy';
 import PageLayout from 'layouts/common/PageLayout';
 import ArticleDetailPageLayout from 'layouts/page/ArticleDetailPageLayout';
 import React, { useEffect, useState } from 'react';
@@ -41,6 +43,7 @@ function ArticleDetailPage() {
 						count={article?.count ?? 0}
 					/>
 				}
+				ArticleKeywordList={<ArticleKeywordList keywords={DUMMY_KEYWORDS} />}
 				ArticleContent={<ArticleContent content={article?.content ?? 'content'} />}
 				RecommendedArticleList={<DetailRecommendedArticleList />}
 				Footer={<Footer />}
