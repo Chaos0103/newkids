@@ -1,5 +1,7 @@
 import ArticleContent from 'components/organisms/article/ArticleContent';
 import ArticleHeader from 'components/organisms/article/ArticleHeader';
+import DetailRecommendedArticleList from 'components/organisms/article/DetailRecommendedArticleList';
+import Footer from 'components/organisms/common/Footer';
 import PageLayout from 'layouts/common/PageLayout';
 import ArticleDetailPageLayout from 'layouts/page/ArticleDetailPageLayout';
 import React, { useEffect, useState } from 'react';
@@ -40,8 +42,8 @@ function ArticleDetailPage() {
 					/>
 				}
 				ArticleContent={<ArticleContent content={article?.content ?? 'content'} />}
-				RecommendedArticleList={<div>list</div>}
-				Footer={<div>footer</div>}
+				RecommendedArticleList={<DetailRecommendedArticleList />}
+				Footer={<Footer />}
 			/>
 		</PageLayout>
 	);
