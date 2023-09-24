@@ -18,7 +18,9 @@ def get_members_interests():
     """
 
     # 사용자 수 (더미데이터)
-    num_members = 10000
+    num_members = 1000000
+    num_members = 500000
+    num_members = 100000
     # 가능한 관심사 (더미데이터)
     possible_interests = [
         {"id": 1, "name": "Algorithm"},
@@ -126,7 +128,8 @@ def get_members_interests():
     # 데이터 생성
     members_interests = []
     for member_key in range(1, num_members + 1):
-        num_interests = random.randint(10, 50)  # 최대 10개의 관심사
+        num_interests = random.randint(1, 5)  # 최대 10개의 관심사
+        num_interests = 10
         member_interests = random.sample(possible_interests, num_interests)
 
         members_interests.append({"member_key": f'memberKey{member_key}', "interests": member_interests})
@@ -240,29 +243,31 @@ def get_most_similar_member(member_key):
 
 # get_most_similar_user('memberKey1')
 
-# # 회원 데이터 조회
+# 회원 데이터 조회
 # start = time.time()
 # members_all = get_members_all()
 # end = time.time()
 # print(f"running time: {end - start: .5f}")
-#
+
 # 호출
-start = time.time()
-recommendations = get_ubcf_recommendations('memberKey1')
-end = time.time()
-print(f"running time: {end - start: .5f}")
+# start = time.time()
+# recommendations = get_ubcf_recommendations('memberKey1')
+# end = time.time()
+# print(f"running time: {end - start: .5f}")
+#
+# # 결과 출력: 추천 관심사 목록 출력
+# print("Recommended Interests:")
+# for interest in recommendations:
+#     print(f"- {interest['name']}")
+#
+# target_user_index = get_member_id_by_member_key('memberKey1')[0] - 1
+# members_interests = get_members_interests()
+# # 결과 출력: 선택한 사용자의 관심사 출력
+# print(f"\nUser {members_interests[target_user_index]['member_key']}'s Interests:")
+# for interest in members_interests[target_user_index]['interests']:
+#     print(f"- {interest['name']}")
 
-# 결과 출력: 추천 관심사 목록 출력
-print("Recommended Interests:")
-for interest in recommendations:
-    print(f"- {interest['name']}")
-
-target_user_index = get_member_id_by_member_key('memberKey1')[0]
-members_interests = get_members_interests()
-# 결과 출력: 선택한 사용자의 관심사 출력
-print(f"\nUser {members_interests[target_user_index]['member_key']}'s Interests:")
-for interest in members_interests[target_user_index]['interests']:
-    print(f"- {interest['name']}")
+print("===================== jacaard =======================")
 
 
 def jaccard_similarity(set1, set2):
@@ -270,10 +275,12 @@ def jaccard_similarity(set1, set2):
     union = len(set1.union(set2))
     return intersection / union if union != 0 else 0.0
 
+
 # 더미 데이터 가져오기
 members_interests = get_members_interests()
 
 # 자카드 유사도 계산 대상 회원 선택 (예: 첫 번째 회원)
+start = time.time()
 target_member = members_interests[0]
 target_interests = set(item['name'] for item in target_member['interests'])
 
@@ -285,8 +292,10 @@ for member in members_interests:
     member_interests = set(item['name'] for item in member['interests'])
     similarity = jaccard_similarity(target_interests, member_interests)
     similarities[member['member_key']] = similarity
+end = time.time()
+print(f"jaccard running time: {end - start: .5f}")
 
-# 자카드 유사도가 가장 높은 상위 N명 추천 (예: 상위 5명)
+# 자카드 유사도가 가장 높은 상위 N명 추천
 top_n = 5
 sorted_recommendations = sorted(similarities.items(), key=lambda x: x[1], reverse=True)[:top_n]
 
@@ -297,3 +306,6 @@ for member_key, similarity in sorted_recommendations:
     print(f"회원: {member_key}, 유사도: {similarity}")
     member_idx = get_member_id_by_member_key(member_key)[0] - 1
     print(members_interests[member_idx])
+
+article_indices = get_article_indices_by_member_key(sorted_recommendations[0][0])
+print(article_indices)
