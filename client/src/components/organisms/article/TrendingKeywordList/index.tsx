@@ -11,7 +11,7 @@ function TrendingKeywordList() {
 		try {
 			const response = await getPopularKeywordApi();
 			setKeywords(response.data);
-			console.log(response);
+			console.log('::getPopularKeywordApi', response);
 		} catch (error) {
 			console.error(error);
 		}
