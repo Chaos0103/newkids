@@ -2,9 +2,10 @@ import styled from 'styled-components';
 
 export const UserDetailContainer = styled.div`
 	width: 100%;
+	height: 110%;
 
 	.mypage-form {
-		margin-top: 2rem;
+		margin-top: 1.5rem;
 	}
 
 	hr {
@@ -13,6 +14,7 @@ export const UserDetailContainer = styled.div`
 		border: 0;
 		background: var(--gray-200);
 	}
+
 	.mypage-title {
 		display: flex;
 		justify-content: space-between;
