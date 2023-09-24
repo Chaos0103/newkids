@@ -14,7 +14,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @RestController
 @Slf4j
-@RequestMapping("/keyword-service/popular")
+@RequestMapping("/keyword-service/api/popular")
 public class PopularKeywordController {
 
     private final PopularKeywordQueryService popularKeywordQueryService;

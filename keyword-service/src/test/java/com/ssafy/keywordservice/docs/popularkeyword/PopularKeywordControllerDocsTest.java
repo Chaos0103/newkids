@@ -45,7 +45,7 @@ public class PopularKeywordControllerDocsTest extends RestDocsSupport {
             .willReturn(responses);
 
         mockMvc.perform(
-                get("/keyword-service/popular")
+                get("/keyword-service/api/popular")
             )
             .andDo(print())
             .andExpect(status().isOk())
@@ -68,10 +68,10 @@ public class PopularKeywordControllerDocsTest extends RestDocsSupport {
             ));
     }
 
-    private PopularKeywordResponse createResponse(long keywordId, String 돼지) {
+    private PopularKeywordResponse createResponse(long keywordId, String word) {
         return PopularKeywordResponse.builder()
             .keywordId(keywordId)
-            .word(돼지)
+            .word(word)
             .build();
     }
 }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -22,6 +23,15 @@ public class VocabularyQueryService {
     }
 
     public List<WordClientResponse> getMyVocabularyClient(String memberKey) {
-        return vocabularyQueryRepository.findClientByMemberKey(memberKey);
+        List<Long> ids = vocabularyQueryRepository.findIdClientByMemberKey(memberKey);
+        if (ids.size() < 10) {
+            return new ArrayList<>();
+        }
+
+        Collections.shuffle(ids);
+
+        List<Long> options = ids.subList(0, 10);
+
+        return vocabularyQueryRepository.findClientByMemberKey(options);
     }
 }

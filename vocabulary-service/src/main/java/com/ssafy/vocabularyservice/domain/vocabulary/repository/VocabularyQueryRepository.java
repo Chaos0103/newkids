@@ -63,7 +63,7 @@ public class VocabularyQueryRepository {
             .fetch();
     }
 
-    public List<WordClientResponse> findClientByMemberKey(String memberKey) {
+    public List<WordClientResponse> findClientByMemberKey(List<Long> options) {
         return queryFactory
             .select(Projections.constructor(WordClientResponse.class,
                 vocabulary.word.wordKey,
@@ -72,9 +72,15 @@ public class VocabularyQueryRepository {
             ))
             .from(vocabulary)
             .join(vocabulary.word, word)
+            .where(vocabulary.id.in(options))
+            .fetch();
+    }
+
+    public List<Long> findIdClientByMemberKey(String memberKey) {
+        return queryFactory
+            .select(vocabulary.id)
+            .from(vocabulary)
             .where(vocabulary.memberKey.eq(memberKey))
-            .orderBy(NumberExpression.random().asc())
-            .limit(10)
             .fetch();
     }
 }

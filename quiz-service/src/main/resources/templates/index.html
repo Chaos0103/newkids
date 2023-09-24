@@ -534,7 +534,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h4 id="_http_request"><a class="link" href="#_http_request">HTTP Request</a></h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">POST /quiz-controller/30d35ee8-8d59-401e-b0ee-3b0762163ccd/start HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">POST /quiz-service/api/ba343a3d-a0c6-4e10-a1d8-02b14c3cc1ae/start HTTP/1.1
 Authorization: Access Token
 Host: localhost:8080</code></pre>
 </div>
@@ -546,13 +546,13 @@ Host: localhost:8080</code></pre>
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 85
+Content-Length: 113
 
 {
   "code" : 200,
   "status" : "OK",
   "message" : "SUCCESS",
-  "data" : "key"
+  "data" : "8e7b45c5-7393-41c2-bd69-0e2a1fadc6a0"
 }</code></pre>
 </div>
 </div>
@@ -603,7 +603,7 @@ Content-Length: 85
 <h4 id="_http_request_2"><a class="link" href="#_http_request_2">HTTP Request</a></h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">POST /quiz-controller/6cf5a914-26f1-4c02-a243-6489479ad0ed/next HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">POST /quiz-service/api/f9fcf828-932f-4ca5-bc2d-304cd35c5c9b/next HTTP/1.1
 Authorization: Access Token
 Host: localhost:8080</code></pre>
 </div>
@@ -615,14 +615,14 @@ Host: localhost:8080</code></pre>
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 177
+Content-Length: 168
 
 {
   "code" : 200,
   "status" : "OK",
   "message" : "SUCCESS",
   "data" : {
-    "no" : 0,
+    "no" : 1,
     "word" : "홍진식",
     "description" : "광주 C205 대표 돼지"
   }
@@ -691,10 +691,10 @@ Content-Length: 177
 <h4 id="_http_request_3"><a class="link" href="#_http_request_3">HTTP Request</a></h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">POST /quiz-controller/df4fbb68-58dc-43c0-ad45-794742ff029a/answer HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">POST /quiz-service/api/1204d18d-aff6-410f-82d4-75d761189f2a/answer HTTP/1.1
 Content-Type: application/json
 Authorization: Access Token
-Content-Length: 27
+Content-Length: 25
 Host: localhost:8080
 
 {
@@ -736,7 +736,7 @@ Host: localhost:8080
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 84
+Content-Length: 79
 
 {
   "code" : 200,
@@ -793,7 +793,7 @@ Content-Length: 84
 <h4 id="_http_request_4"><a class="link" href="#_http_request_4">HTTP Request</a></h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">POST /quiz-controller/bacec7a1-a9d7-4d3f-84ad-20f64ca1b5fe/result HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">POST /quiz-service/api/6af91e39-bce7-4dc2-938d-f9e89ce71836/result HTTP/1.1
 Authorization: Access Token
 Host: localhost:8080</code></pre>
 </div>
@@ -805,7 +805,7 @@ Host: localhost:8080</code></pre>
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 136
+Content-Length: 128
 
 {
   "code" : 200,
@@ -880,7 +880,7 @@ Content-Length: 136
 <h4 id="_http_request_5"><a class="link" href="#_http_request_5">HTTP Request</a></h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">POST /quiz-controller/e9d0b87f-bc65-41b2-b8b6-8246d73f19fe/weekly/start HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">POST /quiz-service/api/e849e261-ff48-4c2f-b021-4caa04baef74/weekly/start HTTP/1.1
 Authorization: Access Token
 Host: localhost:8080</code></pre>
 </div>
@@ -892,13 +892,13 @@ Host: localhost:8080</code></pre>
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 85
+Content-Length: 113
 
 {
   "code" : 200,
   "status" : "OK",
   "message" : "SUCCESS",
-  "data" : "key"
+  "data" : "ba093752-ab9b-418d-981e-e6bbd5748da7"
 }</code></pre>
 </div>
 </div>
@@ -949,7 +949,7 @@ Content-Length: 85
 <h4 id="_http_request_6"><a class="link" href="#_http_request_6">HTTP Request</a></h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">POST /quiz-controller/4d7a5859-b7a3-46eb-9ac5-81bc5e2701e6/weekly/next HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">POST /quiz-service/api/9ec7dc1c-7ccc-4932-a475-cbfa8a46f11e/weekly/next HTTP/1.1
 Authorization: Access Token
 Host: localhost:8080</code></pre>
 </div>
@@ -961,16 +961,17 @@ Host: localhost:8080</code></pre>
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 177
+Content-Length: 247
 
 {
   "code" : 200,
   "status" : "OK",
   "message" : "SUCCESS",
   "data" : {
-    "no" : 0,
-    "word" : "홍진식",
-    "description" : "광주 C205 대표 돼지"
+    "no" : 1,
+    "answerWord" : "홍진식",
+    "description" : "광주 C205 대표 돼지",
+    "contents" : [ "최영환", "홍진식", "전인혁", "임우택" ]
   }
 }</code></pre>
 </div>
@@ -1018,7 +1019,7 @@ Content-Length: 177
 <td class="tableblock halign-left valign-top"><p class="tableblock">문항 번호</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.word</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.answerWord</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">정답 단어</p></td>
 </tr>
@@ -1026,6 +1027,11 @@ Content-Length: 177
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.description</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">단어 설명</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.contents</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">보기 리스트</p></td>
 </tr>
 </tbody>
 </table>
@@ -1037,10 +1043,10 @@ Content-Length: 177
 <h4 id="_http_request_7"><a class="link" href="#_http_request_7">HTTP Request</a></h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">POST /quiz-controller/94a636ba-5784-41ce-9d9d-a21e751f54ba/weekly/answer HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">POST /quiz-service/api/2701b0d6-517e-4aa1-b521-5007dbc0f481/weekly/answer HTTP/1.1
 Content-Type: application/json
 Authorization: Access Token
-Content-Length: 27
+Content-Length: 25
 Host: localhost:8080
 
 {
@@ -1082,7 +1088,7 @@ Host: localhost:8080
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 84
+Content-Length: 79
 
 {
   "code" : 200,
@@ -1139,7 +1145,7 @@ Content-Length: 84
 <h4 id="_http_request_8"><a class="link" href="#_http_request_8">HTTP Request</a></h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">POST /quiz-controller/08620343-eed5-4a25-9b86-3af3d16fbb10/weekly/result HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">POST /quiz-service/api/9a381844-290a-406c-aadd-8cee85fd2f14/weekly/result HTTP/1.1
 Authorization: Access Token
 Host: localhost:8080</code></pre>
 </div>
@@ -1151,7 +1157,7 @@ Host: localhost:8080</code></pre>
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 136
+Content-Length: 128
 
 {
   "code" : 200,
@@ -1221,7 +1227,7 @@ Content-Length: 136
 <div id="footer">
 <div id="footer-text">
 Version 1.0<br>
-Last updated 2023-09-21 11:44:33 +0900
+Last updated 2023-09-23 13:52:42 +0900
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">

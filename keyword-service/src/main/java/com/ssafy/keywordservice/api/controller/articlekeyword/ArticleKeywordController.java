@@ -14,7 +14,7 @@ import javax.validation.Valid;
 @RequiredArgsConstructor
 @RestController
 @Slf4j
-@RequestMapping("/keyword-service/{articleKey}/articles")
+@RequestMapping("/keyword-service/api/{articleKey}/articles")
 public class ArticleKeywordController {
 
     private final ArticleKeywordService articleKeywordService;
@@ -23,7 +23,7 @@ public class ArticleKeywordController {
     @ResponseStatus(HttpStatus.CREATED)
     public ApiResponse<ArticleKeywordResponse> createArticleKeyword(
         @Valid @RequestBody CreatedKeywordRequest request,
-        @PathVariable String articleKey
+        @PathVariable Long articleKey
     ) {
         log.debug("ArticleKeywordController#createArticleKeyword");
         log.debug("request={}", request);
@@ -36,7 +36,7 @@ public class ArticleKeywordController {
 
     // TODO: 2023-09-20 searchArticleKeyword
     @GetMapping
-    public ApiResponse<ArticleKeywordResponse> searchArticleKeyword(@PathVariable String articleKey) {
+    public ApiResponse<ArticleKeywordResponse> searchArticleKeyword(@PathVariable Long articleKey) {
         ArticleKeywordResponse response = ArticleKeywordResponse.builder()
             .keywordId(1L)
             .word("돼지")

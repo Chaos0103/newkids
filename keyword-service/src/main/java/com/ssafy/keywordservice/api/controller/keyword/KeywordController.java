@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @RestController
 @Slf4j
-@RequestMapping("/keyword-service")
+@RequestMapping("/keyword-service/api")
 public class KeywordController {
 
     private final KeywordService keywordService;

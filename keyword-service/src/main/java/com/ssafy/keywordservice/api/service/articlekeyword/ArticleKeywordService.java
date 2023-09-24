@@ -20,7 +20,7 @@ public class ArticleKeywordService {
     private final ArticleKeywordRepository articleKeywordRepository;
     private final KeywordRepository keywordRepository;
 
-    public ArticleKeywordResponse createArticleKeyword(String articleKey, String word) {
+    public ArticleKeywordResponse createArticleKeyword(Long articleKey, String word) {
         Keyword findKeyword = getKeywordEntity(word);
 
         ArticleKeyword savedArticleKeyword = saveEntity(articleKey, findKeyword);
@@ -36,7 +36,7 @@ public class ArticleKeywordService {
         return findKeyword.get();
     }
 
-    private ArticleKeyword saveEntity(String articleKey, Keyword findKeyword) {
+    private ArticleKeyword saveEntity(Long articleKey, Keyword findKeyword) {
         ArticleKeyword articleKeyword = ArticleKeyword.builder()
             .articleKey(articleKey)
             .keyword(findKeyword)
