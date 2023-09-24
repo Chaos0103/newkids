@@ -40,18 +40,27 @@ function GameQuestion(props: IGameQuestionProps) {
 			<h1 className="meaning">뜻)</h1>
 			<Question text={question[0].description} />
 			<hr className="hr" />
-			<h2>{question[0].no}</h2>
 			<div className="input-wrapper">
 				<Input type="text" value={answer2} setValue={setAnswer2} placeholder="정답을 입력해주세요." />
-				<Alert
-					setStep={setStep}
-					imageUrls="https://ifh.cc/g/Rkn9J6.jpg"
-					imageHeights={200}
-					titles="정답입니다"
-					texts="이미지들어가면 될듯요"
-					confirms="다음 단계로"
-					colors="#FF7738"
-				/>
+				{answer2 === question[0].word ? (
+					<Alert
+						setStep={setStep}
+						imageUrls="https://ifh.cc/g/Rkn9J6.jpg"
+						imageHeights={200}
+						titles="정답입니다"
+						confirms="다음 단계로"
+						colors="#FF7738"
+					/>
+				) : (
+					<Alert
+						setStep={setStep}
+						imageUrls="https://ifh.cc/g/Rkn9J6.jpg"
+						imageHeights={200}
+						titles="오답입니다"
+						confirms="다음 단계로"
+						colors="#FF7738"
+					/>
+				)}
 			</div>
 		</GameQuestionContainer>
 	);
