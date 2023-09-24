@@ -57,7 +57,7 @@ class WordControllerTest extends ControllerTestSupport {
 
         //when //then
         mockMvc.perform(
-                post("/vocabulary-service/words")
+                post("/vocabulary-service/api/words")
                     .content(objectMapper.writeValueAsString(request))
                     .contentType(MediaType.APPLICATION_JSON)
             )
@@ -80,7 +80,7 @@ class WordControllerTest extends ControllerTestSupport {
 
         //when //then
         mockMvc.perform(
-                post("/vocabulary-service/words")
+                post("/vocabulary-service/api/words")
                     .content(objectMapper.writeValueAsString(request))
                     .contentType(MediaType.APPLICATION_JSON)
             )
@@ -103,7 +103,7 @@ class WordControllerTest extends ControllerTestSupport {
 
         //when //then
         mockMvc.perform(
-                post("/vocabulary-service/words")
+                post("/vocabulary-service/api/words")
                     .content(objectMapper.writeValueAsString(request))
                     .contentType(MediaType.APPLICATION_JSON)
             )
@@ -126,7 +126,7 @@ class WordControllerTest extends ControllerTestSupport {
 
         //when //then
         mockMvc.perform(
-                post("/vocabulary-service/words")
+                post("/vocabulary-service/api/words")
                     .content(objectMapper.writeValueAsString(request))
                     .contentType(MediaType.APPLICATION_JSON)
             )
@@ -148,7 +148,7 @@ class WordControllerTest extends ControllerTestSupport {
 
         //when //then
         mockMvc.perform(
-                patch("/vocabulary-service/words/{wordKey}", "92288")
+                patch("/vocabulary-service/api/words/{wordKey}", "92288")
                     .content(objectMapper.writeValueAsString(request))
                     .contentType(MediaType.APPLICATION_JSON)
             )
@@ -170,7 +170,7 @@ class WordControllerTest extends ControllerTestSupport {
 
         //when //then
         mockMvc.perform(
-                patch("/vocabulary-service/words/{wordKey}", "92288")
+                patch("/vocabulary-service/api/words/{wordKey}", "92288")
                     .content(objectMapper.writeValueAsString(request))
                     .contentType(MediaType.APPLICATION_JSON)
             )
@@ -202,7 +202,7 @@ class WordControllerTest extends ControllerTestSupport {
 
         //when //then
         mockMvc.perform(
-                patch("/vocabulary-service/words/{wordKey}", "92288")
+                patch("/vocabulary-service/api/words/{wordKey}", "92288")
                     .content(objectMapper.writeValueAsString(request))
                     .contentType(MediaType.APPLICATION_JSON)
             )
@@ -229,7 +229,7 @@ class WordControllerTest extends ControllerTestSupport {
 
         //when //then
         mockMvc.perform(
-                delete("/vocabulary-service/words/{wordKey}", "92288")
+                delete("/vocabulary-service/api/words/{wordKey}", "92288")
             )
             .andDo(print())
             .andExpect(status().isFound())
@@ -250,7 +250,7 @@ class WordControllerTest extends ControllerTestSupport {
 
         //when //then
         mockMvc.perform(
-                get("/vocabulary-service/words")
+                get("/vocabulary-service/api/words")
             )
             .andDo(print())
             .andExpect(status().isOk())

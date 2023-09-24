@@ -2,7 +2,9 @@ package com.ssafy.vocabularyservice.api.controller.vocabulary;
 
 import com.ssafy.vocabularyservice.api.controller.ApiResponse;
 import com.ssafy.vocabularyservice.api.controller.vocabulary.request.CreateVocabularyRequest;
+import com.ssafy.vocabularyservice.api.controller.vocabulary.response.VocabularyResponse;
 import com.ssafy.vocabularyservice.api.controller.vocabulary.response.WordResponse;
+import com.ssafy.vocabularyservice.api.service.vocabulary.VocabularyQueryService;
 import com.ssafy.vocabularyservice.api.service.vocabulary.VocabularyService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -10,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 /**
  * 단어장 API 컨트롤러
@@ -19,10 +22,11 @@ import javax.validation.Valid;
 @RequiredArgsConstructor
 @RestController
 @Slf4j
-@RequestMapping("/vocabulary-service")
+@RequestMapping("/vocabulary-service/api")
 public class VocabularyController {
 
     private final VocabularyService vocabularyService;
+    private final VocabularyQueryService vocabularyQueryService;
 
     /**
      * 단어장 등록 API
@@ -42,6 +46,17 @@ public class VocabularyController {
         log.debug("response={}", response);
 
         return ApiResponse.created(response);
+    }
+
+    @GetMapping("/{memberKey}")
+    public ApiResponse<?> getMyVocabulary(@PathVariable String memberKey) {
+        log.debug("call VocabularyController#getMyVocabulary");
+        log.debug("memberKey={}", memberKey);
+
+        List<VocabularyResponse> response = vocabularyQueryService.getMyVocabulary(memberKey);
+        log.debug("response={}", response);
+
+        return ApiResponse.ok(response);
     }
 
     /**

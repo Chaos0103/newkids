@@ -3,15 +3,15 @@ package com.ssafy.keywordservice.docs.articlekeyword;
 import com.ssafy.keywordservice.api.controller.articlekeyword.ArticleKeywordController;
 import com.ssafy.keywordservice.api.controller.articlekeyword.response.ArticleKeywordResponse;
 import com.ssafy.keywordservice.api.controller.keyword.request.CreatedKeywordRequest;
+import com.ssafy.keywordservice.api.service.articlekeyword.ArticleKeywordQueryService;
 import com.ssafy.keywordservice.api.service.articlekeyword.ArticleKeywordService;
 import com.ssafy.keywordservice.docs.RestDocsSupport;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.mockito.BDDMockito;
 import org.springframework.http.MediaType;
 import org.springframework.restdocs.payload.JsonFieldType;
 
-import java.util.UUID;
+import java.util.List;
 
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.BDDMockito.*;
@@ -29,16 +29,17 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class ArticleKeywordControllerDocsTest extends RestDocsSupport {
 
     private final ArticleKeywordService articleKeywordService = mock(ArticleKeywordService.class);
+    private final ArticleKeywordQueryService articleKeywordQueryService = mock(ArticleKeywordQueryService.class);
 
     @Override
     protected Object initController() {
-        return new ArticleKeywordController(articleKeywordService);
+        return new ArticleKeywordController(articleKeywordService, articleKeywordQueryService);
     }
 
     @DisplayName("뉴스 키워드 등록 API")
     @Test
     void createArticleKeyword() throws Exception {
-        String articleKey = UUID.randomUUID().toString();
+        Long articleKey = 43578L;
         CreatedKeywordRequest request = CreatedKeywordRequest.builder()
             .word("돼지")
             .build();
@@ -48,11 +49,11 @@ public class ArticleKeywordControllerDocsTest extends RestDocsSupport {
             .word("돼지")
             .build();
 
-        given(articleKeywordService.createArticleKeyword(anyString(), anyString()))
+        given(articleKeywordService.createArticleKeyword(anyLong(), anyString()))
             .willReturn(response);
 
         mockMvc.perform(
-                post("/keyword-service/{articleKey}/articles", articleKey)
+                post("/keyword-service/api/{articleKey}/articles", articleKey)
                     .content(objectMapper.writeValueAsString(request))
                     .contentType(MediaType.APPLICATION_JSON)
             )
@@ -86,10 +87,23 @@ public class ArticleKeywordControllerDocsTest extends RestDocsSupport {
     @DisplayName("뉴스 키워드 조회 API")
     @Test
     void searchArticleKeyword() throws Exception {
-        String memberKey = UUID.randomUUID().toString();
+        Long articleKey = 43578L;
+
+        ArticleKeywordResponse response1 = ArticleKeywordResponse.builder()
+            .keywordId(1L)
+            .word("SSAFY")
+            .build();
+
+        ArticleKeywordResponse response2 = ArticleKeywordResponse.builder()
+            .keywordId(2L)
+            .word("삼성")
+            .build();
+
+        given(articleKeywordQueryService.getArticleKeywords(anyLong()))
+            .willReturn(List.of(response1, response2));
 
         mockMvc.perform(
-                get("/keyword-service/{articleKey}/articles", memberKey)
+                get("/keyword-service/api/{articleKey}/articles", articleKey)
             )
             .andDo(print())
             .andExpect(status().isOk())
@@ -102,11 +116,11 @@ public class ArticleKeywordControllerDocsTest extends RestDocsSupport {
                         .description("상태"),
                     fieldWithPath("message").type(JsonFieldType.STRING)
                         .description("메시지"),
-                    fieldWithPath("data").type(JsonFieldType.OBJECT)
+                    fieldWithPath("data").type(JsonFieldType.ARRAY)
                         .description("응답 데이터"),
-                    fieldWithPath("data.keywordId").type(JsonFieldType.NUMBER)
+                    fieldWithPath("data[].keywordId").type(JsonFieldType.NUMBER)
                         .description("키워드 PK"),
-                    fieldWithPath("data.word").type(JsonFieldType.STRING)
+                    fieldWithPath("data[].word").type(JsonFieldType.STRING)
                         .description("키워드 단어")
                 )
             ));

@@ -15,16 +15,29 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 
+/**
+ * 뉴스 기사 API
+ *
+ * @author 임우택
+ */
 @RequiredArgsConstructor
 @RestController
 @Slf4j
-@RequestMapping("/article-service")
+@RequestMapping("/article-service/api")
 public class ArticleController {
 
     private final ArticleService articleService;
     private final ArticleQueryService articleQueryService;
 
-    // TODO: 2023/09/13 뉴스 기사 조회 API
+    /**
+     * 뉴스 기사 조회 API
+     *
+     * @param content 검색할 제목 또는 내용
+     * @param pageNum 페이지 번호
+     * @param startDate 검색 범위 시작일: yyyy-MM-dd
+     * @param endDate 검색 범위 종료일: yyyy-MM-dd
+     * @return 뉴스 기사 검색 결과
+     */
     @GetMapping
     public ApiResponse<Page<ArticleResponse>> getArticles(
         @RequestParam(required = false) String content,
@@ -32,8 +45,6 @@ public class ArticleController {
         @RequestParam String startDate,
         @RequestParam String endDate
     ) {
-
-        //date yyyy-mm-dd
         LocalDateTime startedDate = createLocalDateTime(startDate);
         LocalDateTime endedDate = createLocalDateTime(endDate).plusDays(1);
 
@@ -65,7 +76,11 @@ public class ArticleController {
         return ApiResponse.ok(response);
     }
 
-    // TODO: 2023/09/13 뉴스 기사 삭제 API
+    /**
+     * 뉴스 기사 삭제 API
+     * @param articleId 삭제할 뉴스 기사 PK
+     * @return 삭제 결과
+     */
     @DeleteMapping("/{articleId}")
     @ResponseStatus(HttpStatus.FOUND)
     public ApiResponse<ArticleResponse> removeArticle(@PathVariable Long articleId) {

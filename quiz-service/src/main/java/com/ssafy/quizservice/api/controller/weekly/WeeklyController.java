@@ -14,7 +14,7 @@ import javax.validation.Valid;
 @RequiredArgsConstructor
 @RestController
 @Slf4j
-@RequestMapping("/quiz-controller/{memberKey}/weekly")
+@RequestMapping("/quiz-service/api/{memberKey}/weekly")
 public class WeeklyController {
 
     private final WeeklyService weeklyService;

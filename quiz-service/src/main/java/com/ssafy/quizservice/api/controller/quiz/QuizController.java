@@ -18,7 +18,7 @@ import javax.validation.Valid;
 @RequiredArgsConstructor
 @RestController
 @Slf4j
-@RequestMapping("/quiz-controller/{memberKey}")
+@RequestMapping("/quiz-service/api/{memberKey}")
 public class QuizController {
 
     private final QuizService quizService;
@@ -31,7 +31,7 @@ public class QuizController {
      */
     @PostMapping("/start")
     public ApiResponse<String> loadingQuiz(@PathVariable String memberKey) {
-        log.debug("call QuizController#nextWord");
+        log.debug("call QuizController#loadingQuiz");
         log.debug("memberKey={}", memberKey);
 
         String key = quizService.getMyVocabulary(memberKey);

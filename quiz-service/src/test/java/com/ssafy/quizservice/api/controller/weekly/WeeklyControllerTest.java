@@ -35,7 +35,7 @@ class WeeklyControllerTest extends ControllerTestSupport {
 
         //when //then
         mockMvc.perform(
-                post("/quiz-controller/{memberKey}/weekly/start", memberKey)
+                post("/quiz-service/api/{memberKey}/weekly/start", memberKey)
                     .header("Authorization", "Access Token")
             )
             .andDo(print())
@@ -64,7 +64,7 @@ class WeeklyControllerTest extends ControllerTestSupport {
 
         //when //then
         mockMvc.perform(
-                post("/quiz-controller/{memberKey}/weekly/next", memberKey)
+                post("/quiz-service/api/{memberKey}/weekly/next", memberKey)
                     .header("Authorization", "Access Token")
             )
             .andDo(print())

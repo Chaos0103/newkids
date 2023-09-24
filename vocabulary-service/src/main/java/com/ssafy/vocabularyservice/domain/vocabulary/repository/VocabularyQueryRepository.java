@@ -3,8 +3,8 @@ package com.ssafy.vocabularyservice.domain.vocabulary.repository;
 import com.querydsl.core.types.Projections;
 import com.querydsl.core.types.dsl.NumberExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
+import com.ssafy.vocabularyservice.api.controller.vocabulary.response.VocabularyResponse;
 import com.ssafy.vocabularyservice.api.controller.vocabulary.response.WordClientResponse;
-import com.ssafy.vocabularyservice.domain.word.QWord;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -48,7 +48,22 @@ public class VocabularyQueryRepository {
         return result != null;
     }
 
-    public List<WordClientResponse> findByMemberKey(String memberKey) {
+    public List<VocabularyResponse> findByMemberKey(String memberKey) {
+        return queryFactory
+            .select(Projections.constructor(VocabularyResponse.class,
+                vocabulary.id,
+                vocabulary.word.wordKey,
+                vocabulary.word.content,
+                vocabulary.word.description,
+                vocabulary.check
+            ))
+            .from(vocabulary)
+            .where(vocabulary.memberKey.eq(memberKey))
+            .orderBy(vocabulary.createdDate.desc())
+            .fetch();
+    }
+
+    public List<WordClientResponse> findClientByMemberKey(List<Long> options) {
         return queryFactory
             .select(Projections.constructor(WordClientResponse.class,
                 vocabulary.word.wordKey,
@@ -57,9 +72,15 @@ public class VocabularyQueryRepository {
             ))
             .from(vocabulary)
             .join(vocabulary.word, word)
+            .where(vocabulary.id.in(options))
+            .fetch();
+    }
+
+    public List<Long> findIdClientByMemberKey(String memberKey) {
+        return queryFactory
+            .select(vocabulary.id)
+            .from(vocabulary)
             .where(vocabulary.memberKey.eq(memberKey))
-            .orderBy(NumberExpression.random().asc())
-            .limit(10)
             .fetch();
     }
 }

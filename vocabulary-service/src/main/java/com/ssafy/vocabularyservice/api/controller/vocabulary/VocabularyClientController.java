@@ -14,7 +14,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @RestController
 @Slf4j
-@RequestMapping("/vocabulary-service/api/{memberKey}")
+@RequestMapping("/vocabulary-service/api/client/{memberKey}")
 public class VocabularyClientController {
 
     private final VocabularyQueryService vocabularyQueryService;
@@ -23,7 +23,7 @@ public class VocabularyClientController {
     public List<WordClientResponse> getMyVocabulary(@PathVariable String memberKey) {
         log.debug("call VocabularyClientController#getMyVocabulary");
 
-        List<WordClientResponse> responses = vocabularyQueryService.getMyVocabulary(memberKey);
+        List<WordClientResponse> responses = vocabularyQueryService.getMyVocabularyClient(memberKey);
         log.debug("responses={}", responses);
 
         return responses;

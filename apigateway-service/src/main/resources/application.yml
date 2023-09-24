@@ -21,6 +21,7 @@ spring:
   cloud:
     gateway:
       routes:
+        # USER SERVICE
         - id: user-service
           uri: lb://USER-SERVICE
           predicates:
@@ -63,12 +64,13 @@ spring:
         - id: user-service
           uri: lb://USER-SERVICE
           predicates:
-            - Path=/user-service/**
-            - Method=GET, POST
+            - Path=/user-service/api/**
+            - Method=GET, POST, PATCH, DELETE
           filters:
             - RemoveRequestHeader=Cookie
             - RewritePath=/user-service/(?<segment>.*), /$\{segment}
             - AuthorizationHeaderFilter
+        # VOCABULARY SERVICE
         - id: vocabulary-service
           uri: lb://VOCABULARY-SERVICE
           predicates:
@@ -81,36 +83,65 @@ spring:
             - Method=GET,POST
           filters:
             - RewritePath=/vocabulary-service/(?<segment>.*), /$\{segment}
+        - id: vocabulary-service
+          uri: lb://VOCABULARY-SERVICE
+          predicates:
+            - Path=/vocabulary-service/docs/index
+            - Method=GET
+        # ARTICLE SERVICE
         - id: article-service
           uri: lb://ARTICLE-SERVICE
           predicates:
-            - Path=/article-service/**
+            - Path=/article-service/api/**
             - Method=GET, POST, PATCH, DELETE
         - id: article-service
           uri: lb://ARTICLE-SERVICE
           predicates:
             - Path=/article-service/actuator/**
             - Method=GET, POST
+          filters:
+            - RewritePath=/article-service/(?<segment>.*), /$\{segment}
+        - id: article-service
+          uri: lb://ARTICLE-SERVICE
+          predicates:
+            - Path=/article-service/docs/index
+            - Method=GET
+        # KEYWORD SERVICE
+        - id: keyword-service
+          uri: lb://KEYWORD-SERVICE
+          predicates:
+            - Path=/keyword-service/api/**
+            - Method=GET, POST, PATCH, DELETE
         - id: keyword-service
           uri: lb://KEYWORD-SERVICE
           predicates:
             - Path=/keyword-service/actuator/**
             - Method=GET, POST
+          filters:
+            - RewritePath=/keyword-service/(?<segment>.*), /$\{segment}
         - id: keyword-service
           uri: lb://KEYWORD-SERVICE
           predicates:
-            - Path=/keyword-service/**
-            - Method=GET, POST, PATCH, DELETE
+            - Path=/keyword-service/docs/index
+            - Method=GET
+        # QUIZ SERVICE
         - id: quiz-service
           uri: lb://QUIZ-SERVICE
           predicates:
             - Path=/quiz-service/actuator/**
             - Method=GET, POST
+          filters:
+            - RewritePath=/quiz-service/(?<segment>.*), /$\{segment}
         - id: quiz-service
           uri: lb://QUIZ-SERVICE
           predicates:
-            - Path=/quiz-service/**
+            - Path=/quiz-service/api/**
             - Method=GET, POST, PATCH, DELETE
+        - id: quiz-service
+          uri: lb://QUIZ-SERVICE
+          predicates:
+            - Path=/quiz-service/docs/index
+            - Method=GET
 
 
 management:

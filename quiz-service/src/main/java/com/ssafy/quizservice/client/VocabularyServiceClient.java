@@ -10,6 +10,6 @@ import java.util.List;
 @FeignClient(name = "vocabulary-service")
 public interface VocabularyServiceClient {
 
-    @GetMapping("/vocabulary-service/api/{memberKey}")
+    @GetMapping("/vocabulary-service/api/client/{memberKey}")
     List<WordClientResponse> getMyVocabulary(@PathVariable String memberKey);
 }

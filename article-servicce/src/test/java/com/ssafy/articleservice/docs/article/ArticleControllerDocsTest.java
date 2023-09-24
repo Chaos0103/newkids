@@ -65,7 +65,7 @@ class ArticleControllerDocsTest extends RestDocsSupport {
 
 
         mockMvc.perform(
-                get("/article-service")
+                get("/article-service/api")
                     .param("content", "돼지")
                     .param("pageNum", "1")
                     .param("startDate", "2023-09-10")
@@ -79,7 +79,6 @@ class ArticleControllerDocsTest extends RestDocsSupport {
                     parameterWithName("content")
                         .description("조회할 제목 or 내용"),
                     parameterWithName("pageNum")
-                        .optional()
                         .description("페이지 번호"),
                     parameterWithName("startDate")
                         .optional()
@@ -174,7 +173,7 @@ class ArticleControllerDocsTest extends RestDocsSupport {
             .willReturn(response);
 
         mockMvc.perform(
-                get("/article-service/{articleId}", 1L)
+                get("/article-service/api/{articleId}", 1L)
             )
             .andDo(print())
             .andExpect(status().isOk())

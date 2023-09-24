@@ -40,7 +40,7 @@ public class QuizControllerDocsTest extends RestDocsSupport {
             .willReturn(UUID.randomUUID().toString());
 
         mockMvc.perform(
-            post("/quiz-controller/{memberKey}/start", UUID.randomUUID().toString())
+            post("/quiz-service/api/{memberKey}/start", UUID.randomUUID().toString())
                 .header("Authorization", "Access Token")
         )
             .andDo(print())
@@ -74,7 +74,7 @@ public class QuizControllerDocsTest extends RestDocsSupport {
             .willReturn(response);
 
         mockMvc.perform(
-                post("/quiz-controller/{memberKey}/next", UUID.randomUUID().toString())
+                post("/quiz-service/api/{memberKey}/next", UUID.randomUUID().toString())
                     .header("Authorization", "Access Token")
             )
             .andDo(print())
@@ -111,7 +111,7 @@ public class QuizControllerDocsTest extends RestDocsSupport {
             .willReturn(true);
 
         mockMvc.perform(
-                post("/quiz-controller/{memberKey}/answer", UUID.randomUUID().toString())
+                post("/quiz-service/api/{memberKey}/answer", UUID.randomUUID().toString())
                     .header("Authorization", "Access Token")
                     .content(objectMapper.writeValueAsString(request))
                     .contentType(MediaType.APPLICATION_JSON)
@@ -151,7 +151,7 @@ public class QuizControllerDocsTest extends RestDocsSupport {
             .willReturn(response);
 
         mockMvc.perform(
-                post("/quiz-controller/{memberKey}/result", UUID.randomUUID().toString())
+                post("/quiz-service/api/{memberKey}/result", UUID.randomUUID().toString())
                     .header("Authorization", "Access Token")
             )
             .andDo(print())
