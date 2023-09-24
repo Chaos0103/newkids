@@ -47,7 +47,7 @@ public class AccountControllerDocsTest extends RestDocsSupport {
             .willReturn(response);
 
         mockMvc.perform(
-                get("/{memberKey}/info", UUID.randomUUID().toString())
+                get("/api/{memberKey}/info", UUID.randomUUID().toString())
                     .header("Authorization", "Bearer accessToken")
             )
             .andDo(print())

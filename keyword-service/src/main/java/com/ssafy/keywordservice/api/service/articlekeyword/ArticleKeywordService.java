@@ -2,7 +2,7 @@ package com.ssafy.keywordservice.api.service.articlekeyword;
 
 import com.ssafy.keywordservice.api.controller.articlekeyword.response.ArticleKeywordResponse;
 import com.ssafy.keywordservice.domain.articlekeyword.ArticleKeyword;
-import com.ssafy.keywordservice.domain.articlekeyword.ArticleKeywordRepository;
+import com.ssafy.keywordservice.domain.articlekeyword.repository.ArticleKeywordRepository;
 import com.ssafy.keywordservice.domain.keyword.Keyword;
 import com.ssafy.keywordservice.domain.keyword.repository.KeywordRepository;
 import lombok.RequiredArgsConstructor;

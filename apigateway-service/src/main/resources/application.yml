@@ -110,7 +110,7 @@ spring:
         - id: keyword-service
           uri: lb://KEYWORD-SERVICE
           predicates:
-            - Path=/keyword-service/**
+            - Path=/keyword-service/api/**
             - Method=GET, POST, PATCH, DELETE
         - id: keyword-service
           uri: lb://KEYWORD-SERVICE

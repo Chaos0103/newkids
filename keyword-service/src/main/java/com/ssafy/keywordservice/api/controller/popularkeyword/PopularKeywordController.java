@@ -19,10 +19,18 @@ public class PopularKeywordController {
 
     private final PopularKeywordQueryService popularKeywordQueryService;
 
-    // TODO: 2023-09-20 getTopFivePopularKeyword
+    /**
+     * 인기 키워드 TOP 10 조회 API
+     *
+     * @return 인기 키워드 TOP 10
+     */
     @GetMapping
     public ApiResponse<List<PopularKeywordResponse>> getTopFivePopularKeyword() {
-        List<PopularKeywordResponse> responses = popularKeywordQueryService.getTopFivePopularKeyword();
+        log.debug("call PopularKeywordController#getTopFivePopularKeyword");
+
+        List<PopularKeywordResponse> responses = popularKeywordQueryService.getTopTenPopularKeyword();
+        log.debug("responses={}", responses);
+
         return ApiResponse.ok(responses);
     }
 }

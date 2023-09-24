@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.restdocs.payload.JsonFieldType;
 
 import java.util.List;
+import java.util.Random;
 
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.mock;
@@ -41,7 +42,7 @@ public class PopularKeywordControllerDocsTest extends RestDocsSupport {
 
         List<PopularKeywordResponse> responses = List.of(response1, response2, response3, response4, response5);
 
-        given(popularKeywordQueryService.getTopFivePopularKeyword())
+        given(popularKeywordQueryService.getTopTenPopularKeyword())
             .willReturn(responses);
 
         mockMvc.perform(
@@ -63,15 +64,19 @@ public class PopularKeywordControllerDocsTest extends RestDocsSupport {
                     fieldWithPath("data[].keywordId").type(JsonFieldType.NUMBER)
                         .description("키워드 PK"),
                     fieldWithPath("data[].word").type(JsonFieldType.STRING)
-                        .description("키워드 단어")
+                        .description("키워드 단어"),
+                    fieldWithPath("data[].totalCount").type(JsonFieldType.NUMBER)
+                        .description("키워드 총 조회수")
                 )
             ));
     }
 
     private PopularKeywordResponse createResponse(long keywordId, String word) {
+        int count = new Random().nextInt(100);
         return PopularKeywordResponse.builder()
             .keywordId(keywordId)
             .word(word)
+            .totalCount(count)
             .build();
     }
 }
