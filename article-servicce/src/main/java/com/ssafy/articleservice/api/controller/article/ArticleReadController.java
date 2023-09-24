@@ -17,7 +17,7 @@ import javax.validation.Valid;
 @RequiredArgsConstructor
 @RestController
 @Slf4j
-@RequestMapping("/article-service/read")
+@RequestMapping("/article-service/api/read")
 public class ArticleReadController {
 
     private final ArticleReadService articleReadService;

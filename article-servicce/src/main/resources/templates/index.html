@@ -530,7 +530,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h4 id="_http_request"><a class="link" href="#_http_request">HTTP Request</a></h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /article-service?content=%EB%8F%BC%EC%A7%80&amp;pageNum=1&amp;startDate=2023-09-10&amp;endDate=2023-09-19 HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /article-service/api?content=%EB%8F%BC%EC%A7%80&amp;pageNum=1&amp;startDate=2023-09-10&amp;endDate=2023-09-19 HTTP/1.1
 Host: localhost:8080</code></pre>
 </div>
 </div>
@@ -558,7 +558,7 @@ Host: localhost:8080</code></pre>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>pageNum</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">O</p></td>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">페이지 번호</p></td>
 </tr>
 <tr>
@@ -580,7 +580,7 @@ Host: localhost:8080</code></pre>
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 881
+Content-Length: 843
 
 {
   "code" : 200,
@@ -591,7 +591,7 @@ Content-Length: 881
       "title" : "오늘 점심을 뭐먹을까...",
       "subTitle" : "먹고싶지 않다",
       "writer" : "임우택",
-      "publishedDate" : [ 2023, 9, 19, 14, 39, 2, 303554900 ],
+      "publishedDate" : [ 2023, 9, 24, 10, 23, 3, 530503000 ],
       "thumbnailImg" : "http://lunch.png"
     } ],
     "pageable" : {
@@ -607,17 +607,17 @@ Content-Length: 881
       "unpaged" : false
     },
     "last" : true,
-    "totalElements" : 11,
     "totalPages" : 2,
-    "size" : 10,
-    "number" : 1,
+    "totalElements" : 11,
     "sort" : {
       "empty" : true,
       "sorted" : false,
       "unsorted" : true
     },
-    "numberOfElements" : 1,
     "first" : false,
+    "number" : 1,
+    "size" : 10,
+    "numberOfElements" : 1,
     "empty" : false
   }
 }</code></pre>
@@ -810,7 +810,7 @@ Content-Length: 881
 <h4 id="_http_request_2"><a class="link" href="#_http_request_2">HTTP Request</a></h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /article-service/1 HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /article-service/api/1 HTTP/1.1
 Host: localhost:8080</code></pre>
 </div>
 </div>
@@ -821,7 +821,7 @@ Host: localhost:8080</code></pre>
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 282
+Content-Length: 269
 
 {
   "code" : 200,
@@ -831,7 +831,7 @@ Content-Length: 282
     "title" : "",
     "subTitle" : "",
     "writer" : "",
-    "publishedDate" : [ 2023, 9, 19, 14, 39, 2, 158554100 ],
+    "publishedDate" : [ 2023, 9, 24, 10, 23, 3, 493500000 ],
     "content" : "",
     "thumbnailImg" : "",
     "imageUrls" : [ "" ]
@@ -926,10 +926,10 @@ Content-Length: 282
 <h4 id="_http_request_3"><a class="link" href="#_http_request_3">HTTP Request</a></h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">POST /article-service/read/db7674ce-64ea-4171-9776-105587dfcf99 HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">POST /article-service/api/read/b51f0b60-71a8-4b58-a79e-c61790bc9f72 HTTP/1.1
 Content-Type: application/json
 Authorization: accessToken
-Content-Length: 27
+Content-Length: 25
 Host: localhost:8080
 
 {
@@ -971,7 +971,7 @@ Host: localhost:8080
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">HTTP/1.1 201 Created
 Content-Type: application/json
-Content-Length: 233
+Content-Length: 224
 
 {
   "code" : 201,
@@ -1047,7 +1047,7 @@ Content-Length: 233
 <h4 id="_http_request_4"><a class="link" href="#_http_request_4">HTTP Request</a></h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /article-service/read/0ffef73c-7b56-44a0-a087-1a394e82e93c?pageNum=1 HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /article-service/api/read/934ed33e-5d93-4d95-a82f-df11e457f2b0?pageNum=1 HTTP/1.1
 Authorization: accessToken
 Host: localhost:8080</code></pre>
 </div>
@@ -1071,7 +1071,7 @@ Host: localhost:8080</code></pre>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>pageNum</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">O</p></td>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">페이지 번호</p></td>
 </tr>
 </tbody>
@@ -1083,7 +1083,7 @@ Host: localhost:8080</code></pre>
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 924
+Content-Length: 884
 
 {
   "code" : 200,
@@ -1112,17 +1112,17 @@ Content-Length: 924
       "unpaged" : false
     },
     "last" : false,
-    "totalElements" : 20,
     "totalPages" : 3,
-    "size" : 8,
-    "number" : 0,
+    "totalElements" : 20,
     "sort" : {
       "empty" : true,
       "sorted" : false,
       "unsorted" : true
     },
-    "numberOfElements" : 2,
     "first" : true,
+    "number" : 0,
+    "size" : 8,
+    "numberOfElements" : 2,
     "empty" : false
   }
 }</code></pre>
@@ -1305,7 +1305,7 @@ Content-Length: 924
 <div id="footer">
 <div id="footer-text">
 Version 1.0<br>
-Last updated 2023-09-19 14:37:38 +0900
+Last updated 2023-09-19 20:21:22 +0900
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">
