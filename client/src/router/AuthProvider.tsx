@@ -9,17 +9,19 @@ function AuthProvider({ children }: { children: ReactNode }) {
 	const [, setMemberInfoState] = useRecoilState(MemberInfoState);
 
 	const fetchMemberInfoData = async () => {
-		console.log('::fetchMemberInfo');
 		const token = localStorage.getItem('token');
 		const memberkey = localStorage.getItem('memberkey');
 
 		try {
 			if (token && memberkey) {
 				const response = await getMemberInfoApi(memberkey);
+				console.log('::fetchMemberInfo', response);
 				if (response.status === 200) {
 					setMemberInfoState(response.data.data);
 					setIsLoading(false);
 				}
+			} else {
+				setIsLoading(false);
 			}
 		} catch (error) {
 			setIsLoading(false);
