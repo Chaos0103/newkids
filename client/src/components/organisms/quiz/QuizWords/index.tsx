@@ -26,7 +26,7 @@ function QuizWords({ setStep }: IQuizWordsProps) {
 
 	const indexClick = () => {
 		if (!isDone) {
-			movePage('/index');
+			movePage('/');
 			setNum(1);
 			setIsDone(true);
 		}
