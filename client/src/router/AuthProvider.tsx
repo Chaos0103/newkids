@@ -20,10 +20,9 @@ function AuthProvider({ children }: { children: ReactNode }) {
 					setMemberInfoState(response.data.data);
 					setIsLoading(false);
 				}
-			} else {
-				setIsLoading(false);
 			}
 		} catch (error) {
+			setIsLoading(false);
 			console.log(error);
 		}
 	};
