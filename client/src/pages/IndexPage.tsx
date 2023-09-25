@@ -1,3 +1,9 @@
+import AreaTitle from 'components/atoms/common/AreaTitle';
+import KeywordCloud from 'components/organisms/article/KeywordCloud';
+import PopularArticleList from 'components/organisms/article/PopularArticleList';
+import RecommendedArticleList from 'components/organisms/article/RecommendedArticleList';
+import TrendingKeywordList from 'components/organisms/article/TrendingKeywordList';
+import Footer from 'components/organisms/common/Footer';
 import PageLayout from 'layouts/common/PageLayout';
 import IndexPageLayout from 'layouts/page/IndexPageLayout';
 import React from 'react';
@@ -6,19 +12,31 @@ function IndexPage() {
 	return (
 		<PageLayout>
 			<IndexPageLayout
-				RecommandArticles={
-					<div style={{ height: '160vh' }}>
-						<h1>Jeonny-BoilerPlate</h1>
-						<h2>use react + typescript + prettier + ESLint + axios + react-router-dom</h2>
-						<a href="https://github.com/" target="_blank" rel="noreferrer">
-							GitHub
-						</a>
-						<br />
-						<a href="https://jeon-ny.tistory.com/" target="_blank" rel="noreferrer">
-							Tistory Dev Blog
-						</a>
-					</div>
+				PopularArticleList={
+					<>
+						<AreaTitle title="인기있는 기사" />
+						<PopularArticleList />
+					</>
 				}
+				TrendingKeywordList={
+					<>
+						<AreaTitle title="급상승 키워드" />
+						<TrendingKeywordList />
+					</>
+				}
+				RecommendedArticleList={
+					<>
+						<AreaTitle title="내 또래가 많이 접한 기사에요" />
+						<RecommendedArticleList />
+					</>
+				}
+				WordCloud={
+					<>
+						<AreaTitle title="이주의 핫이슈" />
+						<KeywordCloud />
+					</>
+				}
+				Footer={<Footer />}
 			/>
 		</PageLayout>
 	);

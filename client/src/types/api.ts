@@ -15,6 +15,17 @@ export interface JoinApiBody {
 	nickname: string;
 }
 
+// -- auth :: 이메일 인증 번호 전송 body
+export interface SendEmailApiBody {
+	email: string;
+}
+
+// -- auth :: 이메일 인증 번호 확인 body
+export interface CertEmailApiBody {
+	email: string;
+	authNumber: string;
+}
+
 //  -- auth :: 이메일 중복 검증 body
 export interface CheckEmailApiBody {
 	email: string;
@@ -47,6 +58,16 @@ export interface PatchWordApiBody {
 // -- article :: 읽은 뉴스기사 등록
 export interface RegistReadArticleApiBody {
 	articleId: number;
+}
+
+// -- quiz :: 퀴즈 정답 체크 
+export interface QuizAnswerCheckApiBody {
+	answer: string;
+}
+
+// -- weeklyquiz :: 주간 키워드 퀴즈 정답 체크
+export interface WeeklyQuizAnswerCheckApiBody {
+	answer: string;
 }
 
 // RESPONSE

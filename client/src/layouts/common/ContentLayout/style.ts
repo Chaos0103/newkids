@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const LarrowContentLayoutContainer = styled.div`
+export const NarrowContentLayoutContainer = styled.div`
 	width: var(--content-width-m);
 	margin: 0 auto;
 `;

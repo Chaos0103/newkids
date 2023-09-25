@@ -13,6 +13,53 @@ export const SearchBarSizeStyles = {
 	`,
 };
 
+// SearchBar
+export const SearchBarColorStyles = {
+	Primary: css`
+		input {
+			border: 1px solid var(--main-color);
+
+			&:focus-visible {
+				outline: 1.5px solid var(--main-color);
+			}
+		}
+
+		.confirm-search-btn-wrapper {
+			border: 1px solid var(--main-color);
+			background-color: var(--main-color);
+		}
+	`,
+
+	SubFirst: css`
+		input {
+			border: 1px solid var(--sub-color-1);
+
+			&:focus-visible {
+				outline: 1.5px solid var(--sub-color-1);
+			}
+		}
+
+		.confirm-search-btn-wrapper {
+			border: 1px solid var(--sub-color-1);
+			background-color: var(--sub-color-1);
+		}
+	`,
+	SubSecond: css`
+		input {
+			border: 1px solid var(--sub-color-2);
+
+			&:focus-visible {
+				outline: 1.5px solid var(--sub-color-2);
+			}
+		}
+
+		.confirm-search-btn-wrapper {
+			border: 1px solid var(--sub-color-2);
+			background-color: var(--sub-color-2);
+		}
+	`,
+};
+
 // Button
 export const ButtonSizeStyles = {
 	s: css`
@@ -69,5 +116,33 @@ export const ButtonRadiusStyles = {
 	`,
 	l: css`
 		border-radius: var(--radius-l);
+	`,
+};
+
+// CheckTextButton
+export const CheckTextButtonStyles = {
+	s: css`
+		svg {
+			width: 24px;
+			height: 24px;
+		}
+	`,
+	m: css`
+		span {
+			font-size: 1.25rem;
+		}
+		svg {
+			width: 28px;
+			height: 28px;
+		}
+	`,
+	l: css`
+		span {
+			font-size: 1.4rem;
+		}
+		svg {
+			width: 32px;
+			height: 32px;
+		}
 	`,
 };
