@@ -6,7 +6,7 @@ from flask_restx import Api, Resource, fields
 
 from service.article.article import get_recommend_articles
 from service.recommendation.cbf import get_recommend_ids
-from service.recommendation.ubcf import get_ubcf_recommendations, get_most_similar_member
+from service.recommendation.ubcf import get_ubcf_recommendations, get_most_similar_member, get_jaccard_recommendation
 
 app = Flask(__name__)
 api = Api(app, version="1.0", title="기사 추천 API 문서", doc="/api-docs")
@@ -132,7 +132,7 @@ class CfRecommendByMostSimilarMember(Resource):
 
         # 코사인 유사도를 구해서 추천 알고리즘 수행 -> 키워드 리스트 추출
         start = time.time()
-        recommendations = get_most_similar_member('memberKey1')
+        recommendations = get_jaccard_recommendation(member_key, age)
         end = time.time()
         print(f"running time: {end - start: .5f}")
 
