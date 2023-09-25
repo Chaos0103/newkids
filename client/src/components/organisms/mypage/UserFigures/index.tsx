@@ -2,16 +2,17 @@ import React from 'react';
 import USerExperience from 'components/atoms/mypage/UserExperience';
 import UserLevel from 'components/atoms/mypage/UserLevel';
 import { UserFiguresContainer } from './style';
+import profileImage from '../../../../assets/imgs/profile-level.png';
 
 function UserFigures() {
 	return (
 		<UserFiguresContainer>
 			<div className="user-figure-container">
 				<div className="figure-image">
-					<div className="figure-image-content">프로필 이미지</div>
+					<img className="figure-image-content" src={profileImage} alt="profile" />
 				</div>
 				<div className="user-experience-container">
-					<USerExperience />
+					<USerExperience experienceValue={5} />
 				</div>
 				<div className="user-level-container">
 					<UserLevel />
