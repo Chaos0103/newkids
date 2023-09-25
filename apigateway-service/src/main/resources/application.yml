@@ -142,6 +142,24 @@ spring:
           predicates:
             - Path=/quiz-service/docs/index
             - Method=GET
+        # RECOMMENDATION SERVICE
+        - id: recommendation-service
+          uri: lb://RECOMMENDATION-SERVICE
+          predicates:
+            - Path=/recommendation-service/actuator/**
+            - Method=GET, POST
+          filters:
+            - RewritePath=/recommendation-service/(?<segment>.*), /$\{segment}
+        - id: recommendation-service
+          uri: lb://RECOMMENDATION-SERVICE
+          predicates:
+            - Path=/recommendation-service/api/**
+            - Method=GET
+        - id: recommendation-service
+          uri: lb://RECOMMENDATION-SERVICE
+          predicates:
+            - Path=/recommendation-service/docs/index
+            - Method=GET
 
 
 management:
