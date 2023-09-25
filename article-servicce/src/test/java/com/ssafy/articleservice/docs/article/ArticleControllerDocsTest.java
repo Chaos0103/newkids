@@ -49,6 +49,7 @@ class ArticleControllerDocsTest extends RestDocsSupport {
     void getArticles() throws Exception {
 
         ArticleResponse response  = ArticleResponse.builder()
+            .articleId(1L)
             .title("오늘 점심을 뭐먹을까...")
             .subTitle("먹고싶지 않다")
             .writer("임우택")
@@ -98,6 +99,8 @@ class ArticleControllerDocsTest extends RestDocsSupport {
                         .description("응답데이터"),
                     fieldWithPath("data.content").type(JsonFieldType.ARRAY)
                         .description("기사 내역 데이터"),
+                    fieldWithPath("data.content[].articleId").type(JsonFieldType.NUMBER)
+                        .description("기사 PK"),
                     fieldWithPath("data.content[].title").type(JsonFieldType.STRING)
                         .description("기사 제목"),
                     fieldWithPath("data.content[].subTitle").type(JsonFieldType.STRING)
@@ -160,6 +163,7 @@ class ArticleControllerDocsTest extends RestDocsSupport {
     @Test
     void getArticle() throws Exception {
         ArticleDetailResponse response = ArticleDetailResponse.builder()
+            .articleId(1L)
             .title("")
             .subTitle("")
             .writer("")
@@ -188,6 +192,8 @@ class ArticleControllerDocsTest extends RestDocsSupport {
                         .description("메시지"),
                     fieldWithPath("data").type(JsonFieldType.OBJECT)
                         .description("응답데이터"),
+                    fieldWithPath("data.articleId").type(JsonFieldType.NUMBER)
+                        .description("기사 PK"),
                     fieldWithPath("data.title").type(JsonFieldType.STRING)
                         .description("기사 제목"),
                     fieldWithPath("data.subTitle").type(JsonFieldType.STRING)

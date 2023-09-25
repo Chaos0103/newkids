@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 @Data
 public class ArticleResponse {
 
+    private Long articleId;
     private String title;
     private String subTitle;
     private String writer;
@@ -15,7 +16,8 @@ public class ArticleResponse {
     private String thumbnailImg;
 
     @Builder
-    public ArticleResponse(String title, String subTitle, String writer, LocalDateTime publishedDate, String thumbnailImg) {
+    public ArticleResponse(Long articleId, String title, String subTitle, String writer, LocalDateTime publishedDate, String thumbnailImg) {
+        this.articleId = articleId;
         this.title = title;
         this.subTitle = subTitle;
         this.writer = writer;

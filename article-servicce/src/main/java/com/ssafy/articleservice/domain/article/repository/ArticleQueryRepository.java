@@ -44,6 +44,7 @@ public class ArticleQueryRepository {
 
         return queryFactory
             .select(Projections.constructor(ArticleResponse.class,
+                article.id,
                 article.title,
                 article.subTitle,
                 article.writer,
