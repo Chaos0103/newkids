@@ -78,7 +78,7 @@ def get_member_keyword_by_member_key(member_key):
         )
 
         cursor.execute(sql, (member_key, ))
-        row = cursor.fetchone()
+        row = (cursor.fetchall())
         cursor.close()
         print(row)
 
