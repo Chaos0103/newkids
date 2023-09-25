@@ -30,12 +30,12 @@ def get_member_keyword_all(age):
         cursor = connection.cursor(dictionary=True)
 
         sql = (
-            "SELECT m.member_key, k.keyword_id, k.keyword_name, ks.count, m.age"
+            "SELECT m.member_key, k.keyword_id, k.word, m.age "
             "FROM keyword_search as ks "
-            "JOIN keywords as k on ks.keyword_id = k.keyword_id "
-            "JOIN member as m on ks.member_key = m.member_key "
+            "JOIN keyword as k on ks.keyword_id = k.keyword_id "
+            "JOIN members as m on ks.member_key = m.member_key "
             "WHERE m.age = %s "
-            "ORDER BY count "
+            "ORDER BY ks.count "
             "LIMIT 5 "
         )
 
