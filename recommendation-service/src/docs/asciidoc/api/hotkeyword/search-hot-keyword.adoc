@@ -1,0 +1,10 @@
+[[search-hot-keyword]]
+=== 핫이슈 키워드 조회
+
+==== HTTP Request
+include::{snippets}/search-hot-keyword/http-request.adoc[]
+
+
+==== HTTP Response
+include::{snippets}/search-hot-keyword/http-response.adoc[]
+include::{snippets}/search-hot-keyword/response-fields.adoc[]
