@@ -60,6 +60,13 @@ export interface RegistReadArticleApiBody {
 	articleId: number;
 }
 
+// --quiz :: 퀴즈 질문 요청
+export interface QuizQuestionRequestApiBody {
+	no: string;
+	word: string;
+	description: string;
+}
+
 // -- quiz :: 퀴즈 정답 체크 
 export interface QuizAnswerCheckApiBody {
 	answer: string;
