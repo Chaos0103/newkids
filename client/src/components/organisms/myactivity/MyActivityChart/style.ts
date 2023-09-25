@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const MyActivityChartContainer = styled.div`
 	width: 100%;
 	height: 100%;
+	margin-top: 1.5rem;
 
 	.chart-title-text {
 		display: flex;
