@@ -23,13 +23,13 @@ export const joinApi = async (body: JoinApiBody) => {
 
 // 사용자 정보 조회
 export const getMemberInfoApi = async (memberKey: string) => {
-	const response = await instance.get(`/user-service/${memberKey}/info`);
+	const response = await instance.get(`/user-service/api/${memberKey}/info`);
 	return response;
 };
 
 // 회원 탈퇴
 export const withdrawalApi = async (memberKey: string) => {
-	const response = await instance.delete(`/user-service/${memberKey}/withdrawal`);
+	const response = await instance.delete(`/user-service/api/${memberKey}/withdrawal`);
 	return response;
 };
 
@@ -59,6 +59,6 @@ export const checkNicknameApi = async (body: CheckNicknameApiBody) => {
 
 // 비밀번호 변경
 export const patchPasswordApi = async (memberKey: string, body: PatchPasswordApiBody) => {
-	const response = await instance.patch(`/user-service/${memberKey}/password`, body);
+	const response = await instance.patch(`/user-service/api/${memberKey}/password`, body);
 	return response;
 };

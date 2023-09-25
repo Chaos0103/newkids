@@ -17,7 +17,6 @@ eureka:
     service-url:
       defaultZone: http://j9c205.p.ssafy.io:8761/eureka
   instance:
-#    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
     instance-id: ${spring.cloud.client.ip-address}:${spring.application.instance_id:${random.value}}
 
 # spring setting
@@ -39,12 +38,14 @@ spring:
   # jpa setting
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: none
     properties:
       hibernate:
         default_batch_fetch_size: 100
         format_sql: true
     open-in-view: true
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL8Dialect
   # mail
   mail:
     host: smtp.gmail.com

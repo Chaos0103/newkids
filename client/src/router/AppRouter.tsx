@@ -13,6 +13,8 @@ import MyPage from 'pages/MyPage';
 import LoginPage from 'pages/auth/LoginPage';
 import JoinPage from 'pages/auth/JoinPage';
 import MyActivity from 'pages/MyActivity';
+import ArticleDetailPage from 'pages/article/ArticleDetailPage';
+import ArticleFindPage from 'pages/article/ArticleFindPage';
 import PrivateRoute from './PrivateRoute';
 import AuthProvider from './AuthProvider';
 
@@ -28,6 +30,8 @@ function AppRouter() {
 						<Navigation />
 						<Routes>
 							<Route path="/" element={<IndexPage />} />
+							<Route path="/article" element={<ArticleFindPage />} />
+							<Route path="/article/:articleId" element={<ArticleDetailPage />} />
 							<Route path="/auth/login" element={<LoginPage />} />
 							<Route path="/auth/join" element={<JoinPage />} />
 							<Route path="/mypage/info" element={<MyPage />} />

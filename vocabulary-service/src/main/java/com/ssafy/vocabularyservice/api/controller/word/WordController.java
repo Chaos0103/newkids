@@ -23,7 +23,7 @@ import javax.validation.Valid;
 @RestController
 @Slf4j
 @RequiredArgsConstructor
-@RequestMapping("/vocabulary-service/words")
+@RequestMapping("/vocabulary-service/api/words")
 public class WordController {
 
     private final WordService wordService;

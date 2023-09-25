@@ -26,7 +26,7 @@ class ArticleKeywordServiceTest extends IntegrationTestSupport {
     @Test
     void createArticleKeywordWithoutKeyword() {
         //given
-        String articleKey = UUID.randomUUID().toString();
+        Long articleKey = 1L;
 
         //when //then
         assertThatThrownBy(() -> articleKeywordService.createArticleKeyword(articleKey, "홍진식"))
@@ -40,7 +40,7 @@ class ArticleKeywordServiceTest extends IntegrationTestSupport {
         //given
         Keyword keyword = createKeyword();
 
-        String articleKey = UUID.randomUUID().toString();
+        Long articleKey = 34645L;
         String word = "홍진식";
 
         //when

@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { LarrowContentLayout } from 'layouts/common/ContentLayout';
+import { NarrowContentLayout } from 'layouts/common/ContentLayout';
 import { JoinPageLayoutContainer } from './style';
 
 interface IJoinPageLayoutProps {
@@ -8,9 +8,9 @@ interface IJoinPageLayoutProps {
 function JoinPageLayout({ StepView }: IJoinPageLayoutProps) {
 	return (
 		<JoinPageLayoutContainer>
-			<LarrowContentLayout>
+			<NarrowContentLayout>
 				<div className="step-view">{StepView}</div>
-			</LarrowContentLayout>
+			</NarrowContentLayout>
 		</JoinPageLayoutContainer>
 	);
 }

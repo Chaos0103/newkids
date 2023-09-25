@@ -2,7 +2,7 @@ package com.ssafy.keywordservice.api.service.articlekeyword;
 
 import com.ssafy.keywordservice.api.controller.articlekeyword.response.ArticleKeywordResponse;
 import com.ssafy.keywordservice.domain.articlekeyword.ArticleKeyword;
-import com.ssafy.keywordservice.domain.articlekeyword.ArticleKeywordRepository;
+import com.ssafy.keywordservice.domain.articlekeyword.repository.ArticleKeywordRepository;
 import com.ssafy.keywordservice.domain.keyword.Keyword;
 import com.ssafy.keywordservice.domain.keyword.repository.KeywordRepository;
 import lombok.RequiredArgsConstructor;
@@ -20,7 +20,7 @@ public class ArticleKeywordService {
     private final ArticleKeywordRepository articleKeywordRepository;
     private final KeywordRepository keywordRepository;
 
-    public ArticleKeywordResponse createArticleKeyword(String articleKey, String word) {
+    public ArticleKeywordResponse createArticleKeyword(Long articleKey, String word) {
         Keyword findKeyword = getKeywordEntity(word);
 
         ArticleKeyword savedArticleKeyword = saveEntity(articleKey, findKeyword);
@@ -36,7 +36,7 @@ public class ArticleKeywordService {
         return findKeyword.get();
     }
 
-    private ArticleKeyword saveEntity(String articleKey, Keyword findKeyword) {
+    private ArticleKeyword saveEntity(Long articleKey, Keyword findKeyword) {
         ArticleKeyword articleKeyword = ArticleKeyword.builder()
             .articleKey(articleKey)
             .keyword(findKeyword)

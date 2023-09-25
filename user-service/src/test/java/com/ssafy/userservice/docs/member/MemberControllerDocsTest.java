@@ -126,7 +126,7 @@ public class MemberControllerDocsTest extends RestDocsSupport {
             .willReturn(response);
 
         mockMvc.perform(
-                patch("/{memberKey}/password", UUID.randomUUID().toString())
+                patch("/api/{memberKey}/password", UUID.randomUUID().toString())
                     .header("Authorization", "Bearer accessToken")
                     .content(objectMapper.writeValueAsString(request))
                     .contentType(MediaType.APPLICATION_JSON)
@@ -186,7 +186,7 @@ public class MemberControllerDocsTest extends RestDocsSupport {
             .willReturn(response);
 
         mockMvc.perform(
-                patch("/{memberKey}/nickname", UUID.randomUUID().toString())
+                patch("/api/{memberKey}/nickname", UUID.randomUUID().toString())
                     .header("Authorization", "Bearer accessToken")
                     .content(objectMapper.writeValueAsString(request))
                     .contentType(MediaType.APPLICATION_JSON)
@@ -235,7 +235,7 @@ public class MemberControllerDocsTest extends RestDocsSupport {
             .willReturn(true);
 
         mockMvc.perform(
-                delete("/{memberKey}/withdrawal", UUID.randomUUID().toString())
+                delete("/api/{memberKey}/withdrawal", UUID.randomUUID().toString())
                     .header("Authorization", "Bearer accessToken")
                     .content(objectMapper.writeValueAsString(request))
                     .contentType(MediaType.APPLICATION_JSON)

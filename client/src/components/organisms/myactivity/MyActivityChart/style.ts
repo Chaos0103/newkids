@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 
 export const MyActivityChartContainer = styled.div`
+	width: 100%;
+	height: 100%;
+
 	.chart-title-text {
 		display: flex;
 		font-weight: bold;
@@ -16,7 +19,11 @@ export const MyActivityChartContainer = styled.div`
 		}
 	}
 
-	.my-activity-chart-graph {
-		background-color: var(--sub-color-2);
+	.chart-graph-box {
+		width: 100%;
+		height: 100%;
+		canvas {
+			background-color: var(--gray-100);
+		}
 	}
 `;

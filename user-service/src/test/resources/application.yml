@@ -17,7 +17,6 @@ eureka:
     service-url:
       defaultZone: http://j9c205.p.ssafy.io:8761/eureka
   instance:
-    #    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
     instance-id: ${spring.cloud.client.ip-address}:${spring.application.instance_id:${random.value}}
 
 # spring setting
@@ -29,6 +28,10 @@ spring:
     port: 5672
     username: guest
     password: guest
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:testdb
+    username: sa
   redis:
     host: 127.0.0.1
     port: 6379

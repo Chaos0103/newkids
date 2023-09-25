@@ -1,8 +1,9 @@
 [[search-article]]
-== 뉴스 기사 조회
+=== 뉴스 기사 조회
 
 ==== HTTP Request
 include::{snippets}/search-article/http-request.adoc[]
+include::{snippets}/search-article/request-parameters.adoc[]
 
 
 ==== HTTP Response

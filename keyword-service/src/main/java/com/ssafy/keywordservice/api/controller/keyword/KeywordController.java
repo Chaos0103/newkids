@@ -12,11 +12,17 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @RestController
 @Slf4j
-@RequestMapping("/keyword-service")
+@RequestMapping("/keyword-service/api")
 public class KeywordController {
 
     private final KeywordService keywordService;
 
+    /**
+     * 키워드 등록 API
+     *
+     * @param request 등록할 키워드 정보
+     * @return 저장된 키워드 정보
+     */
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public ApiResponse<KeywordResponse> createKeyword(@RequestBody CreatedKeywordRequest request) {
