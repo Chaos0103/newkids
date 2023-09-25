@@ -183,7 +183,7 @@ def get_target_member_info(member_key):
     target_member = get_member_keyword_by_member_key(member_key)
     target_member = {'member_key': target_member['member_key'],
                      'keywords': [{'keyword_id': target_member['keyword_id'], 'word': target_member['word']}]}
-    logging.debug(target_member)
+    logging.debug(f"target_member = {target_member}")
 
     return target_member
 
