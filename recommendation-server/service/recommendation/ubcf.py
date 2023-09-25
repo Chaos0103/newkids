@@ -1,140 +1,38 @@
+import logging
 import random
 import time
 from collections import defaultdict
 
-from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
+import pandas as pd
+from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
-from dao.article_dao import get_article_indices_by_member_key
-from dao.member_dao import get_member_id_by_member_key, get_members_all
+from dao.article_dao import get_article_indices_by_member_key, get_articles
+from dao.keyword_dao import get_member_keyword_all, get_member_keyword_by_member_key
+from dao.member_dao import get_member_id_by_member_key
 
 
-def get_members_interests():
+def get_members_interests(age):
     """
     회원별 관심 키워드 조회 (현재는 더미데이터 생성 함수)
     추후 쿼리 호출 함수로 변경해야함
-    
+
     :return: 회원별 관심 키워드 리스트
     """
+    member_keyword_all = get_member_keyword_all(age)
+    # print(type(member_keyword_all))
+    # print(member_keyword_all)
 
-    # 사용자 수 (더미데이터)
-    num_members = 1000000
-    num_members = 500000
-    num_members = 100000
-    # 가능한 관심사 (더미데이터)
-    possible_interests = [
-        {"id": 1, "name": "Algorithm"},
-        {"id": 2, "name": "Data Structure"},
-        {"id": 3, "name": "Computer Architecture"},
-        {"id": 4, "name": "Operating System"},
-        {"id": 5, "name": "Database Management"},
-        {"id": 6, "name": "Software Development"},
-        {"id": 7, "name": "Networking"},
-        {"id": 8, "name": "Cybersecurity"},
-        {"id": 9, "name": "Machine Learning"},
-        {"id": 10, "name": "Artificial Intelligence"},
-        {"id": 11, "name": "Web Development"},
-        {"id": 12, "name": "Mobile App Development"},
-        {"id": 13, "name": "Cloud Computing"},
-        {"id": 14, "name": "IoT (Internet of Things)"},
-        {"id": 15, "name": "Data Science"},
-        {"id": 16, "name": "Robotics"},
-        {"id": 17, "name": "Game Development"},
-        {"id": 18, "name": "Computer Graphics"},
-        {"id": 19, "name": "Human-Computer Interaction"},
-        {"id": 20, "name": "Quantum Computing"},
-        {"id": 21, "name": "Software Engineering"},
-        {"id": 22, "name": "Programming Language"},
-        {"id": 23, "name": "Database Design"},
-        {"id": 24, "name": "Data Analysis"},
-        {"id": 25, "name": "Parallel Computing"},
-        {"id": 26, "name": "Network Security"},
-        {"id": 27, "name": "Cloud Security"},
-        {"id": 28, "name": "Data Mining"},
-        {"id": 29, "name": "Computer Vision"},
-        {"id": 30, "name": "Natural Language Processing"},
-        {"id": 31, "name": "Deep Learning"},
-        {"id": 32, "name": "Computer Ethics"},
-        {"id": 33, "name": "Information Retrieval"},
-        {"id": 34, "name": "Computer Hardware"},
-        {"id": 35, "name": "Embedded Systems"},
-        {"id": 36, "name": "Software Testing"},
-        {"id": 37, "name": "Distributed Systems"},
-        {"id": 38, "name": "Computer Science Education"},
-        {"id": 39, "name": "Mobile Computing"},
-        {"id": 40, "name": "Computer Networks"},
-        {"id": 41, "name": "Operating System Design"},
-        {"id": 42, "name": "Computer Security"},
-        {"id": 43, "name": "Computer Forensics"},
-        {"id": 44, "name": "Cloud Computing Security"},
-        {"id": 45, "name": "Quantum Cryptography"},
-        {"id": 46, "name": "Software Development Methodologies"},
-        {"id": 47, "name": "Cryptography"},
-        {"id": 48, "name": "Wireless Networks"},
-        {"id": 49, "name": "Computer Simulation"},
-        {"id": 50, "name": "Computer Animation"},
-        {"id": 51, "name": "Computational Biology"},
-        {"id": 52, "name": "Bioinformatics"},
-        {"id": 53, "name": "Computer Music"},
-        {"id": 54, "name": "Humanoid Robotics"},
-        {"id": 55, "name": "Computer Ethics"},
-        {"id": 56, "name": "Computer-Assisted Design (CAD)"},
-        {"id": 57, "name": "Virtual Reality"},
-        {"id": 58, "name": "Augmented Reality"},
-        {"id": 59, "name": "Quantum Programming"},
-        {"id": 60, "name": "Computer Forensics"},
-        {"id": 61, "name": "Blockchain Technology"},
-        {"id": 62, "name": "Data Warehousing"},
-        {"id": 63, "name": "3D Printing"},
-        {"id": 64, "name": "Computer Vision"},
-        {"id": 65, "name": "Computational Linguistics"},
-        {"id": 66, "name": "Natural Language Generation"},
-        {"id": 67, "name": "Humanoid Robotics"},
-        {"id": 68, "name": "Autonomous Vehicles"},
-        {"id": 69, "name": "Quantum Algorithms"},
-        {"id": 70, "name": "Data Engineering"},
-        {"id": 71, "name": "Machine Vision"},
-        {"id": 72, "name": "Quantum Machine Learning"},
-        {"id": 73, "name": "Data Analytics"},
-        {"id": 74, "name": "Computerized Modeling"},
-        {"id": 75, "name": "Information Security"},
-        {"id": 76, "name": "Human-Computer Interaction Design"},
-        {"id": 77, "name": "Embedded Software"},
-        {"id": 78, "name": "Parallel Processing"},
-        {"id": 79, "name": "Computer Algebra Systems"},
-        {"id": 80, "name": "Computational Physics"},
-        {"id": 81, "name": "Quantum Information Theory"},
-        {"id": 82, "name": "Algorithmic Trading"},
-        {"id": 83, "name": "Computer Vision Algorithms"},
-        {"id": 84, "name": "Quantum Computing Hardware"},
-        {"id": 85, "name": "3D Graphics Programming"},
-        {"id": 86, "name": "Quantum Cryptography"},
-        {"id": 87, "name": "Bioinformatics"},
-        {"id": 88, "name": "Computational Neuroscience"},
-        {"id": 89, "name": "Digital Signal Processing"},
-        {"id": 90, "name": "Quantum Software Development"},
-        {"id": 91, "name": "Humanoid Robot Control"},
-        {"id": 92, "name": "Quantum Networking"},
-        {"id": 93, "name": "Cognitive Computing"},
-        {"id": 94, "name": "Cyber-Physical Systems"},
-        {"id": 95, "name": "Computer Music Composition"},
-        {"id": 96, "name": "Quantum Robotics"},
-        {"id": 97, "name": "Computational Chemistry"},
-        {"id": 98, "name": "Cybersecurity Governance"},
-        {"id": 99, "name": "Computer Ethics and Society"},
-        {"id": 100, "name": "Quantum Communication"},
-    ]
+    df = pd.DataFrame(member_keyword_all)
 
-    # 데이터 생성
-    members_interests = []
-    for member_key in range(1, num_members + 1):
-        num_interests = random.randint(1, 5)  # 최대 10개의 관심사
-        num_interests = 10
-        member_interests = random.sample(possible_interests, num_interests)
+    grouped = df.groupby('member_key')
+    result_list = []
 
-        members_interests.append({"member_key": f'memberKey{member_key}', "interests": member_interests})
+    for member_key, group in grouped:
+        keywords_list = group[['keyword_id', 'word']].to_dict(orient='records')
+        result_list.append({'member_key': member_key, 'keywords': keywords_list})
 
-    return members_interests
+    return result_list
 
 
 def get_members_tfidf_matrix(members_interests):
@@ -145,11 +43,11 @@ def get_members_tfidf_matrix(members_interests):
     :return: 회원별 관심 키워드 TF-IDF 벡터
     """
     # TF-IDF 벡터화를 위해 관심 키워드를 텍스트로 변환
-    member_interest_texts = [" ".join([interest['name'] for interest in member['interests']]) for member in
+    member_interest_texts = [" ".join([interest['word'] for interest in member['keywords']]) for member in
                              members_interests]
 
     # TF-IDF 벡터화
-    tfidf_vectorizer = CountVectorizer()
+    tfidf_vectorizer = TfidfVectorizer()
 
     return tfidf_vectorizer.fit_transform(member_interest_texts)
 
@@ -165,7 +63,7 @@ def get_ubcf_recommendations(member_key):
     start = time.time()
     members_interests = get_members_interests()
     end = time.time()
-    print(f"init running time: {end - start: .5f}")
+    logging.debug(f"init running time: {end - start: .5f}")
 
     members_tfidf_matrix = get_members_tfidf_matrix(members_interests)
 
@@ -196,10 +94,10 @@ def get_ubcf_recommendations(member_key):
         recommendations.extend(similar_member_interests)
 
     # 중복 제거
-    return list({interest['name']: interest for interest in recommendations}.values())
+    return list({interest['word']: interest for interest in recommendations}.values())
 
 
-def get_most_similar_member(member_key):
+def get_most_similar_member(member_key, age):
     """
     현재 사용자와 가장 유사한 사용자가 최근 읽은 기사 추천
     
@@ -207,7 +105,7 @@ def get_most_similar_member(member_key):
     :return: 가장 유사한 사용자가 최근 읽은 기사 중 현재 사용자가 읽지 않은 기사
     """
     # 회원 데이터 조회
-    members_interests = get_members_interests()
+    members_interests = get_members_interests(age)
     members_tfidf_matrix = get_members_tfidf_matrix(members_interests)
 
     # 코사인 유사도 계산 (사용자 간의 유사도)
@@ -229,9 +127,9 @@ def get_most_similar_member(member_key):
 
     # 가장 유사한 사용자의 회원 고유값을 사용해 최근 읽은 기사 조회 후 반환
     read_indices = get_article_indices_by_member_key(member_key)
-    print(read_indices)
+    logging.debug(read_indices)
     article_indices = get_article_indices_by_member_key(most_similar_member_key)
-    print(article_indices)
+    logging.debug(article_indices)
 
     read_indices = [id[0] for id in read_indices]
     article_indices = [id[0] for id in article_indices]
@@ -258,54 +156,110 @@ def get_most_similar_member(member_key):
 # # 결과 출력: 추천 관심사 목록 출력
 # print("Recommended Interests:")
 # for interest in recommendations:
-#     print(f"- {interest['name']}")
+#     print(f"- {interest['word']}")
 #
 # target_user_index = get_member_id_by_member_key('memberKey1')[0] - 1
 # members_interests = get_members_interests()
 # # 결과 출력: 선택한 사용자의 관심사 출력
 # print(f"\nUser {members_interests[target_user_index]['member_key']}'s Interests:")
-# for interest in members_interests[target_user_index]['interests']:
-#     print(f"- {interest['name']}")
-
-print("===================== jacaard =======================")
+# for interest in members_interests[target_user_index]['keywords']:
+#     print(f"- {interest['word']}")
 
 
 def jaccard_similarity(set1, set2):
+    """
+    자카드 유사도 계산
+
+    :param set1: 집합 1
+    :param set2: 집합 2
+    :return: 두 집합 간의 자카드 유사도
+    """
     intersection = len(set1.intersection(set2))
     union = len(set1.union(set2))
     return intersection / union if union != 0 else 0.0
 
 
-# 더미 데이터 가져오기
-members_interests = get_members_interests()
+def get_target_member_info(member_key):
+    target_member = get_member_keyword_by_member_key(member_key)
+    target_member = {'member_key': target_member['member_key'],
+                     'keywords': [{'keyword_id': target_member['keyword_id'], 'word': target_member['word']}]}
+    logging.debug(target_member)
 
-# 자카드 유사도 계산 대상 회원 선택 (예: 첫 번째 회원)
-start = time.time()
-target_member = members_interests[0]
-target_interests = set(item['name'] for item in target_member['interests'])
+    return target_member
 
-# 자카드 유사도 계산 및 결과 저장
-similarities = defaultdict(float)
-for member in members_interests:
-    if member == target_member:
-        continue
-    member_interests = set(item['name'] for item in member['interests'])
-    similarity = jaccard_similarity(target_interests, member_interests)
-    similarities[member['member_key']] = similarity
-end = time.time()
-print(f"jaccard running time: {end - start: .5f}")
 
-# 자카드 유사도가 가장 높은 상위 N명 추천
-top_n = 5
-sorted_recommendations = sorted(similarities.items(), key=lambda x: x[1], reverse=True)[:top_n]
+def calculate_similarity(members_interests, target_member):
+    """
+    현재 회원과 전체 회원 간의 자카드 유사도 계산
+    
+    :param members_interests: 회원별 관심 키워드 릭스트
+    :param target_member: 현재 회원
+    :return: 현재 회원과 전체 회원 간의 자카드 유사도 계산 결과
+    """
+    target_interests = set(item['word'] for item in target_member['keywords'])
 
-# 추천 결과 출력
-print(f"{target_member['member_key']}의 관심사 : {target_member['interests']}")
-print(f"{target_member['member_key']}의 관심사와 유사한 회원 추천:")
-for member_key, similarity in sorted_recommendations:
-    print(f"회원: {member_key}, 유사도: {similarity}")
-    member_idx = get_member_id_by_member_key(member_key)[0] - 1
-    print(members_interests[member_idx])
+    similarities = defaultdict(float)
+    for member in members_interests:
+        if member['member_key'] == target_member['member_key']:
+            continue
+        member_interests = set(item['word'] for item in member['keywords'])
+        similarity = jaccard_similarity(target_interests, member_interests)
+        similarities[member['member_key']] = similarity
+    return similarities
 
-article_indices = get_article_indices_by_member_key(sorted_recommendations[0][0])
-print(article_indices)
+
+def create_recommendations(similarities, target_member):
+    """
+    자카드 유사도를 통한 추천 기사 리스트 생성
+    
+    :param similarities: 사용자별 유사도 리스트
+    :param target_member: 현재 사용자
+    :return:자카도 유사도를 통한 추천 기사 리스트
+    """
+    # 자카드 유사도가 가장 높은 상위 N명 추천
+    top_n = 5
+    sorted_recommendations = sorted(similarities.items(), key=lambda x: x[1], reverse=True)[:top_n]
+
+    # 추천 결과 생성
+    logging.debug(f"{target_member['member_key']}의 관심사 : {target_member['keywords']}")
+    logging.debug(f"{target_member['member_key']}의 관심사와 유사한 회원 추천:")
+    for member_key, similarity in sorted_recommendations:
+        if similarity > 0:
+            print(f"회원: {member_key}, 유사도: {similarity}")
+            member_idx = get_member_id_by_member_key(member_key)[0] - 1
+
+    read_indices = get_article_indices_by_member_key(target_member['member_key'])
+    article_indices = get_article_indices_by_member_key(sorted_recommendations[0][0])
+
+    read_indices = [id[0] for id in read_indices]
+    article_indices = [id[0] for id in article_indices]
+
+    unread_indices = [article_id for article_id in article_indices if article_id not in read_indices]
+
+    articles = get_articles(unread_indices)
+    return articles
+
+
+def get_jaccard_recommendation(member_key, age):
+    """
+    자카드 유사도를 사용한 추천 기사 리스트 생성
+
+    :param member_key: 회원 고유값
+    :param age: 연령
+    :return: 자카드 유사도를 사용한 추천 기사 리스트
+    """
+    members_interests = get_members_interests(age)
+
+    start = time.time()
+    # 자카드 유사도 계산 대상 회원 데이터 조회
+    target_member = get_target_member_info(member_key)
+
+    # calculate_similarity
+    # 자카드 유사도 계산 및 결과 저장
+    similarities = calculate_similarity(members_interests, target_member)
+    end = time.time()
+    logging.debug(f"jaccard running time: {end - start: .5f}")
+
+    return create_recommendations(similarities, target_member)
+
+# print(get_jaccard_recommendation('memberKey23', 10))
