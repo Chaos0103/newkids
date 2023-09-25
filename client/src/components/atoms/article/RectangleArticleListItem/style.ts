@@ -1,9 +1,18 @@
 import styled from 'styled-components';
 
 export const RectangleArticleListItemContainer = styled.div`
+	border-radius: var(--radius-m);
 	display: flex;
 	flex-direction: row;
 	gap: 1rem;
+	color: var(--gray-500);
+	transition: all 0.1s;
+
+	&:hover {
+		background-color: var(--gray-200);
+		cursor: pointer;
+		transform: scale(1.05);
+	}
 
 	img {
 		border-radius: var(--radius-m);

@@ -1,4 +1,5 @@
 import { IArticle } from 'types/article';
+import { IKeyword } from 'types/keyword';
 
 export const DUMMY_ARTICLES_5: IArticle[] = [
 	{
@@ -114,5 +115,28 @@ export const DUMMY_WORD_CLOUD = [
 	{
 		text: 'SSAFY',
 		value: 17,
+	},
+];
+
+export const DUMMY_KEYWORDS: IKeyword[] = [
+	{
+		word: '전인혁',
+		keywordId: 64,
+	},
+	{
+		word: '돼지',
+		keywordId: 11,
+	},
+	{
+		word: '홍진식',
+		keywordId: 16,
+	},
+	{
+		word: '더글로리',
+		keywordId: 17,
+	},
+	{
+		word: 'SSAFY',
+		keywordId: 17,
 	},
 ];

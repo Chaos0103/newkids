@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { LarrowContentLayout } from 'layouts/common/ContentLayout';
+import { NarrowContentLayout } from 'layouts/common/ContentLayout';
 import { LoginPageLayoutContainer } from './style';
 
 interface ILoginPageLayoutProps {
@@ -11,13 +11,13 @@ function LoginPageLayout({ Title, LoginForm, Footer }: ILoginPageLayoutProps) {
 	return (
 		<LoginPageLayoutContainer>
 			<div className="title">
-				<LarrowContentLayout>{Title}</LarrowContentLayout>
+				<NarrowContentLayout>{Title}</NarrowContentLayout>
 			</div>
 			<div className="login-form">
-				<LarrowContentLayout>{LoginForm}</LarrowContentLayout>
+				<NarrowContentLayout>{LoginForm}</NarrowContentLayout>
 			</div>
 			<div className="footer">
-				<LarrowContentLayout>{Footer}</LarrowContentLayout>
+				<NarrowContentLayout>{Footer}</NarrowContentLayout>
 			</div>
 		</LoginPageLayoutContainer>
 	);
