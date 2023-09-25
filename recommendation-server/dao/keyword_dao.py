@@ -45,7 +45,10 @@ def get_member_keyword_all(age):
     except Exception as e:
         print(f"Exception={e}")
     finally:
-        connection.close()
+        if cursor:
+            cursor.close()
+        if connection:
+            connection.close()
 
     return row
 
@@ -75,11 +78,14 @@ def get_member_keyword_by_member_key(member_key):
         )
 
         cursor.execute(sql, (member_key, ))
-        row = cursor.fetchone()
+        row = (cursor.fetchall())
+        cursor.close()
+        print(row)
 
     except Exception as e:
         print(f"Exception={e}")
     finally:
-        connection.close()
+        if connection:
+            connection.close()
 
     return row

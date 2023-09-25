@@ -181,11 +181,20 @@ def jaccard_similarity(set1, set2):
 
 def get_target_member_info(member_key):
     target_member = get_member_keyword_by_member_key(member_key)
-    target_member = {'member_key': target_member['member_key'],
-                     'keywords': [{'keyword_id': target_member['keyword_id'], 'word': target_member['word']}]}
-    logging.debug(target_member)
 
-    return target_member
+    # 이전 코드에서는 하나의 키워드만 고려했으므로, 이제 여러 키워드를 고려하기 위해 리스트를 초기화합니다.
+    keywords_list = []
+
+    # 모든 키워드에 대해 반복하여 새로운 데이터 구조에 추가합니다.
+    for member in target_member:
+        keyword_info = {'keyword_id': member['keyword_id'], 'word': member['word']}
+        keywords_list.append(keyword_info)
+
+    # 새로운 데이터 구조를 생성합니다.
+    new_target_member = {'member_key': member_key, 'keywords': keywords_list}
+    logging.debug(f"target_member = {new_target_member}")
+
+    return new_target_member
 
 
 def calculate_similarity(members_interests, target_member):

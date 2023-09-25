@@ -30,7 +30,7 @@ def get_article_indices():
             "SELECT `article_id` "
             "FROM `article` "
             "ORDER BY `created_date` DESC "
-            "LIMIT 1000"
+            # "LIMIT 1000"
         )
 
         cursor.execute(sql)
