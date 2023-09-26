@@ -8,14 +8,13 @@ import { QuizQuestionRequestApiBody } from 'types/api';
 import { GameQuestionContainer } from './style';
 
 interface IGameQuestionProps {
-	setStep: Dispatch<SetStateAction<number>>;
 	setStage: Dispatch<SetStateAction<number>>;
 	setNum: Dispatch<SetStateAction<number>>;
 	num: number;
 }
 
 function GameQuestion(props: IGameQuestionProps) {
-	const { setNum, setStep, setStage, num } = props;
+	const { setNum, setStage, num } = props;
 	const [question, setQuestion] = useState<QuizQuestionRequestApiBody[]>(DUMMY_QUIZS);
 	const [answer, setAnswer] = useState('');
 
@@ -36,7 +35,6 @@ function GameQuestion(props: IGameQuestionProps) {
 					num={num}
 					setNum={setNum}
 					setStage={setStage}
-					setStep={setStep}
 					imageUrls="https://ifh.cc/g/Rkn9J6.jpg"
 					imageHeights={200}
 					titles={answer === question[0].word ? '정답입니다' : '오답입니다.'}

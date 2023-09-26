@@ -5,6 +5,7 @@ import PageLayout from 'layouts/common/PageLayout';
 import GameStagePageLayout from 'layouts/page/GameStagePageLayout';
 import GameQuestionThree from 'components/organisms/game/GameQuestionThree';
 import GameQuestionFour from 'components/organisms/game/GameQuestionFour';
+import GameQuestionFive from 'components/organisms/game/GameQuestionFive';
 import GameResult from 'components/organisms/game/GameResult';
 
 function GameStagePage() {
@@ -18,22 +19,26 @@ function GameStagePage() {
 	useEffect(() => {
 		switch (stage) {
 			case 0: {
-				setStageView(<GameQuestion num={num} setNum={setNum} setStep={setStep} setStage={setStage} />);
+				setStageView(<GameQuestion num={num} setNum={setNum} setStage={setStage} />);
 				break;
 			}
 			case 1: {
-				setStageView(<GameQuestionTwo num={num} setNum={setNum} setStep={setStep} setStage={setStage} />);
+				setStageView(<GameQuestionTwo num={num} setNum={setNum} setStage={setStage} />);
 				break;
 			}
 			case 2: {
-				setStageView(<GameQuestionThree num={num} setNum={setNum} setStep={setStep} setStage={setStage} />);
+				setStageView(<GameQuestionThree num={num} setNum={setNum} setStage={setStage} />);
 				break;
 			}
 			case 3: {
-				setStageView(<GameQuestionFour num={num} setNum={setNum} setStep={setStep} setStage={setStage} />);
+				setStageView(<GameQuestionFour num={num} setNum={setNum} setStage={setStage} />);
 				break;
 			}
 			case 4: {
+				setStageView(<GameQuestionFive num={num} setNum={setNum} setStage={setStage} />);
+				break;
+			}
+			case 5: {
 				setStageView(<GameResult setStep={setStep} />);
 				break;
 			}

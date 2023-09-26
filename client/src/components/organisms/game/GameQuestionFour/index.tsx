@@ -9,19 +9,17 @@ import { GameQuestionFourContainer } from './style';
 
 interface IGameQuestionFourProps {
 	num: number;
-	setStep: Dispatch<SetStateAction<number>>;
 	setStage: Dispatch<SetStateAction<number>>;
 	setNum: Dispatch<SetStateAction<number>>;
 }
 
 function GameQuestionFour(props: IGameQuestionFourProps) {
-	const { setNum, setStep, setStage, num } = props;
+	const { setNum, setStage, num } = props;
 	const [question, setQuestion] = useState<QuizQuestionRequestApiBody[]>(DUMMY_QUIZS);
 	const [answer, setAnswer] = useState('');
 
 	useEffect(() => {
 		setNum(3);
-		setStep(3);
 		setQuestion(DUMMY_QUIZS);
 	});
 
@@ -37,7 +35,6 @@ function GameQuestionFour(props: IGameQuestionFourProps) {
 					num={num}
 					setNum={setNum}
 					setStage={setStage}
-					setStep={setStep}
 					imageUrls="https://ifh.cc/g/Rkn9J6.jpg"
 					imageHeights={200}
 					titles={answer === question[3].word ? '정답입니다' : '오답입니다.'}

@@ -15,9 +15,9 @@ import JoinPage from 'pages/auth/JoinPage';
 import MyActivity from 'pages/MyActivity';
 import ArticleDetailPage from 'pages/article/ArticleDetailPage';
 import ArticleFindPage from 'pages/article/ArticleFindPage';
+import MyCollection from 'pages/MyCollection';
 import PrivateRoute from './PrivateRoute';
 import AuthProvider from './AuthProvider';
-import MyCollection from 'pages/MyCollection';
 
 function AppRouter() {
 	return (

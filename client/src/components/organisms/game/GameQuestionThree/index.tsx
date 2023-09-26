@@ -9,13 +9,12 @@ import { GameQuestionThreeContainer } from './style';
 
 interface IGameQuestionThreeProps {
 	num: number;
-	setStep: Dispatch<SetStateAction<number>>;
 	setStage: Dispatch<SetStateAction<number>>;
 	setNum: Dispatch<SetStateAction<number>>;
 }
 
 function GameQuestionThree(props: IGameQuestionThreeProps) {
-	const { num, setNum, setStep, setStage } = props;
+	const { num, setNum, setStage } = props;
 	const [question, setQuestion] = useState<QuizQuestionRequestApiBody[]>(DUMMY_QUIZS);
 	const [answer, setAnswer] = useState('');
 
@@ -36,7 +35,6 @@ function GameQuestionThree(props: IGameQuestionThreeProps) {
 					num={num}
 					setNum={setNum}
 					setStage={setStage}
-					setStep={setStep}
 					imageUrls="https://ifh.cc/g/Rkn9J6.jpg"
 					imageHeights={200}
 					titles={answer === question[2].word ? '정답입니다' : '오답입니다.'}
