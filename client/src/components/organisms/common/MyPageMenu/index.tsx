@@ -1,5 +1,5 @@
 import React from 'react';
-import { MypageMenus } from 'constants/mypage';
+import { MYPAGE_MENUS } from 'constants/mypage';
 import MypageMenuItem from 'components/atoms/common/MypageMenuItem';
 import { MyPageMenuContainer } from './style';
 
@@ -7,7 +7,7 @@ function MyPageMenu() {
 	return (
 		<MyPageMenuContainer>
 			<div className="mypage-container">
-				{MypageMenus.map((e) => (
+				{MYPAGE_MENUS.map((e) => (
 					<MypageMenuItem key={e.key} menu={e} />
 				))}
 			</div>
