@@ -4,12 +4,23 @@ export const UserPasswordChangeContainer = styled.div`
 	.change-password-form {
 		width: 100%;
 		height: 100%;
-		gap: 3rem;
+		margin-top: 2rem;
+		display: flex;
+		flex-direction: column;
 
-		.password-input {
+		.password-container {
+			width: 100%;
 			display: flex;
 			justify-content: center;
-			margin-bottom: 2rem;
+			align-items: center;
+			flex-direction: column;
+
+			.password-input {
+				width: 80%;
+				> * {
+					margin-bottom: 1.5rem;
+				}
+			}
 		}
 
 		.change-password-title {
@@ -42,6 +53,7 @@ export const UserPasswordChangeContainer = styled.div`
 			display: flex;
 			justify-content: center;
 			gap: 20px;
+			margin-top: 1rem;
 			.button-container {
 				width: 80%;
 				display: flex;
