@@ -14,11 +14,10 @@ function ModalComponent(props: IModalComponentProps) {
 	};
 
 	return (
-		// <ModalComponentContainer onClick={onClose} isOpen={isOpen}>
 		<ModalComponentContainer onClick={closeModal}>
-			<button className="modal-body" type="button" onClick={(e) => e.stopPropagation()}>
+			<div className="modal-body" onClick={(e) => e.stopPropagation()} role="presentation">
 				{children}
-			</button>
+			</div>
 		</ModalComponentContainer>
 	);
 }

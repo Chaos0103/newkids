@@ -1,11 +1,20 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Input from 'components/atoms/common/Input';
 import { ReactComponent as AgeIcon } from 'assets/icons/age.svg';
+import { useRecoilState } from 'recoil';
+import { MemberInfoState } from 'store/auth';
 import { MypageAgeWrapper } from './style';
 
 function MypageAge() {
-	const [age, setAge] = useState('30');
+	const [memberInfo] = useRecoilState(MemberInfoState);
+	const [age, setAge] = useState(0);
+	// console.log(memberInfo);
 
+	useEffect(() => {
+		if (memberInfo) {
+			setAge(memberInfo.age);
+		}
+	}, []);
 	return (
 		<MypageAgeWrapper>
 			<h3>나이</h3>

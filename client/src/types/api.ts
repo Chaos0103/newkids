@@ -42,6 +42,11 @@ export interface PatchPasswordApiBody {
 	newPwd: string;
 }
 
+// -- auth :: 닉네임 변경
+export interface PatchNicknameApiBody {
+	newNickname: string;
+}
+
 // -- word :: 단어 등록
 export interface RegistWordApiBody {
 	wordKey: string;
