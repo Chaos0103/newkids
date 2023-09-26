@@ -3,19 +3,21 @@ import logging as log
 from scipy.sparse import csr_matrix
 from sklearn.metrics.pairwise import cosine_similarity
 
-from dao.article_dao import get_article_ids
+from dao.article_dao import get_article_indices
 from dao.tf_idf_weights_dao import get_article_tf_idf
 
 # init logging
 log.basicConfig(level=log.DEBUG)
 
 
-def get_article_indices():
-    article_ids = get_article_ids()
-    return [id[0] for id in article_ids]
-
-
 def get_tfidf_matrix(article_ids):
+    """
+    기사 식별키 리스트에 해당하는 TF-IDF 가중치 벡터 값 조회
+    
+    :param article_ids: 기사 식별키 리스트 
+    :return: 기사 식별키 리스트에 해당하는 TF-IDF 가중치 벡터 리스트
+    """
+
     tf_idf_matrix = get_article_tf_idf(article_ids)
     log.debug(len(tf_idf_matrix))
 
@@ -32,16 +34,16 @@ def get_recommend_ids(article_id):
     """
     코사인 유사도를 사용한 기사 추천
 
-    :param tf_idf_matrix: TF-IDF 벡터행렬
+    :param: article_id : 현재 읽고 있는 기사 식별키
     :return: 유사도가 높은 기사 제목 리스트
     """
-    log.debug("CbfRecommendation#getRecommendation called")
+    log.debug("cbf#getRecommendation called")
 
     # 1. 기사 PK 리스트 조회
-    article_ids = get_article_indices()
+    article_ids = [id[0] for id in get_article_indices()]
 
     # 2. 기사 PK 리스트에 해당하는 TF-IDF 가중치 값만 조회 후 csr_matrix로 변환
-    tf_idf_matrix = get_tf_idf_matrix(article_ids)
+    tf_idf_matrix = get_tfidf_matrix(article_ids)
 
     # 3. TF-IDF 가중치를 사용해서 코사인 유사도 계산
     cosine_sim = cosine_similarity(tf_idf_matrix[1], tf_idf_matrix)

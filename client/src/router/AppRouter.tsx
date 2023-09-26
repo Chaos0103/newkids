@@ -17,6 +17,7 @@ import ArticleDetailPage from 'pages/article/ArticleDetailPage';
 import ArticleFindPage from 'pages/article/ArticleFindPage';
 import PrivateRoute from './PrivateRoute';
 import AuthProvider from './AuthProvider';
+import MyCollection from 'pages/MyCollection';
 
 function AppRouter() {
 	return (
@@ -36,6 +37,7 @@ function AppRouter() {
 							<Route path="/auth/join" element={<JoinPage />} />
 							<Route path="/mypage/info" element={<MyPage />} />
 							<Route path="/mypage/activity" element={<MyActivity />} />
+							<Route path="/mypage/collection" element={<MyCollection />} />
 
 							<Route path="/" element={<PrivateRoute />}>
 								<Route path="/game" element={<GamePage />} />
