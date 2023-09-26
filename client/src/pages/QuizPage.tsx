@@ -9,7 +9,10 @@ import QuizWords from 'components/organisms/quiz/QuizWords';
 
 function QuizPage() {
 	const [step, setStep] = useState(0);
+	const [score, setScore] = useState(0);
 	const [stepView, setStepView] = useState(<div />);
+
+	console.log(`현재 step 상태 : ${step}`);
 
 	useEffect(() => {
 		switch (step) {
@@ -26,7 +29,7 @@ function QuizPage() {
 				break;
 			}
 			case 3: {
-				setStepView(<QuizResult setStep={setStep} />);
+				setStepView(<QuizResult score={score} setScore={setScore} setStep={setStep} />);
 				break;
 			}
 			case 4: {
@@ -39,6 +42,7 @@ function QuizPage() {
 			}
 		}
 	}, [step]);
+
 	return (
 		<PageLayout>
 			<QuizPageLayout StepView={stepView} />
