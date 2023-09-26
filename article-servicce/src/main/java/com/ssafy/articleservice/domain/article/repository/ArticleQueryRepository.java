@@ -48,6 +48,7 @@ public class ArticleQueryRepository {
                 article.title,
                 article.subTitle,
                 article.writer,
+                article.content,
                 article.publishedDate,
                 article.thumbnailImg
             ))

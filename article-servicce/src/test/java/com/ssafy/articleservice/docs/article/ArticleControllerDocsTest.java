@@ -9,7 +9,6 @@ import com.ssafy.articleservice.docs.RestDocsSupport;
 import com.ssafy.articleservice.domain.article.repository.dto.ArticleSearchCond;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.mockito.BDDMockito;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -17,10 +16,10 @@ import org.springframework.restdocs.payload.JsonFieldType;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.UUID;
 
 import static org.mockito.ArgumentMatchers.anyLong;
-import static org.mockito.BDDMockito.*;
+import static org.mockito.BDDMockito.any;
+import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.operation.preprocess.Preprocessors.preprocessResponse;
@@ -30,7 +29,6 @@ import static org.springframework.restdocs.payload.PayloadDocumentation.response
 import static org.springframework.restdocs.request.RequestDocumentation.parameterWithName;
 import static org.springframework.restdocs.request.RequestDocumentation.requestParameters;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -53,6 +51,7 @@ class ArticleControllerDocsTest extends RestDocsSupport {
             .title("오늘 점심을 뭐먹을까...")
             .subTitle("먹고싶지 않다")
             .writer("임우택")
+            .content("배가 너무너무너무 고파요")
             .publishedDate(LocalDateTime.now())
             .thumbnailImg("http://lunch.png")
             .build();
@@ -107,6 +106,8 @@ class ArticleControllerDocsTest extends RestDocsSupport {
                         .description("기사 부제목"),
                     fieldWithPath("data.content[].writer").type(JsonFieldType.STRING)
                         .description("기사 작성자"),
+                    fieldWithPath("data.content[].content").type(JsonFieldType.STRING)
+                        .description("기사 내용 (100자 제한)"),
                     fieldWithPath("data.content[].publishedDate").type(JsonFieldType.ARRAY)
                         .description("기사 작성일"),
                     fieldWithPath("data.content[].thumbnailImg").type(JsonFieldType.STRING)
