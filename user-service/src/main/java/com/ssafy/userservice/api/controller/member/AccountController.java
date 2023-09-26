@@ -29,7 +29,7 @@ public class AccountController {
      * @param memberKey 조회할 회원 고유키
      * @return 200 조회된 계정 정보
      */
-    @GetMapping("/{memberKey}/info")
+    @GetMapping("/api/{memberKey}/info")
     public ApiResponse<MemberResponse> getMemberInfo(@PathVariable String memberKey) {
         log.debug("call AccountController#getMemberInfo");
         log.debug("memberKey={}", memberKey);

@@ -18,9 +18,8 @@ export const MyActivityArticleContainer = styled.div`
 	}
 
 	.article-list-box {
-		background-color: var(--sub-color-2);
 		margin-top: 1rem;
 		width: 100%;
-		height: 500px;
+		height: 100%;
 	}
 `;

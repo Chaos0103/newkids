@@ -18,14 +18,14 @@ public class ArticleKeyword {
     @Column(name = "article_keyword_id")
     private Long id;
 
-    private String articleKey;
+    private Long articleKey;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "keyword_id")
     private Keyword keyword;
 
     @Builder
-    private ArticleKeyword(String articleKey, Keyword keyword) {
+    private ArticleKeyword(Long articleKey, Keyword keyword) {
         this.articleKey = articleKey;
         this.keyword = keyword;
     }

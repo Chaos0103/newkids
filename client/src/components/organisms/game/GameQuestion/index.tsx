@@ -3,64 +3,44 @@ import Title from 'components/atoms/game/Title';
 import Question from 'components/atoms/quiz/Question';
 import Alert from 'components/organisms/common/Alert';
 import Input from 'components/atoms/common/Input';
-import { DUMMY_QUIZS, DUMMY_ANSWERS_1 } from 'constants/dummyquiz';
-import { QuizAnswerCheckApiBody, QuizQuestionRequestApiBody } from 'types/api';
+import { DUMMY_QUIZS } from 'constants/dummyquiz';
+import { QuizQuestionRequestApiBody } from 'types/api';
 import { GameQuestionContainer } from './style';
 
 interface IGameQuestionProps {
-	setStep: Dispatch<SetStateAction<number>>;
+	setStage: Dispatch<SetStateAction<number>>;
+	setNum: Dispatch<SetStateAction<number>>;
+	num: number;
 }
 
 function GameQuestion(props: IGameQuestionProps) {
-	const { setStep } = props;
+	const { setNum, setStage, num } = props;
 	const [question, setQuestion] = useState<QuizQuestionRequestApiBody[]>(DUMMY_QUIZS);
-	const [answer, setAnswer] = useState<QuizAnswerCheckApiBody[]>(DUMMY_ANSWERS_1);
-	const [answer2, setAnswer2] = useState('');
+	const [answer, setAnswer] = useState('');
 
-	question.forEach((que) => console.log(que.no));
-	question.forEach((que) => {
-		console.log(que.word);
-	});
-	question.forEach((que) => console.log(que.description));
 	useEffect(() => {
+		setNum(2);
 		setQuestion(DUMMY_QUIZS);
 	});
 
-	useEffect(() => {
-		setAnswer(DUMMY_ANSWERS_1);
-	}, []);
-
-	console.log(question);
-	console.log('=================');
-	console.log(answer);
-
 	return (
 		<GameQuestionContainer>
-			<Title text="번 문제" effectText={question[0].no} />
+			<Title effectText={question[0].no} text="번 문제" />
 			<h1 className="meaning">뜻)</h1>
 			<Question text={question[0].description} />
 			<hr className="hr" />
 			<div className="input-wrapper">
-				<Input type="text" value={answer2} setValue={setAnswer2} placeholder="정답을 입력해주세요." />
-				{answer2 === question[0].word ? (
-					<Alert
-						setStep={setStep}
-						imageUrls="https://ifh.cc/g/Rkn9J6.jpg"
-						imageHeights={200}
-						titles="정답입니다"
-						confirms="다음 단계로"
-						colors="#FF7738"
-					/>
-				) : (
-					<Alert
-						setStep={setStep}
-						imageUrls="https://ifh.cc/g/Rkn9J6.jpg"
-						imageHeights={200}
-						titles="오답입니다"
-						confirms="다음 단계로"
-						colors="#FF7738"
-					/>
-				)}
+				<Input type="text" value={answer} setValue={setAnswer} placeholder="정답을 입력해주세요." />
+				<Alert
+					num={num}
+					setNum={setNum}
+					setStage={setStage}
+					imageUrls="https://ifh.cc/g/Rkn9J6.jpg"
+					imageHeights={200}
+					titles={answer === question[0].word ? '정답입니다' : '오답입니다.'}
+					confirms="다음 단계로"
+					colors="#FF7738"
+				/>
 			</div>
 		</GameQuestionContainer>
 	);

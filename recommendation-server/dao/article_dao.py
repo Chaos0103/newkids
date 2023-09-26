@@ -13,7 +13,7 @@ connection_pool = mysql.connector.pooling.MySQLConnectionPool(
 )
 
 
-def get_article_ids():
+def get_article_indices():
     """
     기사 식별키 리스트 조회
 
@@ -29,8 +29,9 @@ def get_article_ids():
         sql = (
             "SELECT `article_id` "
             "FROM `article` "
-            "ORDER BY `created_date` DESC "
-            "LIMIT 1000"
+            "WHERE published_date BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 YEAR) "
+            "AND DATE_ADD(CURDATE(), INTERVAL 1 YEAR) "
+            "ORDER BY `published_date` DESC "
         )
 
         cursor.execute(sql)
@@ -45,7 +46,7 @@ def get_article_ids():
     return row
 
 
-def getArticles(articleIds: list):
+def get_articles(articleIds: list):
     """
     기사 식별키 리스트에 해당하는 기사 조회
 
@@ -63,7 +64,7 @@ def getArticles(articleIds: list):
         # log.debug(articleIds)
 
         sql = (
-            "SELECT `article_id`, `title` "
+            "SELECT `article_id`, `title`, `thumbnail_img` "
             "FROM `article` "
             f"WHERE `article_id` IN ({placeholders}) "
         )
@@ -71,11 +72,43 @@ def getArticles(articleIds: list):
 
         cursor.execute(sql, articleIds)
         row = cursor.fetchall()
-        cursor.close()
 
     except Exception as e:
         print(f"Exception={e}")
     finally:
         if connection:
             connection.close()
+    return row
+
+
+def get_article_indices_by_member_key(member_key):
+    """
+    회원 고유값에 해당하는 회원의 읽은 기사 식별키 리스트 조회
+
+    :param member_key: 회원 고유값
+    :return: 해당 회원의 읽은 기사 식별키 리스트
+    """
+
+    row = None
+    connection = None
+
+    try:
+        connection = connection_pool.get_connection()
+        cursor = connection.cursor()
+
+        sql = (
+            "SELECT `article_id` "
+            "FROM `article_read` "
+            "WHERE `member_key` = %s "
+        )
+
+        cursor.execute(sql, (member_key, ))
+        row = cursor.fetchall()
+
+    except Exception as e:
+        print(f"Exception={e}")
+    finally:
+        if connection:
+            connection.close()
+
     return row

@@ -1,17 +1,22 @@
 import styled from 'styled-components';
 
 export const MyPageLayoutContainer = styled.div`
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+
+	.user-profile {
+		height: 80px;
+	}
+
+	.my-page-menu {
+		margin-top: 1rem;
+	}
+
 	.user-info {
-		margin-top: 2rem;
 		display: flex;
-		height: 500px;
+		height: 50%;
 		gap: 10px;
 	}
 `;
-
-// hr {
-// 	height: 3px;
-// 	border-style: dashed;
-// 	border-width: 3px 0 0 0;
-// 	color: var(--gray-200);
-// }

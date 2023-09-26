@@ -75,9 +75,9 @@ class MemberQueryRepositoryTest extends IntegrationTestSupport {
         assertThat(result).isFalse();
     }
 
-    @DisplayName("이메일로 회원 정보를 조회할 수 있다.")
+    @DisplayName("회원 고유키로 회원 정보를 조회할 수 있다.")
     @Test
-    void findByEmail() {
+    void findByMemberKey() {
         //given
         Member member = createMember();
 

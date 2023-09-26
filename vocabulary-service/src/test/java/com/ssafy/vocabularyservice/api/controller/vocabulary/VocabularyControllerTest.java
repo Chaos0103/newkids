@@ -3,6 +3,7 @@ package com.ssafy.vocabularyservice.api.controller.vocabulary;
 import com.ssafy.vocabularyservice.ControllerTestSupport;
 import com.ssafy.vocabularyservice.api.controller.vocabulary.request.CreateVocabularyRequest;
 import com.ssafy.vocabularyservice.api.controller.vocabulary.response.WordResponse;
+import com.ssafy.vocabularyservice.api.service.vocabulary.VocabularyQueryService;
 import com.ssafy.vocabularyservice.api.service.vocabulary.VocabularyService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -26,6 +27,9 @@ class VocabularyControllerTest extends ControllerTestSupport {
     @MockBean
     private VocabularyService vocabularyService;
 
+    @MockBean
+    private VocabularyQueryService vocabularyQueryService;
+
     @DisplayName("새로운 단어를 단어장에 등록할 때 단어키는 필수값이다.")
     @Test
     void createVocabularyWithoutWordKey() throws Exception {
@@ -35,7 +39,7 @@ class VocabularyControllerTest extends ControllerTestSupport {
 
         //when //then
         mockMvc.perform(
-                post("/vocabulary-service/{memberKey}", UUID.randomUUID().toString())
+                post("/vocabulary-service/api/{memberKey}", UUID.randomUUID().toString())
                     .content(objectMapper.writeValueAsString(request))
                     .contentType(MediaType.APPLICATION_JSON)
             )
@@ -66,7 +70,7 @@ class VocabularyControllerTest extends ControllerTestSupport {
 
         //when //then
         mockMvc.perform(
-                post("/vocabulary-service/{memberKey}", UUID.randomUUID().toString())
+                post("/vocabulary-service/api/{memberKey}", UUID.randomUUID().toString())
                     .content(objectMapper.writeValueAsString(request))
                     .contentType(MediaType.APPLICATION_JSON)
             )
@@ -94,7 +98,7 @@ class VocabularyControllerTest extends ControllerTestSupport {
 
         //when //then
         mockMvc.perform(
-                patch("/vocabulary-service/{vocabularyId}", 1L)
+                patch("/vocabulary-service/api/{vocabularyId}", 1L)
             )
             .andDo(print())
             .andExpect(status().isFound())
@@ -120,7 +124,7 @@ class VocabularyControllerTest extends ControllerTestSupport {
 
         //when //then
         mockMvc.perform(
-            delete("/vocabulary-service/{vocabularyId}", 1L)
+            delete("/vocabulary-service/api/{vocabularyId}", 1L)
         )
             .andDo(print())
             .andExpect(status().isFound())

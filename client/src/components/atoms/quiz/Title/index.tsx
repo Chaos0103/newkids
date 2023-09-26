@@ -2,7 +2,7 @@ import React from 'react';
 import { TitleWrapper } from './style';
 
 interface ITitleProps {
-	effectText: string;
+	effectText: string | number;
 	text: string;
 }
 

@@ -1,5 +1,5 @@
-from dao.article_dao import getArticles
+from dao.article_dao import get_articles
 
 
 def get_recommend_articles(article_ids):
-    return getArticles(article_ids)
+    return get_articles(article_ids)

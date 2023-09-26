@@ -47,7 +47,7 @@ class ArticleControllerTest extends ControllerTestSupport {
 
         //when //then
         mockMvc.perform(
-                get("/article-service/{articleId}", 1L)
+                get("/article-service/api/{articleId}", 1L)
             )
             .andDo(print())
             .andExpect(status().isOk())

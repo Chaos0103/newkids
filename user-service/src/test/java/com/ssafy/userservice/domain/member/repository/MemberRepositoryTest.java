@@ -21,7 +21,7 @@ class MemberRepositoryTest extends IntegrationTestSupport {
     @Autowired
     private MemberRepository memberRepository;
 
-    @DisplayName("이메일로 회원 엔티티를 조회할 수 있다.")
+    @DisplayName("이메일로 회원 엔티티를 조회한다.")
     @Test
     void findByEmail() {
         //given
@@ -29,6 +29,20 @@ class MemberRepositoryTest extends IntegrationTestSupport {
 
         //when
         Optional<Member> findMember = memberRepository.findByEmail("ssafy@ssafy.com");
+
+        //then
+        assertThat(findMember).isPresent();
+        assertThat(findMember.get().getNickname()).isEqualTo("광주C205");
+    }
+
+    @DisplayName("회원 고유키로 회원 엔티티를 조회한다.")
+    @Test
+    void findByMemberKey() {
+        //given
+        Member member = createMember();
+
+        //when
+        Optional<Member> findMember = memberRepository.findByMemberKey(member.getMemberKey());
 
         //then
         assertThat(findMember).isPresent();

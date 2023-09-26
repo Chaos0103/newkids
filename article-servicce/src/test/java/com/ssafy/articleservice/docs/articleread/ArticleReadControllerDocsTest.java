@@ -58,7 +58,7 @@ public class ArticleReadControllerDocsTest extends RestDocsSupport {
             .willReturn(response);
 
         mockMvc.perform(
-                post("/article-service/read/{memberKey}", UUID.randomUUID().toString())
+                post("/article-service/api/read/{memberKey}", UUID.randomUUID().toString())
                     .content(objectMapper.writeValueAsString(request))
                     .contentType(MediaType.APPLICATION_JSON)
                     .header("Authorization", "accessToken")
@@ -115,7 +115,7 @@ public class ArticleReadControllerDocsTest extends RestDocsSupport {
             .willReturn(new PageImpl<>(responses, pageRequest, 20));
 
         mockMvc.perform(
-                get("/article-service/read/{memberKey}", UUID.randomUUID().toString())
+                get("/article-service/api/read/{memberKey}", UUID.randomUUID().toString())
                     .param("pageNum", "1")
                     .header("Authorization", "accessToken")
             )
@@ -125,7 +125,6 @@ public class ArticleReadControllerDocsTest extends RestDocsSupport {
                 preprocessResponse(prettyPrint()),
                 requestParameters(
                     parameterWithName("pageNum")
-                        .optional()
                         .description("페이지 번호")
                 ),
                 responseFields(
@@ -198,7 +197,7 @@ public class ArticleReadControllerDocsTest extends RestDocsSupport {
     void removeArticleRead() throws Exception {
 
         mockMvc.perform(
-                delete("/article-service/read/{articleReadId}", 14842L)
+                delete("/article-service/api/read/{articleReadId}", 14842L)
                     .header("Authorization", "accessToken")
             )
             .andDo(print())

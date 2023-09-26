@@ -13,8 +13,8 @@ export const SquareArticleListItemContainer = styled.div`
 		border-radius: var(--radius-m);
 		position: absolute;
 		opacity: 1;
-		/* background: linear-gradient(transparent 50%, rgba(0, 0, 0, 0.9) 100%); */
-		background: linear-gradient(transparent 50%, rgba(255, 119, 56, 0.9) 100%);
+		background: linear-gradient(transparent 50%, rgba(0, 0, 0, 0.9) 100%);
+		/* background: linear-gradient(transparent 50%, rgba(255, 119, 56, 0.9) 100%); */
 		z-index: 10;
 		top: 0;
 		width: 100%;
@@ -22,9 +22,11 @@ export const SquareArticleListItemContainer = styled.div`
 	}
 
 	&:hover {
+		cursor: pointer;
+
 		.overlay {
-			/* background: linear-gradient(transparent 20%, rgba(0, 0, 0, 0.9) 100%); */
-			background: linear-gradient(transparent 20%, rgba(255, 119, 56, 0.9) 100%);
+			background: linear-gradient(transparent 20%, rgba(0, 0, 0, 0.9) 100%);
+			/* background: linear-gradient(transparent 20%, rgba(255, 119, 56, 0.9) 100%); */
 		}
 	}
 `;

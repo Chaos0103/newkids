@@ -16,7 +16,6 @@ eureka:
     service-url:
       defaultZone: http://localhost:8761/eureka
   instance:
-    #    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
     instance-id: ${spring.cloud.client.ip-address}:${spring.application.instance_id:${random.value}}
 
 # spring setting
@@ -35,7 +34,7 @@ spring:
   # jpa setting
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: none
     properties:
       hibernate:
         default_batch_fetch_size: 100

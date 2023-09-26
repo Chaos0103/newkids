@@ -13,6 +13,10 @@ import MyPage from 'pages/MyPage';
 import LoginPage from 'pages/auth/LoginPage';
 import JoinPage from 'pages/auth/JoinPage';
 import MyActivity from 'pages/MyActivity';
+import ArticleDetailPage from 'pages/article/ArticleDetailPage';
+import ArticleFindPage from 'pages/article/ArticleFindPage';
+import MyCollection from 'pages/MyCollection';
+import VocabularyPage from 'pages/VocabularyPage';
 import PrivateRoute from './PrivateRoute';
 import AuthProvider from './AuthProvider';
 
@@ -28,17 +32,21 @@ function AppRouter() {
 						<Navigation />
 						<Routes>
 							<Route path="/" element={<IndexPage />} />
+							<Route path="/article" element={<ArticleFindPage />} />
+							<Route path="/article/:articleId" element={<ArticleDetailPage />} />
 							<Route path="/auth/login" element={<LoginPage />} />
 							<Route path="/auth/join" element={<JoinPage />} />
 							<Route path="/mypage/info" element={<MyPage />} />
 							<Route path="/mypage/activity" element={<MyActivity />} />
+							<Route path="/mypage/collection" element={<MyCollection />} />
+							<Route path="/vocabulary" element={<VocabularyPage />} />
 
-						<Route path="/" element={<PrivateRoute />}>
-							<Route path="/game" element={<GamePage />} />
-							<Route path="/quiz" element={<QuizPage />} />
-						</Route>
-					</Routes>
-				</BrowserRouter>
+							<Route path="/" element={<PrivateRoute />}>
+								<Route path="/game" element={<GamePage />} />
+								<Route path="/quiz" element={<QuizPage />} />
+							</Route>
+						</Routes>
+					</BrowserRouter>
 				</AuthProvider>
 			</ApplicationLayout>
 		</RecoilRoot>
