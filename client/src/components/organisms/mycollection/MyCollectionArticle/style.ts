@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const MyCollectionArticleContainer = styled.div`
-	margin-top: 1rem;
+	margin-top: 1.5rem;
 	.collection-title {
 		display: flex;
 

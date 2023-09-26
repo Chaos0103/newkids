@@ -1,15 +1,19 @@
 import React, { ReactNode } from 'react';
-import { ContentLayout } from 'layouts/common/ContentLayout';
+import { ContentLayout, FullContentLayout } from 'layouts/common/ContentLayout';
 import { MyCollectionLayoutContainer } from './style';
 
 interface IMyCollectionLayoutProps {
 	MyPageMenu: ReactNode;
+	UserProfile: ReactNode;
 	MyCollectionArticle: ReactNode;
 }
 
-function MyCollectionLayout({ MyPageMenu, MyCollectionArticle }: IMyCollectionLayoutProps) {
+function MyCollectionLayout({ UserProfile, MyPageMenu, MyCollectionArticle }: IMyCollectionLayoutProps) {
 	return (
 		<MyCollectionLayoutContainer>
+			<div className="user-profile">
+				<FullContentLayout>{UserProfile}</FullContentLayout>
+			</div>
 			<div className="my-page-menu">
 				<ContentLayout>{MyPageMenu}</ContentLayout>
 			</div>

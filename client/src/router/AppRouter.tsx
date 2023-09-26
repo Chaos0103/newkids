@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
 import { GlobalFonts } from 'styles/GlobalFonts';
 import { GlobalStyles } from 'styles/GlobalStyles';
@@ -17,6 +17,7 @@ import ArticleDetailPage from 'pages/article/ArticleDetailPage';
 import ArticleFindPage from 'pages/article/ArticleFindPage';
 import PrivateRoute from './PrivateRoute';
 import AuthProvider from './AuthProvider';
+import MyCollection from 'pages/MyCollection';
 
 function AppRouter() {
 	return (
@@ -36,13 +37,14 @@ function AppRouter() {
 							<Route path="/auth/join" element={<JoinPage />} />
 							<Route path="/mypage/info" element={<MyPage />} />
 							<Route path="/mypage/activity" element={<MyActivity />} />
+							<Route path="/mypage/collection" element={<MyCollection />} />
 
-						<Route path="/" element={<PrivateRoute />}>
-							<Route path="/game" element={<div />} />
-							<Route path="/quiz" element={<div />} />
-						</Route>
-					</Routes>
-				</BrowserRouter>
+							<Route path="/" element={<PrivateRoute />}>
+								<Route path="/game" element={<GamePage />} />
+								<Route path="/quiz" element={<QuizPage />} />
+							</Route>
+						</Routes>
+					</BrowserRouter>
 				</AuthProvider>
 			</ApplicationLayout>
 		</RecoilRoot>
