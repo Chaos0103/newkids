@@ -29,8 +29,8 @@ def get_article_indices():
         sql = (
             "SELECT `article_id` "
             "FROM `article` "
-            "ORDER BY `created_date` DESC "
-            # "LIMIT 1000"
+            "ORDER BY `published_date` DESC "
+            "LIMIT 3000"
         )
 
         cursor.execute(sql)
@@ -63,7 +63,7 @@ def get_articles(articleIds: list):
         # log.debug(articleIds)
 
         sql = (
-            "SELECT `article_id`, `title` "
+            "SELECT `article_id`, `title`, `thumbnail_img` "
             "FROM `article` "
             f"WHERE `article_id` IN ({placeholders}) "
         )
