@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export const FooterConatiner = styled.div`
 	border-radius: var(--radius-m) var(--radius-m) 0 0;
-	margin-top: 10rem;
 	display: flex;
 	justify-content: center;
 	height: 10rem;
