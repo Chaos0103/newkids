@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from 'react';
 import ArticleContent from 'components/organisms/article/ArticleContent';
 import ArticleHeader from 'components/organisms/article/ArticleHeader';
 import ArticleKeywordList from 'components/organisms/article/ArticleKeywordList';
@@ -6,7 +7,6 @@ import Footer from 'components/organisms/common/Footer';
 import { DUMMY_KEYWORDS } from 'constants/dummy';
 import PageLayout from 'layouts/common/PageLayout';
 import ArticleDetailPageLayout from 'layouts/page/ArticleDetailPageLayout';
-import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { IArticleDetail } from 'types/article';
 import { getArticleApi } from 'utils/apis/article';
@@ -32,6 +32,7 @@ function ArticleDetailPage() {
 	useEffect(() => {
 		fetchData();
 	}, []);
+
 	return (
 		<PageLayout>
 			<ArticleDetailPageLayout
@@ -39,7 +40,7 @@ function ArticleDetailPage() {
 					<ArticleHeader
 						title={article?.title ?? 'title'}
 						writer={article?.writer ?? 'writer'}
-						publishedDate={article?.publishedDate ?? null}
+						publishedDate={article?.publishedDate ?? ''}
 						count={article?.count ?? 0}
 					/>
 				}
