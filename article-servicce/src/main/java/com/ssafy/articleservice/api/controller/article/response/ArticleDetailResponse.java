@@ -45,7 +45,7 @@ public class ArticleDetailResponse {
             .subTitle(article.getSubTitle())
             .writer(article.getWriter())
             .publishedDate(article.getPublishedDate())
-            .content(article.getContent())
+            .content(article.getHtmlContent())
             .thumbnailImg(article.getThumbnailImg())
             .imageUrls(urls)
             .build();

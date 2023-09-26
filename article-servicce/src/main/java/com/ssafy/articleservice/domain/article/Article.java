@@ -24,14 +24,16 @@ public class Article extends TimeBaseEntity {
     private LocalDateTime publishedDate;
     private String content;
     private String thumbnailImg;
+    private String htmlContent;
 
     @Builder
-    public Article(String title, String subTitle, String writer, LocalDateTime publishedDate, String content, String thumbnailImg) {
+    public Article(String title, String subTitle, String writer, LocalDateTime publishedDate, String content, String thumbnailImg, String htmlContent) {
         this.title = title;
         this.subTitle = subTitle;
         this.writer = writer;
         this.publishedDate = publishedDate;
         this.content = content;
         this.thumbnailImg = thumbnailImg;
+        this.htmlContent = htmlContent;
     }
 }
