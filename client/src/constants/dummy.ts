@@ -120,23 +120,28 @@ export const DUMMY_WORD_CLOUD = [
 
 export const DUMMY_KEYWORDS: IKeyword[] = [
 	{
+		keywordId: 1,
 		word: '전인혁',
-		keywordId: 64,
+		value: 50,
 	},
 	{
+		keywordId: 2,
 		word: '돼지',
-		keywordId: 11,
+		value: 76,
 	},
 	{
+		keywordId: 3,
 		word: '홍진식',
-		keywordId: 16,
+		value: 12,
 	},
 	{
+		keywordId: 4,
 		word: '더글로리',
-		keywordId: 17,
+		value: 30,
 	},
 	{
+		keywordId: 5,
 		word: 'SSAFY',
-		keywordId: 17,
+		value: 22,
 	},
 ];
