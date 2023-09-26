@@ -11,12 +11,15 @@ interface IArticleFindPageLayoutProps {
 
 function ArticleFindPageLayout(props: IArticleFindPageLayoutProps) {
 	const { SearchOptions, ResultArticleList, Pagination, Footer } = props;
+
 	return (
 		<ArticleFindPageLayoutContainer>
 			<ContentLayout>
-				<div className="search-options">{SearchOptions}</div>
-				<div className="result-article-list">{ResultArticleList}</div>
-				<div className="pagination">{Pagination}</div>
+				<div className="search">
+					<div className="search-options">{SearchOptions}</div>
+					<div className="result-article-list">{ResultArticleList}</div>
+					<div className="pagination">{Pagination}</div>
+				</div>
 			</ContentLayout>
 			<FullContentLayout>
 				<div className="footer">{Footer}</div>
