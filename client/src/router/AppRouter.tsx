@@ -16,6 +16,7 @@ import MyActivity from 'pages/MyActivity';
 import ArticleDetailPage from 'pages/article/ArticleDetailPage';
 import ArticleFindPage from 'pages/article/ArticleFindPage';
 import MyCollection from 'pages/MyCollection';
+import ScrollToTop from 'components/atoms/common/ScrollToTop';
 import VocabularyPage from 'pages/VocabularyPage';
 import PrivateRoute from './PrivateRoute';
 import AuthProvider from './AuthProvider';
@@ -29,6 +30,7 @@ function AppRouter() {
 			<ApplicationLayout>
 				<AuthProvider>
 					<BrowserRouter>
+						<ScrollToTop />
 						<Navigation />
 						<Routes>
 							<Route path="/" element={<IndexPage />} />

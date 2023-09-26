@@ -3,20 +3,23 @@ import { ContentLayout, FullContentLayout } from 'layouts/common/ContentLayout';
 import { ArticleFindPageLayoutContainer } from './style';
 
 interface IArticleFindPageLayoutProps {
-	TrendingKeywordList: ReactNode;
 	SearchOptions: ReactNode;
 	ResultArticleList: ReactNode;
+	Pagination: ReactNode;
 	Footer: ReactNode;
 }
 
 function ArticleFindPageLayout(props: IArticleFindPageLayoutProps) {
-	const { TrendingKeywordList, SearchOptions, ResultArticleList, Footer } = props;
+	const { SearchOptions, ResultArticleList, Pagination, Footer } = props;
+
 	return (
 		<ArticleFindPageLayoutContainer>
 			<ContentLayout>
-				<div className="recommended-article-list">{TrendingKeywordList}</div>
-				<div className="search-options">{SearchOptions}</div>
-				<div className="result-article-list">{ResultArticleList}</div>
+				<div className="search">
+					<div className="search-options">{SearchOptions}</div>
+					<div className="result-article-list">{ResultArticleList}</div>
+					<div className="pagination">{Pagination}</div>
+				</div>
 			</ContentLayout>
 			<FullContentLayout>
 				<div className="footer">{Footer}</div>

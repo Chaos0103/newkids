@@ -22,3 +22,8 @@ interface ImportMetaEnv {
 interface ImportMeta {
 	readonly env: ImportMetaEnv;
 }
+
+interface IPeriodFilter {
+	key: number;
+	name: string;
+}

@@ -24,7 +24,7 @@ function DetailRecommendedArticleList() {
 
 	return (
 		<DetailRecommendedArticleListContainer>
-			<h3>이런 기사는 어떠세요?</h3>
+			<h3 className="recommended-article-header">이런 기사는 어떠세요?</h3>
 			<div className="list-items">
 				{articles.length ? articles.map((el) => <SquareArticleListItem article={el} key={el.articleId} />) : <div />}
 			</div>

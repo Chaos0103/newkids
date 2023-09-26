@@ -1,10 +1,18 @@
 import styled from 'styled-components';
 
 export const DetailRecommendedArticleListContainer = styled.div`
-	margin-top: 3rem;
+	margin-top: 1rem;
 	display: flex;
 	flex-direction: column;
 	gap: 1rem;
+	margin-bottom: 10rem;
+
+	.recommended-article-header {
+		font-size: 1.5rem;
+		font-weight: bold;
+		color: var(--main-color);
+		margin: 1rem 0;
+	}
 
 	.list-items {
 		display: flex;

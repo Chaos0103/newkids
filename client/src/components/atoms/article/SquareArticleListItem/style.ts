@@ -5,7 +5,7 @@ export const SquareArticleListItemContainer = styled.div`
 
 	img {
 		width: 100%;
-		height: auto;
+		aspect-ratio: 1/1;
 		border-radius: var(--radius-m);
 	}
 

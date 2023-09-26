@@ -42,6 +42,11 @@ export interface PatchPasswordApiBody {
 	newPwd: string;
 }
 
+// -- voca :: 단어 등록
+export interface RegistrVocabularyApiBody {
+	wordKey: number;
+}
+
 // -- auth :: 닉네임 변경
 export interface PatchNicknameApiBody {
 	newNickname: string;
@@ -54,7 +59,7 @@ export interface RegistWordApiBody {
 	description: string;
 }
 
-// -- word :: 단어 등록
+// -- word :: 단어 수정
 export interface PatchWordApiBody {
 	word: string;
 	description: string;

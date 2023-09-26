@@ -3,10 +3,11 @@ import { instance } from './instance';
 
 // 기사 전체 조회 (기사 검색)
 export const getAllArticleApi = async (startDate: string, endDate: string, content?: string, pageNum?: number) => {
-	let url = `/article-service/api?startDate=${startDate}&endDate=${endDate}`;
-	if (content && pageNum) {
-		url += `&content=${content}&pageNum=${pageNum}`;
-	}
+	const url = `/article-service/api?content=${content ?? ''}&pageNum=${
+		pageNum ?? 1
+	}&startDate=${startDate}&endDate=${endDate}`;
+
+	console.log(url);
 	const response = await instance.get(url);
 	return response;
 };
@@ -14,6 +15,17 @@ export const getAllArticleApi = async (startDate: string, endDate: string, conte
 // 기사 상세 조회
 export const getArticleApi = async (articleId: string) => {
 	const response = await instance.get(`/article-service/api/${articleId}`);
+	return response;
+};
+
+// 메인 추천 기사 조회
+export const getAllRecommendedArticleApi = async () => {
+	const response = await instance.get(`/recommendation-service/api/main`);
+	return response;
+};
+
+export const getAllRecommededPeerArticleApi = async () => {
+	const response = await instance.get(`/recommendation-service/api/peer-age`);
 	return response;
 };
 
