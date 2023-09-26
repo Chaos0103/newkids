@@ -5,6 +5,7 @@ export const DetailRecommendedArticleListContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	gap: 1rem;
+	margin-bottom: 10rem;
 
 	.list-items {
 		display: flex;
