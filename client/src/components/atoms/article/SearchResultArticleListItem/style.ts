@@ -20,23 +20,31 @@ export const SearchResultArticleListItemContainer = styled.div`
 		height: 150px;
 	}
 
-	.content {
+	.article {
 		width: 100%;
 		display: flex;
 		flex-direction: column;
 		justify-content: space-around;
 
-		h3 {
-			font-size: 1.3rem;
-			font-weight: bold;
-			white-space: normal;
-			display: -webkit-box;
-			-webkit-line-clamp: 2;
-			-webkit-box-orient: vertical;
-			overflow: hidden;
+		.content {
+			h3 {
+				font-size: 1.3rem;
+				font-weight: bold;
+				white-space: normal;
+				display: -webkit-box;
+				-webkit-line-clamp: 2;
+				-webkit-box-orient: vertical;
+				overflow: hidden;
+			}
+
+			display: flex;
+			flex-direction: column;
+			gap: 0.5rem;
+			color: var(--gray-500);
 		}
 
 		.article-info {
+			color: var(--gray-300);
 		}
 	}
 `;
