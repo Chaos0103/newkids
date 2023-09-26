@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
-import QuizButton from '../QuizButton';
-import { DUMMY_WEEKLY_QUIZS } from 'constants/dummyquiz';
 import { WeeklyQuizQuestionRequestApiBody } from 'types/api';
+import { DUMMY_WEEKLY_QUIZS } from 'constants/dummyquiz';
+import QuizButton from '../QuizButton';
 import { QuizExamplesWrapper } from './style';
 
 function QuizExamples() {
