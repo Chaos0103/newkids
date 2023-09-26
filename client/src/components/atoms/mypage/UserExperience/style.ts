@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const USerExperienceWrapper = styled.div<{ isBar: number }>`
+export const USerExperienceWrapper = styled.div<{ bar: number }>`
 	.user-experience-wrapper {
 		width: 100%;
 		.user-experience-content {
