@@ -83,15 +83,19 @@ function GameQuestion(props: IGameQuestionProps) {
 	return (
 		<GameQuestionContainer>
 			<Title effectText={question[currentIndex].no} text="번 문제" />
-			<Question text={question[currentIndex].description} />
+			<div className="question-wrapper">
+				<Question text={question[currentIndex].description} />
+			</div>
 			<hr className="hr" />
 			<div className="input-wrapper">
 				<Input type="text" value={answer} setValue={setAnswer} placeholder="정답을 입력해주세요." />
-				{currentIndex === 9 ? (
-					<Button size="s" radius="m" color="Primary" text="확인" handleClick={() => nextLevelClick(answer)} />
-				) : (
-					<Button size="s" radius="m" color="Primary" text="확인" handleClick={() => handleClick(answer)} />
-				)}
+				<div className="button-wrapper">
+					{currentIndex === 9 ? (
+						<Button size="s" radius="m" color="Primary" text="확인" handleClick={() => nextLevelClick(answer)} />
+					) : (
+						<Button size="s" radius="m" color="Primary" text="확인" handleClick={() => handleClick(answer)} />
+					)}
+				</div>
 			</div>
 		</GameQuestionContainer>
 	);

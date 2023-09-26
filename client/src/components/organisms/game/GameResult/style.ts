@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 
 export const GameResultWrapper = styled.div`
-	margin-top: 3rem;
-
 	.score-wrapper {
 		margin-top: 3rem;
 		display: flex;
