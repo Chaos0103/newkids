@@ -41,7 +41,7 @@ def get_article_tf_idf(articleIds: list):
         start = time.time()
         cursor.execute(sql.format(placeholders), tuple(articleIds))
         end = time.time()
-        log.debug(f"read time: {end - start: .5f} sec")
+        log.debug(f"tfidf read time: {end - start: .5f} sec")
 
         row = cursor.fetchall()
         cursor.close()
@@ -54,11 +54,11 @@ def get_article_tf_idf(articleIds: list):
     return row
 
 
-def getArticleTfIdfByArticleId(articleId):
+def get_article_tf_idf_by_article_id(article_id):
     """
     기사 식별키에 해당하는 TF-IDF 가중치 벡터 행렬 조회
 
-    :param articleId: 기사 식별키
+    :param article_id: 기사 식별키
     :return: 기사 식별키에 해당하는 TF-IDF 가중치 벡터 행렬
     """
     row = None
@@ -69,12 +69,12 @@ def getArticleTfIdfByArticleId(articleId):
         cursor = connection.cursor(dictionary=True)
 
         sql = (
-            "SELECT `article_tfidf_id`, `article_id`, `keyword_vector`, `weight` "
+            "SELECT `article_id`, `keyword_vector`, `weight` "
             "FROM `article_tfidf` "
             "WHERE `article_id` = %s "
         )
 
-        cursor.execute(sql, articleId)
+        cursor.execute(sql, (article_id,))
         row = cursor.fetchall()
 
     except Exception as e:
