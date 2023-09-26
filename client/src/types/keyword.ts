@@ -3,3 +3,9 @@ export interface IKeyword {
 	word: string;
 	value: number;
 }
+
+export interface IWord {
+	wordKey: number;
+	content: string;
+	description: string;
+}

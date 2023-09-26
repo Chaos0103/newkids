@@ -42,14 +42,12 @@ export interface PatchPasswordApiBody {
 	newPwd: string;
 }
 
-// -- word :: 단어 등록
-export interface RegistWordApiBody {
-	wordKey: string;
-	word: string;
-	description: string;
+// -- voca :: 단어 등록
+export interface RegistrVocabularyApiBody {
+	wordKey: number;
 }
 
-// -- word :: 단어 등록
+// -- word :: 단어 수정
 export interface PatchWordApiBody {
 	word: string;
 	description: string;
@@ -60,7 +58,7 @@ export interface RegistReadArticleApiBody {
 	articleId: number;
 }
 
-// -- quiz :: 퀴즈 정답 체크 
+// -- quiz :: 퀴즈 정답 체크
 export interface QuizAnswerCheckApiBody {
 	answer: string;
 }
