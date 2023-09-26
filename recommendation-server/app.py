@@ -31,9 +31,9 @@ articles = [
 
 result_fields = Api.model(
     'article', {
-        'articleId': fields.Integer(default=1),
+        'article_id': fields.Integer(default=1),
         'title': fields.String(default='[생활뉴스] 토끼와 함께라면 행복져요!'),
-        'thumbnail': fields.String(default='썸네일 URL')
+        'thumbnail_img': fields.String(default='썸네일 URL')
     }
 )
 
