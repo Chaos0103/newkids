@@ -3,8 +3,8 @@ import PageLayout from 'layouts/common/PageLayout';
 import GamePageLayout from 'layouts/page/GamePageLayout';
 import GameMain from 'components/organisms/game/GameMain';
 import GameHowToUse from 'components/organisms/game/GameHowToUse';
-import GameQuestion from 'components/organisms/game/GameQuestion';
 import GameResult from 'components/organisms/game/GameResult';
+import GameStagePage from './GameStagePage';
 
 function GamePage() {
 	const [step, setStep] = useState(0);
@@ -21,7 +21,7 @@ function GamePage() {
 				break;
 			}
 			case 2: {
-				setStepView(<GameQuestion setStep={setStep} />);
+				setStepView(<GameStagePage />);
 				break;
 			}
 			case 3: {
