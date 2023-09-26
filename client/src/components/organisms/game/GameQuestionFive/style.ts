@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const GameQuestionContainer = styled.div`
+export const GameQuestionFiveContainer = styled.div`
 	.meaning {
 		margin-top: 3rem;
 		text-align: left;

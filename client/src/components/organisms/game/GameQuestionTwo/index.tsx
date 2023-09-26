@@ -5,29 +5,29 @@ import Alert from 'components/organisms/common/Alert';
 import Input from 'components/atoms/common/Input';
 import { DUMMY_QUIZS } from 'constants/dummyquiz';
 import { QuizQuestionRequestApiBody } from 'types/api';
-import { GameQuestionContainer } from './style';
+import { GameQuestionTwoContainer } from './style';
 
-interface IGameQuestionProps {
+interface IGameQuestionTwoProps {
 	setStage: Dispatch<SetStateAction<number>>;
 	setNum: Dispatch<SetStateAction<number>>;
 	num: number;
 }
 
-function GameQuestion(props: IGameQuestionProps) {
+function GameQuestionTwo(props: IGameQuestionTwoProps) {
 	const { setNum, setStage, num } = props;
 	const [question, setQuestion] = useState<QuizQuestionRequestApiBody[]>(DUMMY_QUIZS);
 	const [answer, setAnswer] = useState('');
 
 	useEffect(() => {
-		setNum(2);
+		setNum(1);
 		setQuestion(DUMMY_QUIZS);
 	});
 
 	return (
-		<GameQuestionContainer>
-			<Title effectText={question[0].no} text="번 문제" />
+		<GameQuestionTwoContainer>
+			<Title effectText={question[1].no} text="번 문제" />
 			<h1 className="meaning">뜻)</h1>
-			<Question text={question[0].description} />
+			<Question text={question[1].description} />
 			<hr className="hr" />
 			<div className="input-wrapper">
 				<Input type="text" value={answer} setValue={setAnswer} placeholder="정답을 입력해주세요." />
@@ -37,13 +37,13 @@ function GameQuestion(props: IGameQuestionProps) {
 					setStage={setStage}
 					imageUrls="https://ifh.cc/g/Rkn9J6.jpg"
 					imageHeights={200}
-					titles={answer === question[0].word ? '정답입니다' : '오답입니다.'}
+					titles={answer === question[1].word ? '정답입니다' : '오답입니다.'}
 					confirms="다음 단계로"
 					colors="#FF7738"
 				/>
 			</div>
-		</GameQuestionContainer>
+		</GameQuestionTwoContainer>
 	);
 }
 
-export default GameQuestion;
+export default GameQuestionTwo;

@@ -5,27 +5,43 @@ import Button from 'components/atoms/common/Button';
 import { AlertContainer } from './style';
 
 interface IAlertProps {
-	setStep: Dispatch<SetStateAction<number>>;
+	setStage: Dispatch<SetStateAction<number>>;
+	setNum: Dispatch<SetStateAction<number>>;
 	imageUrls: string;
 	imageHeights: number;
 	titles: string;
-	texts: string;
 	confirms: string;
 	colors: string;
+	num: number;
 }
 
-function Alert({ setStep, imageUrls, imageHeights, titles, texts, confirms, colors }: IAlertProps) {
+function Alert(props: IAlertProps) {
+	const { setStage, setNum, imageUrls, imageHeights, titles, confirms, colors, num } = props;
+
 	const alert = () =>
 		axios.get(`//api.github.com/users/bandozen`).then(() => {
 			Swal.fire({
 				imageUrl: imageUrls,
 				imageHeight: imageHeights,
 				title: titles,
-				text: texts,
 				confirmButtonColor: colors,
 				confirmButtonText: confirms,
 			}).then(() => {
-				setStep(3);
+				if (num === 0) {
+					setNum(1);
+					setStage(1);
+				} else if (num === 1) {
+					setNum(2);
+					setStage(2);
+				} else if (num === 2) {
+					setNum(3);
+					setStage(3);
+				} else if (num === 3) {
+					setNum(4);
+					setStage(4);
+				} else if (num === 4) {
+					setStage(5);
+				}
 			});
 		});
 	return (

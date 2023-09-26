@@ -17,7 +17,7 @@ function GameResult({ setStep }: IGameResultProps) {
 	const handleClick = () => {
 		if (!isDone) {
 			setStep(3);
-			movePage('/index');
+			movePage('/');
 			setNum(1);
 			setIsDone(true);
 		}
