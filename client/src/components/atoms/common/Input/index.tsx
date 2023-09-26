@@ -4,9 +4,9 @@ import { InputWrapper } from './style';
 
 interface IInputProps<T> {
 	type: string;
-	placeholder: string;
 	value: T;
 	setValue: Dispatch<SetStateAction<T>>;
+	placeholder?: string;
 	Icon?: ReactNode;
 	disabled?: boolean;
 }

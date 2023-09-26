@@ -7,6 +7,7 @@ export const InputWrapper = styled.div<IInputWrapperProps>`
 	position: relative;
 
 	input {
+		font-family: 'Pretendard';
 		width: 100%;
 		height: 3rem;
 		padding: 0 ${({ $isIcon }) => ($isIcon ? '2.5rem' : '1rem')};
