@@ -115,6 +115,7 @@ public class MemberControllerDocsTest extends RestDocsSupport {
             .build();
 
         MemberResponse response = MemberResponse.builder()
+            .email("ssafy@ssafy.com")
             .name("김싸피")
             .age(10)
             .level(1)
@@ -132,7 +133,7 @@ public class MemberControllerDocsTest extends RestDocsSupport {
                     .contentType(MediaType.APPLICATION_JSON)
             )
             .andDo(print())
-            .andExpect(status().isFound())
+            .andExpect(status().isOk())
             .andDo(document("edit-password",
                 preprocessRequest(prettyPrint()),
                 preprocessResponse(prettyPrint()),
@@ -152,7 +153,9 @@ public class MemberControllerDocsTest extends RestDocsSupport {
                     fieldWithPath("message").type(JsonFieldType.STRING)
                         .description("메시지"),
                     fieldWithPath("data").type(JsonFieldType.OBJECT)
-                        .description("응답데이터"),
+                        .description("응답 데이터"),
+                    fieldWithPath("data.email").type(JsonFieldType.STRING)
+                        .description("이메일"),
                     fieldWithPath("data.name").type(JsonFieldType.STRING)
                         .description("이름"),
                     fieldWithPath("data.age").type(JsonFieldType.NUMBER)
@@ -175,6 +178,7 @@ public class MemberControllerDocsTest extends RestDocsSupport {
             .build();
 
         MemberResponse response = MemberResponse.builder()
+            .email("ssafy@ssafy.com")
             .name("김싸피")
             .age(10)
             .level(1)
@@ -192,7 +196,7 @@ public class MemberControllerDocsTest extends RestDocsSupport {
                     .contentType(MediaType.APPLICATION_JSON)
             )
             .andDo(print())
-            .andExpect(status().isFound())
+            .andExpect(status().isOk())
             .andDo(document("edit-nickname",
                 preprocessRequest(prettyPrint()),
                 preprocessResponse(prettyPrint()),
@@ -209,7 +213,9 @@ public class MemberControllerDocsTest extends RestDocsSupport {
                     fieldWithPath("message").type(JsonFieldType.STRING)
                         .description("메시지"),
                     fieldWithPath("data").type(JsonFieldType.OBJECT)
-                        .description("응답데이터"),
+                        .description("응답 데이터"),
+                    fieldWithPath("data.email").type(JsonFieldType.STRING)
+                        .description("이메일"),
                     fieldWithPath("data.name").type(JsonFieldType.STRING)
                         .description("이름"),
                     fieldWithPath("data.age").type(JsonFieldType.NUMBER)
@@ -241,7 +247,7 @@ public class MemberControllerDocsTest extends RestDocsSupport {
                     .contentType(MediaType.APPLICATION_JSON)
             )
             .andDo(print())
-            .andExpect(status().isFound())
+            .andExpect(status().isOk())
             .andDo(document("remove-member",
                 preprocessRequest(prettyPrint()),
                 preprocessResponse(prettyPrint()),

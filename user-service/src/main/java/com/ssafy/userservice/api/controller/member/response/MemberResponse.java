@@ -12,6 +12,7 @@ import lombok.Data;
 @Data
 public class MemberResponse {
 
+    private String email;
     private String name;
     private int age;
     private int level;
@@ -19,7 +20,8 @@ public class MemberResponse {
     private String nickname;
 
     @Builder
-    public MemberResponse(String name, int age, int level, int exp, String nickname) {
+    public MemberResponse(String email, String name, int age, int level, int exp, String nickname) {
+        this.email = email;
         this.name = name;
         this.age = age;
         this.level = level;
