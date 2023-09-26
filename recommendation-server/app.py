@@ -65,7 +65,12 @@ class CbfResult(Resource):
         log.debug(f"articleId={articleId}")
 
         recommend_ids = get_recommend_ids(articleId)
+        if len(recommend_ids) == 0:
+            return jsonify({"message": "NO_CONTENT"})
+        start = time.time()
         recommend_articles = get_recommend_articles(recommend_ids)
+        end = time.time()
+        log.debug(f"read recommend article running time: {end-start: .5f}")
 
         return jsonify(recommend_articles)
 
