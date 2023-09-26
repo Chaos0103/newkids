@@ -17,6 +17,7 @@ import ArticleDetailPage from 'pages/article/ArticleDetailPage';
 import ArticleFindPage from 'pages/article/ArticleFindPage';
 import MyCollection from 'pages/MyCollection';
 import ScrollToTop from 'components/atoms/common/ScrollToTop';
+import VocabularyPage from 'pages/VocabularyPage';
 import PrivateRoute from './PrivateRoute';
 import AuthProvider from './AuthProvider';
 
@@ -40,6 +41,7 @@ function AppRouter() {
 							<Route path="/mypage/info" element={<MyPage />} />
 							<Route path="/mypage/activity" element={<MyActivity />} />
 							<Route path="/mypage/collection" element={<MyCollection />} />
+							<Route path="/vocabulary" element={<VocabularyPage />} />
 
 							<Route path="/" element={<PrivateRoute />}>
 								<Route path="/game" element={<GamePage />} />

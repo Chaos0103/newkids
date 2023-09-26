@@ -47,6 +47,18 @@ export interface RegistrVocabularyApiBody {
 	wordKey: number;
 }
 
+// -- auth :: 닉네임 변경
+export interface PatchNicknameApiBody {
+	newNickname: string;
+}
+
+// -- word :: 단어 등록
+export interface RegistWordApiBody {
+	wordKey: string;
+	word: string;
+	description: string;
+}
+
 // -- word :: 단어 수정
 export interface PatchWordApiBody {
 	word: string;
@@ -58,9 +70,24 @@ export interface RegistReadArticleApiBody {
 	articleId: number;
 }
 
+// --quiz :: 퀴즈 질문 요청
+export interface QuizQuestionRequestApiBody {
+	no: string | number;
+	word: string;
+	description: string;
+}
+
 // -- quiz :: 퀴즈 정답 체크
 export interface QuizAnswerCheckApiBody {
 	answer: string;
+}
+
+// -- weeklyquiz :: 주간 키워드 퀴즈 질문 요청
+export interface WeeklyQuizQuestionRequestApiBody {
+	no: string | number;
+	answerword: string;
+	description: string;
+	contents: string[];
 }
 
 // -- weeklyquiz :: 주간 키워드 퀴즈 정답 체크

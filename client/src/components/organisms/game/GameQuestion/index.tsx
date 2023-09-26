@@ -1,31 +1,43 @@
-import React, { Dispatch, SetStateAction, useState } from 'react';
+import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import Title from 'components/atoms/game/Title';
 import Question from 'components/atoms/quiz/Question';
 import Alert from 'components/organisms/common/Alert';
 import Input from 'components/atoms/common/Input';
+import { DUMMY_QUIZS } from 'constants/dummyquiz';
+import { QuizQuestionRequestApiBody } from 'types/api';
 import { GameQuestionContainer } from './style';
 
 interface IGameQuestionProps {
-	setStep: Dispatch<SetStateAction<number>>;
+	setStage: Dispatch<SetStateAction<number>>;
+	setNum: Dispatch<SetStateAction<number>>;
+	num: number;
 }
 
-function GameQuestion({ setStep }: IGameQuestionProps) {
+function GameQuestion(props: IGameQuestionProps) {
+	const { setNum, setStage, num } = props;
+	const [question, setQuestion] = useState<QuizQuestionRequestApiBody[]>(DUMMY_QUIZS);
 	const [answer, setAnswer] = useState('');
+
+	useEffect(() => {
+		setNum(2);
+		setQuestion(DUMMY_QUIZS);
+	});
 
 	return (
 		<GameQuestionContainer>
-			<Title text="번 문제" effectText="" />
+			<Title effectText={question[0].no} text="번 문제" />
 			<h1 className="meaning">뜻)</h1>
-			<Question text="어떤 사업이나 연구 따위에서 세운 공적을 뜻해요." />
+			<Question text={question[0].description} />
 			<hr className="hr" />
 			<div className="input-wrapper">
 				<Input type="text" value={answer} setValue={setAnswer} placeholder="정답을 입력해주세요." />
 				<Alert
-					setStep={setStep}
+					num={num}
+					setNum={setNum}
+					setStage={setStage}
 					imageUrls="https://ifh.cc/g/Rkn9J6.jpg"
 					imageHeights={200}
-					titles="정답입니다"
-					texts="이미지들어가면 될듯요"
+					titles={answer === question[0].word ? '정답입니다' : '오답입니다.'}
 					confirms="다음 단계로"
 					colors="#FF7738"
 				/>

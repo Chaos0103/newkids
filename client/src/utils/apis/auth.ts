@@ -4,6 +4,7 @@ import {
 	CheckNicknameApiBody,
 	JoinApiBody,
 	LoginApiBody,
+	PatchNicknameApiBody,
 	PatchPasswordApiBody,
 	SendEmailApiBody,
 } from 'types/api';
@@ -53,12 +54,18 @@ export const checkEmailApi = async (body: CheckEmailApiBody) => {
 
 // 닉네임 중복 체크
 export const checkNicknameApi = async (body: CheckNicknameApiBody) => {
-	const response = await instance.post('/user-service/auth/nickname', JSON.stringify(body));
+	const response = await instance.post('/user-service/auth/duplication/nickname', JSON.stringify(body));
 	return response;
 };
 
 // 비밀번호 변경
 export const patchPasswordApi = async (memberKey: string, body: PatchPasswordApiBody) => {
 	const response = await instance.patch(`/user-service/api/${memberKey}/password`, body);
+	return response;
+};
+
+// 닉네임 변경
+export const PatchNicknameApi = async (memberKey: string, body: PatchNicknameApiBody) => {
+	const response = await instance.patch(`/user-service/api/${memberKey}/nickname`, body);
 	return response;
 };

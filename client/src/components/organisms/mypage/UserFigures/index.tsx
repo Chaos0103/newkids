@@ -12,7 +12,7 @@ function UserFigures() {
 					<img className="figure-image-content" src={profileImage} alt="profile" />
 				</div>
 				<div className="user-experience-container">
-					<USerExperience experienceValue={5} />
+					<USerExperience />
 				</div>
 				<div className="user-level-container">
 					<UserLevel />

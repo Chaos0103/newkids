@@ -1,11 +1,19 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Input from 'components/atoms/common/Input';
 import { ReactComponent as IdIcon } from 'assets/icons/id.svg';
+import { useRecoilState } from 'recoil';
+import { MemberInfoState } from 'store/auth';
 import { MypageNameWrapper } from './style';
 
 function MypageName() {
-	const [name, setName] = useState('서용준');
+	const [memberInfo] = useRecoilState(MemberInfoState);
+	const [name, setName] = useState('');
 
+	useEffect(() => {
+		if (memberInfo) {
+			setName(memberInfo.name);
+		}
+	});
 	return (
 		<MypageNameWrapper>
 			<h3>이름</h3>

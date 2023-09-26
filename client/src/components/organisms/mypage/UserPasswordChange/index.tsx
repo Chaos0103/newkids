@@ -1,8 +1,9 @@
-import React from 'react';
-import NowPassword from 'components/atoms/mypage/Nowpassword';
-import NewPassword from 'components/atoms/mypage/NewPassword';
+import React, { useEffect, useState } from 'react';
 import { ReactComponent as PwIcon } from 'assets/icons/password.svg';
 import Button from 'components/atoms/common/Button';
+import { patchPasswordApi } from 'utils/apis/auth';
+import { useNavigate } from 'react-router-dom';
+import Input from 'components/atoms/common/Input';
 import { UserPasswordChangeContainer } from './style';
 
 interface IUserPasswordChangeProps {
@@ -10,8 +11,53 @@ interface IUserPasswordChangeProps {
 }
 
 function UserPasswordChange({ onClose }: IUserPasswordChangeProps) {
-	// const [currentPassword, setCurrentPassword] = useState('');
-	// const [newPassword, setNewPassword] = useState('');
+	const [isDone, setIsDone] = useState(false);
+	const [currentPwd, setcurrentPwd] = useState('');
+	const [newPwd, setnewPwd] = useState('');
+	const [newPwdCheck, setnewPwdCheck] = useState('');
+	const navigate = useNavigate();
+
+	const patchPassword = async () => {
+		if (isDone) {
+			try {
+				const body = {
+					currentPwd,
+					newPwd,
+				};
+				const memberkey = localStorage.getItem('memberkey');
+				if (memberkey !== null) {
+					const response = await patchPasswordApi(memberkey, body);
+					console.log(response);
+					if (response.status === 200) {
+						console.log(response);
+						alert('비밀번호 변경되었습니다!');
+						navigate('/auth/login');
+						onClose();
+					}
+				}
+			} catch (error) {
+				console.log(error);
+			}
+		}
+		if (!currentPwd) {
+			alert('비밀번호를 입력해주세요.');
+		} else if (!newPwd) {
+			alert('새 비밀번호를 입력해주세요.');
+		} else if (!newPwdCheck) {
+			alert('새 비밀번호를 다시 입력해주세요.');
+		}
+	};
+
+	useEffect(() => {
+		if (currentPwd && newPwd && newPwdCheck && newPwd === newPwdCheck) {
+			setIsDone(true);
+		} else if (currentPwd && newPwd && newPwdCheck && newPwd !== newPwdCheck) {
+			setIsDone(false);
+			// alert('새 비밀번호가 일치하지 않습니다.');
+		} else {
+			setIsDone(false);
+		}
+	});
 
 	return (
 		<UserPasswordChangeContainer>
@@ -23,17 +69,34 @@ function UserPasswordChange({ onClose }: IUserPasswordChangeProps) {
 					<h1 className="bold-black-color">변경</h1>
 					<h1 className="black-color">해주세요.</h1>
 				</div>
-				{/* <NowPassword onChange={(e) => setCurrentPassword(e.target.value)} />
-				<NewPassword onChange={(e) => setNewPassword(e.target.value)} /> */}
-				<div className="password-input">
-					<NowPassword />
-				</div>
-				<div className="password-input">
-					<NewPassword />
+				<div className="password-container">
+					<div className="password-input">
+						<Input
+							type="password"
+							value={currentPwd}
+							setValue={setcurrentPwd}
+							Icon={<PwIcon />}
+							placeholder="현재 비밀번호"
+						/>
+						<Input type="password" value={newPwd} setValue={setnewPwd} Icon={<PwIcon />} placeholder="새 비밀번호" />
+						<Input
+							type="password"
+							value={newPwdCheck}
+							setValue={setnewPwdCheck}
+							Icon={<PwIcon />}
+							placeholder="새 비밀번호 확인"
+						/>
+					</div>
 				</div>
 				<div className="password-button">
 					<div className="button-container">
-						<Button text="확인" size="full" radius="m" color="Primary" handleClick={onClose} />
+						<Button
+							text="확인"
+							size="full"
+							radius="m"
+							color={isDone ? 'Primary' : 'Normal'}
+							handleClick={patchPassword}
+						/>
 						<Button text="취소" size="full" radius="m" color="Normal" handleClick={onClose} />
 					</div>
 				</div>
