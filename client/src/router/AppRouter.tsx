@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
 import { GlobalFonts } from 'styles/GlobalFonts';
 import { GlobalStyles } from 'styles/GlobalStyles';
@@ -40,8 +40,8 @@ function AppRouter() {
 							<Route path="/mypage/collection" element={<MyCollection />} />
 
 							<Route path="/" element={<PrivateRoute />}>
-								<Route path="/game" element={<div />} />
-								<Route path="/quiz" element={<div />} />
+								<Route path="/game" element={<GamePage />} />
+								<Route path="/quiz" element={<QuizPage />} />
 							</Route>
 						</Routes>
 					</BrowserRouter>
