@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 
 export const GameResultWrapper = styled.div`
-	margin-top: 3rem;
-
 	.score-wrapper {
 		margin-top: 3rem;
 		display: flex;
@@ -12,7 +10,7 @@ export const GameResultWrapper = styled.div`
 
 	.score {
 		color: var(--main-color);
-		font-size: 2rem;
+		font-size: 5rem;
 	}
 
 	.sub-title-wrapper {
@@ -34,7 +32,7 @@ export const GameResultWrapper = styled.div`
 	}
 
 	.answer {
-		font-size: 1.5rem;
+		font-size: 5rem;
 		color: var(--main-color);
 	}
 

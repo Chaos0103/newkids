@@ -1,6 +1,6 @@
 import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import Title from 'components/atoms/quiz/Title';
-import QuizSubImage from 'components/atoms/quiz/QuizSubImage';
+import VocaLottie from 'components/atoms/lottie/VocaLottie';
 import CheckBox from 'components/atoms/common/CheckBox';
 import Button from 'components/atoms/common/Button';
 import useMovePage from 'hooks/useMovePage';
@@ -40,7 +40,7 @@ function QuizWords({ setStep }: IQuizWordsProps) {
 
 	return (
 		<QuizWordsWrapper>
-			<QuizSubImage />
+			<VocaLottie />
 			<Title text="이번 퀴즈에서 배운 단어들이에요" effectText="" />
 			<div className="checkbox-wrapper">
 				<CheckBox text="갤럭시" />
@@ -50,9 +50,11 @@ function QuizWords({ setStep }: IQuizWordsProps) {
 				<CheckBox text="벽간소음" />
 			</div>
 			<h1 className="subtitle">선택된 단어가 단어장에 추가됩니다.</h1>
-			<div className="quiz-button">
-				<Button size="s" radius="m" color="SubFirst" text="추가하기" handleClick={wordClick} />
-				<Button size="s" radius="m" color="Normal" text="나가기" handleClick={indexClick} />
+			<div className="quiz-button-wrapper">
+				<div className="quiz-button">
+					<Button size="s" radius="m" color="SubFirst" text="추가하기" handleClick={wordClick} />
+					<Button size="s" radius="m" color="Normal" text="나가기" handleClick={indexClick} />
+				</div>
 			</div>
 		</QuizWordsWrapper>
 	);
