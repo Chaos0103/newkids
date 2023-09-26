@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const TitleWrapper = styled.h1`
-	margin-top: 3rem;
+	margin-top: 1.5rem;
 	text-align: center;
 	font-size: 3rem;
 

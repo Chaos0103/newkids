@@ -15,4 +15,11 @@ export const QuizWordsWrapper = styled.div`
 		justify-content: center;
 		align-item: center;
 	}
+
+	.quiz-button-wrapper {
+		margin-top: 3rem;
+		display: flex;
+		justify-content: center;
+		align-item: center;
+	}
 `;
