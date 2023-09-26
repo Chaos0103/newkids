@@ -3,10 +3,10 @@ import { instance } from './instance';
 
 // 기사 전체 조회 (기사 검색)
 export const getAllArticleApi = async (startDate: string, endDate: string, content?: string, pageNum?: number) => {
-	let url = `/article-service/api?startDate=${startDate}&endDate=${endDate}`;
-	if (content && pageNum) {
-		url += `&content=${content}&pageNum=${pageNum}`;
-	}
+	const url = `/article-service/api?content=${content ?? ''}&pageNum=${
+		pageNum ?? 1
+	}&startDate=${startDate}&endDate=${endDate}`;
+
 	const response = await instance.get(url);
 	return response;
 };
