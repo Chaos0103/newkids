@@ -7,4 +7,21 @@ export const MyCollectionArticleListWrapper = styled.div`
 		width: 100%;
 		height: 500px;
 	}
+	width: 100%;
+	height: 100%;
+	margin-top: 2rem;
+
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-content: flex-start;
+
+	.article-list-text {
+		width: calc(25% - 10px);
+		margin-bottom: 10px;
+		img {
+			height: 150px;
+			widht: 250px;
+		}
+	}
 `;

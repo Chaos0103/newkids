@@ -1,16 +1,20 @@
 import React, { ReactNode } from 'react';
-import { ContentLayout } from 'layouts/common/ContentLayout';
+import { ContentLayout, FullContentLayout } from 'layouts/common/ContentLayout';
 import { MyActivityLayoutContainer } from './style';
 
 interface IMyActivityLayoutProps {
 	MyActivityChart: ReactNode;
 	MyActivityArticle: ReactNode;
 	MyPageMenu: ReactNode;
+	UserProfile: ReactNode;
 }
 
-function MyActivityLayout({ MyPageMenu, MyActivityChart, MyActivityArticle }: IMyActivityLayoutProps) {
+function MyActivityLayout({ MyPageMenu, MyActivityChart, MyActivityArticle, UserProfile }: IMyActivityLayoutProps) {
 	return (
 		<MyActivityLayoutContainer>
+			<div className="user-profile">
+				<FullContentLayout>{UserProfile}</FullContentLayout>
+			</div>
 			<div className="my-page-menu">
 				<ContentLayout>{MyPageMenu}</ContentLayout>
 			</div>
