@@ -12,7 +12,7 @@ function ArticleContent(props: IArticleContentProps) {
 	return (
 		<ArticleContentContainer>
 			<NarrowContentLayout>
-				<div dangerouslySetInnerHTML={{ __html: content }} />
+				<div className="article-content" dangerouslySetInnerHTML={{ __html: content }} />
 			</NarrowContentLayout>
 			<Dictionary />
 		</ArticleContentContainer>
