@@ -29,8 +29,9 @@ def get_article_indices():
         sql = (
             "SELECT `article_id` "
             "FROM `article` "
+            "WHERE published_date BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 YEAR) "
+            "AND DATE_ADD(CURDATE(), INTERVAL 1 YEAR) "
             "ORDER BY `published_date` DESC "
-            "LIMIT 3000"
         )
 
         cursor.execute(sql)
