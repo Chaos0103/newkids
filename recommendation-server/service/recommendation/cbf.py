@@ -21,10 +21,10 @@ def get_tfidf_matrix(article_ids, current_id):
     """
 
     tf_idf_matrix = get_article_tf_idf(article_ids)
-    print(type(tf_idf_matrix))
     current_tf_idf_matrix = get_article_tf_idf_by_article_id(current_id)
-    for row in current_tf_idf_matrix:
-        tf_idf_matrix.append(row)
+
+    # current_tf_idf_matrix의 행만 선택하여 병합
+    tf_idf_matrix.extend(current_tf_idf_matrix)
 
     num_rows = max(data['article_id'] for data in tf_idf_matrix) + 1
     num_cols = max(data['keyword_vector'] for data in tf_idf_matrix) + 1
@@ -33,7 +33,7 @@ def get_tfidf_matrix(article_ids, current_id):
     cols = np.array([data['keyword_vector'] for data in tf_idf_matrix], dtype=np.int32)
     values = np.array([data['weight'] for data in tf_idf_matrix], dtype=np.float64)
 
-    return csr_matrix((values, (rows, cols)), shape=(num_rows, num_cols))
+    return csr_matrix((values, (rows, cols)), dtype=np.float64, shape=(num_rows, num_cols))
 
 
 def get_recommend_ids(article_id):
@@ -48,8 +48,6 @@ def get_recommend_ids(article_id):
     # 1. 기사 PK 리스트 조회
     start = time.time()
     article_indices = get_article_indices()
-    print(len(article_indices))
-    print(type(article_indices))
 
     article_ids = [id[0] for id in article_indices]
     end = time.time()
