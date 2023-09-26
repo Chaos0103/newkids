@@ -1,42 +1,40 @@
-import React, { useState, useEffect, Dispatch, SetStateAction } from 'react';
-import { IArticle } from 'types/article';
-import { getAllArticleApi } from 'utils/apis/article';
+import React, { Dispatch, SetStateAction } from 'react';
 import Input from 'components/atoms/common/Input';
 import Button from 'components/atoms/common/Button';
-import { dateToString } from 'utils/common/dateToString';
 import { PERIOD_FILTER_LIST } from 'constants/common';
 import PeriodFilterItem from 'components/atoms/article/PeriodFilterItem';
-import { setDatebyPeriod } from 'utils/common/setDatebyPeriod';
 import { SearchOptionsContainer } from './style';
 
 interface ISearchOptionsProps {
-	setResultArticles: Dispatch<SetStateAction<IArticle[]>>;
+	startDate: string;
+	setStartDate: Dispatch<SetStateAction<string>>;
+	endDate: string;
+	setEndDate: Dispatch<SetStateAction<string>>;
+	selectedPeriod: number;
+	setSelectedPeriod: Dispatch<SetStateAction<number>>;
+	search: () => void;
+	setCurrentPage: Dispatch<SetStateAction<number>>;
+	setCurrentGroup: Dispatch<SetStateAction<number>>;
 }
 
 function SearchOptions(props: ISearchOptionsProps) {
-	const { setResultArticles } = props;
-	const [startDate, setStartDate] = useState<string>(dateToString(new Date()));
-	const [endDate, setEndDate] = useState<string>(dateToString(new Date()));
-	const [selectedPeriod, setSelectedPeriod] = useState(0);
+	const {
+		startDate,
+		setStartDate,
+		endDate,
+		setEndDate,
+		selectedPeriod,
+		setSelectedPeriod,
+		search,
+		setCurrentPage,
+		setCurrentGroup,
+	} = props;
 
-	const search = async () => {
-		try {
-			const response = await getAllArticleApi(startDate, endDate);
-			console.log('::getAllArticleApi', response);
-
-			if (response.status === 200) {
-				setResultArticles(response.data.data.content);
-			}
-		} catch (error) {
-			console.log(error);
-		}
+	const onClickSearch = () => {
+		setCurrentPage(1);
+		setCurrentGroup(1);
+		search();
 	};
-
-	useEffect(() => {
-		setStartDate(setDatebyPeriod(selectedPeriod));
-		setEndDate(dateToString(new Date()));
-	}, [selectedPeriod]);
-
 	return (
 		<SearchOptionsContainer>
 			<div className="wrapper">
@@ -58,7 +56,7 @@ function SearchOptions(props: ISearchOptionsProps) {
 					</div>
 				</div>
 				<div className="right">
-					<Button color="Primary" size="full" text="검색" handleClick={search} radius="m" />
+					<Button color="Primary" size="full" text="검색" handleClick={onClickSearch} radius="m" />
 				</div>
 			</div>
 		</SearchOptionsContainer>
