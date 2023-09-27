@@ -5,21 +5,18 @@ import { WeeklyQuizQuestionRequestApiBody } from 'types/api';
 import { DUMMY_WEEKLY_QUIZS } from 'constants/dummyquiz';
 import QuizButton from 'components/atoms/common/QuizButton';
 import Swal from 'sweetalert2';
-import QuizResult from '../QuizResult';
 import { QuizQuestionContainer } from './style';
 
 interface IQuizQuestionProps {
 	setStep: Dispatch<SetStateAction<number>>;
+	setScore: Dispatch<SetStateAction<number>>;
 }
 
 function QuizQuestion(props: IQuizQuestionProps) {
-	const { setStep } = props;
+	const { setStep, setScore } = props;
 	const [isDone, setIsDone] = useState(false);
 	const [question, setQuestion] = useState<WeeklyQuizQuestionRequestApiBody[]>(DUMMY_WEEKLY_QUIZS);
 	const [currentIndex, setCurrentIndex] = useState(0);
-	const [score, setScore] = useState(0);
-
-	console.log(`${score}개 맞았어요!`);
 
 	const handleClick = (selectedAnswer: string) => {
 		const correctAnswer = question[currentIndex].answerword;
@@ -132,9 +129,6 @@ function QuizQuestion(props: IQuizQuestionProps) {
 						/>
 					</>
 				)}
-			</div>
-			<div className="quiz-result">
-				<QuizResult score={score} setScore={setScore} setStep={setStep} />
 			</div>
 		</QuizQuestionContainer>
 	);

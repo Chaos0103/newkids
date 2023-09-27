@@ -6,16 +6,13 @@ import { QuizResultWrapper } from './style';
 
 interface IQuizResultProps {
 	setStep: Dispatch<SetStateAction<number>>;
-	setScore: Dispatch<SetStateAction<number>>;
 	score: number;
 }
 
 function QuizResult(props: IQuizResultProps) {
-	const { setStep, setScore, score } = props;
+	const { setStep, score } = props;
 	const [isDone, setIsDone] = useState(false);
 	const [num, setNum] = useState(0);
-
-	console.log(setScore);
 
 	const handleClick = () => {
 		if (!isDone) {

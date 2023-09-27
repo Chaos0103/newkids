@@ -12,8 +12,6 @@ function QuizPage() {
 	const [score, setScore] = useState(0);
 	const [stepView, setStepView] = useState(<div />);
 
-	console.log(`현재 step 상태 : ${step}`);
-
 	useEffect(() => {
 		switch (step) {
 			case 0: {
@@ -25,11 +23,11 @@ function QuizPage() {
 				break;
 			}
 			case 2: {
-				setStepView(<QuizQuestion setStep={setStep} />);
+				setStepView(<QuizQuestion setStep={setStep} setScore={setScore} />);
 				break;
 			}
 			case 3: {
-				setStepView(<QuizResult score={score} setScore={setScore} setStep={setStep} />);
+				setStepView(<QuizResult score={score} setStep={setStep} />);
 				break;
 			}
 			case 4: {
