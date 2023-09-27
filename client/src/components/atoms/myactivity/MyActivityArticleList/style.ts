@@ -14,7 +14,19 @@ export const MyActivityArticleListWrapper = styled.div`
 		margin-bottom: 10px;
 		img {
 			height: 150px;
-			widht: 250px;
+			width: 250px;
+			border-radius: 20%;
+			margin-bottom: 1rem;
+		}
+		img:hover,
+		p:hover {
+			cursor: pointer;
+		}
+		p {
+			font-size: 24px;
+			font-weight: bold;
+			margin-bottom: 2rem;
+			hover: pointer;
 		}
 	}
 `;
