@@ -7,7 +7,7 @@ export const LoginFormContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	gap: 2rem;
+	gap: 1rem;
 
 	.login-message {
 		color: var(--gray-500);
