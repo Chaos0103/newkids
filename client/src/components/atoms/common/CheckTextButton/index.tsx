@@ -6,7 +6,7 @@ interface ICheckTextButtonProps {
 	value: boolean;
 	setValue: Dispatch<SetStateAction<boolean>>;
 	text: string;
-	size: 's' | 'm' | 'l';
+	size: 's' | 'm' | 'l' | 'xl';
 }
 
 function CheckTextButton({ value, setValue, text, size }: ICheckTextButtonProps) {
