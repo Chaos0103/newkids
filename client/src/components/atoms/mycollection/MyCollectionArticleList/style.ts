@@ -21,7 +21,13 @@ export const MyCollectionArticleListWrapper = styled.div`
 		margin-bottom: 10px;
 		img {
 			height: 150px;
-			widht: 250px;
+			width: 250px;
+			border-radius: 20%;
+		}
+		p {
+			font-size: 24px;
+			font-weight: bold;
+			margin-bottom: 2rem;
 		}
 	}
 `;

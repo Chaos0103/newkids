@@ -12,10 +12,10 @@ import GamePage from 'pages/GamePage';
 import MyPage from 'pages/MyPage';
 import LoginPage from 'pages/auth/LoginPage';
 import JoinPage from 'pages/auth/JoinPage';
-import MyActivity from 'pages/MyActivity';
+import MyActivityPage from 'pages/MyActivityPage';
 import ArticleDetailPage from 'pages/article/ArticleDetailPage';
 import ArticleFindPage from 'pages/article/ArticleFindPage';
-import MyCollection from 'pages/MyCollection';
+import MyCollectionPage from 'pages/MyCollectionPage';
 import ScrollToTop from 'components/atoms/common/ScrollToTop';
 import VocabularyPage from 'pages/VocabularyPage';
 import PrivateRoute from './PrivateRoute';
@@ -39,8 +39,8 @@ function AppRouter() {
 							<Route path="/auth/login" element={<LoginPage />} />
 							<Route path="/auth/join" element={<JoinPage />} />
 							<Route path="/mypage/info" element={<MyPage />} />
-							<Route path="/mypage/activity" element={<MyActivity />} />
-							<Route path="/mypage/collection" element={<MyCollection />} />
+							<Route path="/mypage/activity" element={<MyActivityPage />} />
+							<Route path="/mypage/collection" element={<MyCollectionPage />} />
 							<Route path="/vocabulary" element={<VocabularyPage />} />
 
 							<Route path="/" element={<PrivateRoute />}>

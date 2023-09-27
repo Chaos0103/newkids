@@ -13,7 +13,7 @@ function USerExperience() {
 		}
 	}, []);
 	return (
-		<USerExperienceWrapper bar={exp}>
+		<USerExperienceWrapper $bar={exp}>
 			<div className="user-experience-wrapper">
 				<div className="user-experience-content">Exp {exp} / 100</div>
 				<div className="user-experience-bar">

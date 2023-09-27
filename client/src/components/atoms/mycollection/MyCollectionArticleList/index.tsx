@@ -1,31 +1,43 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { DUMMY_ARTICLES } from 'constants/dummyreadarticle';
+import { findAllReadArticleApi } from 'utils/apis/article';
 import { MyCollectionArticleListWrapper } from './style';
 import articleImage from '../../../../assets/imgs/profile-level.png';
 
 function MyCollectionArticle() {
 	// const [currentPage, setCurrentPage] = useState(1);
+	const [articles, setArticles] = useState(DUMMY_ARTICLES);
+	// const [pageNum, setPageNum] = useState(1);
+	const pageNum = 2;
 
-	const articleData = [
-		{ title: '기사 제목 1', image: articleImage },
-		{ title: '기사 제목 2', image: articleImage },
-		{ title: '기사 제목 3', image: articleImage },
-		{ title: '기사 제목 4', image: articleImage },
-		{ title: '기사 제목 5', image: articleImage },
-		{ title: '기사 제목 6', image: articleImage },
-		{ title: '기사 제목 7', image: articleImage },
-		{ title: '기사 제목 8', image: articleImage },
-	];
+	const ReadArticleData = async () => {
+		try {
+			const memberkey = localStorage.getItem('memberkey');
+			if (memberkey) {
+				const response = await findAllReadArticleApi(memberkey, pageNum);
+				console.log(response);
+			}
+		} catch (e) {
+			console.log(e);
+		}
+	};
 
 	const renderArticleItems = () => {
-		return articleData.map((item) => {
+		return articles.map((item) => {
 			return (
-				<div className="article-list-text" key={item.title}>
-					<img src={item.image} alt="" />
+				<div className="article-list-text" key={item.articleId}>
+					{item.thumbnailImg && <img src={item.thumbnailImg} alt="" />}
+					{!item.thumbnailImg && <img src={articleImage} alt="" />}
 					<p>{item.title}</p>
 				</div>
 			);
 		});
 	};
+
+	useEffect(() => {
+		setArticles(DUMMY_ARTICLES);
+		ReadArticleData();
+	}, []);
 
 	return <MyCollectionArticleListWrapper>{renderArticleItems()}</MyCollectionArticleListWrapper>;
 }

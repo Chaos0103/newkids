@@ -43,8 +43,12 @@ export const registReadArticleApi = async (body: RegistReadArticleApiBody, membe
 };
 
 // 읽은 뉴스기사 조회
-export const findAllReadArticleApi = async (memberKey: string) => {
-	const response = await instance.get(`/article-service/api/read/${memberKey}`);
+export const findAllReadArticleApi = async (memberKey: string, pageNum?: number) => {
+	let url = `/article-service/api/read/${memberKey}`;
+	if (pageNum) {
+		url += `?pageNum=${pageNum}`;
+	}
+	const response = await instance.get(url);
 	return response;
 };
 

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const USerExperienceWrapper = styled.div<{ bar: number }>`
+export const USerExperienceWrapper = styled.div<{ $bar: number }>`
 	.user-experience-wrapper {
 		width: 100%;
 		.user-experience-content {
@@ -12,7 +12,7 @@ export const USerExperienceWrapper = styled.div<{ bar: number }>`
 		font-size: 24px;
 		color: var(--gray-500);
 		display: flex;
-		align-item: center;
+		align-items: center;
 	}
 
 	.user-experience-bar {
@@ -26,7 +26,7 @@ export const USerExperienceWrapper = styled.div<{ bar: number }>`
 
 	.experience-fill {
 		height: 100%;
-		width: ${(props) => props.isBar || 0}%;
+		width: ${(props) => props.$bar || 0}%;
 		background-color: var(--main-color);
 	}
 `;

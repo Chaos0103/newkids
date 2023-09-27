@@ -18,7 +18,7 @@ export const MyActivityArticleContainer = styled.div`
 	}
 
 	.article-list-box {
-		margin-top: 1rem;
+		margin-top: 2rem;
 		width: 100%;
 		height: 100%;
 	}
