@@ -8,6 +8,7 @@ import GameQuestion from 'components/organisms/game/GameQuestion';
 
 function GamePage() {
 	const [step, setStep] = useState(0);
+	const [score, setScore] = useState(0);
 	const [stepView, setStepView] = useState(<div />);
 
 	useEffect(() => {
@@ -21,11 +22,11 @@ function GamePage() {
 				break;
 			}
 			case 2: {
-				setStepView(<GameQuestion setStep={setStep} />);
+				setStepView(<GameQuestion setStep={setStep} setScore={setScore} />);
 				break;
 			}
 			case 3: {
-				setStepView(<GameResult setStep={setStep} />);
+				setStepView(<GameResult score={score} setStep={setStep} />);
 				break;
 			}
 			default: {

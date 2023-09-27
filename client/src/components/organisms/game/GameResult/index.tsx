@@ -7,9 +7,11 @@ import { GameResultWrapper } from './style';
 
 interface IGameResultProps {
 	setStep: Dispatch<SetStateAction<number>>;
+	score: number;
 }
 
-function GameResult({ setStep }: IGameResultProps) {
+function GameResult(props: IGameResultProps) {
+	const { setStep, score } = props;
 	const [isDone, setIsDone] = useState(false);
 	const [num, setNum] = useState(0);
 	const [movePage] = useMovePage();
@@ -34,13 +36,13 @@ function GameResult({ setStep }: IGameResultProps) {
 			<GameCompleteLottie />
 			<Title text="최종 점수" effectText="" />
 			<div className="score-wrapper">
-				<h1 className="score">10 점</h1>
+				<h1 className="score">{score * 10} 점</h1>
 			</div>
 			<div className="sub-title-wrapper">
 				<h1 className="sub-title">총 맞춘 문제</h1>
 			</div>
 			<div className="answer-wrapper">
-				<h1 className="answer">1 문제</h1>
+				<h1 className="answer">{score} 문제</h1>
 			</div>
 			{/* <div className="exp-wrapper">경험치바가 들어갈 공간입니다.</div> */}
 			<div className="quiz-button">

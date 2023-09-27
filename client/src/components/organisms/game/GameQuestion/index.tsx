@@ -10,17 +10,15 @@ import { GameQuestionContainer } from './style';
 
 interface IGameQuestionProps {
 	setStep: Dispatch<SetStateAction<number>>;
+	setScore: Dispatch<SetStateAction<number>>;
 }
 
 function GameQuestion(props: IGameQuestionProps) {
-	const { setStep } = props;
+	const { setStep, setScore } = props;
 	const [isDone, setIsDone] = useState(false);
 	const [question, setQuestion] = useState<QuizQuestionRequestApiBody[]>(DUMMY_QUIZS);
 	const [currentIndex, setCurrentIndex] = useState(0);
-	const [score, setScore] = useState(0);
 	const [answer, setAnswer] = useState('');
-
-	console.log(`${score}개 맞았어요!`);
 
 	const handleClick = (selectedAnswer: string) => {
 		const correctAnswer = question[currentIndex].word;
