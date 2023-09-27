@@ -2,10 +2,14 @@ import styled from 'styled-components';
 
 export const QuizWordsWrapper = styled.div`
 	.checkbox-wrapper {
-		margin-top: 3rem;
+		margin-top: 1.5rem;
 		display: grid;
 		justify-content: center;
 		align-item: center;
+	}
+
+	.checkbox-text-wrapper {
+		margin-top: 3rem;
 	}
 
 	.subtitle {
@@ -21,5 +25,9 @@ export const QuizWordsWrapper = styled.div`
 		display: flex;
 		justify-content: center;
 		align-item: center;
+	}
+
+	.quiz-button {
+		margin-left: 50px;
 	}
 `;

@@ -145,4 +145,13 @@ export const CheckTextButtonStyles = {
 			height: 32px;
 		}
 	`,
+	xl: css`
+		span {
+			font-size: 3rem;
+		}
+		svg {
+			width: 80px;
+			height: 80px;
+		}
+	`,
 };

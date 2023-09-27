@@ -1,9 +1,11 @@
 import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import Title from 'components/atoms/quiz/Title';
 import VocaLottie from 'components/atoms/lottie/VocaLottie';
-import CheckBox from 'components/atoms/common/CheckBox';
 import Button from 'components/atoms/common/Button';
 import useMovePage from 'hooks/useMovePage';
+import { WeeklyQuizQuestionRequestApiBody } from 'types/api';
+import { DUMMY_WEEKLY_QUIZS } from 'constants/dummyquiz';
+import CheckTextButton from 'components/atoms/common/CheckTextButton';
 import { QuizWordsWrapper } from './style';
 
 interface IQuizWordsProps {
@@ -14,6 +16,7 @@ function QuizWords({ setStep }: IQuizWordsProps) {
 	const [isDone, setIsDone] = useState(false);
 	const [num, setNum] = useState(0);
 	const [movePage] = useMovePage();
+	const [question, setQuestion] = useState<WeeklyQuizQuestionRequestApiBody[]>(DUMMY_WEEKLY_QUIZS);
 
 	const wordClick = () => {
 		if (!isDone) {
@@ -33,6 +36,7 @@ function QuizWords({ setStep }: IQuizWordsProps) {
 	};
 
 	useEffect(() => {
+		setQuestion(DUMMY_WEEKLY_QUIZS);
 		if (num === 0) {
 			setIsDone(false);
 		}
@@ -43,17 +47,17 @@ function QuizWords({ setStep }: IQuizWordsProps) {
 			<VocaLottie />
 			<Title text="이번 퀴즈에서 배운 단어들이에요" effectText="" />
 			<div className="checkbox-wrapper">
-				<CheckBox text="갤럭시" />
-				<CheckBox text="경상수지" />
-				<CheckBox text="인공지능" />
-				<CheckBox text="챗GPT" />
-				<CheckBox text="벽간소음" />
+				{question.map((que) => (
+					<div className="checkbox-text-wrapper">
+						<CheckTextButton value setValue={setIsDone} text={que.answerword} size="xl" />
+					</div>
+				))}
 			</div>
 			<h1 className="subtitle">선택된 단어가 단어장에 추가됩니다.</h1>
 			<div className="quiz-button-wrapper">
+				<Button size="m" radius="m" color="SubFirst" text="추가하기" handleClick={wordClick} />
 				<div className="quiz-button">
-					<Button size="s" radius="m" color="SubFirst" text="추가하기" handleClick={wordClick} />
-					<Button size="s" radius="m" color="Normal" text="나가기" handleClick={indexClick} />
+					<Button size="m" radius="m" color="Normal" text="나가기" handleClick={indexClick} />
 				</div>
 			</div>
 		</QuizWordsWrapper>

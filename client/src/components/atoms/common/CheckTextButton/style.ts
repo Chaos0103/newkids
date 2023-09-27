@@ -3,7 +3,7 @@ import { CheckTextButtonStyles } from 'styles/styles';
 
 interface ICheckTextButtonWrapperProps {
 	$value: boolean;
-	$size: 's' | 'm' | 'l';
+	$size: 's' | 'm' | 'l' | 'xl';
 }
 
 export const CheckTextButtonWrapper = styled.div<ICheckTextButtonWrapperProps>`
