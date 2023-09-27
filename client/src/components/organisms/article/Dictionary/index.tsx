@@ -1,13 +1,49 @@
 import React, { useState } from 'react';
 import SearchBar from 'components/atoms/common/SearchBar';
-import { DictionaryContainer } from './style';
+import { getAllWordApi, registVocabularyApi } from 'utils/apis/vocabulary';
+import { IWord } from 'types/keyword';
+import { DictionaryContainer, WordListContainer, WordListItemContainer } from './style';
 
+function WordListItem({ word, idx }: { word: IWord; idx: number }) {
+	const registWord = async () => {
+		try {
+			const memberKey = localStorage.getItem('memberkey');
+
+			if (memberKey) {
+				const body = {
+					wordKey: word.wordKey,
+				};
+
+				const response = await registVocabularyApi(memberKey, body);
+				if (response.status === 201) {
+					alert(`'${word.content}'가 단어장에 추가되었습니다 !`);
+				}
+			}
+		} catch (error) {
+			console.error(error);
+		}
+	};
+
+	return (
+		<WordListItemContainer>
+			<span className="word-header">
+				<b>{word.content}</b> 뜻 {idx + 1}
+			</span>
+			<span>{word.description}</span>
+			<button className="add" type="button" onClick={registWord}>
+				단어장에 추가하기
+			</button>
+		</WordListItemContainer>
+	);
+}
 function Dictionary() {
 	const [searchWord, setSearchWord] = useState('');
+	const [wordList, setWordList] = useState<IWord[]>([]);
 
 	const search = async () => {
 		try {
-			alert(`${searchWord} 검색`);
+			const response = await getAllWordApi(searchWord, 1);
+			setWordList(response.data.data.content);
 		} catch (error) {
 			console.error(error);
 		}
@@ -24,6 +60,9 @@ function Dictionary() {
 				placeholder="검색어를 입력하세요"
 				color="SubSecond"
 			/>
+			<WordListContainer>
+				{wordList.length ? wordList.map((el, idx) => <WordListItem word={el} idx={idx} key={el.wordKey} />) : <div />}
+			</WordListContainer>
 		</DictionaryContainer>
 	);
 }

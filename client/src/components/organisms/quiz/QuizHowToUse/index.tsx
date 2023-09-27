@@ -11,9 +11,11 @@ interface IQuizHowToUseProps {
 	setStep: Dispatch<SetStateAction<number>>;
 }
 
-function QuizHowToUse({ setStep }: IQuizHowToUseProps) {
+function QuizHowToUse(props: IQuizHowToUseProps) {
+	const { setStep } = props;
 	const [isDone, setIsDone] = useState(false);
 	const [num, setNum] = useState(0);
+
 	const handleClick = () => {
 		if (!isDone) {
 			setStep(2);

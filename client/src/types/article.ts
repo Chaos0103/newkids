@@ -2,8 +2,9 @@ export interface IArticle {
 	articleId: number;
 	title: string;
 	subTitle: string;
+	content: string;
 	writer: string;
-	publishedDate: [number, number, number, number, number, number, number];
+	publishedDate: string;
 	thumbnailImg: string;
 }
 
@@ -11,7 +12,7 @@ export interface IArticleDetail {
 	title: string;
 	subTitle: string;
 	writer: string;
-	publishedDate: [number, number, number, number, number, number, number];
+	publishedDate: string;
 	content: string;
 	thumbnailImg: string;
 	imageUrls: string[];

@@ -1,8 +1,8 @@
 import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import Title from 'components/atoms/game/Title';
-import QuizImage from 'components/atoms/quiz/QuizImage';
 import Explain from 'components/atoms/game/Explain';
 import Button from 'components/atoms/common/Button';
+import QuizLottie from 'components/atoms/lottie/QuizLottie';
 import { GameMainContainer } from './style';
 
 interface IGameMainProps {
@@ -31,7 +31,7 @@ function GameMain({ setStep }: IGameMainProps) {
 	return (
 		<GameMainContainer>
 			<Title text="" effectText="단어 듣고 맞추기" />
-			<QuizImage />
+			<QuizLottie />
 			<Explain />
 			<div className="quiz-button">
 				<Button size="l" radius="m" color="Primary" text="시작하러 가기!" handleClick={handleClick} />

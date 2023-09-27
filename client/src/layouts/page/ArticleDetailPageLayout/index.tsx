@@ -12,6 +12,7 @@ interface IArticleDetailPageLayoutProps {
 
 function ArticleDetailPageLayout(props: IArticleDetailPageLayoutProps) {
 	const { ArticleHeader, ArticleKeywordList, ArticleContent, RecommendedArticleList, Footer } = props;
+
 	return (
 		<ArticleDetailPageLayoutContainer>
 			<ContentLayout>

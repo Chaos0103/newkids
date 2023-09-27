@@ -8,10 +8,10 @@ function createRingElements(numberOfRings: number, gapPercentage: number) {
 	for (let i = 1; i < numberOfRings; i += 1) {
 		const leftPosition = `${i * gapPercentage}%`;
 		const ring = (
-			<div>
-				<div className="ring-border" key={i} style={{ left: leftPosition }} />
-				<div className="ring-border-1" key={i} style={{ left: leftPosition }} />
-				<div className="ring" key={i} style={{ left: leftPosition }}>
+			<div key={i}>
+				<div className="ring-border" style={{ left: leftPosition }} />
+				<div className="ring-border-1" style={{ left: leftPosition }} />
+				<div className="ring" style={{ left: leftPosition }}>
 					<div className="small-ring" />
 				</div>
 			</div>

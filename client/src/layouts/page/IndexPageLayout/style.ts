@@ -23,6 +23,7 @@ export const IndexPageLayoutContainer = styled.div`
 		}
 
 		.word-cloud {
+			margin-bottom: 10rem;
 			position: relative;
 		}
 	}
