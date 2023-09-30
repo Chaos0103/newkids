@@ -76,5 +76,11 @@ public class Member extends TimeBaseEntity {
     public void deActive() {
         this.active = false;
     }
+
+    public void increaseExp(int exp) {
+        int temp = this.exp + exp;
+        this.level = temp / 100;
+        this.exp = temp % 100;
+    }
 }
 

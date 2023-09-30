@@ -38,14 +38,14 @@ spring:
   # jpa setting
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: none
     properties:
       hibernate:
         default_batch_fetch_size: 100
         format_sql: true
     open-in-view: true
-#    database: mysql
-#    database-platform: org.hibernate.dialect.MySQL8Dialect
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL8Dialect
   # mail
   mail:
     host: smtp.gmail.com
