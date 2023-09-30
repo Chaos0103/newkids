@@ -171,7 +171,6 @@ class ArticleControllerDocsTest extends RestDocsSupport {
             .publishedDate(LocalDateTime.now())
             .content("")
             .thumbnailImg("")
-            .imageUrls(List.of(""))
             .build();
 
         given(articleQueryService.getArticle(anyLong()))
@@ -206,9 +205,7 @@ class ArticleControllerDocsTest extends RestDocsSupport {
                     fieldWithPath("data.content").type(JsonFieldType.STRING)
                         .description("기사 내용"),
                     fieldWithPath("data.thumbnailImg").type(JsonFieldType.STRING)
-                        .description("기사 썸네일 이미지"),
-                    fieldWithPath("data.imageUrls[]").type(JsonFieldType.ARRAY)
-                        .description("기사 이미지 리스스")
+                        .description("기사 썸네일 이미지")
                 )
             ));
     }

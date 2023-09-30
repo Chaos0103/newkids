@@ -1,14 +1,10 @@
 package com.ssafy.articleservice.api.controller.article.response;
 
 import com.ssafy.articleservice.domain.article.Article;
-import com.ssafy.articleservice.domain.article.ArticleImage;
 import lombok.Builder;
 import lombok.Data;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Data
 public class ArticleDetailResponse {
@@ -20,10 +16,9 @@ public class ArticleDetailResponse {
     private LocalDateTime publishedDate;
     private String content;
     private String thumbnailImg;
-    private List<String> imageUrls = new ArrayList<>();
 
     @Builder
-    private ArticleDetailResponse(Long articleId, String title, String subTitle, String writer, LocalDateTime publishedDate, String content, String thumbnailImg, List<String> imageUrls) {
+    private ArticleDetailResponse(Long articleId, String title, String subTitle, String writer, LocalDateTime publishedDate, String content, String thumbnailImg) {
         this.articleId = articleId;
         this.title = title;
         this.subTitle = subTitle;
@@ -31,14 +26,9 @@ public class ArticleDetailResponse {
         this.publishedDate = publishedDate;
         this.content = content;
         this.thumbnailImg = thumbnailImg;
-        this.imageUrls = imageUrls;
     }
 
-    public static ArticleDetailResponse of(Article article, List<ArticleImage> images) {
-        List<String> urls = images.stream()
-            .map(ArticleImage::getUrl)
-            .collect(Collectors.toList());
-
+    public static ArticleDetailResponse of(Article article) {
         return ArticleDetailResponse.builder()
             .articleId(article.getId())
             .title(article.getTitle())
@@ -47,7 +37,6 @@ public class ArticleDetailResponse {
             .publishedDate(article.getPublishedDate())
             .content(article.getHtmlContent())
             .thumbnailImg(article.getThumbnailImg())
-            .imageUrls(urls)
             .build();
     }
 }

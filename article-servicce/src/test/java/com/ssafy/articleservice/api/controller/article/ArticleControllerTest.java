@@ -39,7 +39,6 @@ class ArticleControllerTest extends ControllerTestSupport {
             .publishedDate(LocalDateTime.of(2023, 9, 18, 9, 0))
             .content("전인혁은 오늘 지각을 하였다. 아직 일어나지 않은 것 같다. 오늘의 춤을 선택해야지~")
             .thumbnailImg("http://전즈리얼.jpg")
-            .imageUrls(List.of("http://image1.jpg", "http://image2.jpg"))
             .build();
 
         given(articleQueryService.getArticle(anyLong()))

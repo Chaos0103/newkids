@@ -563,12 +563,12 @@ Host: localhost:8080</code></pre>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>startDate</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">O</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">필수</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">시작일</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>endDate</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">O</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">필수</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">종료일</p></td>
 </tr>
 </tbody>
@@ -580,7 +580,7 @@ Host: localhost:8080</code></pre>
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 964
+Content-Length: 923
 
 {
   "code" : 200,
@@ -593,32 +593,32 @@ Content-Length: 964
       "subTitle" : "먹고싶지 않다",
       "writer" : "임우택",
       "content" : "배가 너무너무너무 고파요",
-      "publishedDate" : [ 2023, 9, 26, 10, 22, 56, 712467300 ],
+      "publishedDate" : [ 2023, 9, 30, 19, 4, 33, 335086000 ],
       "thumbnailImg" : "http://lunch.png"
     } ],
     "pageable" : {
       "sort" : {
         "empty" : true,
-        "sorted" : false,
-        "unsorted" : true
+        "unsorted" : true,
+        "sorted" : false
       },
       "offset" : 10,
-      "pageNumber" : 1,
       "pageSize" : 10,
-      "unpaged" : false,
-      "paged" : true
+      "pageNumber" : 1,
+      "paged" : true,
+      "unpaged" : false
     },
-    "totalPages" : 2,
-    "totalElements" : 11,
     "last" : true,
+    "totalElements" : 11,
+    "totalPages" : 2,
+    "size" : 10,
+    "first" : false,
+    "number" : 1,
     "sort" : {
       "empty" : true,
-      "sorted" : false,
-      "unsorted" : true
+      "unsorted" : true,
+      "sorted" : false
     },
-    "size" : 10,
-    "number" : 1,
-    "first" : false,
     "numberOfElements" : 1,
     "empty" : false
   }
@@ -833,7 +833,7 @@ Host: localhost:8080</code></pre>
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 305
+Content-Length: 264
 
 {
   "code" : 200,
@@ -844,10 +844,9 @@ Content-Length: 305
     "title" : "",
     "subTitle" : "",
     "writer" : "",
-    "publishedDate" : [ 2023, 9, 26, 10, 22, 56, 320467600 ],
+    "publishedDate" : [ 2023, 9, 30, 19, 4, 33, 297039000 ],
     "content" : "",
-    "thumbnailImg" : "",
-    "imageUrls" : [ "" ]
+    "thumbnailImg" : ""
   }
 }</code></pre>
 </div>
@@ -924,11 +923,6 @@ Content-Length: 305
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">기사 썸네일 이미지</p></td>
 </tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.imageUrls[]</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">기사 이미지 리스스</p></td>
-</tr>
 </tbody>
 </table>
 </div>
@@ -944,10 +938,10 @@ Content-Length: 305
 <h4 id="_http_request_3"><a class="link" href="#_http_request_3">HTTP Request</a></h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">POST /article-service/api/read/8df2bcd7-9623-452b-97cc-6d3dc6396faf HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">POST /article-service/api/read/a9cebbe1-fd04-4b2e-88e3-e089d7959652 HTTP/1.1
 Content-Type: application/json
 Authorization: accessToken
-Content-Length: 27
+Content-Length: 25
 Host: localhost:8080
 
 {
@@ -977,7 +971,7 @@ Host: localhost:8080
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>articleId</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">O</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">필수</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">뉴스 기사 PK</p></td>
 </tr>
 </tbody>
@@ -989,7 +983,7 @@ Host: localhost:8080
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">HTTP/1.1 201 Created
 Content-Type: application/json
-Content-Length: 233
+Content-Length: 224
 
 {
   "code" : 201,
@@ -1065,7 +1059,7 @@ Content-Length: 233
 <h4 id="_http_request_4"><a class="link" href="#_http_request_4">HTTP Request</a></h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /article-service/api/read/249b2a27-8a20-4fd9-94a5-d2afbc366e83?pageNum=1 HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /article-service/api/read/fc0e906b-9c67-452e-95ac-4136927c8aca?pageNum=1 HTTP/1.1
 Authorization: accessToken
 Host: localhost:8080</code></pre>
 </div>
@@ -1101,7 +1095,7 @@ Host: localhost:8080</code></pre>
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 924
+Content-Length: 884
 
 {
   "code" : 200,
@@ -1120,26 +1114,26 @@ Content-Length: 924
     "pageable" : {
       "sort" : {
         "empty" : true,
-        "sorted" : false,
-        "unsorted" : true
+        "unsorted" : true,
+        "sorted" : false
       },
       "offset" : 0,
-      "pageNumber" : 0,
       "pageSize" : 8,
-      "unpaged" : false,
-      "paged" : true
+      "pageNumber" : 0,
+      "paged" : true,
+      "unpaged" : false
     },
-    "totalPages" : 3,
-    "totalElements" : 20,
     "last" : false,
+    "totalElements" : 20,
+    "totalPages" : 3,
+    "size" : 8,
+    "first" : true,
+    "number" : 0,
     "sort" : {
       "empty" : true,
-      "sorted" : false,
-      "unsorted" : true
+      "unsorted" : true,
+      "sorted" : false
     },
-    "size" : 8,
-    "number" : 0,
-    "first" : true,
     "numberOfElements" : 2,
     "empty" : false
   }
@@ -1323,7 +1317,7 @@ Content-Length: 924
 <div id="footer">
 <div id="footer-text">
 Version 1.0<br>
-Last updated 2023-09-20 09:48:50 +0900
+Last updated 2023-09-30 19:04:06 +0900
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">

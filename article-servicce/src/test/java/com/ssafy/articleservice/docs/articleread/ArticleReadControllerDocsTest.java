@@ -191,29 +191,4 @@ public class ArticleReadControllerDocsTest extends RestDocsSupport {
                 )
             ));
     }
-
-    @DisplayName("읽은 뉴스 기사 목록 삭제 API")
-    @Test
-    void removeArticleRead() throws Exception {
-
-        mockMvc.perform(
-                delete("/article-service/api/read/{articleReadId}", 14842L)
-                    .header("Authorization", "accessToken")
-            )
-            .andDo(print())
-            .andExpect(status().isFound())
-            .andDo(document("remove-read-article",
-                preprocessResponse(prettyPrint()),
-                responseFields(
-                    fieldWithPath("code").type(JsonFieldType.NUMBER)
-                        .description("코드"),
-                    fieldWithPath("status").type(JsonFieldType.STRING)
-                        .description("상태"),
-                    fieldWithPath("message").type(JsonFieldType.STRING)
-                        .description("메시지"),
-                    fieldWithPath("data").type(JsonFieldType.NULL)
-                        .description("응답데이터")
-                )
-            ));
-    }
 }

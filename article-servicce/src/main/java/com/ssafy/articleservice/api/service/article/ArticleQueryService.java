@@ -3,8 +3,6 @@ package com.ssafy.articleservice.api.service.article;
 import com.ssafy.articleservice.api.controller.article.response.ArticleDetailResponse;
 import com.ssafy.articleservice.api.controller.article.response.ArticleResponse;
 import com.ssafy.articleservice.domain.article.Article;
-import com.ssafy.articleservice.domain.article.ArticleImage;
-import com.ssafy.articleservice.domain.article.repository.ArticleImageRepository;
 import com.ssafy.articleservice.domain.article.repository.ArticleQueryRepository;
 import com.ssafy.articleservice.domain.article.repository.ArticleRepository;
 import com.ssafy.articleservice.domain.article.repository.dto.ArticleSearchCond;
@@ -25,7 +23,6 @@ import java.util.Optional;
 public class ArticleQueryService {
 
     private final ArticleRepository articleRepository;
-    private final ArticleImageRepository articleImageRepository;
     private final ArticleQueryRepository articleQueryRepository;
 
     public Page<ArticleResponse> getArticles(ArticleSearchCond cond, Pageable pageable) {
@@ -36,8 +33,7 @@ public class ArticleQueryService {
 
     public ArticleDetailResponse getArticle(Long articleId) {
         Article findArticle = getArticleEntity(articleId);
-        List<ArticleImage> findArticleImages = articleImageRepository.findByArticleId(articleId);
-        return ArticleDetailResponse.of(findArticle, findArticleImages);
+        return ArticleDetailResponse.of(findArticle);
     }
 
     private Article getArticleEntity(Long articleId) {

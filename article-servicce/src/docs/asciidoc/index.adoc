@@ -22,4 +22,3 @@ include::api/article/search-detail-article.adoc[]
 
 include::api/articleread/create-read-article.adoc[]
 include::api/articleread/search-read-article.adoc[]
-// include::api/articleread/remove-read-article.adoc[]
