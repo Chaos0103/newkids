@@ -6,6 +6,7 @@ import com.ssafy.quizservice.api.controller.quiz.response.QuizResultResponse;
 import com.ssafy.quizservice.api.controller.quiz.response.QuizWordResponse;
 import com.ssafy.quizservice.api.service.quiz.QuizService;
 import com.ssafy.quizservice.docs.RestDocsSupport;
+import com.ssafy.quizservice.messagequeue.KafkaProducer;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.MediaType;
@@ -26,10 +27,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class QuizControllerDocsTest extends RestDocsSupport {
 
     private final QuizService quizService = mock(QuizService.class);
+    private final KafkaProducer kafkaProducer = mock(KafkaProducer.class);
 
     @Override
     protected Object initController() {
-        return new QuizController(quizService);
+        return new QuizController(quizService, kafkaProducer);
     }
 
     @DisplayName("퀴즈 시작 등록 API")
