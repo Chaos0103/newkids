@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.10">
-<title>New Kids(article-service) REST API 문서</title>
+<title>New Kids(recommendation-service) REST API 문서</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -439,7 +439,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="book toc2 toc-left">
 <div id="header">
-<h1>New Kids(article-service) REST API 문서</h1>
+<h1>New Kids(recommendation-service) REST API 문서</h1>
 <div class="details">
 <span id="revnumber">version 1.0</span>
 </div>
@@ -455,6 +455,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel2">
 <li><a href="#search-main-recommendation">메인 뉴스 기사 추천 조회</a></li>
 <li><a href="#search-peer-age-recommendation">또래 뉴스 기사 추천 조회</a></li>
+<li><a href="#search-another-article-recommendation">다른 뉴스 기사 추천 조회</a></li>
 </ul>
 </li>
 <li><a href="#HotKeyword-API">HotKeyword API</a>
@@ -723,6 +724,110 @@ Content-Length: 692
 </table>
 </div>
 </div>
+<div class="sect2">
+<h3 id="search-another-article-recommendation"><a class="link" href="#search-another-article-recommendation">다른 뉴스 기사 추천 조회</a></h3>
+<div class="sect3">
+<h4 id="_http_request_3"><a class="link" href="#_http_request_3">HTTP Request</a></h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /recommendation-service/api/another-article HTTP/1.1
+Host: localhost:8080</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_http_response_3"><a class="link" href="#_http_response_3">HTTP Response</a></h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 815
+
+{
+  "code" : 200,
+  "status" : "OK",
+  "message" : "SUCCESS",
+  "data" : [ {
+    "articleId" : 1,
+    "title" : "다른 뉴스 기사 추천 1",
+    "thumbnailImg" : "http://thumbnailImg1.jpg"
+  }, {
+    "articleId" : 2,
+    "title" : "다른 뉴스 기사 추천 2",
+    "thumbnailImg" : "http://thumbnailImg2.jpg"
+  }, {
+    "articleId" : 3,
+    "title" : "다른 뉴스 기사 추천 3",
+    "thumbnailImg" : "http://thumbnailImg3.jpg"
+  }, {
+    "articleId" : 4,
+    "title" : "다른 뉴스 기사 추천 4",
+    "thumbnailImg" : "http://thumbnailImg4.jpg"
+  }, {
+    "articleId" : 5,
+    "title" : "다른 뉴스 기사 추천 5",
+    "thumbnailImg" : "http://thumbnailImg5.jpg"
+  }, {
+    "articleId" : 6,
+    "title" : "다른 뉴스 기사 추천 6",
+    "thumbnailImg" : "http://thumbnailImg6.jpg"
+  } ]
+}</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>code</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">코드</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>status</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">상태</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>message</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">메시지</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">응답 데이터</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data[].articleId</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">뉴스 기사 PK</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data[].title</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">뉴스 기사 제목</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data[].thumbnailImg</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">뉴스 기사 썸네일</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -731,7 +836,7 @@ Content-Length: 692
 <div class="sect2">
 <h3 id="search-hot-keyword"><a class="link" href="#search-hot-keyword">핫이슈 키워드 조회</a></h3>
 <div class="sect3">
-<h4 id="_http_request_3"><a class="link" href="#_http_request_3">HTTP Request</a></h4>
+<h4 id="_http_request_4"><a class="link" href="#_http_request_4">HTTP Request</a></h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /recommendation-service/api/hot-keyword HTTP/1.1
@@ -740,7 +845,7 @@ Host: localhost:8080</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_http_response_3"><a class="link" href="#_http_response_3">HTTP Response</a></h4>
+<h4 id="_http_response_4"><a class="link" href="#_http_response_4">HTTP Response</a></h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">HTTP/1.1 200 OK
@@ -834,7 +939,7 @@ Content-Length: 429
 <div id="footer">
 <div id="footer-text">
 Version 1.0<br>
-Last updated 2023-09-25 17:15:51 +0900
+Last updated 2023-09-30 14:23:04 +0900
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">

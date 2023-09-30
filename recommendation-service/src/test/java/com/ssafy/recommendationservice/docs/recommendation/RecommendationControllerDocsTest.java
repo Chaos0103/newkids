@@ -1,6 +1,7 @@
 package com.ssafy.recommendationservice.docs.recommendation;
 
 import com.ssafy.recommendationservice.api.controller.recommendation.RecommendationController;
+import com.ssafy.recommendationservice.api.controller.recommendation.response.AnotherArticleRecommendationResponse;
 import com.ssafy.recommendationservice.api.controller.recommendation.response.MainRecommendationResponse;
 import com.ssafy.recommendationservice.api.controller.recommendation.response.PeerAgeRecommendationResponse;
 import com.ssafy.recommendationservice.api.service.recommendation.RecommendationService;
@@ -149,4 +150,66 @@ public class RecommendationControllerDocsTest extends RestDocsSupport {
             ));
     }
 
+    @DisplayName("다른 기사 추천 API")
+    @Test
+    void getAnotherArticleRecommendation() throws Exception {
+        AnotherArticleRecommendationResponse response1 = AnotherArticleRecommendationResponse.builder()
+            .articleId(1L)
+            .title("다른 뉴스 기사 추천 1")
+            .thumbnailImg("http://thumbnailImg1.jpg")
+            .build();
+        AnotherArticleRecommendationResponse response2 = AnotherArticleRecommendationResponse.builder()
+            .articleId(2L)
+            .title("다른 뉴스 기사 추천 2")
+            .thumbnailImg("http://thumbnailImg2.jpg")
+            .build();
+        AnotherArticleRecommendationResponse response3 = AnotherArticleRecommendationResponse.builder()
+            .articleId(3L)
+            .title("다른 뉴스 기사 추천 3")
+            .thumbnailImg("http://thumbnailImg3.jpg")
+            .build();
+        AnotherArticleRecommendationResponse response4 = AnotherArticleRecommendationResponse.builder()
+            .articleId(4L)
+            .title("다른 뉴스 기사 추천 4")
+            .thumbnailImg("http://thumbnailImg4.jpg")
+            .build();
+        AnotherArticleRecommendationResponse response5 = AnotherArticleRecommendationResponse.builder()
+            .articleId(5L)
+            .title("다른 뉴스 기사 추천 5")
+            .thumbnailImg("http://thumbnailImg5.jpg")
+            .build();
+        AnotherArticleRecommendationResponse response6 = AnotherArticleRecommendationResponse.builder()
+            .articleId(6L)
+            .title("다른 뉴스 기사 추천 6")
+            .thumbnailImg("http://thumbnailImg6.jpg")
+            .build();
+
+        given(recommendationService.getAnotherArticleRecommendation())
+            .willReturn(List.of(response1, response2, response3, response4, response5, response6));
+
+        mockMvc.perform(
+                get("/recommendation-service/api/another-article")
+            )
+            .andDo(print())
+            .andExpect(status().isOk())
+            .andDo(document("search-another-article-recommendation",
+                preprocessResponse(prettyPrint()),
+                responseFields(
+                    fieldWithPath("code").type(JsonFieldType.NUMBER)
+                        .description("코드"),
+                    fieldWithPath("status").type(JsonFieldType.STRING)
+                        .description("상태"),
+                    fieldWithPath("message").type(JsonFieldType.STRING)
+                        .description("메시지"),
+                    fieldWithPath("data").type(JsonFieldType.ARRAY)
+                        .description("응답 데이터"),
+                    fieldWithPath("data[].articleId").type(JsonFieldType.NUMBER)
+                        .description("뉴스 기사 PK"),
+                    fieldWithPath("data[].title").type(JsonFieldType.STRING)
+                        .description("뉴스 기사 제목"),
+                    fieldWithPath("data[].thumbnailImg").type(JsonFieldType.STRING)
+                        .description("뉴스 기사 썸네일")
+                )
+            ));
+    }
 }

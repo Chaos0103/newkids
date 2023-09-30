@@ -1,6 +1,7 @@
 package com.ssafy.recommendationservice.api.controller.recommendation;
 
 import com.ssafy.recommendationservice.api.controller.ApiResponse;
+import com.ssafy.recommendationservice.api.controller.recommendation.response.AnotherArticleRecommendationResponse;
 import com.ssafy.recommendationservice.api.controller.recommendation.response.MainRecommendationResponse;
 import com.ssafy.recommendationservice.api.controller.recommendation.response.PeerAgeRecommendationResponse;
 import com.ssafy.recommendationservice.api.service.recommendation.RecommendationService;
@@ -29,6 +30,12 @@ public class RecommendationController {
     @GetMapping("/peer-age")
     public ApiResponse<List<PeerAgeRecommendationResponse>> getPeerAgeRecommendation() {
         List<PeerAgeRecommendationResponse> responses = recommendationService.getPeerAgeRecommendation();
+        return ApiResponse.ok(responses);
+    }
+
+    @GetMapping("/another-article")
+    public ApiResponse<List<AnotherArticleRecommendationResponse>> getAnotherArticleRecommendation() {
+        List<AnotherArticleRecommendationResponse> responses = recommendationService.getAnotherArticleRecommendation();
         return ApiResponse.ok(responses);
     }
 }

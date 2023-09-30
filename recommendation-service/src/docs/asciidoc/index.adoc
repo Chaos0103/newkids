@@ -1,7 +1,7 @@
 ifndef::snippets[]
 :snippets: ../../build/generated-snippets
 endif::[]
-= New Kids(article-service) REST API 문서
+= New Kids(recommendation-service) REST API 문서
 :doctype: book
 :icons: font
 :source-highlighter: highlightjs
@@ -16,6 +16,7 @@ include::overview.adoc[]
 
 include::api/recommendation/search-main-recommendation.adoc[]
 include::api/recommendation/search-peer-age-recommendation.adoc[]
+include::api/recommendation/search-another-article-recommendation.adoc[]
 
 
 [[HotKeyword-API]]

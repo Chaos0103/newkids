@@ -1,5 +1,6 @@
 package com.ssafy.recommendationservice.api.service.recommendation;
 
+import com.ssafy.recommendationservice.api.controller.recommendation.response.AnotherArticleRecommendationResponse;
 import com.ssafy.recommendationservice.api.controller.recommendation.response.MainRecommendationResponse;
 import com.ssafy.recommendationservice.api.controller.recommendation.response.PeerAgeRecommendationResponse;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +18,10 @@ public class RecommendationService {
     }
 
     public List<PeerAgeRecommendationResponse> getPeerAgeRecommendation() {
+        return new ArrayList<>();
+    }
+
+    public List<AnotherArticleRecommendationResponse> getAnotherArticleRecommendation() {
         return new ArrayList<>();
     }
 }
