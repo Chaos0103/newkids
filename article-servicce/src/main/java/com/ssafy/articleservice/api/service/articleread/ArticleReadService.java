@@ -38,10 +38,6 @@ public class ArticleReadService {
         return ArticleReadResponse.of(findArticle);
     }
 
-    public void removeArticleRead(Long articleReadId) {
-
-    }
-
     private Article getArticleEntity(Long articleId) {
         Optional<Article> findArticle = articleRepository.findById(articleId);
         if (findArticle.isEmpty()) {
