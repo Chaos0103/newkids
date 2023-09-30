@@ -72,7 +72,6 @@ public class VocabularyController {
      * @return 변경된 단어장 정보
      */
     @PatchMapping("/{vocabularyId}")
-    @ResponseStatus(HttpStatus.FOUND)
     public ApiResponse<WordResponse> checkVocabulary(@PathVariable Long vocabularyId) {
         log.debug("call VocabularyController#checkVocabulary");
         log.debug("vocabularyId={}", vocabularyId);
@@ -90,7 +89,6 @@ public class VocabularyController {
      * @return 삭제된 단어장 정보
      */
     @DeleteMapping("/{vocabularyId}")
-    @ResponseStatus(HttpStatus.FOUND)
     public ApiResponse<WordResponse> removeVocabulary(@PathVariable Long vocabularyId) {
         log.debug("call VocabularyController#removeVocabulary");
         log.debug("vocabularyId={}", vocabularyId);

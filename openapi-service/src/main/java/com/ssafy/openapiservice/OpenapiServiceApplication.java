@@ -1,4 +1,4 @@
-package com.ssafy.vocabularyservice;
+package com.ssafy.openapiservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -7,10 +7,11 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @SpringBootApplication
 @EnableDiscoveryClient
-public class VocabularyServiceApplication {
+@EnableFeignClients
+public class OpenapiServiceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(VocabularyServiceApplication.class, args);
+		SpringApplication.run(OpenapiServiceApplication.class, args);
 	}
 
 }

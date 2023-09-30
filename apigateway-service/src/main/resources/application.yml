@@ -160,6 +160,24 @@ spring:
           predicates:
             - Path=/recommendation-service/docs/index
             - Method=GET
+        # OPENAPI SERVICE
+        - id: openapi-service
+          uri: lb://OPENAPI-SERVICE
+          predicates:
+            - Path=/openapi-service/actuator/**
+            - Method=GET, POST
+          filters:
+            - RewritePath=/openapi-service/(?<segment>.*), /$\{segment}
+        - id: openapi-service
+          uri: lb://OPENAPI-SERVICE
+          predicates:
+            - Path=/openapi-service/api/**
+            - Method=GET
+        - id: openapi-service
+          uri: lb://OPENAPI-SERVICE
+          predicates:
+            - Path=/openapi-service/docs/index
+            - Method=GET
 
 
 management:

@@ -23,8 +23,3 @@ include::api/vocabulary/remove-vocabulary.adoc[]
 == Word API
 
 include::api/word/search-word.adoc[]
-
-[[Open-API]]
-== Open API
-
-include::api/openapi/search-openapi.adoc[]
