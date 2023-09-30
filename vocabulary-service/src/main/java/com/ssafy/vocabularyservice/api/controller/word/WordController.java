@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 /**
- * 단어 API 컨트롤러
+ * Word API 컨트롤러
  *
  * @author 임우택
  */
@@ -51,7 +51,7 @@ public class WordController {
      * 단어 조회 API
      * @param keyword 조회할 키워드
      * @param pageNum 조회할 페이지 번호
-     * @return 조회된 단어 정보
+     * @return 200 조회된 단어 정보
      */
     @GetMapping
     public ApiResponse<Page<WordResponse>> getWords(

@@ -11,6 +11,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+/**
+ * Vocabulary 서버 내부 통신 API
+ *
+ * @author 임우택
+ */
 @RequiredArgsConstructor
 @RestController
 @Slf4j
@@ -19,9 +24,16 @@ public class VocabularyClientController {
 
     private final VocabularyQueryService vocabularyQueryService;
 
+    /**
+     * 어휘 퀴즈를 위한 나의 단어장 조회 API
+     *
+     * @param memberKey 조회할 회원 고유키
+     * @return 나의 단어장에 저장된 랜덤한 단어 10개
+     */
     @GetMapping
-    public List<WordClientResponse> getMyVocabulary(@PathVariable String memberKey) {
+    public List<WordClientResponse> getMyVocabularyClient(@PathVariable String memberKey) {
         log.debug("call VocabularyClientController#getMyVocabulary");
+        log.debug("memberKey={}", memberKey);
 
         List<WordClientResponse> responses = vocabularyQueryService.getMyVocabularyClient(memberKey);
         log.debug("responses={}", responses);

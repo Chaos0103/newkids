@@ -44,9 +44,11 @@ public class ArticleQueryRepository {
 
         return queryFactory
             .select(Projections.constructor(ArticleResponse.class,
+                article.id,
                 article.title,
                 article.subTitle,
                 article.writer,
+                article.content,
                 article.publishedDate,
                 article.thumbnailImg
             ))
@@ -62,7 +64,8 @@ public class ArticleQueryRepository {
             .from(article)
             .where(
                 article.title.like("%" + cond.getContent() + "%")
-                    .or(article.content.like("%" + cond.getContent() + "%"))
+                    .or(article.content.like("%" + cond.getContent() + "%")),
+                article.publishedDate.between(cond.getStartedDate(), cond.getEndedDate())
             )
             .fetch()
             .size();

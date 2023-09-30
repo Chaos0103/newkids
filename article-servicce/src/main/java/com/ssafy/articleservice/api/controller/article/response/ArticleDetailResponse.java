@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 @Data
 public class ArticleDetailResponse {
 
+    private Long articleId;
     private String title;
     private String subTitle;
     private String writer;
@@ -22,7 +23,8 @@ public class ArticleDetailResponse {
     private List<String> imageUrls = new ArrayList<>();
 
     @Builder
-    private ArticleDetailResponse(String title, String subTitle, String writer, LocalDateTime publishedDate, String content, String thumbnailImg, List<String> imageUrls) {
+    private ArticleDetailResponse(Long articleId, String title, String subTitle, String writer, LocalDateTime publishedDate, String content, String thumbnailImg, List<String> imageUrls) {
+        this.articleId = articleId;
         this.title = title;
         this.subTitle = subTitle;
         this.writer = writer;
@@ -38,11 +40,12 @@ public class ArticleDetailResponse {
             .collect(Collectors.toList());
 
         return ArticleDetailResponse.builder()
+            .articleId(article.getId())
             .title(article.getTitle())
             .subTitle(article.getSubTitle())
             .writer(article.getWriter())
             .publishedDate(article.getPublishedDate())
-            .content(article.getContent())
+            .content(article.getHtmlContent())
             .thumbnailImg(article.getThumbnailImg())
             .imageUrls(urls)
             .build();

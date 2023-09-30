@@ -54,7 +54,6 @@ public class MemberController {
      * @return 비밀번호 변경된 계정 정보
      */
     @PatchMapping("/api/{memberKey}/password")
-    @ResponseStatus(HttpStatus.FOUND)
     public ApiResponse<MemberResponse> editPassword(
         @PathVariable String memberKey,
         @Valid @RequestBody EditPasswordRequest request
@@ -66,7 +65,7 @@ public class MemberController {
         MemberResponse response = memberService.editPassword(memberKey, request.getCurrentPwd(), request.getNewPwd());
         log.debug("MemberResponse={}", response);
 
-        return ApiResponse.found(response);
+        return ApiResponse.ok(response);
     }
 
     /**
@@ -77,7 +76,6 @@ public class MemberController {
      * @return 닉네임 변경된 계정 정보
      */
     @PatchMapping("/api/{memberKey}/nickname")
-    @ResponseStatus(HttpStatus.FOUND)
     public ApiResponse<MemberResponse> editNickname(
         @PathVariable String memberKey,
         @Valid @RequestBody EditNicknameRequest request
@@ -89,7 +87,7 @@ public class MemberController {
         MemberResponse response = memberService.editNickname(memberKey, request.getNewNickname());
         log.debug("MemberResponse={}", response);
 
-        return ApiResponse.found(response);
+        return ApiResponse.ok(response);
     }
 
     /**
@@ -99,7 +97,6 @@ public class MemberController {
      * @return 탈퇴 성공 여부(성공: true, 실패: false)
      */
     @DeleteMapping("/api/{memberKey}/withdrawal")
-    @ResponseStatus(HttpStatus.FOUND)
     public ApiResponse<Boolean> withdrawal(
         @PathVariable String memberKey,
         @Valid @RequestBody WithdrawalRequest request
@@ -111,6 +108,6 @@ public class MemberController {
         Boolean result = memberService.withdrawal(memberKey, request.getPassword());
         log.debug("result={}", result);
 
-        return ApiResponse.found(result);
+        return ApiResponse.ok(result);
     }
 }

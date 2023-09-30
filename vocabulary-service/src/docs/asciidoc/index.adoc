@@ -18,3 +18,13 @@ include::api/vocabulary/create-vocabulary.adoc[]
 include::api/vocabulary/search-vocabulary.adoc[]
 include::api/vocabulary/check-vocabulary.adoc[]
 include::api/vocabulary/remove-vocabulary.adoc[]
+
+[[Word-API]]
+== Word API
+
+include::api/word/search-word.adoc[]
+
+[[Open-API]]
+== Open API
+
+include::api/openapi/search-openapi.adoc[]

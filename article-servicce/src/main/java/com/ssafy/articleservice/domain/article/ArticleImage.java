@@ -20,7 +20,7 @@ public class ArticleImage extends TimeBaseEntity {
     private String url;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "artice_id")
+    @JoinColumn(name = "article_id")
     private Article article;
 
     @Builder
