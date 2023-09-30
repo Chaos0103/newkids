@@ -74,10 +74,6 @@ dependencies {
 	asciidoctorExt 'org.springframework.restdocs:spring-restdocs-asciidoctor'
 	testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
 
-	//json
-	implementation 'com.fasterxml.jackson.core:jackson-databind:2.14.2'
-
-
 }
 
 dependencyManagement {
