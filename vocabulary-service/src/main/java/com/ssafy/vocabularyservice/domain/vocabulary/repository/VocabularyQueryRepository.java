@@ -63,6 +63,15 @@ public class VocabularyQueryRepository {
             .fetch();
     }
 
+    public long getTotalCountByMemberKey(String memberKey) {
+        return queryFactory
+            .select(vocabulary.id)
+            .from(vocabulary)
+            .where(vocabulary.memberKey.eq(memberKey))
+            .fetch()
+            .size();
+    }
+
     public List<WordClientResponse> findClientByMemberKey(List<Long> options) {
         return queryFactory
             .select(Projections.constructor(WordClientResponse.class,

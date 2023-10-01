@@ -8,6 +8,8 @@ import com.ssafy.vocabularyservice.api.service.vocabulary.VocabularyQueryService
 import com.ssafy.vocabularyservice.api.service.vocabulary.VocabularyService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -55,11 +57,16 @@ public class VocabularyController {
      * @return 조회된 단어장 정보
      */
     @GetMapping("/{memberKey}")
-    public ApiResponse<?> getMyVocabulary(@PathVariable String memberKey) {
+    public ApiResponse<Page<VocabularyResponse>> getMyVocabulary(
+        @PathVariable String memberKey,
+        @RequestParam(defaultValue = "1") Integer pageNum
+    ) {
         log.debug("call VocabularyController#getMyVocabulary");
         log.debug("memberKey={}", memberKey);
 
-        List<VocabularyResponse> response = vocabularyQueryService.getMyVocabulary(memberKey);
+        PageRequest pageRequest = PageRequest.of(pageNum - 1, 10);
+
+        Page<VocabularyResponse> response = vocabularyQueryService.getMyVocabulary(memberKey, pageRequest);
         log.debug("response={}", response);
 
         return ApiResponse.ok(response);
