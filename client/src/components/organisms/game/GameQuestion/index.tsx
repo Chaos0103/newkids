@@ -5,6 +5,8 @@ import Question from 'components/atoms/quiz/Question';
 import Input from 'components/atoms/common/Input';
 import { DUMMY_QUIZS } from 'constants/dummyquiz';
 import { QuizQuestionRequestApiBody } from 'types/api';
+import SoundBarLottie from 'components/atoms/lottie/SoundBarLottie';
+import { getSpeech } from 'utils/apis/tts';
 import Button from 'components/atoms/common/Button';
 import { GameQuestionContainer } from './style';
 
@@ -20,6 +22,11 @@ function GameQuestion(props: IGameQuestionProps) {
 	const [currentIndex, setCurrentIndex] = useState(0);
 	const [answer, setAnswer] = useState('');
 
+	const handleSpeechButton = () => {
+		const voiceValue = question[currentIndex].word;
+		getSpeech(voiceValue);
+	};
+
 	const handleClick = (selectedAnswer: string) => {
 		const correctAnswer = question[currentIndex].word;
 
@@ -33,6 +40,7 @@ function GameQuestion(props: IGameQuestionProps) {
 					setCurrentIndex((prevIndex) => prevIndex + 1);
 					setIsDone(true);
 					setScore((prevIndex) => prevIndex + 1);
+					setAnswer('');
 				});
 			} else {
 				Swal.fire({
@@ -42,6 +50,7 @@ function GameQuestion(props: IGameQuestionProps) {
 				}).then(() => {
 					setCurrentIndex((prevIndex) => prevIndex + 1);
 					setIsDone(true);
+					setAnswer('');
 				});
 			}
 		}
@@ -82,7 +91,12 @@ function GameQuestion(props: IGameQuestionProps) {
 		<GameQuestionContainer>
 			<Title effectText={question[currentIndex].no} text="번 문제" />
 			<div className="question-wrapper">
-				<Question text={question[currentIndex].description} />
+				<div className="question">
+					<Question text={question[currentIndex].description} />
+				</div>
+				<button type="button" onClick={handleSpeechButton}>
+					<SoundBarLottie />
+				</button>
 			</div>
 			<hr className="hr" />
 			<div className="input-wrapper">
