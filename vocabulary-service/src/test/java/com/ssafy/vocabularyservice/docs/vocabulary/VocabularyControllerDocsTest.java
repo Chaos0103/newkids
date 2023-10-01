@@ -129,7 +129,7 @@ public class VocabularyControllerDocsTest extends RestDocsSupport {
                 preprocessResponse(prettyPrint()),
                 requestParameters(
                     parameterWithName("pageNum")
-                        .description("조회할 단어")
+                        .description("페이지 번호")
                 ),
                 responseFields(
                     fieldWithPath("code").type(JsonFieldType.NUMBER)
