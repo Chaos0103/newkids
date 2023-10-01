@@ -5,6 +5,7 @@ import { WeeklyQuizQuestionRequestApiBody } from 'types/api';
 import { DUMMY_WEEKLY_QUIZS } from 'constants/dummyquiz';
 import QuizButton from 'components/atoms/common/QuizButton';
 import Swal from 'sweetalert2';
+import { getWeeklyQuizQuestionApi } from 'utils/apis/quiz';
 import { QuizQuestionContainer } from './style';
 
 interface IQuizQuestionProps {
@@ -18,8 +19,28 @@ function QuizQuestion(props: IQuizQuestionProps) {
 	const [question, setQuestion] = useState<WeeklyQuizQuestionRequestApiBody[]>(DUMMY_WEEKLY_QUIZS);
 	const [currentIndex, setCurrentIndex] = useState(0);
 
+	const getQuizQuestions = async () => {
+		try {
+			const memberkey = localStorage.getItem('memberkey');
+			console.log('멤버키입니다.');
+			console.log(memberkey);
+			if (memberkey) {
+				const response = await getWeeklyQuizQuestionApi(memberkey);
+				console.log('::getWeeklyQuizQuestionApi', response);
+				console.log(response.data);
+			}
+		} catch (e) {
+			console.log(e);
+		}
+	};
+
+	useEffect(() => {
+		getQuizQuestions();
+		window.speechSynthesis.getVoices();
+	});
+
 	const handleClick = (selectedAnswer: string) => {
-		const correctAnswer = question[currentIndex].answerword;
+		const correctAnswer = question[currentIndex].answerWord;
 
 		if (!isDone) {
 			if (selectedAnswer === correctAnswer) {
@@ -46,7 +67,7 @@ function QuizQuestion(props: IQuizQuestionProps) {
 	};
 
 	const nextLevelClick = (selectedAnswer: string) => {
-		const correctAnswer = question[currentIndex].answerword;
+		const correctAnswer = question[currentIndex].answerWord;
 
 		if (!isDone) {
 			if (selectedAnswer === correctAnswer) {
