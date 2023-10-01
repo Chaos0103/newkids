@@ -72,7 +72,7 @@ export interface RegistReadArticleApiBody {
 
 // --quiz :: 퀴즈 질문 요청
 export interface QuizQuestionRequestApiBody {
-	no: string | number;
+	no: number;
 	word: string;
 	description: string;
 }
@@ -84,8 +84,8 @@ export interface QuizAnswerCheckApiBody {
 
 // -- weeklyquiz :: 주간 키워드 퀴즈 질문 요청
 export interface WeeklyQuizQuestionRequestApiBody {
-	no: string | number;
-	answerword: string;
+	no: number;
+	answerWord: string;
 	description: string;
 	contents: string[];
 }
