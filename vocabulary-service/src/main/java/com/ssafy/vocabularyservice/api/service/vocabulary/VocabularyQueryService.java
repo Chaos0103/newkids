@@ -1,5 +1,6 @@
 package com.ssafy.vocabularyservice.api.service.vocabulary;
 
+import com.ssafy.vocabularyservice.api.controller.vocabulary.response.CheckVocabularyResponse;
 import com.ssafy.vocabularyservice.api.controller.vocabulary.response.VocabularyResponse;
 import com.ssafy.vocabularyservice.api.controller.vocabulary.response.WordClientResponse;
 import com.ssafy.vocabularyservice.domain.vocabulary.repository.VocabularyQueryRepository;
@@ -27,6 +28,16 @@ public class VocabularyQueryService {
         long totalCount = vocabularyQueryRepository.getTotalCountByMemberKey(memberKey);
 
         return new PageImpl<>(content, pageable, totalCount);
+    }
+
+    public CheckVocabularyResponse getMyVocabularyWithCheck(String memberKey) {
+        long checkedCount = vocabularyQueryRepository.getCheckCountByMemberKey(memberKey);
+        long totalCount = vocabularyQueryRepository.getTotalCountByMemberKey(memberKey);
+
+        return CheckVocabularyResponse.builder()
+            .checkedCount(checkedCount)
+            .totalCount(totalCount)
+            .build();
     }
 
     public List<WordClientResponse> getMyVocabularyClient(String memberKey) {

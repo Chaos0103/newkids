@@ -2,6 +2,7 @@ package com.ssafy.vocabularyservice.api.controller.vocabulary;
 
 import com.ssafy.vocabularyservice.api.controller.ApiResponse;
 import com.ssafy.vocabularyservice.api.controller.vocabulary.request.CreateVocabularyRequest;
+import com.ssafy.vocabularyservice.api.controller.vocabulary.response.CheckVocabularyResponse;
 import com.ssafy.vocabularyservice.api.controller.vocabulary.response.VocabularyResponse;
 import com.ssafy.vocabularyservice.api.controller.vocabulary.response.WordResponse;
 import com.ssafy.vocabularyservice.api.service.vocabulary.VocabularyQueryService;
@@ -67,6 +68,17 @@ public class VocabularyController {
         PageRequest pageRequest = PageRequest.of(pageNum - 1, 10);
 
         Page<VocabularyResponse> response = vocabularyQueryService.getMyVocabulary(memberKey, pageRequest);
+        log.debug("response={}", response);
+
+        return ApiResponse.ok(response);
+    }
+
+    @GetMapping("/{memberKey}/check-count")
+    public ApiResponse<CheckVocabularyResponse> getMyVocabularyWithCheck(@PathVariable String memberKey) {
+        log.debug("call VocabularyController#getMyVocabularyWithCheck");
+        log.debug("memberKey={}", memberKey);
+
+        CheckVocabularyResponse response = vocabularyQueryService.getMyVocabularyWithCheck(memberKey);
         log.debug("response={}", response);
 
         return ApiResponse.ok(response);

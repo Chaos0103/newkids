@@ -92,4 +92,16 @@ public class VocabularyQueryRepository {
             .where(vocabulary.memberKey.eq(memberKey))
             .fetch();
     }
+
+    public long getCheckCountByMemberKey(String memberKey) {
+        return queryFactory
+            .select(vocabulary.id)
+            .from(vocabulary)
+            .where(
+                vocabulary.memberKey.eq(memberKey),
+                vocabulary.check.isTrue()
+            )
+            .fetch()
+            .size();
+    }
 }

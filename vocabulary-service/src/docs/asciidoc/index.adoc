@@ -16,6 +16,7 @@ include::overview.adoc[]
 
 include::api/vocabulary/create-vocabulary.adoc[]
 include::api/vocabulary/search-vocabulary.adoc[]
+include::api/vocabulary/search-vocabulary-check.adoc[]
 include::api/vocabulary/check-vocabulary.adoc[]
 include::api/vocabulary/remove-vocabulary.adoc[]
 
