@@ -2,6 +2,7 @@ package com.ssafy.vocabularyservice.docs.vocabulary;
 
 import com.ssafy.vocabularyservice.api.controller.vocabulary.VocabularyController;
 import com.ssafy.vocabularyservice.api.controller.vocabulary.request.CreateVocabularyRequest;
+import com.ssafy.vocabularyservice.api.controller.vocabulary.response.CheckVocabularyResponse;
 import com.ssafy.vocabularyservice.api.controller.vocabulary.response.VocabularyResponse;
 import com.ssafy.vocabularyservice.api.controller.vocabulary.response.WordResponse;
 import com.ssafy.vocabularyservice.api.service.vocabulary.VocabularyQueryService;
@@ -199,6 +200,41 @@ public class VocabularyControllerDocsTest extends RestDocsSupport {
                 )
             ));
 
+    }
+
+    @DisplayName("나의 단어장 체크된 단어 갯수 조회 API")
+    @Test
+    void getMyVocabularyWithCheck() throws Exception {
+        CheckVocabularyResponse response = CheckVocabularyResponse.builder()
+            .checkedCount(35)
+            .totalCount(100)
+            .build();
+
+        given(vocabularyQueryService.getMyVocabularyWithCheck(anyString()))
+            .willReturn(response);
+
+        mockMvc.perform(
+            get("/vocabulary-service/api/{memberKey}/check-count", UUID.randomUUID().toString())
+        )
+            .andDo(print())
+            .andExpect(status().isOk())
+            .andDo(document("search-vocabulary-check",
+                preprocessResponse(prettyPrint()),
+                responseFields(
+                    fieldWithPath("code").type(JsonFieldType.NUMBER)
+                        .description("코드"),
+                    fieldWithPath("status").type(JsonFieldType.STRING)
+                        .description("상태"),
+                    fieldWithPath("message").type(JsonFieldType.STRING)
+                        .description("메시지"),
+                    fieldWithPath("data").type(JsonFieldType.OBJECT)
+                        .description("응답 데이터"),
+                    fieldWithPath("data.checkedCount").type(JsonFieldType.NUMBER)
+                        .description("체크된 단어 수"),
+                    fieldWithPath("data.totalCount").type(JsonFieldType.NUMBER)
+                        .description("전체 단어 수")
+                )
+            ));
     }
 
     @DisplayName("단어장 체크 상태 변경 API")
