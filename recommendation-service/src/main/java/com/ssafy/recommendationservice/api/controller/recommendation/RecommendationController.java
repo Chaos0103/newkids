@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -34,8 +35,10 @@ public class RecommendationController {
     }
 
     @GetMapping("/another-article")
-    public ApiResponse<List<AnotherArticleRecommendationResponse>> getAnotherArticleRecommendation() {
-        List<AnotherArticleRecommendationResponse> responses = recommendationService.getAnotherArticleRecommendation();
+    public ApiResponse<List<AnotherArticleRecommendationResponse>> getAnotherArticleRecommendation(
+        @RequestParam Long articleId
+    ) {
+        List<AnotherArticleRecommendationResponse> responses = recommendationService.getAnotherArticleRecommendation(articleId);
         return ApiResponse.ok(responses);
     }
 }

@@ -730,10 +730,28 @@ Content-Length: 692
 <h4 id="_http_request_3"><a class="link" href="#_http_request_3">HTTP Request</a></h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /recommendation-service/api/another-article HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /recommendation-service/api/another-article?articleId=1 HTTP/1.1
 Host: localhost:8080</code></pre>
 </div>
 </div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>articleId</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">현재 읽고 있는 기사 PK</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="sect3">
 <h4 id="_http_response_3"><a class="link" href="#_http_response_3">HTTP Response</a></h4>
@@ -939,7 +957,7 @@ Content-Length: 429
 <div id="footer">
 <div id="footer-text">
 Version 1.0<br>
-Last updated 2023-09-30 14:23:04 +0900
+Last updated 2023-09-30 14:29:47 +0900
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">

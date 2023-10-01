@@ -3,6 +3,7 @@
 
 ==== HTTP Request
 include::{snippets}/search-another-article-recommendation/http-request.adoc[]
+include::{snippets}/search-another-article-recommendation/request-parameters.adoc[]
 
 
 ==== HTTP Response

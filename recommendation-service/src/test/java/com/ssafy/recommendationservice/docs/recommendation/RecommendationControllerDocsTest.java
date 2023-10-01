@@ -20,6 +20,8 @@ import static org.springframework.restdocs.operation.preprocess.Preprocessors.pr
 import static org.springframework.restdocs.operation.preprocess.Preprocessors.prettyPrint;
 import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
 import static org.springframework.restdocs.payload.PayloadDocumentation.responseFields;
+import static org.springframework.restdocs.request.RequestDocumentation.parameterWithName;
+import static org.springframework.restdocs.request.RequestDocumentation.requestParameters;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -184,16 +186,21 @@ public class RecommendationControllerDocsTest extends RestDocsSupport {
             .thumbnailImg("http://thumbnailImg6.jpg")
             .build();
 
-        given(recommendationService.getAnotherArticleRecommendation())
+        given(recommendationService.getAnotherArticleRecommendation(anyLong()))
             .willReturn(List.of(response1, response2, response3, response4, response5, response6));
 
         mockMvc.perform(
                 get("/recommendation-service/api/another-article")
+                    .param("articleId", "1")
             )
             .andDo(print())
             .andExpect(status().isOk())
             .andDo(document("search-another-article-recommendation",
                 preprocessResponse(prettyPrint()),
+                requestParameters(
+                    parameterWithName("articleId")
+                        .description("현재 읽고 있는 기사 PK")
+                ),
                 responseFields(
                     fieldWithPath("code").type(JsonFieldType.NUMBER)
                         .description("코드"),
