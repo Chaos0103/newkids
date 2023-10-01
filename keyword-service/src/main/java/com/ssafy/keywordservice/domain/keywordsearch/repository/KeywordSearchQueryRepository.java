@@ -4,6 +4,7 @@ import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.ssafy.keywordservice.api.controller.keywordsearch.response.KeywordSearchResponse;
 import com.ssafy.keywordservice.api.controller.popularkeyword.response.PopularKeywordResponse;
+import com.ssafy.keywordservice.domain.keywordsearch.KeywordSearch;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -49,6 +50,17 @@ public class KeywordSearchQueryRepository {
             .groupBy(keywordSearch.keyword.word)
             .orderBy(keywordSearch.count.sum().desc())
             .limit(10)
+            .fetch();
+    }
+
+    public List<KeywordSearch> findByMemberKeyAndKeywordIdIn(String memberKey, List<Long> keywordIds) {
+        return queryFactory
+            .select(keywordSearch)
+            .from(keywordSearch)
+            .where(
+                keywordSearch.memberKey.eq(memberKey),
+                keywordSearch.keyword.id.in(keywordIds)
+            )
             .fetch();
     }
 }

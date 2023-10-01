@@ -35,4 +35,9 @@ public class KeywordSearch extends TimeBaseEntity {
         this.memberKey = memberKey;
         this.keyword = keyword;
     }
+
+    //== 비즈니스 로직 ==//
+    public void increaseCount() {
+        this.count += 1;
+    }
 }

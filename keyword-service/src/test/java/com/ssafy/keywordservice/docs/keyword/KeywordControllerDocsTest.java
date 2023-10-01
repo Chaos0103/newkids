@@ -3,6 +3,7 @@ package com.ssafy.keywordservice.docs.keyword;
 import com.ssafy.keywordservice.api.controller.keyword.KeywordController;
 import com.ssafy.keywordservice.api.controller.keyword.request.CreatedKeywordRequest;
 import com.ssafy.keywordservice.api.controller.keyword.response.KeywordResponse;
+import com.ssafy.keywordservice.api.service.keyword.KeywordQueryService;
 import com.ssafy.keywordservice.api.service.keyword.KeywordService;
 import com.ssafy.keywordservice.docs.RestDocsSupport;
 import org.junit.jupiter.api.DisplayName;
@@ -25,10 +26,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class KeywordControllerDocsTest extends RestDocsSupport {
 
     private final KeywordService keywordService = mock(KeywordService.class);
+    private final KeywordQueryService keywordQueryService = mock(KeywordQueryService.class);
 
     @Override
     protected Object initController() {
-        return new KeywordController(keywordService);
+        return new KeywordController(keywordService, keywordQueryService);
     }
 
     @DisplayName("키워드 등록 API")
