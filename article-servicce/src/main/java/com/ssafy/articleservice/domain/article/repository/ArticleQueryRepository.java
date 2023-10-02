@@ -3,6 +3,7 @@ package com.ssafy.articleservice.domain.article.repository;
 import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.ssafy.articleservice.api.controller.article.response.ArticleResponse;
+import com.ssafy.articleservice.api.controller.article.response.PopularArticleResponse;
 import com.ssafy.articleservice.domain.article.repository.dto.ArticleSearchCond;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
@@ -69,5 +70,18 @@ public class ArticleQueryRepository {
             )
             .fetch()
             .size();
+    }
+
+    public List<PopularArticleResponse> findHitTop5() {
+        return queryFactory
+            .select(Projections.constructor(PopularArticleResponse.class,
+                article.id,
+                article.title,
+                article.thumbnailImg
+            ))
+            .from(article)
+            .orderBy(article.hit.desc())
+            .limit(5)
+            .fetch();
     }
 }
