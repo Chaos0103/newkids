@@ -1,4 +1,4 @@
-package com.ssafy.keywordservice.messagequeue;
+package com.ssafy.analysisservice.messagequeue;
 
 import lombok.RequiredArgsConstructor;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
