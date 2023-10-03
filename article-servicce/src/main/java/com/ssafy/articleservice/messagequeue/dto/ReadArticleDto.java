@@ -7,11 +7,11 @@ import lombok.Data;
 public class ReadArticleDto {
 
     private String memberKey;
-    private Long articleKey;
+    private Long articleId;
 
     @Builder
-    public ReadArticleDto(String memberKey, Long articleKey) {
+    public ReadArticleDto(String memberKey, Long articleId) {
         this.memberKey = memberKey;
-        this.articleKey = articleKey;
+        this.articleId = articleId;
     }
 }

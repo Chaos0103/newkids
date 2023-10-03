@@ -26,7 +26,7 @@ public class KafkaProducer {
         }
 
         kafkaTemplate.send(topic, jsonInString);
-        log.info("Kafka Producer sent data from the Quiz mocroservice: " + readArticleDto);
+        log.info("Kafka Producer sent data from the Article mocroservice: " + readArticleDto);
 
         return readArticleDto;
     }

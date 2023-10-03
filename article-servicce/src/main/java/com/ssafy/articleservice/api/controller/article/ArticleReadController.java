@@ -45,9 +45,10 @@ public class ArticleReadController {
 
         ReadArticleDto readArticleDto = ReadArticleDto.builder()
             .memberKey(memberKey)
-            .articleKey(request.getArticleId())
+            .articleId(request.getArticleId())
             .build();
 
+        //kafka 통신 -> analysis-service
         kafkaProducer.send("read-article-topic", readArticleDto);
 
         return ApiResponse.created(response);
