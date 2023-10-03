@@ -42,4 +42,12 @@ public class ArticleKeywordQueryRepository {
             .where(articleKeyword.articleKey.eq(articleKey))
             .fetch();
     }
+
+    public List<Long> findKeywordIdByArticleKey(Long articleKey) {
+        return queryFactory
+            .select(articleKeyword.keyword.id)
+            .from(articleKeyword)
+            .where(articleKeyword.articleKey.eq(articleKey))
+            .fetch();
+    }
 }
