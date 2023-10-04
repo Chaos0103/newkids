@@ -5,6 +5,7 @@ import HowToUseExplainTwo from 'components/atoms/game/HowToUseExplainTwo';
 import HowToUseExplainThree from 'components/atoms/game/HowToUseExplainThree';
 import Button from 'components/atoms/common/Button';
 import { startQuizApi } from 'utils/apis/quiz';
+import HowToUseLottie from 'components/atoms/lottie/HowToUseLottie';
 import { GameHowToUseContainer } from './style';
 
 interface IGameHowToUseProps {
@@ -47,6 +48,7 @@ function GameHowToUse({ setStep }: IGameHowToUseProps) {
 
 	return (
 		<GameHowToUseContainer>
+			<HowToUseLottie />
 			<Title effectText="단어 듣고 맞추기" text=" 이용방법" />
 			<HowToUseExplainOne />
 			<HowToUseExplainTwo />

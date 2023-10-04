@@ -5,6 +5,7 @@ import HowToUseExplainThree from 'components/atoms/quiz/HowToUseExplainThree';
 import Button from 'components/atoms/common/Button';
 import Title from 'components/atoms/quiz/Title';
 import { startWeeklyQuizApi } from 'utils/apis/quiz';
+import HowToUseLottie from 'components/atoms/lottie/HowToUseLottie';
 import { QuizHowToUseContainer } from './style';
 
 interface IQuizHowToUseProps {
@@ -48,6 +49,7 @@ function QuizHowToUse(props: IQuizHowToUseProps) {
 
 	return (
 		<QuizHowToUseContainer>
+			<HowToUseLottie />
 			<Title effectText="주간 단어 퀴즈" text=" 이용방법" />
 			<HowToUseExplainOne />
 			<HowToUseExplainTwo />
