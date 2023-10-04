@@ -23,7 +23,7 @@ public class VocabularyQueryService {
     private final VocabularyQueryRepository vocabularyQueryRepository;
 
     public Page<VocabularyResponse> getMyVocabulary(String memberKey, Pageable pageable) {
-        List<VocabularyResponse> content = vocabularyQueryRepository.findByMemberKey(memberKey);
+        List<VocabularyResponse> content = vocabularyQueryRepository.findByMemberKey(memberKey, pageable);
 
         long totalCount = vocabularyQueryRepository.getTotalCountByMemberKey(memberKey);
 

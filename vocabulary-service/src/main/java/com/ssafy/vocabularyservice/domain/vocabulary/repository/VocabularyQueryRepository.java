@@ -5,6 +5,7 @@ import com.querydsl.core.types.dsl.NumberExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.ssafy.vocabularyservice.api.controller.vocabulary.response.VocabularyResponse;
 import com.ssafy.vocabularyservice.api.controller.vocabulary.response.WordClientResponse;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -48,7 +49,7 @@ public class VocabularyQueryRepository {
         return result != null;
     }
 
-    public List<VocabularyResponse> findByMemberKey(String memberKey) {
+    public List<VocabularyResponse> findByMemberKey(String memberKey, Pageable pageable) {
         return queryFactory
             .select(Projections.constructor(VocabularyResponse.class,
                 vocabulary.id,
@@ -60,6 +61,8 @@ public class VocabularyQueryRepository {
             .from(vocabulary)
             .where(vocabulary.memberKey.eq(memberKey))
             .orderBy(vocabulary.createdDate.desc())
+            .limit(pageable.getPageSize())
+            .offset(pageable.getOffset())
             .fetch();
     }
 
