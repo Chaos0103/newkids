@@ -1,13 +1,68 @@
+import Pagination from 'components/organisms/common/Pagination';
 import MyVocabulary from 'components/organisms/vocabulary/MyVocabulary';
 import VocabularyHeader from 'components/organisms/vocabulary/VocabularyHeader';
+// import { DUMMY_VOCA } from 'constants/vocadummy';
 import PageLayout from 'layouts/common/PageLayout';
 import VocabularyLayout from 'layouts/page/VocabularyLayout';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { IGetallVocaBody } from 'types/vocabulary';
+import { getAllVocabularyApi } from 'utils/apis/vocabulary';
 
 function VocabularyPage() {
+	// 페이지네이션
+	const [currentPage, setCurrentPage] = useState(1);
+	const [totalPages, setTotalPages] = useState(10);
+	const [size, setSize] = useState(10);
+	const [currentGroup, setCurrentGroup] = useState(1);
+	const [totalElements, setTotalElements] = useState(0);
+	// 단어장 데이터
+	const [resultVocabularys, setResultVocabularys] = useState<IGetallVocaBody[]>([]);
+
+	const searchPage = async () => {
+		try {
+			const memberkey = localStorage.getItem('memberkey');
+			if (memberkey) {
+				const response = await getAllVocabularyApi(memberkey, currentPage);
+				console.log(response);
+				if (response.status === 200) {
+					setResultVocabularys(response.data.data.content);
+					setTotalPages(response.data.data.totalPages);
+					setSize(response.data.data.size);
+					setTotalElements(response.data.data.totalElements);
+				}
+			}
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
+	useEffect(() => {
+		searchPage();
+	}, [currentPage]);
+
+	useEffect(() => {
+		window.addEventListener('reSearchPage', searchPage);
+		return () => {
+			window.removeEventListener('reSearchPage', searchPage);
+		};
+	}, []);
+
 	return (
 		<PageLayout>
-			<VocabularyLayout VocabularyHeader={<VocabularyHeader />} MyVocabulary={<MyVocabulary />} />
+			<VocabularyLayout
+				VocabularyHeader={<VocabularyHeader totalElements={totalElements} />}
+				MyVocabulary={<MyVocabulary vocabularys={resultVocabularys} />}
+				Pagination={
+					<Pagination
+						currentPage={currentPage}
+						totalPages={totalPages}
+						size={size}
+						currentGroup={currentGroup}
+						setCurrentPage={setCurrentPage}
+						setCurrentGroup={setCurrentGroup}
+					/>
+				}
+			/>
 		</PageLayout>
 	);
 }
