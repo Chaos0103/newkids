@@ -1,8 +1,8 @@
 import React from 'react';
 import useMovePage from 'hooks/useMovePage';
 import { IMyArticleDetail } from 'types/article';
+import articleImage from 'assets/imgs/noimg.jpg';
 import { MyActivityArticleListWrapper } from './style';
-import articleImage from '../../../../assets/imgs/noimg.jpg';
 
 interface IMyActivityArticleListProps {
 	articles: IMyArticleDetail[];
