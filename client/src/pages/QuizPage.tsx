@@ -6,6 +6,7 @@ import QuizHowToUse from 'components/organisms/quiz/QuizHowToUse';
 import QuizQuestion from 'components/organisms/quiz/QuizQuestion';
 import QuizResult from 'components/organisms/quiz/QuizResult';
 import QuizWords from 'components/organisms/quiz/QuizWords';
+import Footer from 'components/organisms/common/Footer';
 
 function QuizPage() {
 	const [step, setStep] = useState(0);
@@ -43,7 +44,7 @@ function QuizPage() {
 
 	return (
 		<PageLayout>
-			<QuizPageLayout StepView={stepView} />
+			<QuizPageLayout StepView={stepView} Footer={<Footer />} />
 		</PageLayout>
 	);
 }

@@ -1,17 +1,22 @@
 import React, { ReactNode } from 'react';
-import { ContentLayout } from 'layouts/common/ContentLayout';
+import { ContentLayout, FullContentLayout } from 'layouts/common/ContentLayout';
 import { QuizPageLayoutContainer } from './style';
 
 interface IQuizPageLayoutProps {
 	StepView: ReactNode;
+	Footer: ReactNode;
 }
 
-function QuizPageLayout({ StepView }: IQuizPageLayoutProps) {
+function QuizPageLayout(props: IQuizPageLayoutProps) {
+	const { StepView, Footer } = props;
 	return (
 		<QuizPageLayoutContainer>
 			<ContentLayout>
 				<div className="step-view">{StepView}</div>
 			</ContentLayout>
+			<FullContentLayout>
+				<div className="footer">{Footer}</div>
+			</FullContentLayout>
 		</QuizPageLayoutContainer>
 	);
 }
