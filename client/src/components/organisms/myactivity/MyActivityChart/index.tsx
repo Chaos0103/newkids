@@ -1,9 +1,29 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import MyActivityChartGraph from 'components/atoms/myactivity/MyActivityChartGraph';
 import MyActivityKeyword from 'components/atoms/myactivity/MyActivityKeywordItem';
+import { IMyKeyword } from 'types/keyword';
+import { getMyKeywordApi } from 'utils/apis/keyword';
 import { MyActivityChartContainer } from './style';
 
 function MyActivityChart() {
+	const [myTopKeyword, setMyTopKeyword] = useState<IMyKeyword[]>([]);
+
+	const searchMyKeyword = async () => {
+		try {
+			const memberkey = localStorage.getItem('memberkey');
+			if (memberkey) {
+				const response = await getMyKeywordApi(memberkey);
+				console.log('::getMyKeywordApi', response);
+				setMyTopKeyword(response.data.data);
+			}
+		} catch (e) {
+			console.log(e);
+		}
+	};
+
+	useEffect(() => {
+		searchMyKeyword();
+	}, []);
 	return (
 		<MyActivityChartContainer>
 			<div className="chart-title-text">
@@ -11,10 +31,10 @@ function MyActivityChart() {
 				<h3 className="chart-sub-color">이런 키워드가 많아요!</h3>
 			</div>
 			<div className="chart-keyword-rank">
-				<MyActivityKeyword />
+				<MyActivityKeyword myTopKeyword={myTopKeyword} />
 			</div>
 			<div className="chart-graph-box">
-				<MyActivityChartGraph />
+				<MyActivityChartGraph myTopKeyword={myTopKeyword} />
 			</div>
 		</MyActivityChartContainer>
 	);
