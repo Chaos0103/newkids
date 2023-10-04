@@ -1,7 +1,6 @@
 import Pagination from 'components/organisms/common/Pagination';
 import MyVocabulary from 'components/organisms/vocabulary/MyVocabulary';
 import VocabularyHeader from 'components/organisms/vocabulary/VocabularyHeader';
-// import { DUMMY_VOCA } from 'constants/vocadummy';
 import PageLayout from 'layouts/common/PageLayout';
 import VocabularyLayout from 'layouts/page/VocabularyLayout';
 import React, { useEffect, useState } from 'react';
