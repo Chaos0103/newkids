@@ -17,7 +17,8 @@ function QuizQuestion(props: IQuizQuestionProps) {
 	const { setStep, setScore } = props;
 	const [isDone, setIsDone] = useState(false);
 	const [question, setQuestion] = useState<WeeklyQuizQuestionRequestApiBody[]>(DUMMY_WEEKLY_QUIZS);
-	// const [que, setQue] = useState({});
+	const [ques, setQues] = useState<WeeklyQuizQuestionRequestApiBody[]>([]);
+	const [que, setQue] = useState('');
 	const [num, setNum] = useState(0);
 	const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -28,9 +29,13 @@ function QuizQuestion(props: IQuizQuestionProps) {
 			console.log(memberkey);
 			if (memberkey) {
 				const response = await getWeeklyQuizQuestionApi(memberkey);
-				const weeklyQuiz = response.data;
-				console.log('::getWeeklyQuizQuestionApi', response);
-				console.log(weeklyQuiz);
+				const weeklyQuiz = response.data.data;
+				setQues([weeklyQuiz]);
+				console.log(ques);
+				// console.log('::getWeeklyQuizQuestionApi', response);
+				// console.log(weeklyQuiz.answerWord);
+				setQue(weeklyQuiz.answerWord);
+				console.log(que);
 			}
 		} catch (e) {
 			console.log(e);
