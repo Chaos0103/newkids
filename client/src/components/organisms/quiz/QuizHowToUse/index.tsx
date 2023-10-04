@@ -1,10 +1,10 @@
 import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
-
 import HowToUseExplainOne from 'components/atoms/quiz/HowToUseExplainOne';
 import HowToUseExplainTwo from 'components/atoms/quiz/HowToUseExplainTwo';
 import HowToUseExplainThree from 'components/atoms/quiz/HowToUseExplainThree';
 import Button from 'components/atoms/common/Button';
 import Title from 'components/atoms/quiz/Title';
+import { startWeeklyQuizApi } from 'utils/apis/quiz';
 import { QuizHowToUseContainer } from './style';
 
 interface IQuizHowToUseProps {
@@ -16,6 +16,21 @@ function QuizHowToUse(props: IQuizHowToUseProps) {
 	const [isDone, setIsDone] = useState(false);
 	const [num, setNum] = useState(0);
 
+	const startQuiz = async () => {
+		try {
+			const memberkey = localStorage.getItem('memberkey');
+			console.log('멤버키입니다.');
+			console.log(memberkey);
+			if (memberkey) {
+				const response = await startWeeklyQuizApi(memberkey);
+				console.log('::startWeeklyQuizApi', response);
+				console.log(response.data);
+			}
+		} catch (e) {
+			console.log(e);
+		}
+	};
+
 	const handleClick = () => {
 		if (!isDone) {
 			setStep(2);
@@ -25,6 +40,7 @@ function QuizHowToUse(props: IQuizHowToUseProps) {
 	};
 
 	useEffect(() => {
+		startQuiz();
 		if (num === 0) {
 			setIsDone(false);
 		}

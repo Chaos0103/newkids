@@ -8,6 +8,7 @@ import { QuizQuestionRequestApiBody } from 'types/api';
 import SoundBarLottie from 'components/atoms/lottie/SoundBarLottie';
 import { getSpeech } from 'utils/apis/tts';
 import Button from 'components/atoms/common/Button';
+import { getQuizQuestionApi } from 'utils/apis/quiz';
 import { GameQuestionContainer } from './style';
 
 interface IGameQuestionProps {
@@ -21,6 +22,20 @@ function GameQuestion(props: IGameQuestionProps) {
 	const [question, setQuestion] = useState<QuizQuestionRequestApiBody[]>(DUMMY_QUIZS);
 	const [currentIndex, setCurrentIndex] = useState(0);
 	const [answer, setAnswer] = useState('');
+
+	const getQuizQuestions = async () => {
+		try {
+			const memberkey = localStorage.getItem('memberkey');
+			console.log('::memberkey : ', memberkey);
+			if (memberkey) {
+				const response = await getQuizQuestionApi(memberkey);
+				console.log('::getQuizQuestionApi', response);
+				console.log(response.data);
+			}
+		} catch (e) {
+			console.log(e);
+		}
+	};
 
 	const handleSpeechButton = () => {
 		const voiceValue = question[currentIndex].word;
@@ -85,6 +100,7 @@ function GameQuestion(props: IGameQuestionProps) {
 	useEffect(() => {
 		setIsDone(false);
 		setQuestion(DUMMY_QUIZS);
+		getQuizQuestions();
 	});
 
 	return (
