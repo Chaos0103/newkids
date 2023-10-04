@@ -19,6 +19,13 @@ export const UserDetailContainer = styled.div`
 		display: flex;
 		justify-content: space-between;
 		align-item: center;
+		.mypage-button {
+			display: flex;
+			gap: 10px;
+			> Button {
+				font-size: 12px;
+			}
+		}
 	}
 
 	p {
