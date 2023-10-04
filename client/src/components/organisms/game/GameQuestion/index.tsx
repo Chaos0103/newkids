@@ -6,7 +6,7 @@ import Input from 'components/atoms/common/Input';
 import { DUMMY_QUIZS } from 'constants/dummyquiz';
 import { QuizQuestionRequestApiBody } from 'types/api';
 import SoundBarLottie from 'components/atoms/lottie/SoundBarLottie';
-import { getSpeech } from 'utils/apis/tts';
+import { getSpeech } from 'utils/common/tts';
 import Button from 'components/atoms/common/Button';
 import { getQuizQuestionApi } from 'utils/apis/quiz';
 import { GameQuestionContainer } from './style';
