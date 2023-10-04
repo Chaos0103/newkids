@@ -3,10 +3,13 @@ import { KeywordListItemContainer } from './style';
 
 interface IKeywordListItemProps {
 	text: string;
+	handleClick: () => void;
 }
+
 function KeywordListItem(props: IKeywordListItemProps) {
-	const { text } = props;
-	return <KeywordListItemContainer>{text}</KeywordListItemContainer>;
+	const { text, handleClick } = props;
+
+	return <KeywordListItemContainer onClick={handleClick}>{text}</KeywordListItemContainer>;
 }
 
 export default KeywordListItem;

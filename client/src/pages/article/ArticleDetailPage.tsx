@@ -7,14 +7,15 @@ import Footer from 'components/organisms/common/Footer';
 import PageLayout from 'layouts/common/PageLayout';
 import ArticleDetailPageLayout from 'layouts/page/ArticleDetailPageLayout';
 import { useParams } from 'react-router-dom';
-import { IArticleDetail } from 'types/article';
-import { getArticleApi } from 'utils/apis/article';
+import { IArticle, IArticleDetail } from 'types/article';
+import { getAnotherArticleApi, getArticleApi, registReadArticleApi } from 'utils/apis/article';
 import { getArticleKeywordApi } from 'utils/apis/keyword';
 import { IKeyword } from 'types/keyword';
 
 function ArticleDetailPage() {
 	const { articleId } = useParams();
 	const [article, setArticle] = useState<IArticleDetail>();
+	const [anotherArticles, setAnotherArticles] = useState<IArticle[]>([]);
 	const [articleKeywords, setArticleKeywords] = useState<IKeyword[]>([]);
 
 	const fetchKeywordData = async () => {
@@ -30,6 +31,7 @@ function ArticleDetailPage() {
 			console.error(error);
 		}
 	};
+
 	const fetchArticleData = async () => {
 		try {
 			if (articleId) {
@@ -44,10 +46,41 @@ function ArticleDetailPage() {
 		}
 	};
 
+	const fetchAnotherArticleData = async () => {
+		try {
+			if (articleId) {
+				const response = await getAnotherArticleApi(articleId);
+				console.log('::getAnotherArticleApi', response);
+				if (response.status === 200) {
+					setAnotherArticles(response.data.data);
+				}
+			}
+		} catch (error) {
+			console.error(error);
+		}
+	};
+
+	const registArticleData = async () => {
+		try {
+			const memberKey = localStorage.getItem('memberkey');
+
+			if (articleId && memberKey) {
+				const body = {
+					articleId,
+				};
+				await registReadArticleApi(body, memberKey);
+			}
+		} catch (error) {
+			console.error(error);
+		}
+	};
+
 	useEffect(() => {
 		fetchKeywordData();
 		fetchArticleData();
-	}, []);
+		fetchAnotherArticleData();
+		registArticleData();
+	}, [articleId]);
 
 	return (
 		<PageLayout>
@@ -62,7 +95,7 @@ function ArticleDetailPage() {
 				}
 				ArticleKeywordList={<ArticleKeywordList keywords={articleKeywords} />}
 				ArticleContent={<ArticleContent content={article?.content ?? 'content'} />}
-				RecommendedArticleList={<DetailRecommendedArticleList />}
+				RecommendedArticleList={<DetailRecommendedArticleList articles={anotherArticles} />}
 				Footer={<Footer />}
 			/>
 		</PageLayout>

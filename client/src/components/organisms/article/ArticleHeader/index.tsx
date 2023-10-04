@@ -14,7 +14,7 @@ function ArticleHeader(props: IArticleHeaderProps) {
 		<ArticleHeaderContainer>
 			<h1 className="title">{title}</h1>
 			<div className="info">
-				<p>{writer} 기자</p>
+				<p>{writer}</p>
 				<div className="right">
 					<p className="view">
 						<View />

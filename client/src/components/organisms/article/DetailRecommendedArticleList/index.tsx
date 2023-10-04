@@ -1,33 +1,36 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { IArticle } from 'types/article';
-import { DUMMY_ARTICLES_6 } from 'constants/dummy';
-import { getAllArticleApi } from 'utils/apis/article';
 import SquareArticleListItem from 'components/atoms/article/SquareArticleListItem';
+import useMovePage from 'hooks/useMovePage';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
 import { DetailRecommendedArticleListContainer } from './style';
 
-function DetailRecommendedArticleList() {
-	const [articles, setArticles] = useState<IArticle[]>([]);
-
-	const fetchData = async () => {
-		try {
-			const response = await getAllArticleApi('2023-01-01', '2023-09-01');
-			console.log('::getAllArticleApi', response);
-		} catch (error) {
-			console.error(error);
-		}
-	};
-	// TODO : 추천 API 나오면 교체
-	useEffect(() => {
-		setArticles(DUMMY_ARTICLES_6);
-		fetchData();
-	}, []);
+interface IDetailRecommendedArticleListProps {
+	articles: IArticle[];
+}
+function DetailRecommendedArticleList(props: IDetailRecommendedArticleListProps) {
+	const { articles } = props;
+	const [movePage] = useMovePage();
 
 	return (
 		<DetailRecommendedArticleListContainer>
-			<h3 className="recommended-article-header">이런 기사는 어떠세요?</h3>
-			<div className="list-items">
-				{articles.length ? articles.map((el) => <SquareArticleListItem article={el} key={el.articleId} />) : <div />}
-			</div>
+			<h3 className="recommended-article-header">현재 보고있는 기사와 비슷한 기사에요!</h3>
+			{articles.length ? (
+				<Swiper className="swiper" spaceBetween={20} slidesPerView={6} navigation>
+					{articles.map((el) => (
+						<SwiperSlide className="swiper-slide" key={el.articleId}>
+							<SquareArticleListItem
+								article={el}
+								key={el.articleId}
+								handleClick={() => movePage(`/article/${el.articleId}`)}
+							/>
+						</SwiperSlide>
+					))}
+				</Swiper>
+			) : (
+				<div>추천 기사 불러오는 중...</div>
+			)}
 		</DetailRecommendedArticleListContainer>
 	);
 }
