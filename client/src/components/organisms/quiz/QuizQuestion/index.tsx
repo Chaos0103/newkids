@@ -34,11 +34,6 @@ function QuizQuestion(props: IQuizQuestionProps) {
 		}
 	};
 
-	useEffect(() => {
-		getQuizQuestions();
-		window.speechSynthesis.getVoices();
-	});
-
 	const handleClick = (selectedAnswer: string) => {
 		const correctAnswer = question[currentIndex].answerWord;
 
@@ -93,6 +88,8 @@ function QuizQuestion(props: IQuizQuestionProps) {
 	};
 
 	useEffect(() => {
+		getQuizQuestions();
+		window.speechSynthesis.getVoices();
 		setQuestion(DUMMY_WEEKLY_QUIZS);
 		setIsDone(false);
 	});
