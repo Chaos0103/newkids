@@ -1,29 +1,17 @@
-import React, { useEffect, useState } from 'react';
-import { findAllReadArticleApi } from 'utils/apis/article';
-import { DUMMY_ARTICLES } from 'constants/dummyreadarticle';
+import React from 'react';
 import useMovePage from 'hooks/useMovePage';
+import { IMyArticleDetail } from 'types/article';
 import { MyActivityArticleListWrapper } from './style';
-import articleImage from '../../../../assets/imgs/profile-level.png';
+import articleImage from '../../../../assets/imgs/noimg.jpg';
 
-function MyActivityArticleList() {
-	// const [currentPage, setCurrentPage] = useState(1);
-	const [articles, setArticles] = useState(DUMMY_ARTICLES);
-	// const [pageNum, setPageNum] = useState(1);
-	const pageNum = 2;
+interface IMyActivityArticleListProps {
+	articles: IMyArticleDetail[];
+}
+
+function MyActivityArticleList(props: IMyActivityArticleListProps) {
+	const { articles } = props;
 
 	const [movePage] = useMovePage();
-
-	const ReadArticleData = async () => {
-		try {
-			const memberkey = localStorage.getItem('memberkey');
-			if (memberkey) {
-				const response = await findAllReadArticleApi(memberkey, pageNum);
-				console.log(response);
-			}
-		} catch (e) {
-			console.log(e);
-		}
-	};
 
 	const renderArticleItems = () => {
 		return articles.map((item) => {
@@ -46,11 +34,6 @@ function MyActivityArticleList() {
 			);
 		});
 	};
-
-	useEffect(() => {
-		setArticles(DUMMY_ARTICLES);
-		ReadArticleData();
-	}, []);
 
 	return <MyActivityArticleListWrapper>{renderArticleItems()}</MyActivityArticleListWrapper>;
 }
