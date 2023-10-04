@@ -5,3 +5,9 @@ export const getPopularKeywordApi = async () => {
 	const response = await instance.get('/keyword-service/api/popular');
 	return response;
 };
+
+// 뉴스기사 키워드 조회
+export const getArticleKeywordApi = async (articleId: string) => {
+	const response = await instance.get(`/keyword-service/api/${articleId}/articles`);
+	return response;
+};

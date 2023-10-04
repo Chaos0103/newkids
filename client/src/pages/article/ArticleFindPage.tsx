@@ -9,9 +9,11 @@ import Pagination from 'components/organisms/common/Pagination';
 import { dateToString } from 'utils/common/dateToString';
 import { setDatebyPeriod } from 'utils/common/setDatebyPeriod';
 import { getAllArticleApi } from 'utils/apis/article';
+import queryString from 'query-string';
 
 function ArticleFindPage() {
 	const [resultArticles, setResultArticles] = useState<IArticle[]>([]);
+	const [isLoading, setIsLoading] = useState(true);
 
 	// 페이지네이션 관련
 	const [currentPage, setCurrentPage] = useState(1);
@@ -25,9 +27,13 @@ function ArticleFindPage() {
 	const [selectedPeriod, setSelectedPeriod] = useState(0);
 
 	const search = async () => {
+		const queryParams = queryString.parse(window.location.search);
+		setIsLoading(true);
+
 		try {
-			const response = await getAllArticleApi(startDate, endDate, '', currentPage);
+			const response = await getAllArticleApi(startDate, endDate, (queryParams.search as string) ?? '', currentPage);
 			console.log('::getAllArticleApi', response);
+			setIsLoading(false);
 
 			if (response.status === 200) {
 				setResultArticles(response.data.data.content);
@@ -37,6 +43,7 @@ function ArticleFindPage() {
 			}
 		} catch (error) {
 			console.log(error);
+			setIsLoading(false);
 		}
 	};
 
@@ -46,7 +53,10 @@ function ArticleFindPage() {
 	}, [selectedPeriod]);
 
 	useEffect(() => {
+		window.addEventListener('article-search', search);
 		search();
+
+		return () => window.removeEventListener('article-search', search);
 	}, [currentPage]);
 
 	return (
@@ -66,7 +76,11 @@ function ArticleFindPage() {
 					/>
 				}
 				ResultArticleList={
-					<SearchResultArticleList articles={resultArticles} totalElements={totalElements} totalPages={totalPages} />
+					isLoading ? (
+						'기사 검색 중...'
+					) : (
+						<SearchResultArticleList articles={resultArticles} totalElements={totalElements} />
+					)
 				}
 				Pagination={
 					<Pagination
