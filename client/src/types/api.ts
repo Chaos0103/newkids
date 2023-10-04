@@ -72,7 +72,7 @@ export interface PatchWordApiBody {
 
 // -- article :: 읽은 뉴스기사 등록
 export interface RegistReadArticleApiBody {
-	articleId: number;
+	articleId: string;
 }
 
 // --quiz :: 퀴즈 질문 요청

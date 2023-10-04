@@ -7,7 +7,6 @@ export const getAllArticleApi = async (startDate: string, endDate: string, conte
 		pageNum ?? 1
 	}&startDate=${startDate}&endDate=${endDate}`;
 
-	console.log(url);
 	const response = await instance.get(url);
 	return response;
 };
@@ -26,6 +25,11 @@ export const getAllRecommendedArticleApi = async () => {
 
 export const getAllRecommededPeerArticleApi = async () => {
 	const response = await instance.get(`/recommendation-service/api/peer-age`);
+	return response;
+};
+
+export const getAnotherArticleApi = async (articleId: string) => {
+	const response = await instance.get(`/recommendation-service/api/another-article?articleId=${articleId}`);
 	return response;
 };
 

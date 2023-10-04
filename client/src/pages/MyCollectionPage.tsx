@@ -1,7 +1,6 @@
 import MyPageMenu from 'components/organisms/common/MyPageMenu';
 import Pagination from 'components/organisms/common/Pagination';
 import MyCollectionArticle from 'components/organisms/mycollection/MyCollectionArticle';
-// import { DUMMY_ARTICLES } from 'constants/dummyreadarticle';
 import PageLayout from 'layouts/common/PageLayout';
 import MyCollectionLayout from 'layouts/page/MyCollectionLayout';
 import React, { useEffect, useState } from 'react';
@@ -14,7 +13,6 @@ function MyCollectionPage() {
 	const [size, setSize] = useState(8);
 	const [currentGroup, setCurrentGroup] = useState(1);
 	const [articles, setArticles] = useState([]);
-	// const articles = DUMMY_ARTICLES;
 
 	const searchPage = async () => {
 		try {
@@ -25,7 +23,6 @@ function MyCollectionPage() {
 				if (response.status === 200) {
 					setArticles(response.data.data.content);
 					setTotalPages(response.data.data.totalPages);
-					// setTotalPages(3);
 					setSize(response.data.data.size);
 				}
 			}

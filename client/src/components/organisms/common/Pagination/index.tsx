@@ -47,7 +47,7 @@ function Pagination(props: IPaginationProps) {
 				<button
 					type="button"
 					onClick={() => {
-						setCurrentPage((currentGroup - 1) * 10 - 9);
+						setCurrentPage((currentGroup - 1) * size - 9);
 						setCurrentGroup(currentGroup - 1);
 					}}
 				>
@@ -72,7 +72,7 @@ function Pagination(props: IPaginationProps) {
 				<button
 					type="button"
 					onClick={() => {
-						setCurrentPage(currentGroup * 10 + 1);
+						setCurrentPage(currentGroup * size + 1);
 						setCurrentGroup(currentGroup + 1);
 					}}
 				>

@@ -5,9 +5,9 @@ import MypageEmail from 'components/atoms/mypage/MypageEmail';
 import MypageAge from 'components/atoms/mypage/MypageAge';
 import Button from 'components/atoms/common/Button';
 import ModalComponent from 'components/organisms/common/ModalComponent';
+import UserWithdrawal from 'components/organisms/mypage/UserWithdrawal';
+import UserPasswordChange from 'components/organisms/mypage/UserPasswordChange';
 import { UserDetailContainer } from './style';
-import UserPasswordChange from '../UserPasswordChange';
-import UserWithdrawal from '../UserWithdrawal';
 
 function UserDetail() {
 	const [newPassword, setNewPassword] = useState(false);

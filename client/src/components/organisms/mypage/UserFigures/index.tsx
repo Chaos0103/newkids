@@ -1,8 +1,8 @@
 import React from 'react';
 import USerExperience from 'components/atoms/mypage/UserExperience';
 import UserLevel from 'components/atoms/mypage/UserLevel';
+import profileImage from 'assets/imgs/profile-level.png';
 import { UserFiguresContainer } from './style';
-import profileImage from '../../../../assets/imgs/profile-level.png';
 
 function UserFigures() {
 	return (

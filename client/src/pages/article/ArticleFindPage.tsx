@@ -27,11 +27,12 @@ function ArticleFindPage() {
 	const [selectedPeriod, setSelectedPeriod] = useState(0);
 
 	const search = async () => {
-		const queryParams = queryString.parse(window.location.search);
+		const searchStr = queryString.parse(window.location.search).search?.toString() ?? '';
+
 		setIsLoading(true);
 
 		try {
-			const response = await getAllArticleApi(startDate, endDate, (queryParams.search as string) ?? '', currentPage);
+			const response = await getAllArticleApi(startDate, endDate, searchStr, currentPage);
 			console.log('::getAllArticleApi', response);
 			setIsLoading(false);
 

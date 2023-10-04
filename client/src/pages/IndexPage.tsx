@@ -1,3 +1,4 @@
+import React from 'react';
 import AreaTitle from 'components/atoms/common/AreaTitle';
 import KeywordCloud from 'components/organisms/article/KeywordCloud';
 import PopularArticleList from 'components/organisms/article/PopularArticleList';
@@ -6,7 +7,6 @@ import TrendingKeywordList from 'components/organisms/article/TrendingKeywordLis
 import Footer from 'components/organisms/common/Footer';
 import PageLayout from 'layouts/common/PageLayout';
 import IndexPageLayout from 'layouts/page/IndexPageLayout';
-import React from 'react';
 
 function IndexPage() {
 	return (
