@@ -38,12 +38,12 @@ function AppRouter() {
 							<Route path="/article/:articleId" element={<ArticleDetailPage />} />
 							<Route path="/auth/login" element={<LoginPage />} />
 							<Route path="/auth/join" element={<JoinPage />} />
-							<Route path="/mypage/info" element={<MyPage />} />
-							<Route path="/mypage/activity" element={<MyActivityPage />} />
-							<Route path="/mypage/collection" element={<MyCollectionPage />} />
-							<Route path="/vocabulary" element={<VocabularyPage />} />
 
 							<Route path="/" element={<PrivateRoute />}>
+								<Route path="/mypage/info" element={<MyPage />} />
+								<Route path="/mypage/activity" element={<MyActivityPage />} />
+								<Route path="/mypage/collection" element={<MyCollectionPage />} />
+								<Route path="/vocabulary" element={<VocabularyPage />} />
 								<Route path="/game" element={<GamePage />} />
 								<Route path="/quiz" element={<QuizPage />} />
 							</Route>

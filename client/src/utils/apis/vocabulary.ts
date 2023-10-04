@@ -16,9 +16,9 @@ export const registVocabularyApi = async (memberKey: string, body: RegistrVocabu
 	return response;
 };
 
-// -- 단어장에 등록
-export const getAllVocabularyApi = async (memberKey: string) => {
-	const response = await instance.post(`/vocabulary-service/api/${memberKey}`);
+// -- 단어장에 조회
+export const getAllVocabularyApi = async (memberKey: string, pageNum?: number) => {
+	const response = await instance.get(`/vocabulary-service/api/${memberKey}?pageNum=${pageNum ?? 1}`);
 	return response;
 };
 
@@ -31,5 +31,11 @@ export const checkVocabularyApi = async (wordId: string) => {
 // -- 단어장에서 삭제
 export const deleteVocabularyApi = async (wordId: string) => {
 	const response = await instance.delete(`/vocabulary-service/api/${wordId}`);
+	return response;
+};
+
+// -- 단어장에서 체크 갯수 조회
+export const getCheckVocabularyApi = async (memberKey: string) => {
+	const response = await instance.get(`/vocabulary-service/api/${memberKey}/check-count`);
 	return response;
 };

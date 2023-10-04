@@ -18,3 +18,9 @@ export interface IArticleDetail {
 	imageUrls: string[];
 	count: number;
 }
+
+export interface IMyArticleDetail {
+	articleId: number;
+	title: string;
+	thumbnailImg: string;
+}

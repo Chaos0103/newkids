@@ -5,9 +5,10 @@ import { VocabularyLayoutContainer } from './style';
 interface IVocabularyLayoutProps {
 	VocabularyHeader: ReactNode;
 	MyVocabulary: ReactNode;
+	Pagination: ReactNode;
 }
 
-function VocabularyLayout({ VocabularyHeader, MyVocabulary }: IVocabularyLayoutProps) {
+function VocabularyLayout({ VocabularyHeader, MyVocabulary, Pagination }: IVocabularyLayoutProps) {
 	return (
 		<VocabularyLayoutContainer>
 			<div className="voca-header">
@@ -15,6 +16,9 @@ function VocabularyLayout({ VocabularyHeader, MyVocabulary }: IVocabularyLayoutP
 			</div>
 			<div className="my-vocabulary">
 				<ContentLayout>{MyVocabulary} </ContentLayout>
+			</div>
+			<div className="pagination">
+				<ContentLayout>{Pagination}</ContentLayout>
 			</div>
 		</VocabularyLayoutContainer>
 	);

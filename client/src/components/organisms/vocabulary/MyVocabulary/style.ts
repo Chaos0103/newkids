@@ -12,7 +12,6 @@ export const MyVocabularyContainer = styled.div`
 		.voca-book {
 			margin-top: 7rem;
 			width: 100%;
-			height: 100%;
 			display: flex;
 			.left-page,
 			.right-page {

@@ -1,6 +1,11 @@
 import React from 'react';
 import WordListItem from 'components/atoms/vocabulary/WordListItem';
+import { IGetallVocaBody } from 'types/vocabulary';
 import { MyVocabularyContainer } from './style';
+
+interface IMyVocabularyProps {
+	vocabularys: IGetallVocaBody[];
+}
 
 function createRingElements(numberOfRings: number, gapPercentage: number) {
 	const ringElements = [];
@@ -22,7 +27,9 @@ function createRingElements(numberOfRings: number, gapPercentage: number) {
 	return ringElements;
 }
 
-function MyVocabulary() {
+function MyVocabulary(props: IMyVocabularyProps) {
+	const { vocabularys } = props;
+	console.log('상속받은 단어', { vocabularys });
 	const numberOfRings = 10; // 원하는 고리의 수
 	const ringElements = [];
 
@@ -31,6 +38,18 @@ function MyVocabulary() {
 
 		ringElements.push(<div className="ring" key={i} style={{ left: leftPosition }} />);
 	}
+
+	const leftVocaList: IGetallVocaBody[] = [];
+	const rightVocaList: IGetallVocaBody[] = [];
+
+	vocabularys.forEach((item, idx) => {
+		if (idx % 2 === 0 && idx < 10) {
+			leftVocaList.push(item);
+		} else if (idx % 2 && idx < 10) {
+			rightVocaList.push(item);
+		}
+	});
+
 	return (
 		<MyVocabularyContainer>
 			<div className="notebook-size">
@@ -50,11 +69,7 @@ function MyVocabulary() {
 						</div>
 						<hr />
 						<div className="word-list">
-							<WordListItem text="물티슈" />
-							<WordListItem text="물티슈" />
-							<WordListItem text="물티슈" />
-							<WordListItem text="물티슈" />
-							<WordListItem text="물티슈" />
+							<WordListItem items={leftVocaList} />
 						</div>
 					</div>
 					<div className="right-page">
@@ -65,11 +80,7 @@ function MyVocabulary() {
 						</div>
 						<hr />
 						<div className="word-list">
-							<WordListItem text="물티슈" />
-							<WordListItem text="물티슈" />
-							<WordListItem text="물티슈" />
-							<WordListItem text="물티슈" />
-							<WordListItem text="물티슈" />
+							<WordListItem items={rightVocaList} />
 						</div>
 					</div>
 				</div>
