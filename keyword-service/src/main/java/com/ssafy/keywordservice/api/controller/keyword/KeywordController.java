@@ -6,8 +6,6 @@ import com.ssafy.keywordservice.api.controller.keyword.response.KeywordQuizClien
 import com.ssafy.keywordservice.api.controller.keyword.response.KeywordResponse;
 import com.ssafy.keywordservice.api.service.keyword.KeywordQueryService;
 import com.ssafy.keywordservice.api.service.keyword.KeywordService;
-import com.ssafy.keywordservice.api.service.popularkeyword.PopularKeywordQueryService;
-import com.ssafy.keywordservice.domain.keywordsearch.repository.KeywordSearchQueryRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
