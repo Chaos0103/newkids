@@ -19,8 +19,7 @@ import org.springframework.restdocs.payload.JsonFieldType;
 import java.util.List;
 import java.util.UUID;
 
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.BDDMockito.anyLong;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
@@ -117,11 +116,12 @@ public class VocabularyControllerDocsTest extends RestDocsSupport {
         List<VocabularyResponse> content = List.of(response1, response2);
         PageRequest pageRequest = PageRequest.of(0, 10);
 
-        given(vocabularyQueryService.getMyVocabulary(anyString(), any(Pageable.class)))
+        given(vocabularyQueryService.getMyVocabulary(anyString(), anyBoolean(), any(Pageable.class)))
             .willReturn(new PageImpl<>(content, pageRequest, 10));
 
         mockMvc.perform(
             get("/vocabulary-service/api/{memberKey}", UUID.randomUUID().toString())
+                .param("check", "false")
                 .param("pageNum", "1")
         )
             .andDo(print())
@@ -130,7 +130,9 @@ public class VocabularyControllerDocsTest extends RestDocsSupport {
                 preprocessResponse(prettyPrint()),
                 requestParameters(
                     parameterWithName("pageNum")
-                        .description("페이지 번호")
+                        .description("페이지 번호"),
+                    parameterWithName("check")
+                        .description("체크된 단어 조회")
                 ),
                 responseFields(
                     fieldWithPath("code").type(JsonFieldType.NUMBER)

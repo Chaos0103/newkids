@@ -15,7 +15,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 
 /**
  * Vocabulary API 컨트롤러
@@ -60,14 +59,15 @@ public class VocabularyController {
     @GetMapping("/{memberKey}")
     public ApiResponse<Page<VocabularyResponse>> getMyVocabulary(
         @PathVariable String memberKey,
-        @RequestParam(defaultValue = "1") Integer pageNum
+        @RequestParam(defaultValue = "1") Integer pageNum,
+        @RequestParam(required = false) Boolean check
     ) {
         log.debug("call VocabularyController#getMyVocabulary");
         log.debug("memberKey={}", memberKey);
 
         PageRequest pageRequest = PageRequest.of(pageNum - 1, 10);
 
-        Page<VocabularyResponse> response = vocabularyQueryService.getMyVocabulary(memberKey, pageRequest);
+        Page<VocabularyResponse> response = vocabularyQueryService.getMyVocabulary(memberKey, check, pageRequest);
         log.debug("response={}", response);
 
         return ApiResponse.ok(response);

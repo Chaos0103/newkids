@@ -1,6 +1,7 @@
 package com.ssafy.vocabularyservice.domain.vocabulary.repository;
 
 import com.querydsl.core.types.Projections;
+import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.core.types.dsl.NumberExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.ssafy.vocabularyservice.api.controller.vocabulary.response.VocabularyResponse;
@@ -49,7 +50,7 @@ public class VocabularyQueryRepository {
         return result != null;
     }
 
-    public List<VocabularyResponse> findByMemberKey(String memberKey, Pageable pageable) {
+    public List<VocabularyResponse> findByMemberKey(String memberKey, Boolean check, Pageable pageable) {
         return queryFactory
             .select(Projections.constructor(VocabularyResponse.class,
                 vocabulary.id,
@@ -59,7 +60,10 @@ public class VocabularyQueryRepository {
                 vocabulary.check
             ))
             .from(vocabulary)
-            .where(vocabulary.memberKey.eq(memberKey))
+            .where(
+                vocabulary.memberKey.eq(memberKey),
+                isCheck(check)
+            )
             .orderBy(vocabulary.createdDate.desc())
             .limit(pageable.getPageSize())
             .offset(pageable.getOffset())
@@ -106,5 +110,9 @@ public class VocabularyQueryRepository {
             )
             .fetch()
             .size();
+    }
+
+    private BooleanExpression isCheck(Boolean check) {
+        return check ? vocabulary.check.isTrue() : null;
     }
 }
