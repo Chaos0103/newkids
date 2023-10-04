@@ -1,4 +1,3 @@
-import { QuizAnswerCheckApiBody, WeeklyQuizAnswerCheckApiBody } from 'types/api';
 import { instance } from './instance';
 
 // Quiz
@@ -16,8 +15,14 @@ export const getQuizQuestionApi = async (memberkey: string) => {
 };
 
 // 퀴즈 정답 체크
-export const checkAnswerApi = async (memberkey: string, body: QuizAnswerCheckApiBody) => {
-	const response = await instance.post(`/quiz-service/api/${memberkey}/answer`, JSON.stringify(body));
+export const checkAnswerApi = async (memberkey: string) => {
+	const response = await instance.post(`/quiz-service/api/${memberkey}/answer`);
+	return response;
+};
+
+// 퀴즈 결과
+export const resultQuizApi = async (memberkey: string) => {
+	const response = await instance.post(`/quiz-service/api/${memberkey}/weekly/result`);
 	return response;
 };
 
@@ -36,7 +41,13 @@ export const getWeeklyQuizQuestionApi = async (memberkey: string) => {
 };
 
 // 주간 어휘 퀴즈 정답 체크
-export const checkWeeklyAnswerApi = async (memberKey: string, body: WeeklyQuizAnswerCheckApiBody) => {
-	const response = await instance.post(`/quiz-service/api/${memberKey}/weekly/answer`, JSON.stringify(body));
+export const checkWeeklyAnswerApi = async (memberKey: string) => {
+	const response = await instance.post(`/quiz-service/api/${memberKey}/weekly/answer`);
+	return response;
+};
+
+// 주간 어휘 퀴즈 결과
+export const resultWeeklyQuizApi = async (memberkey: string) => {
+	const response = await instance.post(`/quiz-service/api/${memberkey}/weekly/result`);
 	return response;
 };

@@ -17,6 +17,8 @@ function QuizQuestion(props: IQuizQuestionProps) {
 	const { setStep, setScore } = props;
 	const [isDone, setIsDone] = useState(false);
 	const [question, setQuestion] = useState<WeeklyQuizQuestionRequestApiBody[]>(DUMMY_WEEKLY_QUIZS);
+	// const [que, setQue] = useState({});
+	const [num, setNum] = useState(0);
 	const [currentIndex, setCurrentIndex] = useState(0);
 
 	const getQuizQuestions = async () => {
@@ -26,13 +28,21 @@ function QuizQuestion(props: IQuizQuestionProps) {
 			console.log(memberkey);
 			if (memberkey) {
 				const response = await getWeeklyQuizQuestionApi(memberkey);
+				const weeklyQuiz = response.data;
 				console.log('::getWeeklyQuizQuestionApi', response);
-				console.log(response.data);
+				console.log(weeklyQuiz);
 			}
 		} catch (e) {
 			console.log(e);
 		}
 	};
+
+	useEffect(() => {
+		if (num === 0) {
+			getQuizQuestions();
+			setNum(1);
+		}
+	}, [num]);
 
 	const handleClick = (selectedAnswer: string) => {
 		const correctAnswer = question[currentIndex].answerWord;
@@ -47,6 +57,7 @@ function QuizQuestion(props: IQuizQuestionProps) {
 					setCurrentIndex((prevIndex) => prevIndex + 1);
 					setIsDone(true);
 					setScore((prevIndex) => prevIndex + 1);
+					setNum(0);
 				});
 			} else {
 				Swal.fire({
@@ -56,6 +67,7 @@ function QuizQuestion(props: IQuizQuestionProps) {
 				}).then(() => {
 					setCurrentIndex((prevIndex) => prevIndex + 1);
 					setIsDone(true);
+					setNum(0);
 				});
 			}
 		}
@@ -73,6 +85,7 @@ function QuizQuestion(props: IQuizQuestionProps) {
 				}).then(() => {
 					setStep(3);
 					setScore((prevIndex) => prevIndex + 1);
+					setNum(0);
 				});
 			} else {
 				Swal.fire({
@@ -82,14 +95,13 @@ function QuizQuestion(props: IQuizQuestionProps) {
 				}).then(() => {
 					setStep(3);
 					setScore((prevIndex) => prevIndex);
+					setNum(0);
 				});
 			}
 		}
 	};
 
 	useEffect(() => {
-		getQuizQuestions();
-		window.speechSynthesis.getVoices();
 		setQuestion(DUMMY_WEEKLY_QUIZS);
 		setIsDone(false);
 	});
