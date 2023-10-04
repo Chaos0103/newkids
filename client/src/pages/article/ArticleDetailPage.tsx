@@ -4,18 +4,33 @@ import ArticleHeader from 'components/organisms/article/ArticleHeader';
 import ArticleKeywordList from 'components/organisms/article/ArticleKeywordList';
 import DetailRecommendedArticleList from 'components/organisms/article/DetailRecommendedArticleList';
 import Footer from 'components/organisms/common/Footer';
-import { DUMMY_KEYWORDS } from 'constants/dummy';
 import PageLayout from 'layouts/common/PageLayout';
 import ArticleDetailPageLayout from 'layouts/page/ArticleDetailPageLayout';
 import { useParams } from 'react-router-dom';
 import { IArticleDetail } from 'types/article';
 import { getArticleApi } from 'utils/apis/article';
+import { getArticleKeywordApi } from 'utils/apis/keyword';
+import { IKeyword } from 'types/keyword';
 
 function ArticleDetailPage() {
 	const { articleId } = useParams();
 	const [article, setArticle] = useState<IArticleDetail>();
+	const [articleKeywords, setArticleKeywords] = useState<IKeyword[]>([]);
 
-	const fetchData = async () => {
+	const fetchKeywordData = async () => {
+		try {
+			if (articleId) {
+				const response = await getArticleKeywordApi(articleId);
+				console.log(response);
+				if (response.status === 200) {
+					setArticleKeywords(response.data.data);
+				}
+			}
+		} catch (error) {
+			console.error(error);
+		}
+	};
+	const fetchArticleData = async () => {
 		try {
 			if (articleId) {
 				const response = await getArticleApi(articleId);
@@ -30,7 +45,8 @@ function ArticleDetailPage() {
 	};
 
 	useEffect(() => {
-		fetchData();
+		fetchKeywordData();
+		fetchArticleData();
 	}, []);
 
 	return (
@@ -44,7 +60,7 @@ function ArticleDetailPage() {
 						count={article?.count ?? 0}
 					/>
 				}
-				ArticleKeywordList={<ArticleKeywordList keywords={DUMMY_KEYWORDS} />}
+				ArticleKeywordList={<ArticleKeywordList keywords={articleKeywords} />}
 				ArticleContent={<ArticleContent content={article?.content ?? 'content'} />}
 				RecommendedArticleList={<DetailRecommendedArticleList />}
 				Footer={<Footer />}
