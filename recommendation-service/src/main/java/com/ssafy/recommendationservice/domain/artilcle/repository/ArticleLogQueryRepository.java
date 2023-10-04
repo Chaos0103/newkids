@@ -1,8 +1,6 @@
 package com.ssafy.recommendationservice.domain.artilcle.repository;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
-import com.ssafy.recommendationservice.domain.artilcle.ArticleLog;
-import com.ssafy.recommendationservice.domain.artilcle.QArticleLog;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
