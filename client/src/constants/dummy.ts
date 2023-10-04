@@ -1,5 +1,5 @@
 import { IArticle } from 'types/article';
-import { IKeyword } from 'types/keyword';
+import { IWordCloudKeyword } from 'types/keyword';
 
 export const DUMMY_ARTICLES_5: IArticle[] = [
 	{
@@ -149,55 +149,55 @@ export const DUMMY_WORD_CLOUD = [
 	},
 ];
 
-export const DUMMY_KEYWORDS: IKeyword[] = [
+export const DUMMY_KEYWORDS: IWordCloudKeyword[] = [
 	{
 		keywordId: 1,
-		word: '달 착륙',
+		text: '달 착륙',
 		value: 64,
 	},
 	{
 		keywordId: 2,
-		word: '푸바오',
+		text: '푸바오',
 		value: 52,
 	},
 	{
 		keywordId: 3,
-		word: '카페',
+		text: '카페',
 		value: 16,
 	},
 	{
 		keywordId: 4,
-		word: '플로깅',
+		text: '플로깅',
 		value: 17,
 	},
 	{
 		keywordId: 5,
-		word: '리비아',
+		text: '리비아',
 		value: 45,
 	},
 	{
 		keywordId: 6,
-		word: '모로코',
+		text: '모로코',
 		value: 20,
 	},
 	{
 		keywordId: 7,
-		word: '대홍수',
+		text: '대홍수',
 		value: 70,
 	},
 	{
 		keywordId: 8,
-		word: '아스날',
+		text: '아스날',
 		value: 30,
 	},
 	{
 		keywordId: 9,
-		word: '아시안게임',
+		text: '아시안게임',
 		value: 40,
 	},
 	{
 		keywordId: 10,
-		word: '리그오브레전드',
+		text: '리그오브레전드',
 		value: 64,
 	},
 ];
