@@ -59,7 +59,7 @@ export const DUMMY_WEEKLY_QUIZS: WeeklyQuizQuestionRequestApiBody[] = [
 	{
 		no: 5,
 		answerWord: 'SSAFY',
-		description: '삼성 청년 SW 아카데미의 줄임말로써 미래 SW 인재 육성에 힘쓰고 있는 이 기관은 무엇일까?',
+		description: '삼성 청년 SW 아카데미의 줄임말로써 미래 SW 인재 육성에 힘쓰고 있는 기관이다.',
 		contents: ['우테코', 'SSAFY', '네부캠', '소마'],
 	},
 ];

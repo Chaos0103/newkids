@@ -17,6 +17,9 @@ function QuizQuestion(props: IQuizQuestionProps) {
 	const { setStep, setScore } = props;
 	const [isDone, setIsDone] = useState(false);
 	const [question, setQuestion] = useState<WeeklyQuizQuestionRequestApiBody[]>(DUMMY_WEEKLY_QUIZS);
+	const [ques, setQues] = useState<WeeklyQuizQuestionRequestApiBody[]>([]);
+	const [que, setQue] = useState('');
+	const [num, setNum] = useState(0);
 	const [currentIndex, setCurrentIndex] = useState(0);
 
 	const getQuizQuestions = async () => {
@@ -26,8 +29,13 @@ function QuizQuestion(props: IQuizQuestionProps) {
 			console.log(memberkey);
 			if (memberkey) {
 				const response = await getWeeklyQuizQuestionApi(memberkey);
-				console.log('::getWeeklyQuizQuestionApi', response);
-				console.log(response.data);
+				const weeklyQuiz = response.data.data;
+				setQues([weeklyQuiz]);
+				console.log(ques);
+				// console.log('::getWeeklyQuizQuestionApi', response);
+				// console.log(weeklyQuiz.answerWord);
+				setQue(weeklyQuiz.answerWord);
+				console.log(que);
 			}
 		} catch (e) {
 			console.log(e);
@@ -35,9 +43,11 @@ function QuizQuestion(props: IQuizQuestionProps) {
 	};
 
 	useEffect(() => {
-		getQuizQuestions();
-		window.speechSynthesis.getVoices();
-	});
+		if (num === 0) {
+			getQuizQuestions();
+			setNum(1);
+		}
+	}, [num]);
 
 	const handleClick = (selectedAnswer: string) => {
 		const correctAnswer = question[currentIndex].answerWord;
@@ -48,19 +58,23 @@ function QuizQuestion(props: IQuizQuestionProps) {
 					imageUrl: 'https://ifh.cc/g/Y4p2ln.gif',
 					imageHeight: 200,
 					title: '축하해요! 정답입니다.',
+					confirmButtonText: '확인',
 				}).then(() => {
 					setCurrentIndex((prevIndex) => prevIndex + 1);
 					setIsDone(true);
 					setScore((prevIndex) => prevIndex + 1);
+					setNum(0);
 				});
 			} else {
 				Swal.fire({
 					imageUrl: 'https://ifh.cc/g/4yzNys.gif',
 					imageHeight: 200,
 					title: '아쉬워요... 오답입니다.',
+					confirmButtonText: '확인',
 				}).then(() => {
 					setCurrentIndex((prevIndex) => prevIndex + 1);
 					setIsDone(true);
+					setNum(0);
 				});
 			}
 		}
@@ -75,18 +89,22 @@ function QuizQuestion(props: IQuizQuestionProps) {
 					imageUrl: 'https://ifh.cc/g/Y4p2ln.gif',
 					imageHeight: 200,
 					title: '축하해요! 정답입니다.',
+					confirmButtonText: '확인',
 				}).then(() => {
 					setStep(3);
 					setScore((prevIndex) => prevIndex + 1);
+					setNum(0);
 				});
 			} else {
 				Swal.fire({
 					imageUrl: 'https://ifh.cc/g/4yzNys.gif',
 					imageHeight: 200,
 					title: '아쉬워요... 오답입니다.',
+					confirmButtonText: '확인',
 				}).then(() => {
 					setStep(3);
 					setScore((prevIndex) => prevIndex);
+					setNum(0);
 				});
 			}
 		}

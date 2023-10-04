@@ -4,6 +4,8 @@ import HowToUseExplainOne from 'components/atoms/game/HowToUseExplainOne';
 import HowToUseExplainTwo from 'components/atoms/game/HowToUseExplainTwo';
 import HowToUseExplainThree from 'components/atoms/game/HowToUseExplainThree';
 import Button from 'components/atoms/common/Button';
+import { startQuizApi } from 'utils/apis/quiz';
+import HowToUseLottie from 'components/atoms/lottie/HowToUseLottie';
 import { GameHowToUseContainer } from './style';
 
 interface IGameHowToUseProps {
@@ -13,6 +15,22 @@ interface IGameHowToUseProps {
 function GameHowToUse({ setStep }: IGameHowToUseProps) {
 	const [isDone, setIsDone] = useState(false);
 	const [num, setNum] = useState(0);
+
+	const startQuiz = async () => {
+		try {
+			const memberkey = localStorage.getItem('memberkey');
+			console.log('멤버키입니다.');
+			console.log(memberkey);
+			if (memberkey) {
+				const response = await startQuizApi(memberkey);
+				console.log('::startWeeklyQuizApi', response);
+				console.log(response.data);
+			}
+		} catch (e) {
+			console.log(e);
+		}
+	};
+
 	const handleClick = () => {
 		if (!isDone) {
 			setStep(2);
@@ -22,6 +40,7 @@ function GameHowToUse({ setStep }: IGameHowToUseProps) {
 	};
 
 	useEffect(() => {
+		startQuiz();
 		if (num === 0) {
 			setIsDone(false);
 		}
@@ -29,7 +48,8 @@ function GameHowToUse({ setStep }: IGameHowToUseProps) {
 
 	return (
 		<GameHowToUseContainer>
-			<Title effectText="단어 들고 맞추기" text=" 이용방법" />
+			<HowToUseLottie />
+			<Title effectText="단어 듣고 맞추기" text=" 이용방법" />
 			<HowToUseExplainOne />
 			<HowToUseExplainTwo />
 			<HowToUseExplainThree />
