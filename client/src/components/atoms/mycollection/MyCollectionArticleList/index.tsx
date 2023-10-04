@@ -1,8 +1,8 @@
 import React from 'react';
 import { IMyArticleDetail } from 'types/article';
 import useMovePage from 'hooks/useMovePage';
+import articleImage from 'assets/imgs/profile-level.png';
 import { MyCollectionArticleListWrapper } from './style';
-import articleImage from '../../../../assets/imgs/profile-level.png';
 
 interface IMyCollectionArticleProps {
 	articles: IMyArticleDetail[];
