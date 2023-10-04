@@ -72,7 +72,7 @@ public class ArticleQueryRepository {
             .size();
     }
 
-    public List<PopularArticleResponse> findHitTop5() {
+    public List<PopularArticleResponse> findHitTop5(List<Long> articleIds) {
         return queryFactory
             .select(Projections.constructor(PopularArticleResponse.class,
                 article.id,
@@ -80,8 +80,7 @@ public class ArticleQueryRepository {
                 article.thumbnailImg
             ))
             .from(article)
-            .orderBy(article.hit.desc())
-            .limit(5)
+            .where(article.id.in(articleIds))
             .fetch();
     }
 }

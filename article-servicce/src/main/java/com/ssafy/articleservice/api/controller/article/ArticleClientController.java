@@ -1,12 +1,11 @@
 package com.ssafy.articleservice.api.controller.article;
 
+import com.ssafy.articleservice.api.controller.article.request.ArticleRequest;
 import com.ssafy.articleservice.api.controller.article.response.PopularArticleResponse;
 import com.ssafy.articleservice.api.service.popular.PopularArticleQueryService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,11 +17,11 @@ public class ArticleClientController {
 
     private final PopularArticleQueryService popularArticleQueryService;
 
-    @GetMapping("/popular")
-    public List<PopularArticleResponse> popularArticle() {
-        log.debug("ArticleClientController#popularArticle");
+    @PostMapping("/popular")
+    public List<PopularArticleResponse> popularArticle(@RequestBody ArticleRequest request) {
+        log.debug("call ArticleClientController#popularArticle");
 
-        List<PopularArticleResponse> responses = popularArticleQueryService.getPopularArticle();
+        List<PopularArticleResponse> responses = popularArticleQueryService.getPopularArticle(request.getArticleIds());
         log.debug("responses={}", responses);
 
         return responses;

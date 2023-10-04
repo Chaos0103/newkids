@@ -15,7 +15,7 @@ public class PopularArticleQueryService {
 
     private final ArticleQueryRepository articleQueryRepository;
 
-    public List<PopularArticleResponse> getPopularArticle() {
-        return articleQueryRepository.findHitTop5();
+    public List<PopularArticleResponse> getPopularArticle(List<Long> articleIds) {
+        return articleQueryRepository.findHitTop5(articleIds);
     }
 }
