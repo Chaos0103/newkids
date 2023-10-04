@@ -1,8 +1,14 @@
 import React from 'react';
 import MyActivityArticleList from 'components/atoms/myactivity/MyActivityArticleList';
+import { IMyArticleDetail } from 'types/article';
 import { MyActivityArticleContainer } from './styles';
 
-function MyActivityArticle() {
+interface IMyActivityArticleProps {
+	articles: IMyArticleDetail[];
+}
+function MyActivityArticle(props: IMyActivityArticleProps) {
+	const { articles } = props;
+
 	return (
 		<MyActivityArticleContainer>
 			<div className="article-title-text">
@@ -11,7 +17,7 @@ function MyActivityArticle() {
 				<p className="gray-color-text">에요</p>
 			</div>
 			<div className="article-list-box">
-				<MyActivityArticleList />
+				<MyActivityArticleList articles={articles} />
 			</div>
 		</MyActivityArticleContainer>
 	);

@@ -12,9 +12,9 @@ interface IUserPasswordChangeProps {
 
 function UserPasswordChange({ onClose }: IUserPasswordChangeProps) {
 	const [isDone, setIsDone] = useState(false);
-	const [currentPwd, setcurrentPwd] = useState('');
-	const [newPwd, setnewPwd] = useState('');
-	const [newPwdCheck, setnewPwdCheck] = useState('');
+	const [currentPwd, setCurrentPwd] = useState('');
+	const [newPwd, setNewPwd] = useState('');
+	const [newPwdCheck, setNewPwdCheck] = useState('');
 	const navigate = useNavigate();
 
 	const patchPassword = async () => {
@@ -33,6 +33,8 @@ function UserPasswordChange({ onClose }: IUserPasswordChangeProps) {
 						alert('비밀번호 변경되었습니다!');
 						navigate('/auth/login');
 						onClose();
+					} else {
+						alert('비밀번호를 다시 확인해주세요');
 					}
 				}
 			} catch (error) {
@@ -74,18 +76,19 @@ function UserPasswordChange({ onClose }: IUserPasswordChangeProps) {
 						<Input
 							type="password"
 							value={currentPwd}
-							setValue={setcurrentPwd}
+							setValue={setCurrentPwd}
 							Icon={<PwIcon />}
 							placeholder="현재 비밀번호"
 						/>
-						<Input type="password" value={newPwd} setValue={setnewPwd} Icon={<PwIcon />} placeholder="새 비밀번호" />
+						<Input type="password" value={newPwd} setValue={setNewPwd} Icon={<PwIcon />} placeholder="새 비밀번호" />
 						<Input
 							type="password"
 							value={newPwdCheck}
-							setValue={setnewPwdCheck}
+							setValue={setNewPwdCheck}
 							Icon={<PwIcon />}
 							placeholder="새 비밀번호 확인"
 						/>
+						{newPwd !== newPwdCheck && <p className="password-mismatch">새 비밀번호가 일치하지 않습니다.</p>}
 					</div>
 				</div>
 				<div className="password-button">

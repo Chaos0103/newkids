@@ -7,27 +7,43 @@ import Button from 'components/atoms/common/Button';
 import ModalComponent from 'components/organisms/common/ModalComponent';
 import { UserDetailContainer } from './style';
 import UserPasswordChange from '../UserPasswordChange';
+import UserWithdrawal from '../UserWithdrawal';
 
 function UserDetail() {
 	const [newPassword, setNewPassword] = useState(false);
+	const [userWithdrawal, setUserWithdrawal] = useState(false);
 	const changePw = () => {
 		setNewPassword(true);
 	};
 
+	const handleUserWithdrawal = () => {
+		setUserWithdrawal(true);
+	};
+
 	const closeModal = () => {
 		setNewPassword(false);
+		setUserWithdrawal(false);
 	};
 
 	return (
 		<UserDetailContainer>
 			<div className="mypage-title">
 				<p>내 정보</p>
-				<Button text="비밀번호 변경" radius="s" color="SubFirst" size="m" handleClick={changePw} />
-				{newPassword && (
-					<ModalComponent onClose={() => setNewPassword(!newPassword)}>
-						<UserPasswordChange onClose={closeModal} />
-					</ModalComponent>
-				)}
+				<div className="mypage-button">
+					<Button text="비밀번호 변경" radius="s" color="SubFirst" size="s" handleClick={changePw} />
+					{newPassword && (
+						// <ModalComponent onClose={() => setNewPassword(!newPassword)}>
+						<ModalComponent>
+							<UserPasswordChange onClose={closeModal} />
+						</ModalComponent>
+					)}
+					<Button text="회원탈퇴" radius="s" color="Danger" size="s" handleClick={handleUserWithdrawal} />
+					{userWithdrawal && (
+						<ModalComponent>
+							<UserWithdrawal onClose={closeModal} />
+						</ModalComponent>
+					)}
+				</div>
 			</div>
 			<hr />
 			<div className="mypage-form">

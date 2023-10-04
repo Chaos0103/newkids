@@ -18,3 +18,9 @@ export interface IWord {
 	content: string;
 	description: string;
 }
+
+export interface IMyKeyword {
+	keywordId: number;
+	keyword: string;
+	count: number;
+}

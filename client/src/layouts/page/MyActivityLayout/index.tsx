@@ -6,9 +6,10 @@ interface IMyActivityLayoutProps {
 	MyActivityChart: ReactNode;
 	MyActivityArticle: ReactNode;
 	MyPageMenu: ReactNode;
+	Pagination: ReactNode;
 }
 
-function MyActivityLayout({ MyPageMenu, MyActivityChart, MyActivityArticle }: IMyActivityLayoutProps) {
+function MyActivityLayout({ Pagination, MyPageMenu, MyActivityChart, MyActivityArticle }: IMyActivityLayoutProps) {
 	return (
 		<MyActivityLayoutContainer>
 			<div className="my-page-menu">
@@ -19,6 +20,9 @@ function MyActivityLayout({ MyPageMenu, MyActivityChart, MyActivityArticle }: IM
 			</div>
 			<div className="my-activity-article">
 				<ContentLayout>{MyActivityArticle}</ContentLayout>
+			</div>
+			<div className="pagination">
+				<ContentLayout>{Pagination}</ContentLayout>
 			</div>
 		</MyActivityLayoutContainer>
 	);

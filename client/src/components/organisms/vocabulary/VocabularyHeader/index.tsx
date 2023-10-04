@@ -3,12 +3,17 @@ import SearchBar from 'components/atoms/common/SearchBar';
 import VocabularyButton from 'components/atoms/vocabulary/VocabularyButton';
 import { VocabularyHeaderContainer } from './style';
 
-function VocabularyHeader() {
+interface IVocabularyHeaderProps {
+	totalElements: number;
+}
+
+function VocabularyHeader(props: IVocabularyHeaderProps) {
+	const { totalElements } = props;
 	const [value, setValue] = useState('');
 	return (
 		<VocabularyHeaderContainer>
 			<div className="vocabulary-header">
-				<VocabularyButton />
+				<VocabularyButton totalElements={totalElements} />
 				<SearchBar
 					size="s"
 					placeholder="검색어를 입력해주세요"
