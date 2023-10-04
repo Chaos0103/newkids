@@ -1,11 +1,19 @@
 import React from 'react';
 import { Bar } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
+import { IMyKeyword } from 'types/keyword';
+// import { DUMMY_MYKEYWORDS } from 'constants/dummyreadarticle';
 import { MyActivityChartGraphWrapper } from './style';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
-function MyActivityChartGraph() {
+interface IMyActivityChartGraphProps {
+	myTopKeyword: IMyKeyword[];
+}
+function MyActivityChartGraph(props: IMyActivityChartGraphProps) {
+	const { myTopKeyword } = props;
+	console.log(myTopKeyword);
+	// const mykeyword = DUMMY_MYKEYWORDS;
 	const chartBarColors = [
 		'rgb(249, 65, 68)',
 		'rgb(243, 144, 44)',
@@ -18,13 +26,13 @@ function MyActivityChartGraph() {
 		maintainAspectRatio: false,
 		plugins: {
 			legend: {
-				position: 'bottom',
+				position: 'bottom' as const,
 				labels: {
 					generateLabels: (chart: ChartJS) => {
 						const { data } = chart;
 						const labels = data.labels || [];
 						return labels.map((label, index) => ({
-							text: label,
+							text: label as string,
 							fillStyle: chartBarColors[index],
 							strokeStyle: 'white',
 						}));
@@ -68,13 +76,15 @@ function MyActivityChartGraph() {
 			},
 		},
 	};
-	const labels = ['January', 'February', 'March', 'April', 'May'];
+	const labels = myTopKeyword.map((keyword) => keyword.keyword);
+	const keywordCnt = myTopKeyword.map((keyword) => keyword.count);
 
 	const data = {
 		labels,
 		datasets: [
 			{
-				data: [12, 19, 3, 5, 2],
+				// data: [12, 19, 3, 5, 2],
+				data: keywordCnt,
 				backgroundColor: chartBarColors,
 			},
 		],
