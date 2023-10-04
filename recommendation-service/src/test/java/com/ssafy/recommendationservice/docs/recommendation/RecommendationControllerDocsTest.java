@@ -4,12 +4,15 @@ import com.ssafy.recommendationservice.api.controller.recommendation.Recommendat
 import com.ssafy.recommendationservice.api.controller.recommendation.response.AnotherArticleRecommendationResponse;
 import com.ssafy.recommendationservice.api.controller.recommendation.response.MainRecommendationResponse;
 import com.ssafy.recommendationservice.api.controller.recommendation.response.PeerAgeRecommendationResponse;
+import com.ssafy.recommendationservice.api.service.article.ArticleLogQueryService;
 import com.ssafy.recommendationservice.api.service.recommendation.RecommendationService;
+import com.ssafy.recommendationservice.client.response.ArticleResponse;
 import com.ssafy.recommendationservice.docs.RestDocsSupport;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.restdocs.payload.JsonFieldType;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.mockito.BDDMockito.*;
@@ -28,43 +31,44 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class RecommendationControllerDocsTest extends RestDocsSupport {
 
     private final RecommendationService recommendationService = mock(RecommendationService.class);
+    private final ArticleLogQueryService articleLogQueryService = mock(ArticleLogQueryService.class);
 
     @Override
     protected Object initController() {
-        return new RecommendationController(recommendationService);
+        return new RecommendationController(recommendationService, articleLogQueryService);
     }
 
     @DisplayName("메인 뉴스 기사 추천 API")
     @Test
     void getMainRecommendation() throws Exception {
-        MainRecommendationResponse response1 = MainRecommendationResponse.builder()
+        ArticleResponse response1 = ArticleResponse.builder()
             .articleId(1L)
             .title("메인 뉴스 기사 추천 1")
             .thumbnailImg("http://thumbnailImg1.jpg")
             .build();
-        MainRecommendationResponse response2 = MainRecommendationResponse.builder()
+        ArticleResponse response2 = ArticleResponse.builder()
             .articleId(2L)
             .title("메인 뉴스 기사 추천 2")
             .thumbnailImg("http://thumbnailImg2.jpg")
             .build();
-        MainRecommendationResponse response3 = MainRecommendationResponse.builder()
+        ArticleResponse response3 = ArticleResponse.builder()
             .articleId(3L)
             .title("메인 뉴스 기사 추천 3")
             .thumbnailImg("http://thumbnailImg3.jpg")
             .build();
-        MainRecommendationResponse response4 = MainRecommendationResponse.builder()
+        ArticleResponse response4 = ArticleResponse.builder()
             .articleId(4L)
             .title("메인 뉴스 기사 추천 4")
             .thumbnailImg("http://thumbnailImg4.jpg")
             .build();
-        MainRecommendationResponse response5 = MainRecommendationResponse.builder()
+        ArticleResponse response5 = ArticleResponse.builder()
             .articleId(5L)
             .title("메인 뉴스 기사 추천 5")
             .thumbnailImg("http://thumbnailImg5.jpg")
             .build();
-        List<MainRecommendationResponse> responses = List.of(response1, response2, response3, response4, response5);
+        List<ArticleResponse> responses = List.of(response1, response2, response3, response4, response5);
 
-        given(recommendationService.getMainRecommendation())
+        given(articleLogQueryService.getHotArticle(any(LocalDateTime.class)))
             .willReturn(responses);
 
         mockMvc.perform(

@@ -4,7 +4,7 @@ import com.ssafy.recommendationservice.api.controller.recommendation.response.An
 import com.ssafy.recommendationservice.api.controller.recommendation.response.MainRecommendationResponse;
 import com.ssafy.recommendationservice.api.controller.recommendation.response.PeerAgeRecommendationResponse;
 import com.ssafy.recommendationservice.client.FlaskServerClient;
-import com.ssafy.recommendationservice.client.response.ArticleResponse;
+import com.ssafy.recommendationservice.client.response.FlaskArticleResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -18,17 +18,13 @@ public class RecommendationService {
 
     private final FlaskServerClient flaskServerClient;
 
-    public List<MainRecommendationResponse> getMainRecommendation() {
-        return new ArrayList<>();
-    }
-
     public List<PeerAgeRecommendationResponse> getPeerAgeRecommendation() {
         return new ArrayList<>();
     }
 
     public List<AnotherArticleRecommendationResponse> getAnotherArticleRecommendation(Long articleId) {
 
-        List<ArticleResponse> getResponses = flaskServerClient.getAnotherRecommendation(articleId);
+        List<FlaskArticleResponse> getResponses = flaskServerClient.getAnotherRecommendation(articleId);
 
         return getResponses.stream().map(response -> AnotherArticleRecommendationResponse.builder()
             .articleId(response.getArticle_id())
