@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ReactWordcloud, { OptionsProp } from 'react-wordcloud';
 import { IWordCloudKeyword, IWordCloudResponse } from 'types/keyword';
 import { getPopularKeywordApi } from 'utils/apis/keyword';
+import useMovePage from 'hooks/useMovePage';
 import { WordCloudContainer } from './style';
 import 'tippy.js/dist/tippy.css';
 import 'tippy.js/animations/scale.css';
@@ -13,13 +14,14 @@ interface IWordKeyword {
 
 function KeywordCloud() {
 	const [wordCloudKeywords, setWordCloudKeywords] = useState<IWordCloudKeyword[]>([]);
+	const [movePage] = useMovePage();
 	const options: OptionsProp = {
 		fontFamily: 'Pretendard',
 		fontSizes: [20, 60],
 	};
 
 	const callbacks = {
-		onWordClick: (word: IWordKeyword) => console.log(word),
+		onWordClick: (word: IWordKeyword) => movePage(`/article?search=${word.text}`),
 	};
 
 	const fetchKeywordData = async () => {
