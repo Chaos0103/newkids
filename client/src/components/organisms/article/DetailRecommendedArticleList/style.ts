@@ -14,33 +14,38 @@ export const DetailRecommendedArticleListContainer = styled.div`
 		margin: 1rem 0;
 	}
 
-	.list-items {
-		display: flex;
-		gap: 1rem;
+	.swiper {
+		width: 100%;
 
-		div {
-			img {
+		.swiper-slide {
+			div {
+				width: 150px;
 				height: 150px;
-			}
 
-			h2 {
-				color: white;
-				bottom: 0;
-				position: absolute;
-				z-index: 11;
-				font-size: 1rem;
-				margin: 1rem;
-				white-space: normal;
-				display: -webkit-box;
-				-webkit-line-clamp: 2;
-				-webkit-box-orient: vertical;
-				overflow: hidden;
-				transition: all 0.1s;
-			}
+				img {
+					width: 150px;
+					height: 150px;
+				}
 
-			&:hover {
 				h2 {
-					transform: translateY(-20%);
+					color: white;
+					bottom: 0;
+					position: absolute;
+					z-index: 11;
+					font-size: 1rem;
+					margin: 1rem;
+					white-space: normal;
+					display: -webkit-box;
+					-webkit-line-clamp: 2;
+					-webkit-box-orient: vertical;
+					overflow: hidden;
+					transition: all 0.1s;
+				}
+
+				&:hover {
+					h2 {
+						transform: translateY(-20%);
+					}
 				}
 			}
 		}
