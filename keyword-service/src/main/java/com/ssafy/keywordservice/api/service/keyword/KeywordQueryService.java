@@ -1,5 +1,6 @@
 package com.ssafy.keywordservice.api.service.keyword;
 
+import com.ssafy.keywordservice.api.controller.client.response.KeywordResponse;
 import com.ssafy.keywordservice.api.controller.keyword.response.KeywordQuizClientResponse;
 import com.ssafy.keywordservice.domain.keyword.Keyword;
 import com.ssafy.keywordservice.domain.keyword.repository.KeywordQueryRepository;
@@ -59,5 +60,9 @@ public class KeywordQueryService {
         }
 
         return responses;
+    }
+
+    public List<KeywordResponse> getKeywordByIds(List<Long> keywordIds) {
+        return keywordQueryRepository.findKeywordByIdIn(keywordIds);
     }
 }

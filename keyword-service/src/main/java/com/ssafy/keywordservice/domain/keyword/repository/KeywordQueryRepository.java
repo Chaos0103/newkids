@@ -1,6 +1,8 @@
 package com.ssafy.keywordservice.domain.keyword.repository;
 
+import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQueryFactory;
+import com.ssafy.keywordservice.api.controller.client.response.KeywordResponse;
 import com.ssafy.keywordservice.domain.keyword.Keyword;
 import com.ssafy.keywordservice.domain.keyword.QKeyword;
 import org.springframework.stereotype.Repository;
@@ -39,6 +41,17 @@ public class KeywordQueryRepository {
             .where(keyword.id.notIn(keywordIds))
             .orderBy(keyword.createdDate.desc())
             .limit(30)
+            .fetch();
+    }
+
+    public List<KeywordResponse> findKeywordByIdIn(List<Long> keywordIds) {
+        return queryFactory
+            .select(Projections.constructor(KeywordResponse.class,
+                keyword.id,
+                keyword.word
+            ))
+            .from(keyword)
+            .where(keyword.id.in(keywordIds))
             .fetch();
     }
 }
