@@ -7,6 +7,7 @@ import {
 	PatchNicknameApiBody,
 	PatchPasswordApiBody,
 	SendEmailApiBody,
+	WithdrawalApiBody,
 } from 'types/api';
 import { instance } from './instance';
 
@@ -29,8 +30,8 @@ export const getMemberInfoApi = async (memberKey: string) => {
 };
 
 // 회원 탈퇴
-export const withdrawalApi = async (memberKey: string) => {
-	const response = await instance.delete(`/user-service/api/${memberKey}/withdrawal`);
+export const withdrawalApi = async (memberKey: string, data: WithdrawalApiBody) => {
+	const response = await instance.delete(`/user-service/api/${memberKey}/withdrawal`, { data });
 	return response;
 };
 
