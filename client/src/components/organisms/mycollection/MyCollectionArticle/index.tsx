@@ -1,8 +1,15 @@
 import React from 'react';
 import MyCollectionArticleList from 'components/atoms/mycollection/MyCollectionArticleList';
+import { IMyArticleDetail } from 'types/article';
 import { MyCollectionArticleContainer } from './style';
 
-function MyCollectionArticle() {
+interface IMyCollectionArticleProps {
+	articles: IMyArticleDetail[];
+}
+
+function MyCollectionArticle(props: IMyCollectionArticleProps) {
+	const { articles } = props;
+
 	return (
 		<MyCollectionArticleContainer>
 			<div className="collection-title">
@@ -11,7 +18,7 @@ function MyCollectionArticle() {
 				<p className="gray-color-text">에요</p>
 			</div>
 			<div className="collection-list-box">
-				<MyCollectionArticleList />
+				<MyCollectionArticleList articles={articles} />
 			</div>
 		</MyCollectionArticleContainer>
 	);
