@@ -40,15 +40,21 @@ public class KafkaConsumer {
             throw new RuntimeException(e);
         }
 
-        Long articleId = (Long) map.get("articleId");
-        List<Long> keywordIds = keywordServiceClient.getKeywordIds(articleId);
+        Integer articleId = (Integer) map.get("articleId");
+
+        List<Long> keywordIds = keywordServiceClient.getKeywordIds(Long.valueOf(articleId));
 
         String memberKey = (String) map.get("memberKey");
 
-        insertArticleLog(memberKey, articleId);
+        insertArticleLog(memberKey, Long.valueOf(articleId));
         insertKeywordLogs(memberKey, keywordIds);
     }
 
+    /**
+     * 뉴스 기사 로그
+     * @param memberKey 회원 식별키
+     * @param articleId 뉴스 기사 식별키
+     */
     private void insertArticleLog(String memberKey, Long articleId) {
         ArticleLog log = ArticleLog.builder()
             .memberKey(memberKey)
@@ -58,6 +64,11 @@ public class KafkaConsumer {
         articleLogMongoRepository.save(log);
     }
 
+    /**
+     * 키워드 로그
+     * @param memberKey 회원 식별키
+     * @param keywordIds 키워드 식별키 리스트
+     */
     private void insertKeywordLogs(String memberKey, List<Long> keywordIds) {
         List<KeywordLog> logs = keywordIds.stream()
             .map(keywordId -> KeywordLog.builder()

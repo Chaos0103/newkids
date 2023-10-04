@@ -28,7 +28,7 @@ public class KafkaConsumerConfig {
         String kafkaIP = env.getProperty("kafka.ip");
 
         properties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaIP);
-        properties.put(ConsumerConfig.GROUP_ID_CONFIG, "consumerGroupId");
+        properties.put(ConsumerConfig.GROUP_ID_CONFIG, "article-analysis");
         properties.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         properties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
 
