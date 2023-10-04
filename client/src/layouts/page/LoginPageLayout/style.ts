@@ -13,7 +13,7 @@ export const LoginPageLayoutContainer = styled.div`
 
 	.footer {
 		position: absolute;
-		bottom: 3rem;
+		bottom: 1rem;
 		left: 0;
 		right: 0;
 		transform: translateX(0);

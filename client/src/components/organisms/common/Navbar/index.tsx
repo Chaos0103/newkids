@@ -35,6 +35,12 @@ function NavBar() {
 		}
 	};
 
+	const confirmSearch = () => {
+		movePage(`/article?search=${searchValue}`);
+		const searchEvent = new Event('article-search');
+		window.dispatchEvent(searchEvent);
+	};
+
 	return (
 		<NavBarContainer>
 			<div className="logo">
@@ -43,7 +49,7 @@ function NavBar() {
 			<div className="search-bar">
 				<SearchBar
 					size="l"
-					confirmSearch={() => {}}
+					confirmSearch={confirmSearch}
 					value={searchValue}
 					setValue={setSearchValue}
 					color="SubFirst"
