@@ -5,8 +5,6 @@ import mysql.connector.pooling
 
 # 커넥션 풀 생성
 connection_pool = mysql.connector.pooling.MySQLConnectionPool(
-    pool_name="my_pool",
-    pool_size=5,
     host="127.0.0.1",
     port=3306,
     user="ssafy",

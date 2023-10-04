@@ -159,7 +159,7 @@ public class VocabularyControllerDocsTest extends RestDocsSupport {
                 patch("/vocabulary-service/api/{vocabularyId}", 1L)
             )
             .andDo(print())
-            .andExpect(status().isFound())
+            .andExpect(status().isOk())
             .andDo(document("check-vocabulary",
                 preprocessResponse(prettyPrint()),
                 responseFields(
@@ -201,7 +201,7 @@ public class VocabularyControllerDocsTest extends RestDocsSupport {
                 delete("/vocabulary-service/api/{vocabularyId}", 1L)
             )
             .andDo(print())
-            .andExpect(status().isFound())
+            .andExpect(status().isOk())
             .andDo(document("remove-vocabulary",
                 preprocessResponse(prettyPrint()),
                 responseFields(

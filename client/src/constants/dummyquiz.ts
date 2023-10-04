@@ -31,34 +31,34 @@ export const DUMMY_ANSWERS_1: QuizAnswerCheckApiBody[] = [{ answer: '업적' }];
 export const DUMMY_WEEKLY_QUIZS: WeeklyQuizQuestionRequestApiBody[] = [
 	{
 		no: 1,
-		answerword: '리비아',
+		answerWord: '리비아',
 		description:
 			'북아프리카에 있는 나라로 수도는 트리폴리이며, 공용어는 아랍어이다. 최근 대홍수가 일어나 극심한 피해를 입은 나라다.',
 		contents: ['이집트', '리비아', '모로코', '아랍에미리트'],
 	},
 	{
 		no: 2,
-		answerword: '플로깅',
+		answerWord: '플로깅',
 		description:
 			'줍다라는 뜻의 스웨덴 어 "플로카 업"과 달리다 라는 "조깅"을 합성한 단어다. 또한 쓰레기를 주우며 조깅하는 행동을 의미하는 단어다',
 		contents: ['플로깅', '플로조', '트래시런닝', '기브업런닝'],
 	},
 	{
 		no: 3,
-		answerword: '분화구',
+		answerWord: '분화구',
 		description: '화산 활동, 운석 충돌 등 거대한 충격으로 인해 표면에 생겨나는 구덩이를 뜻한다.',
 		contents: ['열점', '암맥', '분화구', '칼데라'],
 	},
 	{
 		no: 4,
-		answerword: '업사이클링',
+		answerWord: '업사이클링',
 		description:
 			'1994년 리너 필츠 (Reiner Pilz)가 처음 사용한 개념이다. 그 소용이 다해 버려지는 제품을 단순히 재활용하는 차원을 넘어 디자 인을 가미하는 등의 새로운 부가가치를 창출하여 새 제 품으로 재탄생시키는 일체의 행위를 뜻하는 단어다.',
 		contents: ['비치코밍', 'CAI', '재활용', '업사이클링'],
 	},
 	{
 		no: 5,
-		answerword: 'SSAFY',
+		answerWord: 'SSAFY',
 		description: '삼성 청년 SW 아카데미의 줄임말로써 미래 SW 인재 육성에 힘쓰고 있는 이 기관은 무엇일까?',
 		contents: ['우테코', 'SSAFY', '네부캠', '소마'],
 	},

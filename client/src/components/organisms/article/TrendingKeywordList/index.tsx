@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import KeywordListItem from 'components/atoms/common/KeywordListItem';
 import { getPopularKeywordApi } from 'utils/apis/keyword';
 import { IKeyword } from 'types/keyword';
-import { DUMMY_KEYWORDS } from 'constants/dummy';
 import { TrendingKeywordListContainer } from './style';
 
 function TrendingKeywordList() {
@@ -11,9 +10,8 @@ function TrendingKeywordList() {
 	const fetchData = async () => {
 		try {
 			const response = await getPopularKeywordApi();
-			setKeywords(response.data);
+			setKeywords(response.data.data);
 			console.log('::getPopularKeywordApi', response);
-			setKeywords(DUMMY_KEYWORDS);
 		} catch (error) {
 			console.error(error);
 		}

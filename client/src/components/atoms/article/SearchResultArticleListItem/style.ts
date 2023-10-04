@@ -17,6 +17,7 @@ export const SearchResultArticleListItemContainer = styled.div`
 	img {
 		border-radius: var(--radius-m);
 		width: 200px;
+		min-width: 200px;
 		height: 150px;
 	}
 

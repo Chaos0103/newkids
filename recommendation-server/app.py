@@ -31,9 +31,9 @@ articles = [
 
 result_fields = Api.model(
     'article', {
-        'articleId': fields.Integer(default=1),
+        'article_id': fields.Integer(default=1),
         'title': fields.String(default='[생활뉴스] 토끼와 함께라면 행복져요!'),
-        'thumbnail': fields.String(default='썸네일 URL')
+        'thumbnail_img': fields.String(default='썸네일 URL')
     }
 )
 
@@ -75,40 +75,40 @@ class CbfResult(Resource):
         return jsonify(recommend_articles)
 
 
-@Api.route('/collaborative-filter/keywords')
-@Api.doc(params={
-    'memberKey': {'in': 'query', 'description': '회원 고유키', 'default': 'memberKey1'},
-    'age': {'in': 'query', 'description': '회원 연령', 'default': '10'}
-})
-class CfRecommendByKeywords(Resource):
-    @Api.response(200, "Success", recommend_results)
-    def get(self):
-        """
-        사용자별 관심 키워드 기반 협업 필터링 추천 API
-        현재 사용자 관심 키워드 중 다른 사용자의 관심 키워드에 속하지만
-        현재 사용자의 관심 키워드에 속하지 않는 키워드 추천
-
-        협업 필터링 추천 결과 목록
-        """
-        parameters = request.args.to_dict()
-        if len(parameters) == 0:
-            return "BAD_REQUEST"
-
-        member_key = parameters.get("memberKey")
-        log.debug(f"member_key: {member_key}")
-
-        age = parameters.get("age")
-        log.debug(f"age: {age}")
-
-        # 코사인 유사도를 구해서 추천 알고리즘 수행 -> 키워드 리스트 추출
-        start = time.time()
-        recommendations = get_ubcf_recommendations('memberKey1')
-        end = time.time()
-        print(f"running time: {end - start: .5f}")
-
-        # TODO: 2023-09-21 해당 키워드를 핵심 키워드로 갖는 기사 추천
-
-        return jsonify(recommendations)
+# @Api.route('/collaborative-filter/keywords')
+# @Api.doc(params={
+#     'memberKey': {'in': 'query', 'description': '회원 고유키', 'default': 'memberKey1'},
+#     'age': {'in': 'query', 'description': '회원 연령', 'default': '10'}
+# })
+# class CfRecommendByKeywords(Resource):
+#     @Api.response(200, "Success", recommend_results)
+#     def get(self):
+#         """
+#         사용자별 관심 키워드 기반 협업 필터링 추천 API
+#         현재 사용자 관심 키워드 중 다른 사용자의 관심 키워드에 속하지만
+#         현재 사용자의 관심 키워드에 속하지 않는 키워드 추천
+#
+#         협업 필터링 추천 결과 목록
+#         """
+#         parameters = request.args.to_dict()
+#         if len(parameters) == 0:
+#             return "BAD_REQUEST"
+#
+#         member_key = parameters.get("memberKey")
+#         log.debug(f"member_key: {member_key}")
+#
+#         age = parameters.get("age")
+#         log.debug(f"age: {age}")
+#
+#         # 코사인 유사도를 구해서 추천 알고리즘 수행 -> 키워드 리스트 추출
+#         start = time.time()
+#         recommendations = get_ubcf_recommendations('memberKey1')
+#         end = time.time()
+#         print(f"running time: {end - start: .5f}")
+#
+#         # TODO: 2023-09-21 해당 키워드를 핵심 키워드로 갖는 기사 추천
+#
+#         return jsonify(recommendations)
 
 
 @Api.route('/collaborative-filter/members')

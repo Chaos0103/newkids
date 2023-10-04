@@ -63,12 +63,4 @@ public class ArticleReadController {
 
         return ApiResponse.ok(response);
     }
-
-    // TODO: 2023/09/13 읽은 뉴스 기사 목록 삭제 API
-    @DeleteMapping("/{articleReadId}")
-    @ResponseStatus(HttpStatus.FOUND)
-    public ApiResponse<?> removeArticleRead(@PathVariable Long articleReadId) {
-        articleReadService.removeArticleRead(articleReadId);
-        return ApiResponse.found(null);
-    }
 }

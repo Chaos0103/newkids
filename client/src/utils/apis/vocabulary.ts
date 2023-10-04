@@ -4,7 +4,7 @@ import { instance } from './instance';
 // Word
 // 국립국어원 단어 조회 (간편 사전 검색)
 export const getAllWordApi = async (keyword: string, pageNum?: number) => {
-	const response = await instance.get(`/vocabulary-service/api/words?${keyword}&pageNum=${pageNum ?? 1}`);
+	const response = await instance.get(`/vocabulary-service/api/words?keyword=${keyword}&pageNum=${pageNum ?? 1}`);
 	return response;
 };
 

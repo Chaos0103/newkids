@@ -1,6 +1,7 @@
 package com.ssafy.userservice.api.service.member;
 
 import com.ssafy.userservice.api.controller.member.response.JoinMemberResponse;
+import com.ssafy.userservice.api.controller.member.response.MemberLevelResponse;
 import com.ssafy.userservice.api.controller.member.response.MemberResponse;
 import com.ssafy.userservice.api.service.member.dto.JoinMemberDto;
 import com.ssafy.userservice.api.service.member.exception.DuplicateException;
@@ -100,6 +101,14 @@ public class MemberService {
 
         member.editNickname(newNickname);
         return MemberResponse.of(member);
+    }
+
+    public MemberLevelResponse increaseExp(String memberKey, int exp) {
+        Member member = getMemberEntity(memberKey);
+
+        member.increaseExp(exp);
+
+        return MemberLevelResponse.of(member);
     }
 
     /**

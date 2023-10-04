@@ -36,6 +36,7 @@ public class AccountControllerDocsTest extends RestDocsSupport {
     void getMemberInfo() throws Exception {
 
         MemberResponse response = MemberResponse.builder()
+            .email("ssafy@ssafy.com")
             .name("김싸피")
             .age(10)
             .level(2)
@@ -62,7 +63,9 @@ public class AccountControllerDocsTest extends RestDocsSupport {
                     fieldWithPath("message").type(JsonFieldType.STRING)
                         .description("메시지"),
                     fieldWithPath("data").type(JsonFieldType.OBJECT)
-                        .description("응답데이터"),
+                        .description("응답 데이터"),
+                    fieldWithPath("data.email").type(JsonFieldType.STRING)
+                        .description("이메일"),
                     fieldWithPath("data.name").type(JsonFieldType.STRING)
                         .description("이름"),
                     fieldWithPath("data.age").type(JsonFieldType.NUMBER)

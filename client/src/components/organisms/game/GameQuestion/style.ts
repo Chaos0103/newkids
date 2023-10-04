@@ -12,8 +12,11 @@ export const GameQuestionContainer = styled.div`
 		justify-content: center;
 	}
 
+	.question {
+		margin-bottom: 50px;
+	}
+
 	.hr {
-		margin-top: 1.5rem;
 		margin-bottom: 1.5rem;
 	}
 

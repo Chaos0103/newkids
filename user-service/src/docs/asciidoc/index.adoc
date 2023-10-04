@@ -32,3 +32,8 @@ include::api/member/create-account.adoc[]
 include::api/member/edit-password.adoc[]
 include::api/member/edit-nickname.adoc[]
 include::api/member/remove-member.adoc[]
+
+[[Client-API]]
+== Client API
+
+include::api/client/increase-exp.adoc[]

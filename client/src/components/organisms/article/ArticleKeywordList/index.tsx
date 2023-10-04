@@ -6,6 +6,7 @@ import { ArticleKeywordListContainer } from './style';
 interface IArticleKeywordListProps {
 	keywords: IKeyword[];
 }
+
 function ArticleKeywordList(props: IArticleKeywordListProps) {
 	const { keywords } = props;
 	return (

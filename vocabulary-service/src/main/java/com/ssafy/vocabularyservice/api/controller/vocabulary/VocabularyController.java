@@ -15,7 +15,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 /**
- * 단어장 API 컨트롤러
+ * Vocabulary API 컨트롤러
  *
  * @author 임우택
  */
@@ -48,6 +48,12 @@ public class VocabularyController {
         return ApiResponse.created(response);
     }
 
+    /**
+     * 나의 단어장 목록 조회 API
+     *
+     * @param memberKey 조회할 회원 고유키
+     * @return 조회된 단어장 정보
+     */
     @GetMapping("/{memberKey}")
     public ApiResponse<?> getMyVocabulary(@PathVariable String memberKey) {
         log.debug("call VocabularyController#getMyVocabulary");
@@ -66,7 +72,6 @@ public class VocabularyController {
      * @return 변경된 단어장 정보
      */
     @PatchMapping("/{vocabularyId}")
-    @ResponseStatus(HttpStatus.FOUND)
     public ApiResponse<WordResponse> checkVocabulary(@PathVariable Long vocabularyId) {
         log.debug("call VocabularyController#checkVocabulary");
         log.debug("vocabularyId={}", vocabularyId);
@@ -79,11 +84,11 @@ public class VocabularyController {
 
     /**
      * 단어장 삭제 API
+     *
      * @param vocabularyId 삭제할 단어장의 PK
      * @return 삭제된 단어장 정보
      */
     @DeleteMapping("/{vocabularyId}")
-    @ResponseStatus(HttpStatus.FOUND)
     public ApiResponse<WordResponse> removeVocabulary(@PathVariable Long vocabularyId) {
         log.debug("call VocabularyController#removeVocabulary");
         log.debug("vocabularyId={}", vocabularyId);

@@ -66,6 +66,7 @@ public class MemberQueryRepository {
     public Optional<MemberResponse> findByMemberKey(String memberKey) {
         MemberResponse response = queryFactory
             .select(Projections.constructor(MemberResponse.class,
+                member.email,
                 member.name,
                 member.age,
                 member.level,
