@@ -7,8 +7,4 @@ export const QuizQuestionContainer = styled.div`
 		align-item: center;
 		margin-top: 3rem;
 	}
-
-	.quiz-result {
-		display: none;
-	}
 `;
