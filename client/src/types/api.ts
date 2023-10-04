@@ -15,6 +15,11 @@ export interface JoinApiBody {
 	nickname: string;
 }
 
+// -- auth :: 회원탈퇴 data
+export interface WithdrawalApiData {
+	password: string;
+}
+
 // -- auth :: 이메일 인증 번호 전송 body
 export interface SendEmailApiBody {
 	email: string;
