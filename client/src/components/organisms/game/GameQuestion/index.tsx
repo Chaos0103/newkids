@@ -51,6 +51,7 @@ function GameQuestion(props: IGameQuestionProps) {
 					imageUrl: 'https://ifh.cc/g/Y4p2ln.gif',
 					imageHeight: 200,
 					title: '축하해요! 정답입니다.',
+					confirmButtonText: '확인',
 				}).then(() => {
 					setCurrentIndex((prevIndex) => prevIndex + 1);
 					setIsDone(true);
@@ -62,6 +63,7 @@ function GameQuestion(props: IGameQuestionProps) {
 					imageUrl: 'https://ifh.cc/g/4yzNys.gif',
 					imageHeight: 200,
 					title: '아쉬워요... 오답입니다.',
+					confirmButtonText: '확인',
 				}).then(() => {
 					setCurrentIndex((prevIndex) => prevIndex + 1);
 					setIsDone(true);
@@ -80,6 +82,7 @@ function GameQuestion(props: IGameQuestionProps) {
 					imageUrl: 'https://ifh.cc/g/Y4p2ln.gif',
 					imageHeight: 200,
 					title: '축하해요! 정답입니다.',
+					confirmButtonText: '확인',
 				}).then(() => {
 					setStep(3);
 					setScore((prevIndex) => prevIndex + 1);
@@ -89,6 +92,7 @@ function GameQuestion(props: IGameQuestionProps) {
 					imageUrl: 'https://ifh.cc/g/4yzNys.gif',
 					imageHeight: 200,
 					title: '아쉬워요... 오답입니다.',
+					confirmButtonText: '확인',
 				}).then(() => {
 					setStep(3);
 					setScore((prevIndex) => prevIndex);
