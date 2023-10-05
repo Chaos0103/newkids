@@ -45,9 +45,7 @@ function QuizQuestion(props: IQuizQuestionProps) {
 			};
 
 			if (memberkey) {
-				const response = await checkWeeklyAnswerApi(memberkey, body);
-				const weeklyQuizAnswer = response.data;
-				console.log(weeklyQuizAnswer);
+				await checkWeeklyAnswerApi(memberkey, body);
 			}
 
 			if (!isDone) {
@@ -91,9 +89,7 @@ function QuizQuestion(props: IQuizQuestionProps) {
 			};
 
 			if (memberkey) {
-				const response = await checkWeeklyAnswerApi(memberkey, body);
-				const weeklyQuizAnswer = response.data;
-				console.log(weeklyQuizAnswer);
+				await checkWeeklyAnswerApi(memberkey, body);
 			}
 
 			if (!isDone) {

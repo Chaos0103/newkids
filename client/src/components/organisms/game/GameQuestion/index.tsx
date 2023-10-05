@@ -31,9 +31,7 @@ function GameQuestion(props: IGameQuestionProps) {
 		try {
 			const memberkey = localStorage.getItem('memberkey');
 			if (memberkey) {
-				const response = await getQuizQuestionApi(memberkey);
-				console.log('::getQuizQuestionApi', response);
-				console.log(response.data);
+				await getQuizQuestionApi(memberkey);
 			}
 		} catch (e) {
 			console.log(e);

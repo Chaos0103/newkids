@@ -21,9 +21,7 @@ function GameHowToUse({ setStep }: IGameHowToUseProps) {
 		try {
 			const memberkey = localStorage.getItem('memberkey');
 			if (memberkey) {
-				const response = await startQuizApi(memberkey);
-				console.log('::startWeeklyQuizApi', response);
-				console.log(response.data);
+				await startQuizApi(memberkey);
 			}
 		} catch (e) {
 			console.log(e);

@@ -22,8 +22,7 @@ function QuizHowToUse(props: IQuizHowToUseProps) {
 		try {
 			const memberkey = localStorage.getItem('memberkey');
 			if (memberkey) {
-				const response = await startWeeklyQuizApi(memberkey);
-				console.log('::startWeeklyQuizApi', response);
+				await startWeeklyQuizApi(memberkey);
 			}
 		} catch (e) {
 			console.log(e);

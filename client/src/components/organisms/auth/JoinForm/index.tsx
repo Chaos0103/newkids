@@ -68,10 +68,9 @@ function JoinForm() {
 				authNumber,
 			};
 			const certRes = await certEmailApi(certReqBody);
-			console.log(certRes);
+
 			if (certRes.status === 200) {
 				const duplicateRes = await checkEmailApi({ email });
-				console.log(duplicateRes);
 				if (duplicateRes.status === 200) {
 					if (duplicateRes.data.data) {
 						throw new Error('이미 사용 중인 이메일입니다.');
@@ -92,7 +91,7 @@ function JoinForm() {
 				email,
 			};
 			const response = await sendEmailApi(body);
-			console.log(response);
+
 			if (response.status === 200) {
 				alert('이메일이 전송되었습니다. 이메일 확인 후, 인증번호를 입력하세요.');
 				setIsSentCode(true);

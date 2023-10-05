@@ -34,7 +34,6 @@ function ArticleFindPage() {
 
 		try {
 			const response = await getAllArticleApi(startDate, endDate, searchStr, currentPage);
-			console.log('::getAllArticleApi', response);
 			setIsLoading(false);
 
 			if (response.status === 200) {
