@@ -52,7 +52,7 @@ export const NavBarContainer = styled.div<{ $auth?: boolean }>`
 			gap: 1rem;
 			width: 150px;
 			position: absolute;
-			top: 4rem;
+			top: 3rem;
 			transform: translateX(-30%);
 			border-radius: var(--radius-s);
 			border: 1px solid var(--gray-200);
