@@ -4,7 +4,7 @@ export const FloatingElementsContainer = styled.div`
 	@media screen and (min-width: 0) {
 		display: none;
 	}
-	@media screen and (min-width: 1024px) {
+	@media screen and (min-width: 1650px) {
 		display: block;
 	}
 
@@ -18,7 +18,7 @@ export const FloatingElementsContainer = styled.div`
 		flex-direction: column;
 		gap: 7rem;
 		top: 33vh;
-		left: 6vw;
+		left: 2vw;
 
 		// 첫 번째 구름
 		div:nth-child(1) {
@@ -75,7 +75,7 @@ export const FloatingElementsContainer = styled.div`
 		flex-direction: column;
 		gap: 7rem;
 		top: 33vh;
-		right: 6vw;
+		right: 2vw;
 
 		// 세번째 해
 		div:nth-child(1) {
