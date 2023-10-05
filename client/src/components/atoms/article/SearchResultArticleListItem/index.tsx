@@ -14,7 +14,7 @@ function SearchResultArticleListItem(props: ISearchResultArticleListItemProps) {
 
 	return (
 		<SearchResultArticleListItemContainer onClick={() => movePage(`/article/${article.articleId}`)}>
-			<img src={article.thumbnailImg} alt="" />
+			<img src={article.thumbnailImg.length ? article.thumbnailImg : '/src/assets/imgs/default.png'} alt="" />
 			<div className="article">
 				<div className="content">
 					<h3>{article.title}</h3>

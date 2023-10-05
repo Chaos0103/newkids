@@ -11,7 +11,7 @@ function SquareArticleListItem(props: ISquareArticleListItemProps) {
 
 	return (
 		<SquareArticleListItemContainer onClick={handleClick}>
-			<img src={article.thumbnailImg} alt="" />
+			<img src={article.thumbnailImg.length ? article.thumbnailImg : '/src/assets/imgs/default.png'} alt="" />
 			<h2>{article.title}</h2>
 			<div className="overlay" />
 		</SquareArticleListItemContainer>
