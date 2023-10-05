@@ -76,7 +76,8 @@ function GameHowToUse({ setStep }: IGameHowToUseProps) {
 				<div>
 					<EmptyBoxLottie />
 					<Title effectText="이런! 단어장에 단어가 부족해요!" text=" " />
-					<h1 className="h1">지금 기사를 읽으면서 단어장에 단어를 채우러 가볼까요?</h1>
+					<h1 className="h1">단어장에 10개 이상의 단어가 필요해요.</h1>
+					<h1 className="h1 margin-top-1">지금 기사를 읽고, 단어장에 단어를 채우러 가볼까요?</h1>
 					<div className="quiz-button">
 						<Button size="m" radius="m" color="Primary" text="기사 보러가기" handleClick={articleButton} />
 					</div>

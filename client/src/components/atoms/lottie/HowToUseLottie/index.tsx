@@ -9,7 +9,7 @@ function HowToUseLottie() {
 		animationData: CompleteAnimation,
 	};
 
-	return <Lottie options={defaultOptions} width={500} height={350} isClickToPauseDisabled />;
+	return <Lottie options={defaultOptions} width={300} height={200} isClickToPauseDisabled />;
 }
 
 export default HowToUseLottie;

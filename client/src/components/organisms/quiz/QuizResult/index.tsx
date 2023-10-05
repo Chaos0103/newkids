@@ -51,14 +51,12 @@ function QuizResult(props: IQuizResultProps) {
 		<QuizResultWrapper>
 			<ScrollToTop />
 			<GameCompleteLottie />
-			<Title text="최종 점수" effectText="" />
 			<div className="score-wrapper">
+				<Title text="최종 점수" effectText="" />
 				<h1 className="score">{score} 점</h1>
 			</div>
-			<div className="sub-title-wrapper">
-				<h1 className="sub-title">총 맞춘 문제</h1>
-			</div>
-			<div className="answer-wrapper">
+			<div className="score-wrapper">
+				<Title text="총 맞춘 문제" effectText="" />
 				<h1 className="answer">{cnt} 문제</h1>
 			</div>
 			<div className="quiz-button">

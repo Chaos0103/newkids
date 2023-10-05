@@ -8,6 +8,9 @@ export const GameHowToUseContainer = styled.div`
 		font-size: 2rem;
 		text-align: center;
 	}
+	.margin-top-1 {
+		margin-top: 1rem;
+	}
 
 	.quiz-button {
 		min-height: 160px;

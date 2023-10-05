@@ -1,15 +1,17 @@
 import styled from 'styled-components';
 
 export const VocabularyHeaderContainer = styled.div`
+	margin-top: 3rem;
 	display: flex;
 	justify-content: space-between;
+
 	.voca-menu {
 		display: flex;
 		gap: 30px;
 
 		.voca-total-button,
 		.voca-know-button {
-			width: 200px;
+			width: 250px;
 			height: 50px;
 			display: flex;
 			gap: 30px;
