@@ -2,6 +2,7 @@ package com.ssafy.keywordservice.api.service.keyword;
 
 import com.ssafy.keywordservice.api.controller.client.response.KeywordResponse;
 import com.ssafy.keywordservice.api.controller.keyword.response.KeywordQuizClientResponse;
+import com.ssafy.keywordservice.client.OpenApiServiceClient;
 import com.ssafy.keywordservice.domain.keyword.Keyword;
 import com.ssafy.keywordservice.domain.keyword.repository.KeywordQueryRepository;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +22,7 @@ import java.util.stream.Collectors;
 public class KeywordQueryService {
 
     private final KeywordQueryRepository keywordQueryRepository;
+    private final OpenApiServiceClient openApiServiceClient;
 
     public List<KeywordQuizClientResponse> getKeywordProblem() {
         List<Keyword> answers = keywordQueryRepository.findTop10Keyword();
@@ -50,10 +52,11 @@ public class KeywordQueryService {
             }
 
             Collections.shuffle(contents);
+            String description = openApiServiceClient.searchNaverVocabulary(answer.getWord());
 
             KeywordQuizClientResponse response = KeywordQuizClientResponse.builder()
                 .answer(answer.getWord())
-                .description("")
+                .description(description)
                 .contents(contents)
                 .build();
             responses.add(response);
