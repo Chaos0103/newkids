@@ -39,6 +39,7 @@ function ArticleFindPage() {
 			if (response.status === 200) {
 				setResultArticles(response.data.data.content);
 				setTotalPages(response.data.data.totalPages);
+				setCurrentPage(1);
 				setSize(response.data.data.size);
 				setTotalElements(response.data.data.totalElements);
 			}

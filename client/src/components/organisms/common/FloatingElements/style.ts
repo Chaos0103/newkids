@@ -4,11 +4,11 @@ export const FloatingElementsContainer = styled.div`
 	@media screen and (min-width: 0) {
 		display: none;
 	}
-	@media screen and (min-width: 1024px) {
+	@media screen and (min-width: 1650px) {
 		display: block;
 	}
 
-	z-index: 100;
+	z-index: 10;
 	position: relative;
 	transform: translateY(36%);
 
@@ -18,7 +18,7 @@ export const FloatingElementsContainer = styled.div`
 		flex-direction: column;
 		gap: 7rem;
 		top: 33vh;
-		left: 6vw;
+		left: 2vw;
 
 		// 첫 번째 구름
 		div:nth-child(1) {
@@ -26,7 +26,7 @@ export const FloatingElementsContainer = styled.div`
 			animation: left-and-right 7s linear 1s infinite alternate;
 
 			&:before {
-				background-image: url('/src/assets/imgs/floating-icons.png');
+				background-image: url('/assets/imgs/floating-icons.png');
 				display: block;
 				background-size: 388px 349px;
 				background-position: -123px -268px;
@@ -43,7 +43,7 @@ export const FloatingElementsContainer = styled.div`
 
 			&:before {
 				display: block;
-				background-image: url('/src/assets/imgs/floating-icons.png');
+				background-image: url('/assets/imgs/floating-icons.png');
 				background-size: 388px 349px;
 				background-position: -198px -128px;
 				width: 62px;
@@ -75,7 +75,7 @@ export const FloatingElementsContainer = styled.div`
 		flex-direction: column;
 		gap: 7rem;
 		top: 33vh;
-		right: 6vw;
+		right: 2vw;
 
 		// 세번째 해
 		div:nth-child(1) {
@@ -99,7 +99,7 @@ export const FloatingElementsContainer = styled.div`
 			animation: left-and-right 3s linear 1s infinite alternate;
 
 			&:before {
-				background-image: url('/src/assets/imgs/floating-icons.png');
+				background-image: url('/assets/imgs/floating-icons.png');
 				display: block;
 				background-size: 388px 349px;
 				background-position: -123px -268px;
@@ -117,7 +117,7 @@ export const FloatingElementsContainer = styled.div`
 
 			&:before {
 				display: block;
-				background-image: url('/src/assets/imgs/floating-icons.png');
+				background-image: url('/assets/imgs/floating-icons.png');
 				transform: scale(1.5);
 				background-size: 388px 349px;
 				background-position: -198px -128px;
