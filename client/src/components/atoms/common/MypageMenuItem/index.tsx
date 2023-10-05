@@ -23,8 +23,8 @@ function MypageMenuItem(props: IMypageMenuItemProps) {
 
 	return (
 		<MypageMenuItemContainer onClick={() => movePage(menu.path)}>
-			<div className={`icon ${isActive ? 'active' : ''}`}>{menu.icon}</div>
-			<div className={`icon ${isActive ? 'active' : ''}`}>{menu.name}</div>
+			<div className={`icon${isActive ? '-active' : ''}`}>{menu.icon}</div>
+			<div className={`icon${isActive ? '-active' : ''}`}>{menu.name}</div>
 		</MypageMenuItemContainer>
 	);
 }
