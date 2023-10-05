@@ -14,14 +14,13 @@ export const NavigationLayoutWrapper = styled.div`
 			width: var(--content-width-full);
 		}
 
-		@media screen and (min-width: 1280px) {
+		@media screen and (min-width: 1440px) {
 			width: var(--content-width-l);
 		}
 
-		@media screen and (min-width: 1280px) {
+		@media screen and (min-width: 1441px) {
 			width: var(--content-width-xl);
 		}
-
 		.navibar {
 			height: 76px;
 		}
