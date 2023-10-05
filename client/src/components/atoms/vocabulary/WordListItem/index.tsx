@@ -6,7 +6,7 @@ import { WordListItemWrapper } from './style';
 import { ReactComponent as Delete } from '../../../../assets/icons/delete.svg';
 
 interface WordListItemProps {
-	items: IGetallVocaBody[]; // items 속성의 타입을 정의합니다.
+	items: IGetallVocaBody[];
 }
 
 function WordListItem({ items }: WordListItemProps) {
@@ -19,17 +19,21 @@ function WordListItem({ items }: WordListItemProps) {
 	};
 
 	const handleOverlayClose = () => {
-		setIsOverlayOpen(false); // 오버레이창을 닫는 함수
+		setIsOverlayOpen(false);
 	};
 
 	const handleDelete = async (vocabularyId: string) => {
 		try {
 			const response = await deleteVocabularyApi(vocabularyId);
-			console.log('delete클릭', response);
 			if (response.status === 200) {
-				alert('삭제되었습니다.');
+				alert('나만의 단어장에서 삭제되었습니다.');
 				const reSearchPageEvent = new Event('reSearchPage');
 				window.dispatchEvent(reSearchPageEvent);
+				setIsOverlayOpen(false);
+				const allVocabularyEvent = new Event('allVocabulary');
+				window.dispatchEvent(allVocabularyEvent);
+				const checkVocabularyEvent = new Event('checkVocabulary');
+				window.dispatchEvent(checkVocabularyEvent);
 			}
 		} catch (error) {
 			console.error('삭제 오류발생');
@@ -40,11 +44,12 @@ function WordListItem({ items }: WordListItemProps) {
 		if (!checked) {
 			try {
 				const response = await checkVocabularyApi(vocabularyId);
-				console.log('알아요 체크', response);
 				if (response.status === 200) {
-					alert('체크되었습니다.');
+					alert('아는 단어에 등록되었습니다.');
 					const checkVocabularyEvent = new Event('checkVocabulary');
 					window.dispatchEvent(checkVocabularyEvent);
+					const reSearchPageEvent = new Event('reSearchPage');
+					window.dispatchEvent(reSearchPageEvent);
 				}
 			} catch (error) {
 				console.error('알아요 체크 오류');
@@ -52,11 +57,12 @@ function WordListItem({ items }: WordListItemProps) {
 		} else if (checked) {
 			try {
 				const response = await checkVocabularyApi(vocabularyId);
-				console.log('알아요 체크', response);
 				if (response.status === 200) {
-					alert('체크해제되었습니다.');
+					alert('아는 단어에서 등록취소되었습니다.');
 					const checkVocabularyEvent = new Event('checkVocabulary');
 					window.dispatchEvent(checkVocabularyEvent);
+					const reSearchPageEvent = new Event('reSearchPage');
+					window.dispatchEvent(reSearchPageEvent);
 				}
 			} catch (error) {
 				console.error('알아요 체크 오류');
@@ -67,28 +73,37 @@ function WordListItem({ items }: WordListItemProps) {
 	return (
 		<WordListItemWrapper>
 			{items.map((item) => (
-				<div className="word-list-item" key={item.vocabularyId}>
-					<p className="item-vocabulary-content" onClick={() => handleItemClick(item)} role="presentation">
-						{item.content}
-					</p>
-					{isOverlayOpen && selectedItem !== undefined && (
-						<div className="overlay">
-							<div className="overlay-content">
-								<p className="selected-item-content">{selectedItem.content}</p>
-								<p className="selected-item-description">(뜻) {selectedItem.description}</p>
-								<Button color="Primary" size="s" text="닫기" radius="m" handleClick={handleOverlayClose} />
+				<div className="word-list-item-wrapper" key={item.vocabularyId}>
+					<div className="word-list-item">
+						<p className="item-vocabulary-content" onClick={() => handleItemClick(item)} role="presentation">
+							{item.content}
+						</p>
+						{isOverlayOpen && selectedItem !== undefined && (
+							<div className="overlay">
+								<div className="overlay-content">
+									<div className="overlay-header">
+										<p className="selected-item-content">{selectedItem.content}</p>
+										<div className="delete-button-wrapper">
+											<Delete onClick={async () => handleDelete(selectedItem.vocabularyId.toString())} />
+										</div>
+									</div>
+									<p className="selected-item-description">(뜻) {selectedItem.description}</p>
+									<Button color="Primary" size="s" text="닫기" radius="m" handleClick={handleOverlayClose} />
+								</div>
 							</div>
+						)}
+						<div className="check-box">
+							<input
+								type="checkbox"
+								id="input"
+								onClick={async () => handleClick(item.vocabularyId.toString(), item.checked)}
+								defaultChecked={item.checked}
+							/>
 						</div>
-					)}
-					<div className="check-box">
-						<input
-							type="checkbox"
-							id="input"
-							onClick={async () => handleClick(item.vocabularyId.toString(), item.checked)}
-							defaultChecked={item.checked}
-						/>
 					</div>
-					<Delete onClick={async () => handleDelete(item.vocabularyId.toString())} />
+					<div className="word-item-description">
+						(뜻) {item.description.length > 10 ? `${item.description.slice(0, 10)}...` : item.description}
+					</div>
 				</div>
 			))}
 		</WordListItemWrapper>
