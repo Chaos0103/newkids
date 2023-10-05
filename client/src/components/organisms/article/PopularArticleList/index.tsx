@@ -13,7 +13,6 @@ function PopularArticleList() {
 	const fetchData = async () => {
 		try {
 			const response = await getAllRecommendedArticleApi();
-
 			if (response.status === 200) {
 				setArticles(response.data.data);
 			}
