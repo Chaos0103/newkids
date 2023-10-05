@@ -68,7 +68,7 @@ public class RecommendationControllerDocsTest extends RestDocsSupport {
             .build();
         List<ArticleResponse> responses = List.of(response1, response2, response3, response4, response5);
 
-        given(articleLogQueryService.getHotArticle(any(LocalDateTime.class)))
+        given(articleLogQueryService.getHotArticle())
             .willReturn(responses);
 
         mockMvc.perform(

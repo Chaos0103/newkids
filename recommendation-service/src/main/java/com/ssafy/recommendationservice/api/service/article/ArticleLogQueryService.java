@@ -20,8 +20,8 @@ public class ArticleLogQueryService {
     private final ArticleLogQueryRepository articleLogQueryRepository;
     private final ArticleServiceClient articleServiceClient;
 
-    public List<ArticleResponse> getHotArticle(LocalDateTime targetDate) {
-        List<Long> hotArticleIds = articleLogQueryRepository.findHotArticle(targetDate);
+    public List<ArticleResponse> getHotArticle() {
+        List<Long> hotArticleIds = articleLogQueryRepository.findHotArticle();
 
         ArticleRequest request = ArticleRequest.builder()
             .articleIds(hotArticleIds)

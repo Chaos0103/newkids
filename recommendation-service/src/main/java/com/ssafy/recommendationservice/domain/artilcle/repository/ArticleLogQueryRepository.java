@@ -18,12 +18,15 @@ public class ArticleLogQueryRepository {
         this.queryFactory = new JPAQueryFactory(em);
     }
 
-    public List<Long> findHotArticle(LocalDateTime targetDate) {
+    public List<Long> findHotArticle() {
         return queryFactory
             .select(articleLog.articleId)
             .from(articleLog)
-            .where(articleLog.createdDate.after(targetDate))
-            .orderBy(articleLog.count.desc())
+            .orderBy(
+                articleLog.createdDate.desc(),
+                articleLog.count.desc(),
+                articleLog.id.asc()
+            )
             .limit(5)
             .fetch();
     }

@@ -28,9 +28,8 @@ public class RecommendationController {
 
     @GetMapping("/main")
     public ApiResponse<List<ArticleResponse>> getMainRecommendation() {
-        LocalDateTime targetDate = LocalDateTime.now().minusHours(1);
 
-        List<ArticleResponse> responses = articleLogQueryService.getHotArticle(targetDate);
+        List<ArticleResponse> responses = articleLogQueryService.getHotArticle();
 
         return ApiResponse.ok(responses);
     }
