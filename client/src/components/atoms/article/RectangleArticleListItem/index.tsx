@@ -14,7 +14,7 @@ function RectangleArticleListItem(props: IRectangleArticleListItemProps) {
 
 	return (
 		<RectangleArticleListItemContainer onClick={() => navigate(`/article/${article.articleId}`)}>
-			<img src={article.thumbnailImg} alt="" />
+			<img src={article.thumbnailImg.length ? article.thumbnailImg : '/src/assets/imgs/default.png'} alt="" />
 			<div className="content">
 				<h3>{article.title}</h3>
 				<div className="article-info">
