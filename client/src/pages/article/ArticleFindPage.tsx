@@ -10,6 +10,7 @@ import { dateToString } from 'utils/common/dateToString';
 import { setDatebyPeriod } from 'utils/common/setDatebyPeriod';
 import { getAllArticleApi } from 'utils/apis/article';
 import queryString from 'query-string';
+import FindArticleListItemSkeleton from 'components/organisms/common/Skeleton/FindArticleListItemSkeleton';
 
 function ArticleFindPage() {
 	const [resultArticles, setResultArticles] = useState<IArticle[]>([]);
@@ -78,7 +79,7 @@ function ArticleFindPage() {
 				}
 				ResultArticleList={
 					isLoading ? (
-						'기사 검색 중...'
+						<FindArticleListItemSkeleton />
 					) : (
 						<SearchResultArticleList articles={resultArticles} totalElements={totalElements} />
 					)
