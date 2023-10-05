@@ -30,12 +30,6 @@ export const GameQuestionContainer = styled.div`
 		font-size: 2rem;
 	}
 
-	.h1 {
-		margin-top: 3rem;
-		font-size: 2rem;
-		text-align: center;
-	}
-
 	.question-wrapper {
 		display: flex;
 		justify-content: center;
