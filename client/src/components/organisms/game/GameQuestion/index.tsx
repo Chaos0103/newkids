@@ -1,5 +1,4 @@
 import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
-// import useMovePage from 'hooks/useMovePage';
 import Swal from 'sweetalert2';
 import Title from 'components/atoms/game/Title';
 import Question from 'components/atoms/quiz/Question';
@@ -10,7 +9,6 @@ import SoundBarLottie from 'components/atoms/lottie/SoundBarLottie';
 import { getSpeech } from 'utils/common/tts';
 import Button from 'components/atoms/common/Button';
 import { checkAnswerApi, getQuizQuestionApi } from 'utils/apis/quiz';
-// import EmptyBoxLottie from 'components/atoms/lottie/EmptyBoxLottie';
 import ScrollToTop from 'components/atoms/common/ScrollToTop';
 import { GameQuestionContainer } from './style';
 
@@ -21,7 +19,6 @@ interface IGameQuestionProps {
 
 function GameQuestion(props: IGameQuestionProps) {
 	const { setStep, setCnt } = props;
-	// const [movePage] = useMovePage();
 	const [isDone, setIsDone] = useState(false);
 	const [question, setQuestion] = useState<QuizQuestionRequestApiBody[]>(DUMMY_QUIZS);
 	const [currentIndex, setCurrentIndex] = useState(0);
@@ -40,12 +37,6 @@ function GameQuestion(props: IGameQuestionProps) {
 			console.log(e);
 		}
 	};
-
-	// const articleButton = () => {
-	// 	if (!isDone) {
-	// 		movePage('/article');
-	// 	}
-	// };
 
 	const handleSpeechButton = () => {
 		const voiceValue = question[0].word;

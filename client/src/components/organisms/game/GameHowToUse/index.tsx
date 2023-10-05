@@ -1,4 +1,5 @@
 import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import useMovePage from 'hooks/useMovePage';
 import Title from 'components/atoms/game/Title';
 import HowToUseExplainOne from 'components/atoms/game/HowToUseExplainOne';
 import HowToUseExplainTwo from 'components/atoms/game/HowToUseExplainTwo';
@@ -7,6 +8,8 @@ import Button from 'components/atoms/common/Button';
 import { startQuizApi } from 'utils/apis/quiz';
 import HowToUseLottie from 'components/atoms/lottie/HowToUseLottie';
 import ScrollToTop from 'components/atoms/common/ScrollToTop';
+import { getAllVocabularyApi } from 'utils/apis/vocabulary';
+import EmptyBoxLottie from 'components/atoms/lottie/EmptyBoxLottie';
 import { GameHowToUseContainer } from './style';
 
 interface IGameHowToUseProps {
@@ -14,8 +17,30 @@ interface IGameHowToUseProps {
 }
 
 function GameHowToUse({ setStep }: IGameHowToUseProps) {
+	const [movePage] = useMovePage();
 	const [isDone, setIsDone] = useState(false);
 	const [num, setNum] = useState(0);
+	const [allVoca, setAllVoca] = useState(0);
+
+	const articleButton = () => {
+		if (!isDone) {
+			movePage('/article');
+		}
+	};
+
+	const getAllVocabulary = async () => {
+		try {
+			const memberkey = localStorage.getItem('memberkey');
+			if (memberkey) {
+				const response = await getAllVocabularyApi(memberkey, 1, false);
+				if (response.status === 200) {
+					setAllVoca(response.data.data.totalElements);
+				}
+			}
+		} catch (e) {
+			console.log(e);
+		}
+	};
 
 	const startQuiz = async () => {
 		try {
@@ -38,6 +63,7 @@ function GameHowToUse({ setStep }: IGameHowToUseProps) {
 
 	useEffect(() => {
 		if (num === 0) {
+			getAllVocabulary();
 			startQuiz();
 			setIsDone(false);
 		}
@@ -46,14 +72,27 @@ function GameHowToUse({ setStep }: IGameHowToUseProps) {
 	return (
 		<GameHowToUseContainer>
 			<ScrollToTop />
-			<HowToUseLottie />
-			<Title effectText="단어 듣고 맞추기" text=" 이용방법" />
-			<HowToUseExplainOne />
-			<HowToUseExplainTwo />
-			<HowToUseExplainThree />
-			<div className="quiz-button">
-				<Button size="s" radius="m" color="Primary" text="다음" handleClick={handleClick} />
-			</div>
+			{allVoca < 10 ? (
+				<div>
+					<EmptyBoxLottie />
+					<Title effectText="이런! 단어장에 단어가 부족해요!" text=" " />
+					<h1 className="h1">지금 기사를 읽으면서 단어장에 단어를 채우러 가볼까요?</h1>
+					<div className="quiz-button">
+						<Button size="m" radius="m" color="Primary" text="기사 보러가기" handleClick={articleButton} />
+					</div>
+				</div>
+			) : (
+				<div>
+					<HowToUseLottie />
+					<Title effectText="단어 듣고 맞추기" text=" 이용방법" />
+					<HowToUseExplainOne />
+					<HowToUseExplainTwo />
+					<HowToUseExplainThree />
+					<div className="quiz-button">
+						<Button size="s" radius="m" color="Primary" text="다음" handleClick={handleClick} />
+					</div>
+				</div>
+			)}
 		</GameHowToUseContainer>
 	);
 }
