@@ -119,42 +119,44 @@ function GameQuestion(props: IGameQuestionProps) {
 	return (
 		<GameQuestionContainer>
 			<ScrollToTop />
-			{currentIndex === 0 ? (
-				<div>
-					<EmptyBoxLottie />
-					<Title effectText="" text="이런! 단어장에 단어가 없어요!" />
-					<h1 className="h1">
-						단어장에 적어도 10개 이상의 단어가 있어야 해요.
-						<br /> 단어를 추가하려면 기사 옆에 사전에서 단어장을 추가할 수 있어요.
-					</h1>
-					<div className="article-button-wrapper">
-						<Button size="m" radius="m" color="Primary" text="기사 보러가기" handleClick={articleButton} />
-					</div>
-				</div>
-			) : (
-				<div>
-					<Title effectText={question[currentIndex].no} text="번 문제" />
-					<div className="question-wrapper">
-						<div className="question">
-							<Question text={question[currentIndex].description} />
-						</div>
-						<button type="button" onClick={handleSpeechButton}>
-							<SoundBarLottie />
-						</button>
-					</div>
-					<hr className="hr" />
-					<div className="input-wrapper">
-						<Input type="text" value={answer} setValue={setAnswer} placeholder="정답을 입력해주세요." />
-						<div className="button-wrapper">
-							{currentIndex === 9 ? (
-								<Button size="s" radius="m" color="Primary" text="확인" handleClick={() => nextLevelClick(answer)} />
-							) : (
-								<Button size="s" radius="m" color="Primary" text="확인" handleClick={() => handleClick(answer)} />
-							)}
+			<div className="question-box">
+				{currentIndex === -1 ? (
+					<div>
+						<EmptyBoxLottie />
+						<Title effectText="" text="이런! 단어장에 단어가 없어요!" />
+						<h1 className="h1">
+							단어장에 적어도 10개 이상의 단어가 있어야 해요.
+							<br /> 단어를 추가하려면 기사 옆에 사전에서 단어장을 추가할 수 있어요.
+						</h1>
+						<div className="article-button-wrapper">
+							<Button size="m" radius="m" color="Primary" text="기사 보러가기" handleClick={articleButton} />
 						</div>
 					</div>
-				</div>
-			)}
+				) : (
+					<div>
+						<Title effectText={question[currentIndex].no} text="번 문제" />
+						<div className="question-wrapper">
+							<div className="question">
+								<Question text={question[currentIndex].description} />
+							</div>
+							<button type="button" onClick={handleSpeechButton}>
+								<SoundBarLottie />
+							</button>
+						</div>
+						<hr className="hr" />
+						<div className="input-wrapper">
+							<Input type="text" value={answer} setValue={setAnswer} placeholder="정답을 입력해주세요." />
+							<div className="button-wrapper">
+								{currentIndex === 9 ? (
+									<Button size="s" radius="m" color="Primary" text="확인" handleClick={() => nextLevelClick(answer)} />
+								) : (
+									<Button size="s" radius="m" color="Primary" text="확인" handleClick={() => handleClick(answer)} />
+								)}
+							</div>
+						</div>
+					</div>
+				)}
+			</div>
 		</GameQuestionContainer>
 	);
 }
