@@ -8,7 +8,7 @@ export const FloatingElementsContainer = styled.div`
 		display: block;
 	}
 
-	z-index: 100;
+	z-index: 10;
 	position: relative;
 	transform: translateY(36%);
 
