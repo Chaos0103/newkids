@@ -28,8 +28,4 @@ export const QuizWordsWrapper = styled.div`
 		justify-content: center;
 		align-item: center;
 	}
-
-	.quiz-button {
-		margin-left: 50px;
-	}
 `;

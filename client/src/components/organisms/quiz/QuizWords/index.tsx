@@ -68,9 +68,7 @@ function QuizWords({ setStep }: IQuizWordsProps) {
 			<h1 className="subtitle">선택된 단어가 단어장에 추가됩니다.</h1>
 			<div className="quiz-button-wrapper">
 				<Button size="m" radius="m" color="Primary" text="추가하기" handleClick={wordClick} />
-				<div className="quiz-button">
-					<Button size="m" radius="m" color="Normal" text="나가기" handleClick={indexClick} />
-				</div>
+				<Button size="m" radius="m" color="Normal" text="나가기" handleClick={indexClick} />
 			</div>
 		</QuizWordsWrapper>
 	);

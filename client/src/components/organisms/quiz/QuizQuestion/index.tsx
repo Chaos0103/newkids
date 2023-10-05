@@ -141,56 +141,58 @@ function QuizQuestion(props: IQuizQuestionProps) {
 		<QuizQuestionContainer>
 			<ScrollToTop />
 			<Title effectText={question[0].no} text="번 문제" />
-			<Question text={question[0].description} />
-			<hr className="hr" />
-			<div className="quiz-button">
-				{currentIndex === 4 ? (
-					<>
-						<QuizButton
-							color="Normal"
-							text={question[0].contents[0]}
-							handleClick={() => nextLevelClick(question[0].contents[0])}
-						/>
-						<QuizButton
-							color="Normal"
-							text={question[0].contents[1]}
-							handleClick={() => nextLevelClick(question[0].contents[1])}
-						/>
-						<QuizButton
-							color="Normal"
-							text={question[0].contents[2]}
-							handleClick={() => nextLevelClick(question[0].contents[2])}
-						/>
-						<QuizButton
-							color="Normal"
-							text={question[0].contents[3]}
-							handleClick={() => nextLevelClick(question[0].contents[3])}
-						/>
-					</>
-				) : (
-					<>
-						<QuizButton
-							color="Normal"
-							text={question[0].contents[0]}
-							handleClick={() => handleClick(question[0].contents[0])}
-						/>
-						<QuizButton
-							color="Normal"
-							text={question[0].contents[1]}
-							handleClick={() => handleClick(question[0].contents[1])}
-						/>
-						<QuizButton
-							color="Normal"
-							text={question[0].contents[2]}
-							handleClick={() => handleClick(question[0].contents[2])}
-						/>
-						<QuizButton
-							color="Normal"
-							text={question[0].contents[3]}
-							handleClick={() => handleClick(question[0].contents[3])}
-						/>
-					</>
-				)}
+			<div className="question-box">
+				<Question text={question[0].description.replaceAll(question[0].answerWord, 'OOO')} />
+				<hr className="hr" />
+				<div className="quiz-button">
+					{currentIndex === 4 ? (
+						<>
+							<QuizButton
+								color="Normal"
+								text={question[0].contents[0]}
+								handleClick={() => nextLevelClick(question[0].contents[0])}
+							/>
+							<QuizButton
+								color="Normal"
+								text={question[0].contents[1]}
+								handleClick={() => nextLevelClick(question[0].contents[1])}
+							/>
+							<QuizButton
+								color="Normal"
+								text={question[0].contents[2]}
+								handleClick={() => nextLevelClick(question[0].contents[2])}
+							/>
+							<QuizButton
+								color="Normal"
+								text={question[0].contents[3]}
+								handleClick={() => nextLevelClick(question[0].contents[3])}
+							/>
+						</>
+					) : (
+						<>
+							<QuizButton
+								color="Normal"
+								text={question[0].contents[0]}
+								handleClick={() => handleClick(question[0].contents[0])}
+							/>
+							<QuizButton
+								color="Normal"
+								text={question[0].contents[1]}
+								handleClick={() => handleClick(question[0].contents[1])}
+							/>
+							<QuizButton
+								color="Normal"
+								text={question[0].contents[2]}
+								handleClick={() => handleClick(question[0].contents[2])}
+							/>
+							<QuizButton
+								color="Normal"
+								text={question[0].contents[3]}
+								handleClick={() => handleClick(question[0].contents[3])}
+							/>
+						</>
+					)}
+				</div>
 			</div>
 		</QuizQuestionContainer>
 	);
