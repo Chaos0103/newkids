@@ -46,7 +46,7 @@ function VocabularyPage() {
 	return (
 		<PageLayout>
 			<VocabularyLayout
-				VocabularyHeader={<VocabularyHeader setIsChecked={setIsChecked} />}
+				VocabularyHeader={<VocabularyHeader setIsChecked={setIsChecked} currentPage={currentPage} />}
 				MyVocabulary={<MyVocabulary vocabularys={resultVocabularys} />}
 				Pagination={
 					<Pagination
