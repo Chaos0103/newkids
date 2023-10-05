@@ -62,7 +62,6 @@ function GameResult(props: IGameResultProps) {
 			<div className="answer-wrapper">
 				<h1 className="answer">{cnt} 문제</h1>
 			</div>
-			{/* <div className="exp-wrapper">경험치바가 들어갈 공간입니다.</div> */}
 			<div className="quiz-button">
 				<Button size="s" radius="m" color="Primary" text="확인" handleClick={handleClick} />
 			</div>
