@@ -4,6 +4,7 @@ import Button from 'components/atoms/common/Button';
 import GameCompleteLottie from 'components/atoms/lottie/GameCompleteLottie';
 import { resultWeeklyQuizApi } from 'utils/apis/quiz';
 import ScrollToTop from 'components/atoms/common/ScrollToTop';
+import useMovePage from 'hooks/useMovePage';
 import { QuizResultWrapper } from './style';
 
 interface IQuizResultProps {
@@ -15,6 +16,7 @@ function QuizResult(props: IQuizResultProps) {
 	const { setStep, cnt } = props;
 	const [isDone, setIsDone] = useState(false);
 	const [num, setNum] = useState(0);
+	const [movePage] = useMovePage();
 	const [score, setScore] = useState(0);
 
 	const getResult = async () => {
@@ -32,7 +34,8 @@ function QuizResult(props: IQuizResultProps) {
 
 	const handleClick = () => {
 		if (!isDone) {
-			setStep(4);
+			setStep(3);
+			movePage('/');
 			setNum(1);
 		}
 	};
