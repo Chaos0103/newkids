@@ -1,6 +1,7 @@
 package com.ssafy.articleservice.api.service.popular;
 
 import com.ssafy.articleservice.api.controller.article.response.PopularArticleResponse;
+import com.ssafy.articleservice.api.controller.article.response.TempResponse;
 import com.ssafy.articleservice.domain.article.repository.ArticleQueryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,5 +18,9 @@ public class PopularArticleQueryService {
 
     public List<PopularArticleResponse> getPopularArticle(List<Long> articleIds) {
         return articleQueryRepository.findHitTop5(articleIds);
+    }
+
+    public List<TempResponse> getTempArticle(List<Long> articleIds) {
+        return articleQueryRepository.findTemp(articleIds);
     }
 }

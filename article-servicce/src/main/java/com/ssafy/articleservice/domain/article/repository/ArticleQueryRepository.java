@@ -4,6 +4,7 @@ import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.ssafy.articleservice.api.controller.article.response.ArticleResponse;
 import com.ssafy.articleservice.api.controller.article.response.PopularArticleResponse;
+import com.ssafy.articleservice.api.controller.article.response.TempResponse;
 import com.ssafy.articleservice.domain.article.repository.dto.ArticleSearchCond;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
@@ -78,6 +79,20 @@ public class ArticleQueryRepository {
                 article.id,
                 article.title,
                 article.thumbnailImg
+            ))
+            .from(article)
+            .where(article.id.in(articleIds))
+            .fetch();
+    }
+
+    public List<TempResponse> findTemp(List<Long> articleIds) {
+        return queryFactory
+            .select(Projections.constructor(TempResponse.class,
+                article.id,
+                article.title,
+                article.thumbnailImg,
+                article.writer,
+                article.publishedDate
             ))
             .from(article)
             .where(article.id.in(articleIds))

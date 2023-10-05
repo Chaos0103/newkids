@@ -2,6 +2,7 @@ package com.ssafy.articleservice.api.controller.article;
 
 import com.ssafy.articleservice.api.controller.article.request.ArticleRequest;
 import com.ssafy.articleservice.api.controller.article.response.PopularArticleResponse;
+import com.ssafy.articleservice.api.controller.article.response.TempResponse;
 import com.ssafy.articleservice.api.service.popular.PopularArticleQueryService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -24,6 +25,12 @@ public class ArticleClientController {
         List<PopularArticleResponse> responses = popularArticleQueryService.getPopularArticle(request.getArticleIds());
         log.debug("responses={}", responses);
 
+        return responses;
+    }
+
+    @PostMapping("/temp")
+    public List<TempResponse> getTempUrl(@RequestBody ArticleRequest request) {
+        List<TempResponse> responses = popularArticleQueryService.getTempArticle(request.getArticleIds());
         return responses;
     }
 }
