@@ -136,8 +136,8 @@ function QuizQuestion(props: IQuizQuestionProps) {
 	return (
 		<QuizQuestionContainer>
 			<ScrollToTop />
-			<Title effectText={question[0].no} text="번 문제" />
 			<div className="question-box">
+				<Title effectText={question[0].no} text="번 문제" />
 				<Question text={question[0].description.replaceAll(question[0].answerWord, 'OOO')} />
 				<hr className="hr" />
 				<div className="quiz-button">

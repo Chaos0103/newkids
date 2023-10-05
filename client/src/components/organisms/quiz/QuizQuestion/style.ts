@@ -5,7 +5,7 @@ export const QuizQuestionContainer = styled.div`
 
 	.question-box {
 		width: 800px;
-		height: 500px;
+		height: 600px;
 		padding: 20px;
 		box-shadow: 0 0 0 5px rgba(1, 1, 0, 0.5);
 		border-radius: 25px;

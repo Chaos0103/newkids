@@ -146,26 +146,24 @@ function GameQuestion(props: IGameQuestionProps) {
 		<GameQuestionContainer>
 			<ScrollToTop />
 			<div className="question-box">
-				<div>
-					<Title effectText={question[0].no} text="번 문제" />
-					<div className="question-wrapper">
-						<div className="question">
-							<Question text={question[0].description} />
-						</div>
-						<button type="button" onClick={handleSpeechButton}>
-							<SoundBarLottie />
-						</button>
+				<Title effectText={question[0].no} text="번 문제" />
+				<div className="question-wrapper">
+					<div className="question">
+						<Question text={question[0].description} />
 					</div>
-					<hr className="hr" />
-					<div className="input-wrapper">
-						<Input type="text" value={answer} setValue={setAnswer} placeholder="정답을 입력해주세요." />
-						<div className="button-wrapper">
-							{currentIndex === 9 ? (
-								<Button size="s" radius="m" color="Primary" text="확인" handleClick={() => nextLevelClick(answer)} />
-							) : (
-								<Button size="s" radius="m" color="Primary" text="확인" handleClick={() => handleClick(answer)} />
-							)}
-						</div>
+					<button type="button" onClick={handleSpeechButton}>
+						<SoundBarLottie />
+					</button>
+				</div>
+				<hr className="hr" />
+				<div className="input-wrapper">
+					<Input type="text" value={answer} setValue={setAnswer} placeholder="정답을 입력해주세요." />
+					<div className="button-wrapper">
+						{currentIndex === 9 ? (
+							<Button size="s" radius="m" color="Primary" text="확인" handleClick={() => nextLevelClick(answer)} />
+						) : (
+							<Button size="s" radius="m" color="Primary" text="확인" handleClick={() => handleClick(answer)} />
+						)}
 					</div>
 				</div>
 			</div>

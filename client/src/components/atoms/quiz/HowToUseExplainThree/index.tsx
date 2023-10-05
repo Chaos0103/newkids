@@ -4,9 +4,9 @@ import { HowToUseExplainThreeWrapper } from './style';
 function HowToUseExplainThree() {
 	return (
 		<HowToUseExplainThreeWrapper>
-			3. 문제가 끝났으면 <b className="main-explain">단어장</b>에 단어를 넣을지 선택해주세요.
+			3. 정답을 맞출 때마다 <b className="main-explain">10점 씩</b> 점수가 올라갑니다.
 			<br />
-			다음에 공부할 때 큰 무리가 없겠네요.
+			최대한 많이 맞춰서 <b className="main-explain">경험치</b>를 획득해 보세요.
 		</HowToUseExplainThreeWrapper>
 	);
 }
