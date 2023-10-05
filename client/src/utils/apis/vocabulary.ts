@@ -17,8 +17,10 @@ export const registVocabularyApi = async (memberKey: string, body: RegistrVocabu
 };
 
 // -- 단어장에 조회
-export const getAllVocabularyApi = async (memberKey: string, pageNum?: number) => {
-	const response = await instance.get(`/vocabulary-service/api/${memberKey}?pageNum=${pageNum ?? 1}`);
+export const getAllVocabularyApi = async (memberKey: string, pageNum?: number, checked?: boolean) => {
+	const response = await instance.get(
+		`/vocabulary-service/api/${memberKey}?check=${checked ?? false}&pageNum=${pageNum ?? 1}`,
+	);
 	return response;
 };
 
