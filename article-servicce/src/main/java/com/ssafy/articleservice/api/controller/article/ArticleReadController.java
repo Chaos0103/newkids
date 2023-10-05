@@ -68,7 +68,7 @@ public class ArticleReadController {
         log.debug("call ArticleReadController#getArticleRead");
         log.debug("memberKey={}", memberKey);
 
-        PageRequest pageRequest = PageRequest.of(pageNum - 1, 10);
+        PageRequest pageRequest = PageRequest.of(pageNum - 1, 8);
         Page<ArticleReadResponse> response = articleReadQueryService.getMyArticleRead(memberKey, pageRequest);
         log.debug("response={}", response.getContent());
 
