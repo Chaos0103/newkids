@@ -5,7 +5,6 @@ import QuizMain from 'components/organisms/quiz/QuizMain';
 import QuizHowToUse from 'components/organisms/quiz/QuizHowToUse';
 import QuizQuestion from 'components/organisms/quiz/QuizQuestion';
 import QuizResult from 'components/organisms/quiz/QuizResult';
-import QuizWords from 'components/organisms/quiz/QuizWords';
 
 function QuizPage() {
 	const [step, setStep] = useState(0);
@@ -28,10 +27,6 @@ function QuizPage() {
 			}
 			case 3: {
 				setStepView(<QuizResult cnt={cnt} setStep={setStep} />);
-				break;
-			}
-			case 4: {
-				setStepView(<QuizWords setStep={setStep} />);
 				break;
 			}
 			default: {
