@@ -28,6 +28,35 @@ export const AreaTitleWrapper = styled.h2<IAreaTitleWrapperProps>`
 	${({ $color }) => colorSet[$color]};
 
 	.subStr {
+		display: flex;
+		gap: 5px;
+		align-items: center;
 		color: var(--gray-300);
+
+		.tooltip {
+			display: flex;
+			svg {
+				fill: var(--gray-300);
+
+				&:before {
+					display: none;
+				}
+			}
+
+			&:hover {
+				cursor: pointer;
+				&:before {
+					position: absolute;
+					padding: 10px;
+					background-color: var(--sub-color-1);
+					color: var(--white-color);
+					border-radius: var(--radius-s);
+					transform: translate(-40%, -110%);
+					font-size: 0.8rem;
+					display: block;
+					content: '매 정시에 업데이트 됩니다';
+				}
+			}
+		}
 	}
 `;
