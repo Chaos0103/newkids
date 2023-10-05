@@ -4,10 +4,11 @@ import { VocabularyHeaderContainer } from './style';
 
 interface IVocabularyHeaderProps {
 	setIsChecked: Dispatch<SetStateAction<boolean>>;
+	currentPage: number;
 }
 
 function VocabularyHeader(props: IVocabularyHeaderProps) {
-	const { setIsChecked } = props;
+	const { setIsChecked, currentPage } = props;
 	const [vocaCheckCnt, setVocaCheckCnt] = useState(0);
 	const memberkey = localStorage.getItem('memberkey');
 	const [allVoca, setAllVoca] = useState(0);
@@ -34,7 +35,7 @@ function VocabularyHeader(props: IVocabularyHeaderProps) {
 	const getAllVocabulary = async () => {
 		try {
 			if (memberkey) {
-				const response = await getAllVocabularyApi(memberkey, 1, false);
+				const response = await getAllVocabularyApi(memberkey, currentPage, false);
 				if (response.status === 200) {
 					setAllVoca(response.data.data.totalElements);
 				}

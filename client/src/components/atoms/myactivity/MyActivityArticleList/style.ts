@@ -10,11 +10,11 @@ export const MyActivityArticleListWrapper = styled.div`
 	align-content: flex-start;
 
 	.article-list-text {
-		width: calc(25% - 10px);
+		width: 300px;
 		margin-bottom: 10px;
 		img {
 			height: 150px;
-			width: 230px;
+			width: 250px;
 			border-radius: var(--radius-m);
 			margin-bottom: 1rem;
 		}

@@ -27,13 +27,13 @@ function WordListItem({ items }: WordListItemProps) {
 			const response = await deleteVocabularyApi(vocabularyId);
 			if (response.status === 200) {
 				alert('나만의 단어장에서 삭제되었습니다.');
-				const reSearchPageEvent = new Event('reSearchPage');
-				window.dispatchEvent(reSearchPageEvent);
 				setIsOverlayOpen(false);
 				const allVocabularyEvent = new Event('allVocabulary');
 				window.dispatchEvent(allVocabularyEvent);
 				const checkVocabularyEvent = new Event('checkVocabulary');
 				window.dispatchEvent(checkVocabularyEvent);
+				const reSearchPageEvent = new Event('reSearchPage');
+				window.dispatchEvent(reSearchPageEvent);
 			}
 		} catch (error) {
 			console.error('삭제 오류발생');
@@ -48,8 +48,6 @@ function WordListItem({ items }: WordListItemProps) {
 					alert('아는 단어에 등록되었습니다.');
 					const checkVocabularyEvent = new Event('checkVocabulary');
 					window.dispatchEvent(checkVocabularyEvent);
-					const reSearchPageEvent = new Event('reSearchPage');
-					window.dispatchEvent(reSearchPageEvent);
 				}
 			} catch (error) {
 				console.error('알아요 체크 오류');
@@ -61,8 +59,6 @@ function WordListItem({ items }: WordListItemProps) {
 					alert('아는 단어에서 등록취소되었습니다.');
 					const checkVocabularyEvent = new Event('checkVocabulary');
 					window.dispatchEvent(checkVocabularyEvent);
-					const reSearchPageEvent = new Event('reSearchPage');
-					window.dispatchEvent(reSearchPageEvent);
 				}
 			} catch (error) {
 				console.error('알아요 체크 오류');

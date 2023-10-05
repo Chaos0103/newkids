@@ -13,10 +13,10 @@ function MyActivityChartGraph(props: IMyActivityChartGraphProps) {
 	const { myTopKeyword } = props;
 	const chartBarColors = [
 		'rgb(249, 65, 68)',
-		'rgb(243, 144, 44)',
 		'rgb(248, 150, 30)',
 		'rgb(249, 199, 79)',
 		'rgb(144, 190, 119)',
+		'rgb(56, 97, 156)',
 	];
 	const options = {
 		responsive: true,
