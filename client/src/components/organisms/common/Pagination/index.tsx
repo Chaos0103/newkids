@@ -77,7 +77,7 @@ function Pagination(props: IPaginationProps) {
 				/>
 			))}
 
-			{currentGroup / size !== totalPages / size ? (
+			{totalPages > 10 && currentGroup / size !== totalPages / size ? (
 				<button
 					type="button"
 					onClick={() => {
