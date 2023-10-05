@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 
 export const QuizWordsWrapper = styled.div`
+	min-height: calc(100vh);
+
 	.checkbox-wrapper {
-		margin-top: 1.5rem;
 		display: grid;
 		justify-content: center;
 		align-item: center;
@@ -22,6 +23,7 @@ export const QuizWordsWrapper = styled.div`
 
 	.quiz-button-wrapper {
 		margin-top: 3rem;
+		min-height: 160px;
 		display: flex;
 		justify-content: center;
 		align-item: center;
