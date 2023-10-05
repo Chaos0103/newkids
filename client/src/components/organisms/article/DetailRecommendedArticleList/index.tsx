@@ -17,7 +17,7 @@ function DetailRecommendedArticleList(props: IDetailRecommendedArticleListProps)
 		<DetailRecommendedArticleListContainer>
 			<h3 className="recommended-article-header">현재 보고있는 기사와 비슷한 기사에요!</h3>
 			{articles.length ? (
-				<Swiper className="swiper" spaceBetween={20} slidesPerView={6} navigation>
+				<Swiper className="swiper" slidesPerView={7} navigation>
 					{articles.map((el) => (
 						<SwiperSlide className="swiper-slide" key={el.articleId}>
 							<SquareArticleListItem
