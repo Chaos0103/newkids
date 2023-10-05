@@ -26,3 +26,8 @@ include::api/keywordarticle/search-article-keyword.adoc[]
 == Keyword Popular API
 
 include::api/popularkeyword/search-popular-keyword.adoc[]
+
+[[Keyword-Search-API]]
+== Keyword Search API
+
+include::api/keywordsearch/search-my-keyword.adoc[]

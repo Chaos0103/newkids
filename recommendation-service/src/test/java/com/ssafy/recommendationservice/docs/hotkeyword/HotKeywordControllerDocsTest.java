@@ -1,6 +1,7 @@
 package com.ssafy.recommendationservice.docs.hotkeyword;
 
 import com.ssafy.recommendationservice.api.controller.hotkeyword.HotKeywordController;
+import com.ssafy.recommendationservice.api.controller.hotkeyword.response.LiveResponse;
 import com.ssafy.recommendationservice.api.controller.hotkeyword.response.WordCloudResponse;
 import com.ssafy.recommendationservice.api.service.hotkeyword.HotKeywordService;
 import com.ssafy.recommendationservice.docs.RestDocsSupport;
@@ -8,6 +9,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.restdocs.payload.JsonFieldType;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.mockito.BDDMockito.*;
@@ -28,6 +30,59 @@ public class HotKeywordControllerDocsTest extends RestDocsSupport {
     @Override
     protected Object initController() {
         return new HotKeywordController(hotKeywordService);
+    }
+
+    @DisplayName("워드 클라우드 핫이슈 키워드 조회 API")
+    @Test
+    void getLiveHotKeyword() throws Exception {
+        LiveResponse response1 = LiveResponse.builder()
+            .keywordId(1L)
+            .keyword("돼지")
+            .build();
+        LiveResponse response2 = LiveResponse.builder()
+            .keywordId(2L)
+            .keyword("홍진식")
+            .build();
+        LiveResponse response3 = LiveResponse.builder()
+            .keywordId(3L)
+            .keyword("BBQ")
+            .build();
+        LiveResponse response4 = LiveResponse.builder()
+            .keywordId(4L)
+            .keyword("아이폰15")
+            .build();
+        LiveResponse response5 = LiveResponse.builder()
+            .keywordId(5L)
+            .keyword("맥북 air 15")
+            .build();
+
+        List<LiveResponse> responses = List.of(response1, response2, response3, response4, response5);
+
+        given(hotKeywordService.getLiveHotKeyword(any(LocalDateTime.class)))
+            .willReturn(responses);
+
+        mockMvc.perform(
+                get("/recommendation-service/api/hot-keyword/live")
+            )
+            .andDo(print())
+            .andExpect(status().isOk())
+            .andDo(document("search-live-keyword",
+                preprocessResponse(prettyPrint()),
+                responseFields(
+                    fieldWithPath("code").type(JsonFieldType.NUMBER)
+                        .description("코드"),
+                    fieldWithPath("status").type(JsonFieldType.STRING)
+                        .description("상태"),
+                    fieldWithPath("message").type(JsonFieldType.STRING)
+                        .description("메시지"),
+                    fieldWithPath("data").type(JsonFieldType.ARRAY)
+                        .description("응답 데이터"),
+                    fieldWithPath("data[].keywordId").type(JsonFieldType.NUMBER)
+                        .description("키워드 PK"),
+                    fieldWithPath("data[].keyword").type(JsonFieldType.STRING)
+                        .description("키워드 내용")
+                )
+            ));
     }
 
     @DisplayName("워드 클라우드 핫이슈 키워드 조회 API")
@@ -61,15 +116,15 @@ public class HotKeywordControllerDocsTest extends RestDocsSupport {
 
         List<WordCloudResponse> responses = List.of(response1, response2, response3, response4, response5);
 
-        given(hotKeywordService.getHotKeywordByWordCloud())
+        given(hotKeywordService.getCloudHotKeyword(any(LocalDateTime.class)))
             .willReturn(responses);
 
         mockMvc.perform(
-                get("/recommendation-service/api/hot-keyword")
+                get("/recommendation-service/api/hot-keyword/cloud")
             )
             .andDo(print())
             .andExpect(status().isOk())
-            .andDo(document("search-hot-keyword",
+            .andDo(document("search-cloud-keyword",
                 preprocessResponse(prettyPrint()),
                 responseFields(
                     fieldWithPath("code").type(JsonFieldType.NUMBER)

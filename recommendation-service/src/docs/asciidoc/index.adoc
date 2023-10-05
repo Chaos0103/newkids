@@ -22,4 +22,5 @@ include::api/recommendation/search-another-article-recommendation.adoc[]
 [[HotKeyword-API]]
 == HotKeyword API
 
-include::api/hotkeyword/search-hot-keyword.adoc[]
+include::api/hotkeyword/search-live-keyword.adoc[]
+include::api/hotkeyword/search-cloud-keyword.adoc[]

@@ -460,7 +460,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="#HotKeyword-API">HotKeyword API</a>
 <ul class="sectlevel2">
-<li><a href="#search-hot-keyword">핫이슈 키워드 조회</a></li>
+<li><a href="#search-live-keyword">실시간 키워드 조회</a></li>
+<li><a href="#search-cloud-keyword">클라우드 키워드 조회</a></li>
 </ul>
 </li>
 </ul>
@@ -541,7 +542,7 @@ Host: localhost:8080</code></pre>
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 692
+Content-Length: 717
 
 {
   "code" : 200,
@@ -549,24 +550,24 @@ Content-Length: 692
   "message" : "SUCCESS",
   "data" : [ {
     "articleId" : 1,
-    "title" : "메인 뉴스 기사 추천 1",
-    "thumbnailImg" : "http://thumbnailImg1.jpg"
+    "thumbnailImg" : "http://thumbnailImg1.jpg",
+    "title" : "메인 뉴스 기사 추천 1"
   }, {
     "articleId" : 2,
-    "title" : "메인 뉴스 기사 추천 2",
-    "thumbnailImg" : "http://thumbnailImg2.jpg"
+    "thumbnailImg" : "http://thumbnailImg2.jpg",
+    "title" : "메인 뉴스 기사 추천 2"
   }, {
     "articleId" : 3,
-    "title" : "메인 뉴스 기사 추천 3",
-    "thumbnailImg" : "http://thumbnailImg3.jpg"
+    "thumbnailImg" : "http://thumbnailImg3.jpg",
+    "title" : "메인 뉴스 기사 추천 3"
   }, {
     "articleId" : 4,
-    "title" : "메인 뉴스 기사 추천 4",
-    "thumbnailImg" : "http://thumbnailImg4.jpg"
+    "thumbnailImg" : "http://thumbnailImg4.jpg",
+    "title" : "메인 뉴스 기사 추천 4"
   }, {
     "articleId" : 5,
-    "title" : "메인 뉴스 기사 추천 5",
-    "thumbnailImg" : "http://thumbnailImg5.jpg"
+    "thumbnailImg" : "http://thumbnailImg5.jpg",
+    "title" : "메인 뉴스 기사 추천 5"
   } ]
 }</code></pre>
 </div>
@@ -641,7 +642,7 @@ Host: localhost:8080</code></pre>
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 692
+Content-Length: 1177
 
 {
   "code" : 200,
@@ -650,23 +651,33 @@ Content-Length: 692
   "data" : [ {
     "articleId" : 1,
     "title" : "또래 뉴스 기사 추천 1",
-    "thumbnailImg" : "http://thumbnailImg1.jpg"
+    "thumbnailImg" : "http://thumbnailImg1.jpg",
+    "writer" : "누군가",
+    "publishedDate" : [ 2023, 10, 5, 15, 26, 27, 725153300 ]
   }, {
     "articleId" : 2,
     "title" : "또래 뉴스 기사 추천 2",
-    "thumbnailImg" : "http://thumbnailImg2.jpg"
+    "thumbnailImg" : "http://thumbnailImg2.jpg",
+    "writer" : "누군가",
+    "publishedDate" : [ 2023, 10, 5, 15, 26, 27, 725153300 ]
   }, {
     "articleId" : 3,
     "title" : "또래 뉴스 기사 추천 3",
-    "thumbnailImg" : "http://thumbnailImg3.jpg"
+    "thumbnailImg" : "http://thumbnailImg3.jpg",
+    "writer" : "누군가",
+    "publishedDate" : [ 2023, 10, 5, 15, 26, 27, 725153300 ]
   }, {
     "articleId" : 4,
     "title" : "또래 뉴스 기사 추천 4",
-    "thumbnailImg" : "http://thumbnailImg4.jpg"
+    "thumbnailImg" : "http://thumbnailImg4.jpg",
+    "writer" : "누군가",
+    "publishedDate" : [ 2023, 10, 5, 15, 26, 27, 725153300 ]
   }, {
     "articleId" : 5,
     "title" : "또래 뉴스 기사 추천 5",
-    "thumbnailImg" : "http://thumbnailImg5.jpg"
+    "thumbnailImg" : "http://thumbnailImg5.jpg",
+    "writer" : "누군가",
+    "publishedDate" : [ 2023, 10, 5, 15, 26, 27, 725153300 ]
   } ]
 }</code></pre>
 </div>
@@ -720,6 +731,16 @@ Content-Length: 692
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">뉴스 기사 썸네일</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data[].writer</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">뉴스 기사 작성자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data[].publishedDate</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">뉴스 기사 작성일</p></td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -730,10 +751,28 @@ Content-Length: 692
 <h4 id="_http_request_3"><a class="link" href="#_http_request_3">HTTP Request</a></h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /recommendation-service/api/another-article HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /recommendation-service/api/another-article?articleId=1 HTTP/1.1
 Host: localhost:8080</code></pre>
 </div>
 </div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>articleId</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">현재 읽고 있는 기사 PK</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="sect3">
 <h4 id="_http_response_3"><a class="link" href="#_http_response_3">HTTP Response</a></h4>
@@ -741,7 +780,7 @@ Host: localhost:8080</code></pre>
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 815
+Content-Length: 844
 
 {
   "code" : 200,
@@ -834,12 +873,12 @@ Content-Length: 815
 <h2 id="HotKeyword-API"><a class="link" href="#HotKeyword-API">HotKeyword API</a></h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="search-hot-keyword"><a class="link" href="#search-hot-keyword">핫이슈 키워드 조회</a></h3>
+<h3 id="search-live-keyword"><a class="link" href="#search-live-keyword">실시간 키워드 조회</a></h3>
 <div class="sect3">
 <h4 id="_http_request_4"><a class="link" href="#_http_request_4">HTTP Request</a></h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /recommendation-service/api/hot-keyword HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /recommendation-service/api/hot-keyword/live HTTP/1.1
 Host: localhost:8080</code></pre>
 </div>
 </div>
@@ -850,7 +889,97 @@ Host: localhost:8080</code></pre>
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 429
+Content-Length: 374
+
+{
+  "code" : 200,
+  "status" : "OK",
+  "message" : "SUCCESS",
+  "data" : [ {
+    "keywordId" : 1,
+    "keyword" : "돼지"
+  }, {
+    "keywordId" : 2,
+    "keyword" : "홍진식"
+  }, {
+    "keywordId" : 3,
+    "keyword" : "BBQ"
+  }, {
+    "keywordId" : 4,
+    "keyword" : "아이폰15"
+  }, {
+    "keywordId" : 5,
+    "keyword" : "맥북 air 15"
+  } ]
+}</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>code</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">코드</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>status</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">상태</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>message</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">메시지</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">응답 데이터</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data[].keywordId</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">키워드 PK</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data[].keyword</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">키워드 내용</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="search-cloud-keyword"><a class="link" href="#search-cloud-keyword">클라우드 키워드 조회</a></h3>
+<div class="sect3">
+<h4 id="_http_request_5"><a class="link" href="#_http_request_5">HTTP Request</a></h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /recommendation-service/api/hot-keyword/cloud HTTP/1.1
+Host: localhost:8080</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_http_response_5"><a class="link" href="#_http_response_5">HTTP Response</a></h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 454
 
 {
   "code" : 200,
@@ -939,7 +1068,7 @@ Content-Length: 429
 <div id="footer">
 <div id="footer-text">
 Version 1.0<br>
-Last updated 2023-09-30 14:23:04 +0900
+Last updated 2023-10-04 13:53:39 +0900
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">

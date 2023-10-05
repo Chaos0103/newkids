@@ -10,7 +10,6 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 import static org.mockito.BDDMockito.anyLong;
 import static org.mockito.BDDMockito.given;

@@ -9,13 +9,13 @@ import java.util.List;
 @Data
 public class KeywordQuizClientResponse {
 
-    private String content;
+    private String answer;
     private String description;
     private List<String> contents = new ArrayList<>();
 
     @Builder
-    public KeywordQuizClientResponse(String content, String description, List<String> contents) {
-        this.content = content;
+    public KeywordQuizClientResponse(String answer, String description, List<String> contents) {
+        this.answer = answer;
         this.description = description;
         this.contents = contents;
     }

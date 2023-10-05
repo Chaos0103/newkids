@@ -5,6 +5,8 @@ import com.ssafy.quizservice.api.controller.quiz.request.CheckAnswerRequest;
 import com.ssafy.quizservice.api.controller.quiz.response.QuizResultResponse;
 import com.ssafy.quizservice.api.controller.quiz.response.QuizWordResponse;
 import com.ssafy.quizservice.api.service.quiz.QuizService;
+import com.ssafy.quizservice.messagequeue.KafkaProducer;
+import com.ssafy.quizservice.messagequeue.dto.MemberExpDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +24,7 @@ import javax.validation.Valid;
 public class QuizController {
 
     private final QuizService quizService;
+    private final KafkaProducer kafkaProducer;
 
     /**
      * 퀴즈 시작 등록 API
@@ -88,6 +91,13 @@ public class QuizController {
 
         QuizResultResponse response = quizService.resultQuiz(memberKey);
         log.debug("response={}", response);
+
+        MemberExpDto memberExpDto = MemberExpDto.builder()
+            .memberKey(memberKey)
+            .exp(response.getTotalScore())
+            .build();
+
+        kafkaProducer.send("exp-member-topic", memberExpDto);
 
         return ApiResponse.ok(response);
     }

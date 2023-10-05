@@ -5,6 +5,7 @@ import com.ssafy.quizservice.api.controller.quiz.request.CheckAnswerRequest;
 import com.ssafy.quizservice.api.controller.quiz.response.QuizResultResponse;
 import com.ssafy.quizservice.api.controller.quiz.response.QuizWordResponse;
 import com.ssafy.quizservice.api.service.quiz.QuizService;
+import com.ssafy.quizservice.messagequeue.KafkaProducer;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -25,6 +26,9 @@ class QuizControllerTest extends ControllerTestSupport {
 
     @MockBean
     private QuizService quizService;
+
+    @MockBean
+    private KafkaProducer kafkaProducer;
 
     @DisplayName("퀴즈 다음 단어를 호출한다.")
     @Test

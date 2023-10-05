@@ -32,7 +32,7 @@ public class WeeklyService {
             KeywordQuizClientResponse response = responses.get(i);
             Problem problem = Problem.builder()
                 .no(i + 1)
-                .answerWord(response.getContent())
+                .answerWord(response.getAnswer())
                 .description(response.getDescription())
                 .contents(response.getContents())
                 .build();

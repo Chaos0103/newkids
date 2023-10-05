@@ -15,7 +15,11 @@ public class ArticleKeywordQueryService {
 
     private final ArticleKeywordQueryRepository articleKeywordQueryRepository;
 
-    public List<ArticleKeywordResponse> getArticleKeywords(Long articleKey) {
-        return articleKeywordQueryRepository.findByArticleKey(articleKey);
+    public List<ArticleKeywordResponse> getArticleKeywords(Long articleId) {
+        return articleKeywordQueryRepository.findByArticleKey(articleId);
+    }
+
+    public List<Long> getArticleKeywordIds(Long articleId) {
+        return articleKeywordQueryRepository.findKeywordIdByArticleKey(articleId);
     }
 }

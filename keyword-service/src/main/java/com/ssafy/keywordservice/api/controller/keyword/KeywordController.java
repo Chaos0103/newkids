@@ -2,12 +2,16 @@ package com.ssafy.keywordservice.api.controller.keyword;
 
 import com.ssafy.keywordservice.api.controller.ApiResponse;
 import com.ssafy.keywordservice.api.controller.keyword.request.CreatedKeywordRequest;
+import com.ssafy.keywordservice.api.controller.keyword.response.KeywordQuizClientResponse;
 import com.ssafy.keywordservice.api.controller.keyword.response.KeywordResponse;
+import com.ssafy.keywordservice.api.service.keyword.KeywordQueryService;
 import com.ssafy.keywordservice.api.service.keyword.KeywordService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
@@ -16,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 public class KeywordController {
 
     private final KeywordService keywordService;
+    private final KeywordQueryService keywordQueryService;
 
     /**
      * 키워드 등록 API
@@ -33,5 +38,10 @@ public class KeywordController {
         log.debug("response={}", response);
 
         return ApiResponse.created(response);
+    }
+
+    @GetMapping("/weekly-quiz")
+    public List<KeywordQuizClientResponse> getWeeklyQuizKeywords() {
+        return keywordQueryService.getKeywordProblem();
     }
 }

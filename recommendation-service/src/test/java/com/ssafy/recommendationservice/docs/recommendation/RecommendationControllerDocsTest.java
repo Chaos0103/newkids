@@ -2,17 +2,21 @@ package com.ssafy.recommendationservice.docs.recommendation;
 
 import com.ssafy.recommendationservice.api.controller.recommendation.RecommendationController;
 import com.ssafy.recommendationservice.api.controller.recommendation.response.AnotherArticleRecommendationResponse;
-import com.ssafy.recommendationservice.api.controller.recommendation.response.MainRecommendationResponse;
 import com.ssafy.recommendationservice.api.controller.recommendation.response.PeerAgeRecommendationResponse;
+import com.ssafy.recommendationservice.api.service.article.ArticleLogQueryService;
 import com.ssafy.recommendationservice.api.service.recommendation.RecommendationService;
+import com.ssafy.recommendationservice.client.response.ArticleResponse;
+import com.ssafy.recommendationservice.client.response.TempResponse;
 import com.ssafy.recommendationservice.docs.RestDocsSupport;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.restdocs.payload.JsonFieldType;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
-import static org.mockito.BDDMockito.*;
+import static org.mockito.BDDMockito.anyLong;
+import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.get;
@@ -20,49 +24,52 @@ import static org.springframework.restdocs.operation.preprocess.Preprocessors.pr
 import static org.springframework.restdocs.operation.preprocess.Preprocessors.prettyPrint;
 import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
 import static org.springframework.restdocs.payload.PayloadDocumentation.responseFields;
+import static org.springframework.restdocs.request.RequestDocumentation.parameterWithName;
+import static org.springframework.restdocs.request.RequestDocumentation.requestParameters;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 public class RecommendationControllerDocsTest extends RestDocsSupport {
 
     private final RecommendationService recommendationService = mock(RecommendationService.class);
+    private final ArticleLogQueryService articleLogQueryService = mock(ArticleLogQueryService.class);
 
     @Override
     protected Object initController() {
-        return new RecommendationController(recommendationService);
+        return new RecommendationController(recommendationService, articleLogQueryService);
     }
 
     @DisplayName("메인 뉴스 기사 추천 API")
     @Test
     void getMainRecommendation() throws Exception {
-        MainRecommendationResponse response1 = MainRecommendationResponse.builder()
+        ArticleResponse response1 = ArticleResponse.builder()
             .articleId(1L)
             .title("메인 뉴스 기사 추천 1")
             .thumbnailImg("http://thumbnailImg1.jpg")
             .build();
-        MainRecommendationResponse response2 = MainRecommendationResponse.builder()
+        ArticleResponse response2 = ArticleResponse.builder()
             .articleId(2L)
             .title("메인 뉴스 기사 추천 2")
             .thumbnailImg("http://thumbnailImg2.jpg")
             .build();
-        MainRecommendationResponse response3 = MainRecommendationResponse.builder()
+        ArticleResponse response3 = ArticleResponse.builder()
             .articleId(3L)
             .title("메인 뉴스 기사 추천 3")
             .thumbnailImg("http://thumbnailImg3.jpg")
             .build();
-        MainRecommendationResponse response4 = MainRecommendationResponse.builder()
+        ArticleResponse response4 = ArticleResponse.builder()
             .articleId(4L)
             .title("메인 뉴스 기사 추천 4")
             .thumbnailImg("http://thumbnailImg4.jpg")
             .build();
-        MainRecommendationResponse response5 = MainRecommendationResponse.builder()
+        ArticleResponse response5 = ArticleResponse.builder()
             .articleId(5L)
             .title("메인 뉴스 기사 추천 5")
             .thumbnailImg("http://thumbnailImg5.jpg")
             .build();
-        List<MainRecommendationResponse> responses = List.of(response1, response2, response3, response4, response5);
+        List<ArticleResponse> responses = List.of(response1, response2, response3, response4, response5);
 
-        given(recommendationService.getMainRecommendation())
+        given(articleLogQueryService.getHotArticle())
             .willReturn(responses);
 
         mockMvc.perform(
@@ -94,32 +101,42 @@ public class RecommendationControllerDocsTest extends RestDocsSupport {
     @DisplayName("또래 뉴스 기사 추천 API")
     @Test
     void getPeerAgeRecommendation() throws Exception {
-        PeerAgeRecommendationResponse response1 = PeerAgeRecommendationResponse.builder()
+        TempResponse response1 = TempResponse.builder()
             .articleId(1L)
             .title("또래 뉴스 기사 추천 1")
             .thumbnailImg("http://thumbnailImg1.jpg")
+            .writer("누군가")
+            .publishedDate(LocalDateTime.now())
             .build();
-        PeerAgeRecommendationResponse response2 = PeerAgeRecommendationResponse.builder()
+        TempResponse response2 = TempResponse.builder()
             .articleId(2L)
             .title("또래 뉴스 기사 추천 2")
             .thumbnailImg("http://thumbnailImg2.jpg")
+            .writer("누군가")
+            .publishedDate(LocalDateTime.now())
             .build();
-        PeerAgeRecommendationResponse response3 = PeerAgeRecommendationResponse.builder()
+        TempResponse response3 = TempResponse.builder()
             .articleId(3L)
             .title("또래 뉴스 기사 추천 3")
             .thumbnailImg("http://thumbnailImg3.jpg")
+            .writer("누군가")
+            .publishedDate(LocalDateTime.now())
             .build();
-        PeerAgeRecommendationResponse response4 = PeerAgeRecommendationResponse.builder()
+        TempResponse response4 = TempResponse.builder()
             .articleId(4L)
             .title("또래 뉴스 기사 추천 4")
             .thumbnailImg("http://thumbnailImg4.jpg")
+            .writer("누군가")
+            .publishedDate(LocalDateTime.now())
             .build();
-        PeerAgeRecommendationResponse response5 = PeerAgeRecommendationResponse.builder()
+        TempResponse response5 = TempResponse.builder()
             .articleId(5L)
             .title("또래 뉴스 기사 추천 5")
             .thumbnailImg("http://thumbnailImg5.jpg")
+            .writer("누군가")
+            .publishedDate(LocalDateTime.now())
             .build();
-        List<PeerAgeRecommendationResponse> responses = List.of(response1, response2, response3, response4, response5);
+        List<TempResponse> responses = List.of(response1, response2, response3, response4, response5);
 
         given(recommendationService.getPeerAgeRecommendation())
             .willReturn(responses);
@@ -145,7 +162,11 @@ public class RecommendationControllerDocsTest extends RestDocsSupport {
                     fieldWithPath("data[].title").type(JsonFieldType.STRING)
                         .description("뉴스 기사 제목"),
                     fieldWithPath("data[].thumbnailImg").type(JsonFieldType.STRING)
-                        .description("뉴스 기사 썸네일")
+                        .description("뉴스 기사 썸네일"),
+                    fieldWithPath("data[].writer").type(JsonFieldType.STRING)
+                        .description("뉴스 기사 작성자"),
+                    fieldWithPath("data[].publishedDate").type(JsonFieldType.ARRAY)
+                        .description("뉴스 기사 작성일")
                 )
             ));
     }
@@ -184,16 +205,21 @@ public class RecommendationControllerDocsTest extends RestDocsSupport {
             .thumbnailImg("http://thumbnailImg6.jpg")
             .build();
 
-        given(recommendationService.getAnotherArticleRecommendation())
+        given(recommendationService.getAnotherArticleRecommendation(anyLong()))
             .willReturn(List.of(response1, response2, response3, response4, response5, response6));
 
         mockMvc.perform(
                 get("/recommendation-service/api/another-article")
+                    .param("articleId", "1")
             )
             .andDo(print())
             .andExpect(status().isOk())
             .andDo(document("search-another-article-recommendation",
                 preprocessResponse(prettyPrint()),
+                requestParameters(
+                    parameterWithName("articleId")
+                        .description("현재 읽고 있는 기사 PK")
+                ),
                 responseFields(
                     fieldWithPath("code").type(JsonFieldType.NUMBER)
                         .description("코드"),

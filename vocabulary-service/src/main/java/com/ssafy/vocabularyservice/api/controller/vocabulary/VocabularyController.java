@@ -2,17 +2,19 @@ package com.ssafy.vocabularyservice.api.controller.vocabulary;
 
 import com.ssafy.vocabularyservice.api.controller.ApiResponse;
 import com.ssafy.vocabularyservice.api.controller.vocabulary.request.CreateVocabularyRequest;
+import com.ssafy.vocabularyservice.api.controller.vocabulary.response.CheckVocabularyResponse;
 import com.ssafy.vocabularyservice.api.controller.vocabulary.response.VocabularyResponse;
 import com.ssafy.vocabularyservice.api.controller.vocabulary.response.WordResponse;
 import com.ssafy.vocabularyservice.api.service.vocabulary.VocabularyQueryService;
 import com.ssafy.vocabularyservice.api.service.vocabulary.VocabularyService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 
 /**
  * Vocabulary API 컨트롤러
@@ -55,11 +57,28 @@ public class VocabularyController {
      * @return 조회된 단어장 정보
      */
     @GetMapping("/{memberKey}")
-    public ApiResponse<?> getMyVocabulary(@PathVariable String memberKey) {
+    public ApiResponse<Page<VocabularyResponse>> getMyVocabulary(
+        @PathVariable String memberKey,
+        @RequestParam(defaultValue = "1") Integer pageNum,
+        @RequestParam(required = false) Boolean check
+    ) {
         log.debug("call VocabularyController#getMyVocabulary");
         log.debug("memberKey={}", memberKey);
 
-        List<VocabularyResponse> response = vocabularyQueryService.getMyVocabulary(memberKey);
+        PageRequest pageRequest = PageRequest.of(pageNum - 1, 10);
+
+        Page<VocabularyResponse> response = vocabularyQueryService.getMyVocabulary(memberKey, check, pageRequest);
+        log.debug("response={}", response);
+
+        return ApiResponse.ok(response);
+    }
+
+    @GetMapping("/{memberKey}/check-count")
+    public ApiResponse<CheckVocabularyResponse> getMyVocabularyWithCheck(@PathVariable String memberKey) {
+        log.debug("call VocabularyController#getMyVocabularyWithCheck");
+        log.debug("memberKey={}", memberKey);
+
+        CheckVocabularyResponse response = vocabularyQueryService.getMyVocabularyWithCheck(memberKey);
         log.debug("response={}", response);
 
         return ApiResponse.ok(response);

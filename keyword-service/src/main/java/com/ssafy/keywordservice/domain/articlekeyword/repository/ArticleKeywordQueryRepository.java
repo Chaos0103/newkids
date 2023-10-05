@@ -3,7 +3,7 @@ package com.ssafy.keywordservice.domain.articlekeyword.repository;
 import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.ssafy.keywordservice.api.controller.articlekeyword.response.ArticleKeywordResponse;
-import com.ssafy.keywordservice.domain.keyword.QKeyword;
+import com.ssafy.keywordservice.domain.keyword.Keyword;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -30,6 +30,23 @@ public class ArticleKeywordQueryRepository {
             ))
             .from(articleKeyword)
             .join(articleKeyword.keyword, keyword)
+            .where(articleKeyword.articleKey.eq(articleKey))
+            .fetch();
+    }
+
+    public List<Keyword> findKeywordIdsByArticleKey(Long articleKey) {
+        return queryFactory
+            .select(articleKeyword.keyword)
+            .from(articleKeyword)
+            .join(articleKeyword.keyword, keyword)
+            .where(articleKeyword.articleKey.eq(articleKey))
+            .fetch();
+    }
+
+    public List<Long> findKeywordIdByArticleKey(Long articleKey) {
+        return queryFactory
+            .select(articleKeyword.keyword.id)
+            .from(articleKeyword)
             .where(articleKeyword.articleKey.eq(articleKey))
             .fetch();
     }

@@ -6,6 +6,7 @@ import com.ssafy.articleservice.api.controller.article.response.ArticleReadRespo
 import com.ssafy.articleservice.api.service.articleread.ArticleReadQueryService;
 import com.ssafy.articleservice.api.service.articleread.ArticleReadService;
 import com.ssafy.articleservice.docs.RestDocsSupport;
+import com.ssafy.articleservice.messagequeue.KafkaProducer;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.data.domain.PageImpl;
@@ -27,7 +28,8 @@ import static org.springframework.restdocs.operation.preprocess.Preprocessors.*;
 import static org.springframework.restdocs.payload.PayloadDocumentation.*;
 import static org.springframework.restdocs.request.RequestDocumentation.parameterWithName;
 import static org.springframework.restdocs.request.RequestDocumentation.requestParameters;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -35,10 +37,11 @@ public class ArticleReadControllerDocsTest extends RestDocsSupport {
 
     private final ArticleReadService articleReadService = mock(ArticleReadService.class);
     private final ArticleReadQueryService articleReadQueryService = mock(ArticleReadQueryService.class);
+    private final KafkaProducer kafkaProducer = mock(KafkaProducer.class);
 
     @Override
     protected Object initController() {
-        return new ArticleReadController(articleReadService, articleReadQueryService);
+        return new ArticleReadController(articleReadService, articleReadQueryService, kafkaProducer);
     }
 
     @DisplayName("읽은 뉴스 기사 목록 등록 API")

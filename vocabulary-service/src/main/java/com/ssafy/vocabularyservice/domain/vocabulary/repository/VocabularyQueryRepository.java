@@ -1,10 +1,12 @@
 package com.ssafy.vocabularyservice.domain.vocabulary.repository;
 
 import com.querydsl.core.types.Projections;
+import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.core.types.dsl.NumberExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.ssafy.vocabularyservice.api.controller.vocabulary.response.VocabularyResponse;
 import com.ssafy.vocabularyservice.api.controller.vocabulary.response.WordClientResponse;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -48,7 +50,7 @@ public class VocabularyQueryRepository {
         return result != null;
     }
 
-    public List<VocabularyResponse> findByMemberKey(String memberKey) {
+    public List<VocabularyResponse> findByMemberKey(String memberKey, Boolean check, Pageable pageable) {
         return queryFactory
             .select(Projections.constructor(VocabularyResponse.class,
                 vocabulary.id,
@@ -58,9 +60,23 @@ public class VocabularyQueryRepository {
                 vocabulary.check
             ))
             .from(vocabulary)
-            .where(vocabulary.memberKey.eq(memberKey))
+            .where(
+                vocabulary.memberKey.eq(memberKey),
+                isCheck(check)
+            )
             .orderBy(vocabulary.createdDate.desc())
+            .limit(pageable.getPageSize())
+            .offset(pageable.getOffset())
             .fetch();
+    }
+
+    public long getTotalCountByMemberKey(String memberKey) {
+        return queryFactory
+            .select(vocabulary.id)
+            .from(vocabulary)
+            .where(vocabulary.memberKey.eq(memberKey))
+            .fetch()
+            .size();
     }
 
     public List<WordClientResponse> findClientByMemberKey(List<Long> options) {
@@ -82,5 +98,21 @@ public class VocabularyQueryRepository {
             .from(vocabulary)
             .where(vocabulary.memberKey.eq(memberKey))
             .fetch();
+    }
+
+    public long getCheckCountByMemberKey(String memberKey) {
+        return queryFactory
+            .select(vocabulary.id)
+            .from(vocabulary)
+            .where(
+                vocabulary.memberKey.eq(memberKey),
+                vocabulary.check.isTrue()
+            )
+            .fetch()
+            .size();
+    }
+
+    private BooleanExpression isCheck(Boolean check) {
+        return check ? vocabulary.check.isTrue() : null;
     }
 }

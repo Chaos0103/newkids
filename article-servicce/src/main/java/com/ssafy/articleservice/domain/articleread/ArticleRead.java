@@ -15,7 +15,7 @@ import javax.persistence.*;
 public class ArticleRead extends TimeBaseEntity {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "article_read_id")
     private Long id;
 

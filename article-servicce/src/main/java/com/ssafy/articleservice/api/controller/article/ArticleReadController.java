@@ -5,6 +5,8 @@ import com.ssafy.articleservice.api.controller.article.request.CreateArticleRead
 import com.ssafy.articleservice.api.controller.article.response.ArticleReadResponse;
 import com.ssafy.articleservice.api.service.articleread.ArticleReadQueryService;
 import com.ssafy.articleservice.api.service.articleread.ArticleReadService;
+import com.ssafy.articleservice.messagequeue.KafkaProducer;
+import com.ssafy.articleservice.messagequeue.dto.ReadArticleDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -22,6 +24,7 @@ public class ArticleReadController {
 
     private final ArticleReadService articleReadService;
     private final ArticleReadQueryService articleReadQueryService;
+    private final KafkaProducer kafkaProducer;
 
     /**
      * 읽은 뉴스 기사 목록 등록 API
@@ -40,6 +43,14 @@ public class ArticleReadController {
         ArticleReadResponse response = articleReadService.createArticleRead(memberKey, request.getArticleId());
         log.debug("response={}", response);
 
+        ReadArticleDto readArticleDto = ReadArticleDto.builder()
+            .memberKey(memberKey)
+            .articleId(request.getArticleId())
+            .build();
+
+        //kafka 통신 -> analysis-service
+        kafkaProducer.send("read-article-topic", readArticleDto);
+
         return ApiResponse.created(response);
     }
 
@@ -57,7 +68,7 @@ public class ArticleReadController {
         log.debug("call ArticleReadController#getArticleRead");
         log.debug("memberKey={}", memberKey);
 
-        PageRequest pageRequest = PageRequest.of(pageNum - 1, 10);
+        PageRequest pageRequest = PageRequest.of(pageNum - 1, 8);
         Page<ArticleReadResponse> response = articleReadQueryService.getMyArticleRead(memberKey, pageRequest);
         log.debug("response={}", response.getContent());
 

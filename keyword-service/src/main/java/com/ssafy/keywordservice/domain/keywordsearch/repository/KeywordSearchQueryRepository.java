@@ -2,9 +2,8 @@ package com.ssafy.keywordservice.domain.keywordsearch.repository;
 
 import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQueryFactory;
+import com.ssafy.keywordservice.api.controller.keywordsearch.response.KeywordSearchResponse;
 import com.ssafy.keywordservice.api.controller.popularkeyword.response.PopularKeywordResponse;
-import com.ssafy.keywordservice.domain.keyword.QKeyword;
-import com.ssafy.keywordservice.domain.keywordsearch.QKeywordSearch;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -21,6 +20,21 @@ public class KeywordSearchQueryRepository {
 
     public KeywordSearchQueryRepository(EntityManager em) {
         this.queryFactory = new JPAQueryFactory(em);
+    }
+
+    public List<KeywordSearchResponse> findTop5ByMemberKey(String memberKey) {
+        return queryFactory
+            .select(Projections.constructor(KeywordSearchResponse.class,
+                keywordSearch.keyword.id,
+                keywordSearch.keyword.word,
+                keywordSearch.count
+            ))
+            .from(keywordSearch)
+            .join(keywordSearch.keyword, keyword)
+            .where(keywordSearch.memberKey.eq(memberKey))
+            .orderBy(keywordSearch.count.desc())
+            .limit(5)
+            .fetch();
     }
 
     public List<PopularKeywordResponse> findTop10() {

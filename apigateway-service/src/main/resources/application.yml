@@ -178,6 +178,24 @@ spring:
           predicates:
             - Path=/openapi-service/docs/index
             - Method=GET
+        # ANALYSIS SERVICE
+        - id: analysis-service
+          uri: lb://ANALYSIS-SERVICE
+          predicates:
+            - Path=/analysis-service/actuator/**
+            - Method=GET, POST
+          filters:
+            - RewritePath=/analysis-service/(?<segment>.*), /$\{segment}
+        - id: analysis-service
+          uri: lb://ANALYSIS-SERVICE
+          predicates:
+            - Path=/analysis-service/api/**
+            - Method=GET, POST
+        - id: analysis-service
+          uri: lb://ANALYSIS-SERVICE
+          predicates:
+            - Path=/analysis-service/docs/index
+            - Method=GET
 
 
 management:

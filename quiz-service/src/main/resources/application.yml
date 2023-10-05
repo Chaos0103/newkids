@@ -5,7 +5,6 @@ server:
 # logging
 logging:
   level:
-    org.hibernate: debug
     com.ssafy.quizservice: debug
 
 # MSA setting
@@ -16,7 +15,6 @@ eureka:
     service-url:
       defaultZone: http://j9c205.p.ssafy.io:8761/eureka
   instance:
-    #    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
     instance-id: ${spring.cloud.client.ip-address}:${spring.application.instance_id:${random.value}}
 
 # spring setting
