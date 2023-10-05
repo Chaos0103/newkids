@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 
 export const DictionaryContainer = styled.div`
-	width: 250px;
+	min-width: 300px;
+	width: 30%;
 	height: 450px;
 	border: 2px solid var(--sub-color-2);
 	border-radius: var(--radius-m);
