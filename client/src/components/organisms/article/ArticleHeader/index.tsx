@@ -1,5 +1,6 @@
 import React from 'react';
 import { ReactComponent as View } from 'assets/icons/view.svg';
+import { dateToString } from 'utils/common/dateToString';
 import { ArticleHeaderContainer } from './style';
 
 interface IArticleHeaderProps {
@@ -20,7 +21,7 @@ function ArticleHeader(props: IArticleHeaderProps) {
 						<View />
 						{count}
 					</p>
-					<p>{publishedDate ?? '1970-01-01 00:00:00'}</p>
+					<p>{dateToString(new Date(publishedDate)) ?? '1970-01-01 00:00:00'}</p>
 				</div>
 			</div>
 		</ArticleHeaderContainer>
