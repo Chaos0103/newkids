@@ -7,6 +7,7 @@ import com.ssafy.recommendationservice.api.controller.recommendation.response.Pe
 import com.ssafy.recommendationservice.api.service.article.ArticleLogQueryService;
 import com.ssafy.recommendationservice.api.service.recommendation.RecommendationService;
 import com.ssafy.recommendationservice.client.response.ArticleResponse;
+import com.ssafy.recommendationservice.client.response.TempResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,8 +36,8 @@ public class RecommendationController {
     }
 
     @GetMapping("/peer-age")
-    public ApiResponse<List<PeerAgeRecommendationResponse>> getPeerAgeRecommendation() {
-        List<PeerAgeRecommendationResponse> responses = recommendationService.getPeerAgeRecommendation();
+    public ApiResponse<List<TempResponse>> getPeerAgeRecommendation() {
+        List<TempResponse> responses = recommendationService.getPeerAgeRecommendation();
         return ApiResponse.ok(responses);
     }
 

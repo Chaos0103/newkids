@@ -2,11 +2,11 @@ package com.ssafy.recommendationservice.docs.recommendation;
 
 import com.ssafy.recommendationservice.api.controller.recommendation.RecommendationController;
 import com.ssafy.recommendationservice.api.controller.recommendation.response.AnotherArticleRecommendationResponse;
-import com.ssafy.recommendationservice.api.controller.recommendation.response.MainRecommendationResponse;
 import com.ssafy.recommendationservice.api.controller.recommendation.response.PeerAgeRecommendationResponse;
 import com.ssafy.recommendationservice.api.service.article.ArticleLogQueryService;
 import com.ssafy.recommendationservice.api.service.recommendation.RecommendationService;
 import com.ssafy.recommendationservice.client.response.ArticleResponse;
+import com.ssafy.recommendationservice.client.response.TempResponse;
 import com.ssafy.recommendationservice.docs.RestDocsSupport;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -15,7 +15,8 @@ import org.springframework.restdocs.payload.JsonFieldType;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import static org.mockito.BDDMockito.*;
+import static org.mockito.BDDMockito.anyLong;
+import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.get;
@@ -100,32 +101,42 @@ public class RecommendationControllerDocsTest extends RestDocsSupport {
     @DisplayName("또래 뉴스 기사 추천 API")
     @Test
     void getPeerAgeRecommendation() throws Exception {
-        PeerAgeRecommendationResponse response1 = PeerAgeRecommendationResponse.builder()
+        TempResponse response1 = TempResponse.builder()
             .articleId(1L)
             .title("또래 뉴스 기사 추천 1")
             .thumbnailImg("http://thumbnailImg1.jpg")
+            .writer("누군가")
+            .publishedDate(LocalDateTime.now())
             .build();
-        PeerAgeRecommendationResponse response2 = PeerAgeRecommendationResponse.builder()
+        TempResponse response2 = TempResponse.builder()
             .articleId(2L)
             .title("또래 뉴스 기사 추천 2")
             .thumbnailImg("http://thumbnailImg2.jpg")
+            .writer("누군가")
+            .publishedDate(LocalDateTime.now())
             .build();
-        PeerAgeRecommendationResponse response3 = PeerAgeRecommendationResponse.builder()
+        TempResponse response3 = TempResponse.builder()
             .articleId(3L)
             .title("또래 뉴스 기사 추천 3")
             .thumbnailImg("http://thumbnailImg3.jpg")
+            .writer("누군가")
+            .publishedDate(LocalDateTime.now())
             .build();
-        PeerAgeRecommendationResponse response4 = PeerAgeRecommendationResponse.builder()
+        TempResponse response4 = TempResponse.builder()
             .articleId(4L)
             .title("또래 뉴스 기사 추천 4")
             .thumbnailImg("http://thumbnailImg4.jpg")
+            .writer("누군가")
+            .publishedDate(LocalDateTime.now())
             .build();
-        PeerAgeRecommendationResponse response5 = PeerAgeRecommendationResponse.builder()
+        TempResponse response5 = TempResponse.builder()
             .articleId(5L)
             .title("또래 뉴스 기사 추천 5")
             .thumbnailImg("http://thumbnailImg5.jpg")
+            .writer("누군가")
+            .publishedDate(LocalDateTime.now())
             .build();
-        List<PeerAgeRecommendationResponse> responses = List.of(response1, response2, response3, response4, response5);
+        List<TempResponse> responses = List.of(response1, response2, response3, response4, response5);
 
         given(recommendationService.getPeerAgeRecommendation())
             .willReturn(responses);
@@ -151,7 +162,11 @@ public class RecommendationControllerDocsTest extends RestDocsSupport {
                     fieldWithPath("data[].title").type(JsonFieldType.STRING)
                         .description("뉴스 기사 제목"),
                     fieldWithPath("data[].thumbnailImg").type(JsonFieldType.STRING)
-                        .description("뉴스 기사 썸네일")
+                        .description("뉴스 기사 썸네일"),
+                    fieldWithPath("data[].writer").type(JsonFieldType.STRING)
+                        .description("뉴스 기사 작성자"),
+                    fieldWithPath("data[].publishedDate").type(JsonFieldType.ARRAY)
+                        .description("뉴스 기사 작성일")
                 )
             ));
     }

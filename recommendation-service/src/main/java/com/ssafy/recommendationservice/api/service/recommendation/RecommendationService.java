@@ -3,8 +3,13 @@ package com.ssafy.recommendationservice.api.service.recommendation;
 import com.ssafy.recommendationservice.api.controller.recommendation.response.AnotherArticleRecommendationResponse;
 import com.ssafy.recommendationservice.api.controller.recommendation.response.MainRecommendationResponse;
 import com.ssafy.recommendationservice.api.controller.recommendation.response.PeerAgeRecommendationResponse;
+import com.ssafy.recommendationservice.client.ArticleServiceClient;
 import com.ssafy.recommendationservice.client.FlaskServerClient;
+import com.ssafy.recommendationservice.client.request.ArticleRequest;
+import com.ssafy.recommendationservice.client.response.ArticleResponse;
 import com.ssafy.recommendationservice.client.response.FlaskArticleResponse;
+import com.ssafy.recommendationservice.client.response.TempResponse;
+import com.ssafy.recommendationservice.domain.artilcle.repository.ArticleLogQueryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -18,8 +23,20 @@ public class RecommendationService {
 
     private final FlaskServerClient flaskServerClient;
 
-    public List<PeerAgeRecommendationResponse> getPeerAgeRecommendation() {
-        return new ArrayList<>();
+    // TODO: 2023-10-05 수정 필요
+    private final ArticleLogQueryRepository articleLogQueryRepository;
+    private final ArticleServiceClient articleServiceClient;
+
+    public List<TempResponse> getPeerAgeRecommendation() {
+        List<Long> articleIds = articleLogQueryRepository.tempArticle();
+
+        ArticleRequest request = ArticleRequest.builder()
+            .articleIds(articleIds)
+            .build();
+
+        List<TempResponse> responses = articleServiceClient.getTemps(request);
+
+        return responses;
     }
 
     public List<AnotherArticleRecommendationResponse> getAnotherArticleRecommendation(Long articleId) {

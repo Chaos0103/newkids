@@ -4,7 +4,6 @@ import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
-import java.time.LocalDateTime;
 import java.util.List;
 
 import static com.ssafy.recommendationservice.domain.artilcle.QArticleLog.articleLog;
@@ -28,6 +27,18 @@ public class ArticleLogQueryRepository {
                 articleLog.id.asc()
             )
             .limit(5)
+            .fetch();
+    }
+
+    public List<Long> tempArticle() {
+        return queryFactory
+            .select(articleLog.articleId)
+            .from(articleLog)
+            .orderBy(
+                articleLog.count.desc(),
+                articleLog.id.asc()
+            )
+            .limit(6)
             .fetch();
     }
 }

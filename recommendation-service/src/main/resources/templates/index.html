@@ -642,7 +642,7 @@ Host: localhost:8080</code></pre>
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 717
+Content-Length: 1177
 
 {
   "code" : 200,
@@ -651,23 +651,33 @@ Content-Length: 717
   "data" : [ {
     "articleId" : 1,
     "title" : "또래 뉴스 기사 추천 1",
-    "thumbnailImg" : "http://thumbnailImg1.jpg"
+    "thumbnailImg" : "http://thumbnailImg1.jpg",
+    "writer" : "누군가",
+    "publishedDate" : [ 2023, 10, 5, 15, 26, 27, 725153300 ]
   }, {
     "articleId" : 2,
     "title" : "또래 뉴스 기사 추천 2",
-    "thumbnailImg" : "http://thumbnailImg2.jpg"
+    "thumbnailImg" : "http://thumbnailImg2.jpg",
+    "writer" : "누군가",
+    "publishedDate" : [ 2023, 10, 5, 15, 26, 27, 725153300 ]
   }, {
     "articleId" : 3,
     "title" : "또래 뉴스 기사 추천 3",
-    "thumbnailImg" : "http://thumbnailImg3.jpg"
+    "thumbnailImg" : "http://thumbnailImg3.jpg",
+    "writer" : "누군가",
+    "publishedDate" : [ 2023, 10, 5, 15, 26, 27, 725153300 ]
   }, {
     "articleId" : 4,
     "title" : "또래 뉴스 기사 추천 4",
-    "thumbnailImg" : "http://thumbnailImg4.jpg"
+    "thumbnailImg" : "http://thumbnailImg4.jpg",
+    "writer" : "누군가",
+    "publishedDate" : [ 2023, 10, 5, 15, 26, 27, 725153300 ]
   }, {
     "articleId" : 5,
     "title" : "또래 뉴스 기사 추천 5",
-    "thumbnailImg" : "http://thumbnailImg5.jpg"
+    "thumbnailImg" : "http://thumbnailImg5.jpg",
+    "writer" : "누군가",
+    "publishedDate" : [ 2023, 10, 5, 15, 26, 27, 725153300 ]
   } ]
 }</code></pre>
 </div>
@@ -720,6 +730,16 @@ Content-Length: 717
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>data[].thumbnailImg</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">뉴스 기사 썸네일</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data[].writer</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">뉴스 기사 작성자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data[].publishedDate</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">뉴스 기사 작성일</p></td>
 </tr>
 </tbody>
 </table>
