@@ -22,6 +22,7 @@ function KeywordCloud() {
 
 	const callbacks = {
 		onWordClick: (word: IWordKeyword) => movePage(`/article?search=${word.text}`),
+		getWordTooltip: (word: IWordKeyword) => `${word.text}`,
 	};
 
 	const fetchKeywordData = async () => {
