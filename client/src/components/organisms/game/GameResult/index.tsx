@@ -3,6 +3,7 @@ import GameCompleteLottie from 'components/atoms/lottie/GameCompleteLottie';
 import Title from 'components/atoms/quiz/Title';
 import Button from 'components/atoms/common/Button';
 import useMovePage from 'hooks/useMovePage';
+import ScrollToTop from 'components/atoms/common/ScrollToTop';
 import { GameResultWrapper } from './style';
 
 interface IGameResultProps {
@@ -33,6 +34,7 @@ function GameResult(props: IGameResultProps) {
 
 	return (
 		<GameResultWrapper>
+			<ScrollToTop />
 			<GameCompleteLottie />
 			<Title text="최종 점수" effectText="" />
 			<div className="score-wrapper">

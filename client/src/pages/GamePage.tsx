@@ -5,6 +5,7 @@ import GameMain from 'components/organisms/game/GameMain';
 import GameHowToUse from 'components/organisms/game/GameHowToUse';
 import GameResult from 'components/organisms/game/GameResult';
 import GameQuestion from 'components/organisms/game/GameQuestion';
+import Footer from 'components/organisms/common/Footer';
 
 function GamePage() {
 	const [step, setStep] = useState(0);
@@ -38,7 +39,7 @@ function GamePage() {
 
 	return (
 		<PageLayout>
-			<GamePageLayout StepView={stepView} />
+			<GamePageLayout StepView={stepView} Footer={<Footer />} />
 		</PageLayout>
 	);
 }

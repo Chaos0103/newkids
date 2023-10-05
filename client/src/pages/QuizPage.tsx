@@ -10,7 +10,7 @@ import Footer from 'components/organisms/common/Footer';
 
 function QuizPage() {
 	const [step, setStep] = useState(0);
-	const [score, setScore] = useState(0);
+	const [cnt, setCnt] = useState(0);
 	const [stepView, setStepView] = useState(<div />);
 
 	useEffect(() => {
@@ -24,11 +24,11 @@ function QuizPage() {
 				break;
 			}
 			case 2: {
-				setStepView(<QuizQuestion setStep={setStep} setScore={setScore} />);
+				setStepView(<QuizQuestion setStep={setStep} setCnt={setCnt} />);
 				break;
 			}
 			case 3: {
-				setStepView(<QuizResult score={score} setStep={setStep} />);
+				setStepView(<QuizResult cnt={cnt} setStep={setStep} />);
 				break;
 			}
 			case 4: {
