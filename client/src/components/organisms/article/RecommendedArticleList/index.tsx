@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { IArticle } from 'types/article';
-import { DUMMY_ARTICLES_6 } from 'constants/dummy';
 import RectangleArticleListItem from 'components/atoms/article/RectangleArticleListItem';
 import { getAllRecommededPeerArticleApi } from 'utils/apis/article';
 import { RecommendedArticleListContainer } from './style';
@@ -12,12 +11,12 @@ function RecommendedArticleList() {
 	const fetchData = async () => {
 		try {
 			const response = await getAllRecommededPeerArticleApi();
-			setArticles(DUMMY_ARTICLES_6);
-			console.log('::getAllArticleApi', response);
+			setArticles(response.data.data);
 		} catch (error) {
 			console.error(error);
 		}
 	};
+
 	useEffect(() => {
 		fetchData();
 	}, []);
