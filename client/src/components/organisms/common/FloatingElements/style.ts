@@ -26,7 +26,7 @@ export const FloatingElementsContainer = styled.div`
 			animation: left-and-right 7s linear 1s infinite alternate;
 
 			&:before {
-				background-image: url('/src/assets/imgs/floating-icons.png');
+				background-image: url('/assets/imgs/floating-icons.png');
 				display: block;
 				background-size: 388px 349px;
 				background-position: -123px -268px;
@@ -43,7 +43,7 @@ export const FloatingElementsContainer = styled.div`
 
 			&:before {
 				display: block;
-				background-image: url('/src/assets/imgs/floating-icons.png');
+				background-image: url('/assets/imgs/floating-icons.png');
 				background-size: 388px 349px;
 				background-position: -198px -128px;
 				width: 62px;
@@ -99,7 +99,7 @@ export const FloatingElementsContainer = styled.div`
 			animation: left-and-right 3s linear 1s infinite alternate;
 
 			&:before {
-				background-image: url('/src/assets/imgs/floating-icons.png');
+				background-image: url('/assets/imgs/floating-icons.png');
 				display: block;
 				background-size: 388px 349px;
 				background-position: -123px -268px;
@@ -117,7 +117,7 @@ export const FloatingElementsContainer = styled.div`
 
 			&:before {
 				display: block;
-				background-image: url('/src/assets/imgs/floating-icons.png');
+				background-image: url('/assets/imgs/floating-icons.png');
 				transform: scale(1.5);
 				background-size: 388px 349px;
 				background-position: -198px -128px;
