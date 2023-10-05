@@ -150,8 +150,8 @@ export const CheckTextButtonStyles = {
 			font-size: 3rem;
 		}
 		svg {
-			width: 80px;
-			height: 80px;
+			width: 60px;
+			height: 60px;
 		}
 	`,
 };

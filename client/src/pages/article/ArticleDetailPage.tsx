@@ -22,7 +22,6 @@ function ArticleDetailPage() {
 		try {
 			if (articleId) {
 				const response = await getArticleKeywordApi(articleId);
-				console.log(response);
 				if (response.status === 200) {
 					setArticleKeywords(response.data.data);
 				}
@@ -36,7 +35,6 @@ function ArticleDetailPage() {
 		try {
 			if (articleId) {
 				const response = await getArticleApi(articleId);
-				console.log(response);
 				if (response.status === 200) {
 					setArticle(response.data.data);
 				}
@@ -50,7 +48,6 @@ function ArticleDetailPage() {
 		try {
 			if (articleId) {
 				const response = await getAnotherArticleApi(articleId);
-				console.log('::getAnotherArticleApi', response);
 				if (response.status === 200) {
 					setAnotherArticles(response.data.data);
 				}

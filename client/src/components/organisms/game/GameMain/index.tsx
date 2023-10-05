@@ -17,8 +17,6 @@ function GameMain({ setStep }: IGameMainProps) {
 		if (!isDone) {
 			setStep(1);
 			setNum(1);
-		} else {
-			console.log('변경이 안됐습니다.');
 		}
 	};
 

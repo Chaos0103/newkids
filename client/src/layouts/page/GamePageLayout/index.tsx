@@ -6,7 +6,8 @@ interface IGamePageLayoutProps {
 	StepView: ReactNode;
 }
 
-function GamePageLayout({ StepView }: IGamePageLayoutProps) {
+function GamePageLayout(props: IGamePageLayoutProps) {
+	const { StepView } = props;
 	return (
 		<GamePageLayoutWrapper>
 			<ContentLayout>

@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 export const QuizResultWrapper = styled.div`
+	min-height: calc(100vh);
+
 	.score-wrapper {
 		margin-top: 3rem;
 		display: flex;

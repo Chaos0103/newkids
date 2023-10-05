@@ -6,6 +6,7 @@ import HowToUseExplainThree from 'components/atoms/game/HowToUseExplainThree';
 import Button from 'components/atoms/common/Button';
 import { startQuizApi } from 'utils/apis/quiz';
 import HowToUseLottie from 'components/atoms/lottie/HowToUseLottie';
+import ScrollToTop from 'components/atoms/common/ScrollToTop';
 import { GameHowToUseContainer } from './style';
 
 interface IGameHowToUseProps {
@@ -19,12 +20,8 @@ function GameHowToUse({ setStep }: IGameHowToUseProps) {
 	const startQuiz = async () => {
 		try {
 			const memberkey = localStorage.getItem('memberkey');
-			console.log('멤버키입니다.');
-			console.log(memberkey);
 			if (memberkey) {
-				const response = await startQuizApi(memberkey);
-				console.log('::startWeeklyQuizApi', response);
-				console.log(response.data);
+				await startQuizApi(memberkey);
 			}
 		} catch (e) {
 			console.log(e);
@@ -40,14 +37,15 @@ function GameHowToUse({ setStep }: IGameHowToUseProps) {
 	};
 
 	useEffect(() => {
-		startQuiz();
 		if (num === 0) {
+			startQuiz();
 			setIsDone(false);
 		}
 	}, [num]);
 
 	return (
 		<GameHowToUseContainer>
+			<ScrollToTop />
 			<HowToUseLottie />
 			<Title effectText="단어 듣고 맞추기" text=" 이용방법" />
 			<HowToUseExplainOne />

@@ -15,7 +15,6 @@ function AuthProvider({ children }: { children: ReactNode }) {
 		try {
 			if (token && memberkey) {
 				const response = await getMemberInfoApi(memberkey);
-				console.log('::fetchMemberInfo', response);
 				if (response.status === 200) {
 					setMemberInfoState(response.data.data);
 					setIsLoading(false);

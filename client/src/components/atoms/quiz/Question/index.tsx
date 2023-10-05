@@ -6,7 +6,11 @@ interface IQuestionProps {
 }
 
 function Question({ text }: IQuestionProps) {
-	return <QuestionWrapper>{text}</QuestionWrapper>;
+	return (
+		<QuestionWrapper>
+			<div className="question-content" dangerouslySetInnerHTML={{ __html: text }} />
+		</QuestionWrapper>
+	);
 }
 
 export default Question;
