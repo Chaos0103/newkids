@@ -8,4 +8,8 @@ export const MyActivityLayoutContainer = styled.div`
 	.my-activity-article {
 		margin-top: 3rem;
 	}
+
+	.pagination {
+		padding-bottom: 30px;
+	}
 `;

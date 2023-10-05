@@ -4,7 +4,7 @@ export const UserPasswordChangeContainer = styled.div`
 	.change-password-form {
 		width: 100%;
 		height: 100%;
-		margin-top: 2rem;
+		margin-top: 1rem;
 		display: flex;
 		flex-direction: column;
 
@@ -18,7 +18,10 @@ export const UserPasswordChangeContainer = styled.div`
 			.password-input {
 				width: 80%;
 				> * {
-					margin-bottom: 1.5rem;
+					margin-bottom: 1rem;
+				}
+				.password-mismatch {
+					font-size: 12px;
 				}
 			}
 		}
