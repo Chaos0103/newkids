@@ -6,7 +6,7 @@ export const GameQuestionContainer = styled.div`
 
 	.question-box {
 		width: 800px;
-		height: 500px;
+		height: 600px;
 		padding: 20px;
 		box-shadow: 0 0 0 5px rgba(1, 1, 0, 0.5);
 		border-radius: 25px;
@@ -28,12 +28,6 @@ export const GameQuestionContainer = styled.div`
 		margin-top: 3rem;
 		text-align: left;
 		font-size: 2rem;
-	}
-
-	.h1 {
-		margin-top: 3rem;
-		font-size: 2rem;
-		text-align: center;
 	}
 
 	.question-wrapper {

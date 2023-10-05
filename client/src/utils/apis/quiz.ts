@@ -1,4 +1,4 @@
-import { WeeklyQuizAnswerCheckApiBody } from 'types/api';
+import { QuizAnswerCheckApiBody, WeeklyQuizAnswerCheckApiBody } from 'types/api';
 import { instance } from './instance';
 
 // Quiz
@@ -16,14 +16,14 @@ export const getQuizQuestionApi = async (memberkey: string) => {
 };
 
 // 퀴즈 정답 체크
-export const checkAnswerApi = async (memberkey: string) => {
-	const response = await instance.post(`/quiz-service/api/${memberkey}/answer`);
+export const checkAnswerApi = async (memberkey: string, body: QuizAnswerCheckApiBody) => {
+	const response = await instance.post(`/quiz-service/api/${memberkey}/answer`, body);
 	return response;
 };
 
 // 퀴즈 결과
 export const resultQuizApi = async (memberkey: string) => {
-	const response = await instance.post(`/quiz-service/api/${memberkey}/weekly/result`);
+	const response = await instance.post(`/quiz-service/api/${memberkey}/result`);
 	return response;
 };
 

@@ -16,6 +16,7 @@ export const QuizQuestionContainer = styled.div`
 	}
 
 	.quiz-button {
+		min-height: 160px;
 		display: flex;
 		justify-content: center;
 		align-item: center;
