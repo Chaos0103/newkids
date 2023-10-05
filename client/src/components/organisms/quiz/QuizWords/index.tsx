@@ -6,6 +6,7 @@ import useMovePage from 'hooks/useMovePage';
 import { WeeklyQuizQuestionRequestApiBody } from 'types/api';
 import { DUMMY_WEEKLY_QUIZS } from 'constants/dummyquiz';
 import CheckTextButton from 'components/atoms/common/CheckTextButton';
+import ScrollToTop from 'components/atoms/common/ScrollToTop';
 import { QuizWordsWrapper } from './style';
 
 interface IQuizWordsProps {
@@ -17,7 +18,6 @@ function QuizWords({ setStep }: IQuizWordsProps) {
 	const [num, setNum] = useState(0);
 	const [movePage] = useMovePage();
 	const [question, setQuestion] = useState<WeeklyQuizQuestionRequestApiBody[]>(DUMMY_WEEKLY_QUIZS);
-	// const [clickWord, setClickWord] = useState(false);
 	const [checkedWords, setCheckedWords] = useState(Array(question.length).fill(false));
 
 	const wordClick = () => {
@@ -46,6 +46,7 @@ function QuizWords({ setStep }: IQuizWordsProps) {
 
 	return (
 		<QuizWordsWrapper>
+			<ScrollToTop />
 			<VocaLottie />
 			<Title text="이번 퀴즈에서 배운 단어들이에요" effectText="" />
 			<div className="checkbox-wrapper">
