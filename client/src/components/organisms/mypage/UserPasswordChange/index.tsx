@@ -55,7 +55,6 @@ function UserPasswordChange({ onClose }: IUserPasswordChangeProps) {
 			setIsDone(true);
 		} else if (currentPwd && newPwd && newPwdCheck && newPwd !== newPwdCheck) {
 			setIsDone(false);
-			// alert('새 비밀번호가 일치하지 않습니다.');
 		} else {
 			setIsDone(false);
 		}

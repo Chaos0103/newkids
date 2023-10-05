@@ -2,7 +2,6 @@ import React from 'react';
 import { Bar } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
 import { IMyKeyword } from 'types/keyword';
-// import { DUMMY_MYKEYWORDS } from 'constants/dummyreadarticle';
 import { MyActivityChartGraphWrapper } from './style';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
@@ -12,8 +11,6 @@ interface IMyActivityChartGraphProps {
 }
 function MyActivityChartGraph(props: IMyActivityChartGraphProps) {
 	const { myTopKeyword } = props;
-	console.log(myTopKeyword);
-	// const mykeyword = DUMMY_MYKEYWORDS;
 	const chartBarColors = [
 		'rgb(249, 65, 68)',
 		'rgb(243, 144, 44)',
@@ -70,9 +67,9 @@ function MyActivityChartGraph(props: IMyActivityChartGraphProps) {
 		},
 		layout: {
 			padding: {
-				left: 10, // 좌측 여백 조절
-				right: 20, // 우측 여백 조절
-				top: 20, // 상단 여백 조절
+				left: 10,
+				right: 20,
+				top: 20,
 			},
 		},
 	};
@@ -83,7 +80,6 @@ function MyActivityChartGraph(props: IMyActivityChartGraphProps) {
 		labels,
 		datasets: [
 			{
-				// data: [12, 19, 3, 5, 2],
 				data: keywordCnt,
 				backgroundColor: chartBarColors,
 			},

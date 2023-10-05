@@ -14,7 +14,6 @@ function MyPageLayout({ MyPageMenu, UserDetail, UserFigures }: IMyPageLayoutProp
 			<div className="my-page-menu">
 				<ContentLayout>{MyPageMenu}</ContentLayout>
 			</div>
-			{/* <hr /> */}
 			<ContentLayout>
 				<div className="user-info">
 					{UserFigures}

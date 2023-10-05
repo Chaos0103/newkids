@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 
-// export const ModalComponentContainer = styled.div<{ isOpen: boolean }>`
 export const ModalComponentContainer = styled.div`
 	position: fixed;
 	top: 0;
@@ -35,4 +34,3 @@ export const ModalComponentContainer = styled.div`
 		cursor: pointer;
 	}
 `;
-// display: ${({ isOpen }) => (isOpen ? 'block' : 'none')};

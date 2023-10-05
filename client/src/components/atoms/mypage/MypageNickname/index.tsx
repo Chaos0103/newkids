@@ -8,7 +8,6 @@ import { MemberInfoState } from 'store/auth';
 import { MypageNicknameWrapper } from './style';
 
 function MypageNickname() {
-	// const [newNickname, setNewNickname] = useState('');
 	const [memberInfo] = useRecoilState(MemberInfoState);
 	const [nickname, setNickname] = useState('');
 	const changeNickname = async () => {
@@ -23,7 +22,6 @@ function MypageNickname() {
 				const newNickname = nickname;
 				const certNickname = await PatchNicknameApi(memberKey, { newNickname });
 				if (certNickname.status === 200) {
-					console.log(certNickname);
 					const memberLoginEvent = new Event('memberLogin');
 					window.dispatchEvent(memberLoginEvent);
 					alert('닉네임 변경이 완료되었습니다.');
