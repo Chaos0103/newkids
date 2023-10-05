@@ -17,6 +17,7 @@ import ArticleDetailPage from 'pages/article/ArticleDetailPage';
 import ArticleFindPage from 'pages/article/ArticleFindPage';
 import ScrollToTop from 'components/atoms/common/ScrollToTop';
 import VocabularyPage from 'pages/VocabularyPage';
+import FloatingElements from 'components/organisms/common/FloatingElements';
 import PrivateRoute from './PrivateRoute';
 import AuthProvider from './AuthProvider';
 
@@ -26,6 +27,7 @@ function AppRouter() {
 			<GlobalFonts />
 			<GlobalStyles />
 			<GlobalKeyFrames />
+			<FloatingElements />
 			<ApplicationLayout>
 				<AuthProvider>
 					<BrowserRouter>
