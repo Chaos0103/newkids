@@ -1,3 +1,4 @@
+import { WeeklyQuizAnswerCheckApiBody } from 'types/api';
 import { instance } from './instance';
 
 // Quiz
@@ -41,8 +42,8 @@ export const getWeeklyQuizQuestionApi = async (memberkey: string) => {
 };
 
 // 주간 어휘 퀴즈 정답 체크
-export const checkWeeklyAnswerApi = async (memberKey: string) => {
-	const response = await instance.post(`/quiz-service/api/${memberKey}/weekly/answer`);
+export const checkWeeklyAnswerApi = async (memberKey: string, body: WeeklyQuizAnswerCheckApiBody) => {
+	const response = await instance.post(`/quiz-service/api/${memberKey}/weekly/answer`, body);
 	return response;
 };
 
