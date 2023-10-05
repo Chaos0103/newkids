@@ -7,32 +7,35 @@ import TrendingKeywordList from 'components/organisms/article/TrendingKeywordLis
 import Footer from 'components/organisms/common/Footer';
 import PageLayout from 'layouts/common/PageLayout';
 import IndexPageLayout from 'layouts/page/IndexPageLayout';
+import moment from 'moment';
 
 function IndexPage() {
+	const standardTime = moment(new Date()).format('YY-MM-DD HH:00 업데이트');
+
 	return (
 		<PageLayout>
 			<IndexPageLayout
 				PopularArticleList={
 					<>
-						<AreaTitle title="인기있는 기사" />
+						<AreaTitle color="Primary" title="지금 인기있는 기사" subStr={standardTime} />
 						<PopularArticleList />
 					</>
 				}
 				TrendingKeywordList={
 					<>
-						<AreaTitle title="급상승 키워드" />
+						<AreaTitle title="지금 뜨고있는 키워드에요" subStr={standardTime} />
 						<TrendingKeywordList />
 					</>
 				}
 				RecommendedArticleList={
 					<>
-						<AreaTitle title="내 또래가 많이 접한 기사에요" />
+						<AreaTitle title="내 또래 친구들이 자주봤어요" />
 						<RecommendedArticleList />
 					</>
 				}
 				WordCloud={
 					<>
-						<AreaTitle title="이주의 핫이슈" />
+						<AreaTitle title="이주의 핫이슈" subStr={standardTime} />
 						<KeywordCloud />
 					</>
 				}
