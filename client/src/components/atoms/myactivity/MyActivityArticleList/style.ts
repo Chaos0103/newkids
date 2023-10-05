@@ -6,7 +6,7 @@ export const MyActivityArticleListWrapper = styled.div`
 
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: space-between;
+	gap: 10px;
 	align-content: flex-start;
 
 	.article-list-text {
@@ -14,8 +14,8 @@ export const MyActivityArticleListWrapper = styled.div`
 		margin-bottom: 10px;
 		img {
 			height: 150px;
-			width: 250px;
-			border-radius: 20%;
+			width: 230px;
+			border-radius: var(--radius-m);
 			margin-bottom: 1rem;
 		}
 		img:hover,
@@ -26,7 +26,6 @@ export const MyActivityArticleListWrapper = styled.div`
 			font-size: 24px;
 			font-weight: bold;
 			margin-bottom: 2rem;
-			hover: pointer;
 		}
 	}
 `;

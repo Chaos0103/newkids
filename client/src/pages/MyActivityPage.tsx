@@ -8,7 +8,6 @@ import { findAllReadArticleApi } from 'utils/apis/article';
 import Pagination from 'components/organisms/common/Pagination';
 
 function MyActivityPage() {
-	// 페이지네이션
 	const [currentPage, setCurrentPage] = useState(1);
 	const [totalPages, setTotalPages] = useState(3);
 	const [size, setSize] = useState(0);
@@ -20,7 +19,6 @@ function MyActivityPage() {
 			const memberkey = localStorage.getItem('memberkey');
 			if (memberkey) {
 				const response = await findAllReadArticleApi(memberkey, currentPage);
-				console.log('::나의 활동내역 기사', response);
 				if (response.status === 200) {
 					setArticles(response.data.data.content);
 					setTotalPages(response.data.data.totalPages);

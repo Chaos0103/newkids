@@ -29,7 +29,6 @@ function createRingElements(numberOfRings: number, gapPercentage: number) {
 
 function MyVocabulary(props: IMyVocabularyProps) {
 	const { vocabularys } = props;
-	console.log('상속받은 단어', { vocabularys });
 	const numberOfRings = 10; // 원하는 고리의 수
 	const ringElements = [];
 
@@ -53,11 +52,6 @@ function MyVocabulary(props: IMyVocabularyProps) {
 	return (
 		<MyVocabularyContainer>
 			<div className="notebook-size">
-				<div className="sort-button">
-					<div className="sort-button-text" onClick={() => {}} role="presentation">
-						최신 순 |
-					</div>
-				</div>
 				<hr className="vertical-line" />
 				{createRingElements(10, 10)}
 				<div className="voca-book">
@@ -65,7 +59,6 @@ function MyVocabulary(props: IMyVocabularyProps) {
 						<div className="left-title">
 							<p>단어</p>
 							<p>알아요</p>
-							<p>삭제</p>
 						</div>
 						<hr />
 						<div className="word-list">
@@ -76,7 +69,6 @@ function MyVocabulary(props: IMyVocabularyProps) {
 						<div className="right-title">
 							<p>단어</p>
 							<p>알아요</p>
-							<p>삭제</p>
 						</div>
 						<hr />
 						<div className="word-list">

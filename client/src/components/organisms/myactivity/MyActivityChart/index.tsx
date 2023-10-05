@@ -13,7 +13,6 @@ function MyActivityChart() {
 			const memberkey = localStorage.getItem('memberkey');
 			if (memberkey) {
 				const response = await getMyKeywordApi(memberkey);
-				console.log('::getMyKeywordApi', response);
 				setMyTopKeyword(response.data.data);
 			}
 		} catch (e) {

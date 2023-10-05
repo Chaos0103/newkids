@@ -5,8 +5,20 @@ export const MypageMenuItemContainer = styled.div`
 	margin: 0.5rem;
 	text-align: center;
 
-	svg {
-		width: 30px;
-		height: 30px;
+	.icon {
+		font-size: 20px;
+		svg {
+			width: 40px;
+			height: 40px;
+		}
+	}
+	.icon-active {
+		font-size: 20px;
+		color: var(--main-color);
+		svg {
+			width: 40px;
+			height: 40px;
+			fill: var(--main-color);
+		}
 	}
 `;

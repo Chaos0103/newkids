@@ -8,26 +8,23 @@ import { IGetallVocaBody } from 'types/vocabulary';
 import { getAllVocabularyApi } from 'utils/apis/vocabulary';
 
 function VocabularyPage() {
-	// 페이지네이션
 	const [currentPage, setCurrentPage] = useState(1);
 	const [totalPages, setTotalPages] = useState(10);
 	const [size, setSize] = useState(10);
 	const [currentGroup, setCurrentGroup] = useState(1);
-	const [totalElements, setTotalElements] = useState(0);
-	// 단어장 데이터
+	const [isChecked, setIsChecked] = useState<boolean>(false);
 	const [resultVocabularys, setResultVocabularys] = useState<IGetallVocaBody[]>([]);
 
 	const searchPage = async () => {
 		try {
 			const memberkey = localStorage.getItem('memberkey');
+
 			if (memberkey) {
-				const response = await getAllVocabularyApi(memberkey, currentPage);
-				console.log(response);
+				const response = await getAllVocabularyApi(memberkey, currentPage, isChecked);
 				if (response.status === 200) {
 					setResultVocabularys(response.data.data.content);
 					setTotalPages(response.data.data.totalPages);
 					setSize(response.data.data.size);
-					setTotalElements(response.data.data.totalElements);
 				}
 			}
 		} catch (error) {
@@ -37,7 +34,7 @@ function VocabularyPage() {
 
 	useEffect(() => {
 		searchPage();
-	}, [currentPage]);
+	}, [currentPage, isChecked]);
 
 	useEffect(() => {
 		window.addEventListener('reSearchPage', searchPage);
@@ -49,7 +46,7 @@ function VocabularyPage() {
 	return (
 		<PageLayout>
 			<VocabularyLayout
-				VocabularyHeader={<VocabularyHeader totalElements={totalElements} />}
+				VocabularyHeader={<VocabularyHeader setIsChecked={setIsChecked} />}
 				MyVocabulary={<MyVocabulary vocabularys={resultVocabularys} />}
 				Pagination={
 					<Pagination

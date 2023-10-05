@@ -32,7 +32,6 @@ function UserDetail() {
 				<div className="mypage-button">
 					<Button text="비밀번호 변경" radius="s" color="SubFirst" size="s" handleClick={changePw} />
 					{newPassword && (
-						// <ModalComponent onClose={() => setNewPassword(!newPassword)}>
 						<ModalComponent>
 							<UserPasswordChange onClose={closeModal} />
 						</ModalComponent>

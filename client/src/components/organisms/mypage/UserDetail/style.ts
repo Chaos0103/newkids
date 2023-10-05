@@ -18,7 +18,7 @@ export const UserDetailContainer = styled.div`
 	.mypage-title {
 		display: flex;
 		justify-content: space-between;
-		align-item: center;
+		align-items: center;
 		.mypage-button {
 			display: flex;
 			gap: 10px;
@@ -31,5 +31,6 @@ export const UserDetailContainer = styled.div`
 	p {
 		color: var(--main-color);
 		margin-top: 30px;
+		font-size: 20px;
 	}
 `;

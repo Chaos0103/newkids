@@ -26,7 +26,6 @@ function UserWithdrawal({ onClose }: IUserWithdrawalProps) {
 			if (memberkey) {
 				if (confirmation) {
 					const response = await withdrawalApi(memberkey, data);
-					console.log(response);
 					if (response.status === 200) {
 						alert('회원탈퇴완료');
 						navigate('/auth/login');

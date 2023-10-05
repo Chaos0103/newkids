@@ -7,7 +7,6 @@ import React, { useEffect, useState } from 'react';
 import { findAllReadArticleApi } from 'utils/apis/article';
 
 function MyCollectionPage() {
-	// 페이지네이션
 	const [currentPage, setCurrentPage] = useState(1);
 	const [totalPages, setTotalPages] = useState(3);
 	const [size, setSize] = useState(8);
@@ -19,7 +18,6 @@ function MyCollectionPage() {
 			const memberkey = localStorage.getItem('memberkey');
 			if (memberkey) {
 				const response = await findAllReadArticleApi(memberkey, currentPage);
-				console.log(response);
 				if (response.status === 200) {
 					setArticles(response.data.data.content);
 					setTotalPages(response.data.data.totalPages);

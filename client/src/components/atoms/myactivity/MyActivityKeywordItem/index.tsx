@@ -1,6 +1,5 @@
 import React from 'react';
 import { IMyKeyword } from 'types/keyword';
-// import { DUMMY_MYKEYWORDS } from 'constants/dummyreadarticle';
 import { MyActivityKeywordWrapper } from './style';
 
 interface IMyActivityKeywordProps {
@@ -9,9 +8,6 @@ interface IMyActivityKeywordProps {
 
 function MyActivityKeyword(props: IMyActivityKeywordProps) {
 	const { myTopKeyword } = props;
-	// 더미테스트
-	// const myKeyword = DUMMY_MYKEYWORDS;
-	console.log(myTopKeyword);
 
 	return (
 		<MyActivityKeywordWrapper>

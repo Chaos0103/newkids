@@ -8,7 +8,6 @@ import { MypageAgeWrapper } from './style';
 function MypageAge() {
 	const [memberInfo] = useRecoilState(MemberInfoState);
 	const [age, setAge] = useState(0);
-	// console.log(memberInfo);
 
 	useEffect(() => {
 		if (memberInfo) {
