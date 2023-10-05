@@ -1,6 +1,7 @@
 import React from 'react';
 import { IArticle } from 'types/article';
 import useMovePage from 'hooks/useMovePage';
+import { dateToString } from 'utils/common/dateToString';
 import { SearchResultArticleListItemContainer } from './style';
 
 interface ISearchResultArticleListItemProps {
@@ -21,7 +22,7 @@ function SearchResultArticleListItem(props: ISearchResultArticleListItemProps) {
 				</div>
 				<div className="article-info">
 					<h4>{article.writer}</h4>
-					<h4>{article.publishedDate}</h4>
+					<h4>{dateToString(new Date(article.publishedDate))}</h4>
 				</div>
 			</div>
 		</SearchResultArticleListItemContainer>
