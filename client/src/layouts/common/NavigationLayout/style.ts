@@ -8,9 +8,19 @@ export const NavigationLayoutWrapper = styled.div`
 	z-index: 50;
 
 	.navigation-container {
-		width: var(--content-width-l);
 		margin: 0 auto;
 
+		@media screen and (min-width: 0) {
+			width: var(--content-width-full);
+		}
+
+		@media screen and (min-width: 1440px) {
+			width: var(--content-width-l);
+		}
+
+		@media screen and (min-width: 1441px) {
+			width: var(--content-width-xl);
+		}
 		.navibar {
 			height: 76px;
 		}

@@ -25,7 +25,7 @@ export const ArticleContentContainer = styled.div`
 		flex-direction: column;
 		gap: 1rem;
 		background-color: #fff !important;
-		max-width: var(--content-width-m);
+		max-width: var(--content-width-full);
 		line-height: 1.7;
 		font-size: 1rem;
 

@@ -10,6 +10,7 @@ import { dateToString } from 'utils/common/dateToString';
 import { setDatebyPeriod } from 'utils/common/setDatebyPeriod';
 import { getAllArticleApi } from 'utils/apis/article';
 import queryString from 'query-string';
+import FindArticleListItemSkeleton from 'components/organisms/common/Skeleton/FindArticleListItemSkeleton';
 
 function ArticleFindPage() {
 	const [resultArticles, setResultArticles] = useState<IArticle[]>([]);
@@ -23,7 +24,7 @@ function ArticleFindPage() {
 	const [totalElements, setTotalElements] = useState(0);
 
 	const [startDate, setStartDate] = useState<string>('2000-01-01');
-	const [endDate, setEndDate] = useState<string>(dateToString(new Date()));
+	const [endDate, setEndDate] = useState<string>(dateToString(new Date(), true));
 	const [selectedPeriod, setSelectedPeriod] = useState(0);
 
 	const search = async () => {
@@ -50,7 +51,7 @@ function ArticleFindPage() {
 
 	useEffect(() => {
 		setStartDate(setDatebyPeriod(selectedPeriod));
-		setEndDate(dateToString(new Date()));
+		setEndDate(dateToString(new Date(), true));
 	}, [selectedPeriod]);
 
 	useEffect(() => {
@@ -78,7 +79,7 @@ function ArticleFindPage() {
 				}
 				ResultArticleList={
 					isLoading ? (
-						'기사 검색 중...'
+						<FindArticleListItemSkeleton />
 					) : (
 						<SearchResultArticleList articles={resultArticles} totalElements={totalElements} />
 					)

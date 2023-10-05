@@ -1,6 +1,6 @@
 /* eslint-disable react/no-danger */
-import { NarrowContentLayout } from 'layouts/common/ContentLayout';
 import React from 'react';
+import { FullContentLayout } from 'layouts/common/ContentLayout';
 import { ArticleContentContainer } from './style';
 import Dictionary from '../Dictionary';
 
@@ -11,9 +11,9 @@ function ArticleContent(props: IArticleContentProps) {
 	const { content } = props;
 	return (
 		<ArticleContentContainer>
-			<NarrowContentLayout>
+			<FullContentLayout>
 				<div className="article-content" dangerouslySetInnerHTML={{ __html: content }} />
-			</NarrowContentLayout>
+			</FullContentLayout>
 			<Dictionary />
 		</ArticleContentContainer>
 	);

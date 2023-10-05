@@ -35,6 +35,7 @@ export const GlobalStyles = createGlobalStyle`
         --content-width-s : 512px;
         --content-width-m : 756px;
         --content-width-l : 1024px;
+        --content-width-xl : 1280px;
         --content-width-full : 100%;
     }
 
@@ -61,7 +62,7 @@ export const GlobalStyles = createGlobalStyle`
         margin: 0;
         padding: 0;
         border: 0;
-        font-size: 16px;
+        font-size: 18px;
         vertical-align: baseline;
     }
 
