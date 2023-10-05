@@ -17,13 +17,13 @@ function IndexPage() {
 			<IndexPageLayout
 				PopularArticleList={
 					<>
-						<AreaTitle color="Primary" title="지금 인기있는 기사" subStr={standardTime} />
+						<AreaTitle color="Primary" title="지금 인기있는 기사에요!" subStr={standardTime} />
 						<PopularArticleList />
 					</>
 				}
 				TrendingKeywordList={
 					<>
-						<AreaTitle title="지금 뜨고있는 키워드에요" subStr={standardTime} />
+						<AreaTitle title="떠오르는 키워드에요" subStr={standardTime} />
 						<TrendingKeywordList />
 					</>
 				}
@@ -35,7 +35,7 @@ function IndexPage() {
 				}
 				WordCloud={
 					<>
-						<AreaTitle title="이주의 핫이슈" subStr={standardTime} />
+						<AreaTitle title="이주의 핫이슈 🔥" subStr={standardTime} />
 						<KeywordCloud />
 					</>
 				}
