@@ -5,6 +5,7 @@ export const MyPageLayoutContainer = styled.div`
 	height: 100%;
 	display: flex;
 	flex-direction: column;
+	padding-bottom: 3rem;
 
 	.user-profile {
 		height: 80px;
