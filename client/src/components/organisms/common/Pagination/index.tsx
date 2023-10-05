@@ -22,6 +22,13 @@ function Pagination(props: IPaginationProps) {
 	const { currentPage, totalPages, size, setCurrentPage, currentGroup, setCurrentGroup } = props;
 	const [pageNumbers, setPageNumbers] = useState<number[]>([]);
 
+	const scrollTotop = () => {
+		window.scrollTo({
+			top: 0,
+			behavior: 'smooth',
+		});
+	};
+
 	const setNumbers = () => {
 		const newPage = [];
 		let endPage = currentGroup * size;
@@ -47,6 +54,7 @@ function Pagination(props: IPaginationProps) {
 				<button
 					type="button"
 					onClick={() => {
+						scrollTotop();
 						setCurrentPage((currentGroup - 1) * size - 9);
 						setCurrentGroup(currentGroup - 1);
 					}}
@@ -63,6 +71,7 @@ function Pagination(props: IPaginationProps) {
 					key={el}
 					isActive={el === currentPage}
 					handleClick={() => {
+						scrollTotop();
 						setCurrentPage(el);
 					}}
 				/>
@@ -72,6 +81,7 @@ function Pagination(props: IPaginationProps) {
 				<button
 					type="button"
 					onClick={() => {
+						scrollTotop();
 						setCurrentPage(currentGroup * size + 1);
 						setCurrentGroup(currentGroup + 1);
 					}}
