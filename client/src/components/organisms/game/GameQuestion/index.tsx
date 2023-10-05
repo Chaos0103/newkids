@@ -122,7 +122,6 @@ function GameQuestion(props: IGameQuestionProps) {
 					}).then(() => {
 						setStep(3);
 						setCnt((prevIndex) => prevIndex + 1);
-						setNum(0);
 					});
 				} else {
 					Swal.fire({
@@ -133,7 +132,6 @@ function GameQuestion(props: IGameQuestionProps) {
 					}).then(() => {
 						setStep(3);
 						setCnt((prevIndex) => prevIndex);
-						setNum(0);
 					});
 				}
 			}
