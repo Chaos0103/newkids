@@ -6,8 +6,8 @@ export const GameResultWrapper = styled.div`
 	.score-wrapper {
 		margin-top: 3rem;
 		display: flex;
+		gap: 1rem;
 		justify-content: center;
-		align-item: center;
 	}
 
 	.score {
@@ -19,7 +19,6 @@ export const GameResultWrapper = styled.div`
 		margin-top: 3rem;
 		display: flex;
 		justify-content: center;
-		align-item: center;
 	}
 
 	.sub-title {
@@ -30,7 +29,6 @@ export const GameResultWrapper = styled.div`
 		margin-top: 3rem;
 		display: flex;
 		justify-content: center;
-		align-item: center;
 	}
 
 	.answer {
@@ -42,14 +40,12 @@ export const GameResultWrapper = styled.div`
 		margin-top: 3rem;
 		display: flex;
 		justify-content: center;
-		align-item: center;
 	}
 
 	.quiz-button {
 		min-height: 160px;
 		display: flex;
 		justify-content: center;
-		align-item: center;
 		margin-top: 3rem;
 	}
 `;

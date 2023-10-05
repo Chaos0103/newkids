@@ -58,7 +58,7 @@ function MyVocabulary(props: IMyVocabularyProps) {
 					<div className="left-page">
 						<div className="left-title">
 							<p>단어</p>
-							<p>알아요</p>
+							<p>알고있어요!</p>
 						</div>
 						<hr />
 						<div className="word-list">
@@ -68,7 +68,7 @@ function MyVocabulary(props: IMyVocabularyProps) {
 					<div className="right-page">
 						<div className="right-title">
 							<p>단어</p>
-							<p>알아요</p>
+							<p>알고있어요!</p>
 						</div>
 						<hr />
 						<div className="word-list">

@@ -19,7 +19,7 @@ export const WordListItemWrapper = styled.div`
 
 			> p {
 				flex: 1;
-				max-width: 10%;
+				max-width: 100px;
 				white-space: nowrap;
 				overflow: hidden;
 				text-overflow: ellipsis;

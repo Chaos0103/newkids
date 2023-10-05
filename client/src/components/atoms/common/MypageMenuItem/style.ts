@@ -5,6 +5,10 @@ export const MypageMenuItemContainer = styled.div`
 	margin: 0.5rem;
 	text-align: center;
 
+	&:hover {
+		cursor: pointer;
+	}
+
 	.icon {
 		font-size: 20px;
 		svg {

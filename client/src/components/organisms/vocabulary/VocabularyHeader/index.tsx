@@ -46,6 +46,7 @@ function VocabularyHeader(props: IVocabularyHeaderProps) {
 	};
 
 	useEffect(() => {
+		window.location.href = '#gd';
 		getCheckVocabulary();
 		getAllVocabulary();
 		window.addEventListener('checkVocabulary', getCheckVocabulary);
@@ -58,13 +59,13 @@ function VocabularyHeader(props: IVocabularyHeaderProps) {
 
 	return (
 		<VocabularyHeaderContainer>
-			<div className="voca-menu">
+			<div className="voca-menu" id="gd">
 				<button type="button" className="voca-total-button" onClick={handleAllClick}>
-					<p className="total-button-title">전체 단어 개수</p>
+					<p className="total-button-title">모든 단어 보기</p>
 					<p className="total-count">{allVoca}</p>
 				</button>
 				<button type="button" className="voca-know-button" onClick={handleKnowClick}>
-					<p className="know-button-title">아는 단어 개수</p>
+					<p className="know-button-title">아는 단어만 보기</p>
 					<p className="know-count">{vocaCheckCnt}</p>
 				</button>
 			</div>

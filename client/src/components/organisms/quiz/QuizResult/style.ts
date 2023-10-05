@@ -7,7 +7,7 @@ export const QuizResultWrapper = styled.div`
 		margin-top: 3rem;
 		display: flex;
 		justify-content: center;
-		align-item: center;
+		gap: 2rem;
 	}
 
 	.score {
