@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestParam;
 
-@FeignClient(name = "external-api", url = "https://openapi.naver.com/v1/search/encyc.json")
+@FeignClient(name = "naver-api", url = "https://openapi.naver.com/v1/search/encyc.json")
 public interface NaverOpenApiClient {
 
     @GetMapping
