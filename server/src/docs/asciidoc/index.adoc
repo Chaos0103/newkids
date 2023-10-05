@@ -1,0 +1,48 @@
+ifndef::snippets[]
+:snippets: ../../build/generated-snippets
+endif::[]
+= New Kids REST API 문서
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 2
+:sectlinks:
+
+[[Account-API]]
+== Account API
+
+include::api/member/login-account.adoc[]
+include::api/member/search-account.adoc[]
+
+[[Member-API]]
+== Member API
+
+include::api/member/create-account.adoc[]
+include::api/member/check-email.adoc[]
+include::api/member/check-nickname.adoc[]
+include::api/member/edit-password-member.adoc[]
+include::api/member/edit-nickname-member.adoc[]
+include::api/member/remove-member.adoc[]
+
+[[Vocabulary-API]]
+== Vocabulary API
+
+include::api/vocabulary/create-vocabulary.adoc[]
+include::api/vocabulary/check-vocabulary.adoc[]
+include::api/vocabulary/remove-vocabulary.adoc[]
+
+[[Word-API]]
+== Word API
+
+include::api/word/create-word.adoc[]
+include::api/word/search-words.adoc[]
+include::api/word/edit-word.adoc[]
+include::api/word/remove-word.adoc[]
+
+[[Article-API]]
+== Article API
+
+include::api/article/search-article.adoc[]
+include::api/article/search-detail-article.adoc[]
+include::api/article/create-read-article.adoc[]

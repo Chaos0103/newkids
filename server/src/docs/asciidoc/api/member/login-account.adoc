@@ -1,0 +1,11 @@
+[[login-account]]
+=== 계정 로그인
+
+==== HTTP Request
+include::{snippets}/login-account/http-request.adoc[]
+include::{snippets}/login-account/request-fields.adoc[]
+
+
+==== HTTP Response
+include::{snippets}/login-account/http-response.adoc[]
+include::{snippets}/login-account/response-fields.adoc[]

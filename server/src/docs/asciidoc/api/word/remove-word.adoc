@@ -1,0 +1,9 @@
+[[remove-word]]
+=== 단어 삭제
+
+==== HTTP Request
+include::{snippets}/remove-word/http-request.adoc[]
+
+==== HTTP Response
+include::{snippets}/remove-word/http-response.adoc[]
+include::{snippets}/remove-word/response-fields.adoc[]
