@@ -1,7 +1,0 @@
-__pycache__/
-*.csv
-*.cache
-*.cover
-*.log
-.venv
-venv/
