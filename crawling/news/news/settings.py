@@ -14,15 +14,15 @@ NEWSPIDER_MODULE = "news.spiders"
 
 # LOG_LEVEL = 'INFO'
 LOG_ENABLED = True  # 로그 활성화
-LOG_LEVEL = 'ERROR'  # 로그 레벨을 ERROR로 설정 (에러 이상의 로그만 저장)
-LOG_FILE = 'scrapy_errors.log'  # 로그 파일의 경로와 이름 설정
+LOG_LEVEL = 'INFO'  # 로그 레벨을 ERROR로 설정 (에러 이상의 로그만 저장)
+LOG_FILE = 'test.log'  # 로그 파일의 경로와 이름 설정
 
 # 저장 파일 형식
 # FEED_FORMAT = 'json'
 # FEED_FORMAT = "csv"
 
 # 저장할 파일명
-# FEED_URI = 'crawled_data.json'
+# FEED_URI = 'crawled_data.csv'
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = "news (+http://www.yourdomain.com)"
@@ -101,7 +101,7 @@ REQUEST_FINGERPRINTER_IMPLEMENTATION = "2.7"
 TWISTED_REACTOR = "twisted.internet.asyncioreactor.AsyncioSelectorReactor"
 FEED_EXPORT_ENCODING = "utf-8-sig"
 
-FEED_EXPORT_FIELDS=["title","sub_title","writer","published_date", "thumbnail_img", "content", "html_content", "imgs"]
+FEED_EXPORT_FIELDS=["title","sub_title","writer","published_date", "thumbnail_img", "content", "html_content"]
 
 
 # 404 오류무시
@@ -117,9 +117,9 @@ ITEM_PIPELINES = {
 }
 
 # 크롤링 속도 제어
-AUTOTHROTTLE_ENABLED = True
-AUTOTHROTTLE_START_DELAY = 0.2
-AUTOTHROTTLE_MAX_DELAY = 10
+# AUTOTHROTTLE_ENABLED = True
+# AUTOTHROTTLE_START_DELAY = 0.2
+# AUTOTHROTTLE_MAX_DELAY = 10
 
 # SQLite 데이터베이스 설정
 # DB_NAME = 'your_database.db'
